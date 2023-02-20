@@ -1,7 +1,7 @@
 Class {
 	#name : #MorphCanvasHello,
 	#superclass : #Morph,
-	#category : #'BookletGraphics-Athens'
+	#category : #'BookletGraphics-Morph'
 }
 
 { #category : #'instance creation' }

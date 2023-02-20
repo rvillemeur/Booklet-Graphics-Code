@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'surface'
 	],
-	#category : #'BookletGraphics-Athens'
+	#category : #'BookletGraphics-Morph'
 }
 
 { #category : #'instance creation' }
