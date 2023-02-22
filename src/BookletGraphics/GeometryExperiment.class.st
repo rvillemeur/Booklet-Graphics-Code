@@ -33,6 +33,20 @@ GeometryExperiment >> ellipse [
 ]
 
 { #category : #examples }
+GeometryExperiment >> line [
+
+	<gtExample>
+	^BlElement new
+		geometry: (BlLineGeometry from: 0@0 to: 50@50);
+		size: 100 @ 100;
+		background: Color yellow;
+		border: (BlBorder builder
+				 paint: Color red;
+				 width: 10;
+				 build)
+]
+
+{ #category : #examples }
 GeometryExperiment >> polygon [
 
 	<gtExample>
