@@ -130,7 +130,7 @@ AlexandrieExperiment >> fillPaint1 [
 AlexandrieExperiment >> fillPaint2 [
 
 	<gtExample>
-	| canvas |
+	| canvas form |
 	canvas := AeCanvas extent: 200 @ 200.
 
 	canvas clear: (Color purple alpha: 0.3).
@@ -158,11 +158,12 @@ AlexandrieExperiment >> fillPaint2 [
 
 
 	"Bitmap fill".
+	form := PolymorphSystemSettings pharoLogoForm.
 	canvas pathFactory: [ :cairoContext |
-		cairoContext rectangleTo: 100 @ 100 ].
-	canvas pathTransform: ((AeCairoMatrix newTranslationBy: (-100) @ 135) scaleBy: 0.25@0.25).
+		cairoContext rectangleTo: form extent ].
+	canvas pathTransform: ((AeCairoMatrix newTranslationByX: -100 y: 135) scaleBy: 0.25@0.25).
 		canvas
-		setBackgroundWithForm: PolymorphSystemSettings pharoLogoForm
+		setBackgroundWithForm: form
 		alpha: 1.0.
 	canvas setBorderOff.
 	canvas drawFigure.
@@ -177,7 +178,7 @@ AlexandrieExperiment >> fillPaint2 [
 					(1 -> Color black) }
 			center: 50 @ 50
 			radius: 50 ].
-	canvas pathTransform: ((AeCairoMatrix newTranslationBy: 400 @ (-135)) scaleBy: 4@4).
+	canvas pathTransform: (AeCairoMatrix newIdentity translateByX: 100 y:-135).
 	canvas setBorderOff.
 	canvas drawFigure.
 	^ canvas asForm
