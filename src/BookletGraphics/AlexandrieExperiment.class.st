@@ -130,6 +130,65 @@ AlexandrieExperiment >> fillPaint1 [
 AlexandrieExperiment >> fillPaint2 [
 
 	<gtExample>
+	| canvas form transform|
+	transform := AeCairoMatrix newIdentity.
+	canvas := AeCanvas extent: 200 @ 200.
+
+	canvas clear: (Color purple alpha: 0.3).
+	"linear gradient fill"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: 100 @ 100 ].
+	canvas setBackgroundWith: [
+		canvas
+			setSourceLinearPatternStops: {
+					(0 -> Color white).
+					(1 -> Color black) }
+			start: 0 @ 0
+			end: 100 @ 100 ].
+	canvas setBorderOff.
+	canvas drawFigure.
+
+	"plain color fill"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: 100 @ 100 ].
+	canvas pathTransform: (transform translateByX: 100 y: 0).
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+	canvas setBorderOff.
+	canvas drawFigure.
+
+
+	"Bitmap fill".
+	form := PolymorphSystemSettings pharoLogoForm.
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: form extent ].
+	canvas pathTransform: (transform beIdentity;  translateByX: -100 y: 135; scaleBy: 0.25@0.25).
+		canvas
+		setBackgroundWithForm: form
+		alpha: 1.0.
+	canvas setBorderOff.
+	canvas drawFigure.
+
+	"Radial gradient fill"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: 100@100 ].
+	canvas setBackgroundWith: [
+		canvas
+			setSourceRadialPatternStops: {
+					(0 -> Color white).
+					(1 -> Color black) }
+			center: 50 @ 50
+			radius: 50 ].
+	canvas pathTransform: (transform beIdentity; translateByX: 400 y:-135; scaleBy: 4@4).
+	canvas setBorderOff.
+	canvas drawFigure.
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieExperiment >> fillPaint3 [
+
+	<gtExample>
 	| canvas form |
 	canvas := AeCanvas extent: 200 @ 200.
 
@@ -150,27 +209,27 @@ AlexandrieExperiment >> fillPaint2 [
 	"plain color fill"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext rectangleTo: 100 @ 100 ].
-	canvas pathTransform: (AeCairoMatrix newTranslationBy: 100 @ 0).
+	canvas pathTranslate: 100 @ 0.
 	canvas setBackgroundWith: [
 		canvas setSourceColor: (Color yellow alpha: 0.9) ].
 	canvas setBorderOff.
 	canvas drawFigure.
 
 
-	"Bitmap fill".
+	"Bitmap fill"
 	form := PolymorphSystemSettings pharoLogoForm.
 	canvas pathFactory: [ :cairoContext |
 		cairoContext rectangleTo: form extent ].
-	canvas pathTransform: ((AeCairoMatrix newTranslationByX: -100 y: 135) scaleBy: 0.25@0.25).
-		canvas
-		setBackgroundWithForm: form
-		alpha: 1.0.
+	canvas
+		pathTranslate: -100 @ 0135;
+		pathScale: 0.25 @ 0.25.
+	canvas setBackgroundWithForm: form alpha: 1.0.
 	canvas setBorderOff.
 	canvas drawFigure.
 
 	"Radial gradient fill"
 	canvas pathFactory: [ :cairoContext |
-		cairoContext rectangleTo: 100@100 ].
+		cairoContext rectangleTo: 100 @ 100 ].
 	canvas setBackgroundWith: [
 		canvas
 			setSourceRadialPatternStops: {
@@ -178,8 +237,71 @@ AlexandrieExperiment >> fillPaint2 [
 					(1 -> Color black) }
 			center: 50 @ 50
 			radius: 50 ].
-	canvas pathTransform: (AeCairoMatrix newIdentity translateByX: 100 y:-135).
+	canvas
+		pathTranslate: 400 @ -135;
+		pathScale: 4 @ 4.
 	canvas setBorderOff.
 	canvas drawFigure.
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieExperiment >> pathPaint1 [
+
+	<gtExample>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 25 @ 25;
+			lineTo: 50 @ 37.5;
+			relativeLineTo: 25 @ -12.5;
+			arcCenterX: 75
+			centerY: 75
+			radius: 10
+			startAngle: 0
+			endAngle: 90 degreesToRadians;
+			"cwArcTo: 75 @ 75 angle: 90 degreesToRadians;"curveVia: 50 @ 60
+			via: 50 @ 90
+			to: 25 @ 75 ].
+	"canvas borderPathFactory:  [ :cairoContext | cairoContext stroke; lineWidth: 5; sourceColorRGB:  Color red ]."
+	canvas setSourceColor: (Color yellow alpha: 0.9).
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieExperiment >> pathPaint2 [
+
+	<gtExample>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 25 @ 25;
+			lineTo: 75 @ 25;
+			lineTo: 75 @ 75;
+			lineTo: 25 @ 75;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered.
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 4 6 ) offset: 2;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 4 ].
+
+	canvas drawFigure.
+
 	^ canvas asForm
 ]
