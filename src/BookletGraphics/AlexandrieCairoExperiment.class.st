@@ -37,7 +37,7 @@ context
 AlexandrieCairoExperiment >> fillPaint1 [
 
 	<gtExample>
-	| surface context |
+	| surface context fontFace scaledFont |
 	surface := AeCairoImageSurface
 		           extent: 700 @ 500
 		           format: AeCairoSurfaceFormat argb32.
@@ -88,21 +88,20 @@ AlexandrieCairoExperiment >> fillPaint1 [
 		stroke.
 
 	"some text in white blending in the background"
-	"context scaledFont: aScaledFont;
-		showGlyphs: aeGlyphArray
-aFTLibrary := AeFTLibrary newInitialized.
-	fontHeight := 30.
-	aFace := AeSourceSansPro_Regular firstFaceUsing: aFTLibrary.
-	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
-
-
-
-	aeCanvas
-		drawText:
-		(cairoScaledFont glyphArrayForString: 'Hello Alexandrie in Pharo')
-		font: cairoScaledFont."
-
-
+	fontFace := AeCairoFreetypeFontFace newForFace:
+		            (AeSourceSansPro_Regular firstFaceUsing:
+			             AeFTLibrary newInitialized).
+	scaledFont := fontFace
+		              newScaledFontWithFontMatrix:
+		              (AeCairoMatrix newScalingBy: 30 asPoint)
+		              userToDeviceMatrix: AeCairoMatrix newIdentity
+		              options: AeCairoFontOptions new.
+	context
+		sourceColorRGBA: (Color white alpha: 0.5);
+		translateByX: 500 y: 100.
+	context
+		scaledFont: scaledFont;
+		showGlyphs: (scaledFont glyphArrayForString: 'Cairo in Pharo').
 
 	^ surface asForm
 ]
