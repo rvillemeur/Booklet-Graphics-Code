@@ -29,7 +29,7 @@ context
 		clip.
 	context sourceSurface: form x: 0 y: 0.
 	context paint.
-	
+
 	^ surface asForm
 ]
 
@@ -165,6 +165,56 @@ AlexandrieCairoExperiment >> fillPaint3 [
 		rectangleTo: 100 @ 100;
 		source: gradient.
 
+	context fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> mask1 [
+
+	<gtExample>
+	| surface context form |
+	form := AeCairoImageSurface fromForm:
+		        PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		paint.
+	context maskSurface: form x: 0 y: 0.
+	context fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> maskAndClip1 [
+
+	<gtExample>
+	| surface context form |
+	form := AeCairoImageSurface fromForm:
+		        PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		paint.
+	context
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		sourceColorRGBA: (Color white alpha: 0.7);
+		clip.
+	context maskSurface: form x: 0 y: 0.
 	context fill.
 
 	^ surface asForm
