@@ -5,10 +5,11 @@ CAIRO_LINE_CAP_ROUND: use a round ending, the center of the circle is the end po
 CAIRO_LINE_CAP_SQUARE: use squared ending, the center of the square is the end point
 
 The default line join style is CAIRO_LINE_JOIN_MITER.
-
 CAIRO_LINE_JOIN_MITER: use a sharp (angled) corner, see cairo_set_miter_limit() 
 CAIRO_LINE_JOIN_ROUND: use a rounded join, the center of the circle is the joint point 
 CAIRO_LINE_JOIN_BEVEL: use a cut-off join, the join is cut off at half the line width from the joint point
+
+[Operators:](https://cairographics.org/operators/)
 "
 Class {
 	#name : #AlexandrieCairoExperiment,
