@@ -132,3 +132,44 @@ blt
 		
 ^destForm magnifyBy: 15
 ]
+
+{ #category : #tests }
+BitBltExperiment >> testCombinationRule0To15 [
+
+	<gtExample>
+	| initForm destForm blt |
+	initForm := (Form extent: 32 @ 1 depth: 1) initFromArray:
+		            #( 2r10101010101010101010101010101010 ).
+
+	destForm := (Form extent: 32 @ 16 depth: 1) initFromArray:
+		            #( 2r00000000000000000000000000000000
+		               2r10101010101010101010101010101010
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000
+		               2r00000000000000000000000000000000 ).
+
+	blt := BitBlt toForm: destForm.
+0 to: 15 do: [ :i | 	blt
+		sourceForm: initForm;
+		destOrigin: 0 @ i;
+		sourceOrigin: 0 @ 0;
+		halftoneForm: nil;
+		combinationRule: i;
+		width: initForm width;
+		height: initForm height;
+		copyBits ].
+
+
+	^ destForm magnifyBy: 15
+]
