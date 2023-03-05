@@ -23,6 +23,27 @@ The combination rule whose value is 0 through 15 programs the transfer to produc
 1:	if source is 1 and destination is 1.
 At each pixel the corresponding bits of the source and destination pixel values determine one of these conditions;  if the combination rule has a 1 in the corresponding bit position, then the new destination value will be 1, otherwise it will be zero.  Forms may be of different depths, see the comment in class Form.
 
+base combination rule - produce 1 or 0 -> apply to 1bit graphics ?
+
+0: 0000 -> always return 0 ?
+1: 0001 -> source is 1 and destination is 1 => 1
+2: 0010 -> source is 1 and destination is 0 => 1
+3: 0011 
+4: 0100 -> source is 0 and destination is 1 => 1
+5: 0101
+6: 0110
+7: 0111
+8: 1000 -> source is 0 and destination is 0 => 1
+9: 1001
+10: 1010
+11: 1011
+12: 1100
+13: 1101
+14: 1110
+15: 1111 -> always return 1 ?
+
+if the combination rule has a 1 in the corresponding bit position, then the new destination value will be 1, otherwise it will be zero. 
+
 In addition to the original 16 combination rules, this BitBlt supports
 16	fails (to simulate paint bits)
 17	fails (to simulate erase bits)
