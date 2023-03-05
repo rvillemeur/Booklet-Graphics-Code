@@ -47,6 +47,46 @@ context
 ]
 
 { #category : #examples }
+AlexandrieCairoExperiment >> clip2 [
+
+	<gtExample>
+	| surface context form |
+	form := AeCairoImageSurface fromForm:
+		        PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		paint.
+	context
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi.
+	context
+		arcCenterX: 60
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi.
+	context
+		arcCenterX: 250
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		clip.
+	context sourceSurface: form x: 0 y: 0.
+	context paint.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
 AlexandrieCairoExperiment >> fillPaint1 [
 
 	<gtExample>

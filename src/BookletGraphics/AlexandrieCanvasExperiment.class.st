@@ -318,7 +318,7 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 	| canvas form |
 	canvas := AeCanvas extent: 200 @ 200.
 
-	canvas clear: (Color purple alpha: 0.3).
+	canvas clear: (Color purple alpha: 0.6).
 	"linear gradient fill"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext rectangleTo: 100 @ 100 ].
@@ -337,7 +337,7 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 		cairoContext rectangleTo: 100 @ 100 ].
 	canvas pathTranslate: 100 @ 0.
 	canvas setBackgroundWith: [
-		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+		canvas setSourceColor: (Color yellow alpha: 0.1) ].
 	canvas setBorderOff.
 	canvas drawFigure.
 
