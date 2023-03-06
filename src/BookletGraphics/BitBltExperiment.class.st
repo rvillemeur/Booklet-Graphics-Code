@@ -163,22 +163,22 @@ BitBltExperiment >> testCombinationRule0To15 [
 		            #( 2r10101010101010101010101010101010 ).
 
 	destForm := (Form extent: 32 @ 16 depth: 1) initFromArray:
-		            #( 2r10000000000000000000000000000001 "0: always return 0"
-		               2r10101010100010001000100010001000 "1: source is 1 and destination is 1"
-		               2r00101000000000000000000000001000 "2: source is 1 and destination is 0"
-		               2r10101010100010001000100010001000 "3: source is 1 and dest is 0 or 1"
-		               2r01010101010101010101010101010101 "4: source is 0 and destination is 1"
-		               2r01110111010101110101010111011101 "5: source is 0 or 1 and destination is 1"
-		               2r10110111010101110101010111011101 "6: source is 0 and destination is 1, or source is 1 and destination is 0"
-		               2r10001011101010101010101010101011 "7: source is 1, and destination is 0 or 1, or source is 0 and destination is 1"
-		               2r00000000000000000000000000000000 "8: source is 0 and destination is 0"
-		               2r10001000100010001000100010001010 "9: source is 0 and destination is 0 or source is 1 and destination is 1"
-		               2r10000000000000000000000000000101 "10: source is 0 and destination is 0, or source is 1 and destination is 0"
-		               2r01000000000000000000000000000010 "11: source is 0 and destination is 0, or source is 1 and destination is either 0 or 1"
-		               2r00000000000000000000000000000000 "12: source is 0 and destination is 0 or 1"
-		               2r10000000000000000000000000000010 "13: source is 0 and destination is 0 or 1, or source is 1 and destination is 1"
-		               2r00100000000000000000000000000010 "14: source is 0 and destination is 0 or 1, or source is 1 and destination is 0"
-		               2r11001111111111111111111111101101 "15: source is 0 or 1, and destination is 0 or 1 -> always return destination color").
+		            #( 2r10011001100110011001100110011001 "0: always return 0"
+		               2r10011001100110011001100110011001 "1: source is 1 and destination is 1 - logical AND"
+		               2r10011001100110011001100110011001 "2: source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "3: source is 1 and dest is 0 or 1"
+		               2r10011001100110011001100110011001 "4: source is 0 and destination is 1"
+		               2r10011001100110011001100110011001 "5: source is 0 or 1 and destination is 1"
+		               2r10011001100110011001100110011001 "6: source is 0 and destination is 1, or source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "7: source is 1, and destination is 0 or 1, or source is 0 and destination is 1"
+		               2r10011001100110011001100110011001 "8: source is 0 and destination is 0"
+		               2r10011001100110011001100110011001 "9: source is 0 and destination is 0 or source is 1 and destination is 1"
+		               2r10011001100110011001100110011001 "10: source is 0 and destination is 0, or source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "11: source is 0 and destination is 0, or source is 1 and destination is either 0 or 1"
+		               2r10011001100110011001100110011001 "12: source is 0 and destination is 0 or 1"
+		               2r10011001100110011001100110011001 "13: source is 0 and destination is 0 or 1, or source is 1 and destination is 1"
+		               2r10011001100110011001100110011001 "14: source is 0 and destination is 0 or 1, or source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "15: source is 0 or 1, and destination is 0 or 1 -> always return destination color").
 
 	blt := BitBlt toForm: destForm.
 	0 to: 15 do: [ :i | 	blt
@@ -186,6 +186,47 @@ BitBltExperiment >> testCombinationRule0To15 [
 		destOrigin: 0 @ i;
 		sourceOrigin: 0 @ 0;
 		halftoneForm: nil;
+		combinationRule: i;
+		width: initForm width;
+		height: initForm height;
+		copyBits ].
+
+
+	^ destForm magnifyBy: 15
+]
+
+{ #category : #tests }
+BitBltExperiment >> testCombinationRule0To15v2 [
+	<gtExample>
+	| initForm destForm halfForm blt |
+	initForm := (Form extent: 32 @ 1 depth: 1) initFromArray:
+		            #( 2r10101010101010101010101010101010 ).
+
+	destForm := Form extent: 32 @ 16 depth: 1.
+	halfForm := (Form extent: 32 @ 16 depth: 1) initFromArray:
+		            #( 2r10011001100110011001100110011001 "0: always return 0"
+		               2r10011001100110011001100110011001 "1: source is 1 and destination is 1 - logical AND"
+		               2r10011001100110011001100110011001 "2: source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "3: source is 1 and dest is 0 or 1"
+		               2r10011001100110011001100110011001 "4: source is 0 and destination is 1"
+		               2r10011001100110011001100110011001 "5: source is 0 or 1 and destination is 1"
+		               2r10011001100110011001100110011001 "6: source is 0 and destination is 1, or source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "7: source is 1, and destination is 0 or 1, or source is 0 and destination is 1"
+		               2r10011001100110011001100110011001 "8: source is 0 and destination is 0"
+		               2r10011001100110011001100110011001 "9: source is 0 and destination is 0 or source is 1 and destination is 1"
+		               2r10011001100110011001100110011001 "10: source is 0 and destination is 0, or source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "11: source is 0 and destination is 0, or source is 1 and destination is either 0 or 1"
+		               2r10011001100110011001100110011001 "12: source is 0 and destination is 0 or 1"
+		               2r10011001100110011001100110011001 "13: source is 0 and destination is 0 or 1, or source is 1 and destination is 1"
+		               2r10011001100110011001100110011001 "14: source is 0 and destination is 0 or 1, or source is 1 and destination is 0"
+		               2r10011001100110011001100110011001 "15: source is 0 or 1, and destination is 0 or 1 -> always return destination color").
+
+	blt := BitBlt toForm: destForm.
+	0 to: 15 do: [ :i | 	blt
+		sourceForm: initForm;
+		destOrigin: 0 @ i;
+		sourceOrigin: 0 @ 0;
+		halftoneForm: halfForm;
 		combinationRule: i;
 		width: initForm width;
 		height: initForm height;
