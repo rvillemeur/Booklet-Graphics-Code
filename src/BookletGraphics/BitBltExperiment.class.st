@@ -21,48 +21,72 @@ The combination rule whose value is 0 through 15 programs the transfer to produc
 4:	if source is 0 and destination is 1
 2:	if source is 1 and destination is 0
 1:	if source is 1 and destination is 1.
-At each pixel the corresponding bits of the source and destination pixel values determine one of these conditions;  if the combination rule has a 1 in the corresponding bit position, then the new destination value will be 1, otherwise it will be zero.  Forms may be of different depths, see the comment in class Form.
+At each pixel the corresponding bits of the source and destination pixel values determine one of these conditions;  
+if the combination rule has a 1 in the corresponding bit position, then the new destination value will be 1, otherwise it will be zero.  
+Forms may be of different depths, see the comment in class Form.
 
-base combination rule - produce 1 or 0 -> apply to 1 bit graphics 
-
-00: 0000 -> always return 0
-01: 0001 -> source is 1 and destination is 1 => 1
-02: 0010 -> source is 1 and destination is 0 => 1
-03: 0011 -> source is 1 and dest is 0 or 1
-04: 0100 -> source is 0 and destination is 1 => 1
-05: 0101 -> source is 0 or 1 and destination is 1
-06: 0110 -> source is 0 and destination is 1, or source is 1 and destination is 0
-07: 0111 -> source is 1, and destination is 0 or 1, or source is 0 and destination is 1
-08: 1000 -> source is 0 and destination is 0 => 1
-09: 1001 -> source is 0 and destination is 0 or source is 1 and destination is 1
-10: 1010 -> source is 0 and destination is 0, or source is 1 and destination is 0
-11: 1011 -> source is 0 and destination is 0, or source is 1 and destination is either 0 or 1
-12: 1100 -> source is 0 and destination is 0 or 1
-13: 1101 -> source is 0 and destination is 0 or 1, or source is 1 and destination is 1
-14: 1110 -> source is 0 and destination is 0 or 1, or source is 1 and destination is 0
-15: 1111 -> always return destination color.
+00: 0000 -> always return 0 (CR_clearWord)
+01: 0001 -> source is 1 and destination is 1 => 1 (CR_bitAnd) - And ""Answer the integer denoting the logical 'and' combination rule.""
+02: 0010 -> source is 1 and destination is 0 => 1 (CR_bitAndInvert)
+03: 0011 -> source is 1 and dest is 0 or 1 (CR_sourceWord) - over ""Answer the integer denoting mode over.""
+04: 0100 -> source is 0 and destination is 1 => 1 (CR_bitInvertAnd) - erase ""Answer the integer denoting mode erase.""
+05: 0101 -> source is 0 or 1 and destination is 1 (CR_destinationWord)
+06: 0110 -> source is 0 and destination is 1, or source is 1 and destination is 0 (CR_bitXor) - reverse 	""Answer the integer denoting mode reverse.""
+07: 0111 -> source is 1, and destination is 0 or 1, or source is 0 and destination is 1 (CR_bitOr) - under 	""Answer the integer denoting mode under.""
+08: 1000 -> source is 0 and destination is 0 => 1 (CR_bitInvertAndInvert)
+09: 1001 -> source is 0 and destination is 0 or source is 1 and destination is 1 (CR_bitInvertXor)
+10: 1010 -> source is 0 and destination is 0, or source is 1 and destination is 0 (CR_bitInvertDestination)
+11: 1011 -> source is 0 and destination is 0, or source is 1 and destination is either 0 or 1 (CR_bitOrInvert)
+12: 1100 -> source is 0 and destination is 0 or 1 (CR_bitInvertSource)
+13: 1101 -> source is 0 and destination is 0 or 1, or source is 1 and destination is 1 (CR_bitInvertOr)
+14: 1110 -> source is 0 and destination is 0 or 1, or source is 1 and destination is 0 (CR_bitInvertOrInvert)
+15: 1111 -> always return destination color (CR_destinationWord_alt1)
 
 In addition to the original 16 combination rules, this BitBlt supports
-16	fails (to simulate paint bits)
-17	fails (to simulate erase bits)
-18	sourceWord + destinationWord
-19	sourceWord - destinationWord
-20	rgbAdd: sourceWord with: destinationWord.  Sum of color components
-21	rgbSub: sourceWord with: destinationWord.  Difference of color components
-22	OLDrgbDiff: sourceWord with: destinationWord.  Sum of abs of differences in components
-23	OLDtallyIntoMap: destinationWord.  Tallies pixValues into a colorMap
-these old versions don't do bitwise dest clipping.  Use 32 and 33 now.
-24	alphaBlend: sourceWord with: destinationWord.  32-bit source and dest only
-25	pixPaint: sourceWord with: destinationWord.  Wherever the sourceForm is non-zero, it replaces the destination.  Can be used with a 1-bit source color mapped to (0, FFFFFFFF), and a fillColor to fill the dest with that color wherever the source is 1.
-26	pixMask: sourceWord with: destinationWord.  Like pixPaint, but fills with 0.
-27	rgbMax: sourceWord with: destinationWord.  Max of each color component.
-28	rgbMin: sourceWord with: destinationWord.  Min of each color component.
-29	rgbMin: sourceWord bitInvert32 with: destinationWord.  Min with (max-source)
-30	alphaBlendConst: sourceWord with: destinationWord.  alpha is an arg. works in 16 bits.
-31	alphaPaintConst: sourceWord with: destinationWord.  alpha is an arg. works in 16 bits.
-32	rgbDiff: sourceWord with: destinationWord.  Sum of abs of differences in components
-33	tallyIntoMap: destinationWord.  Tallies pixValues into a colorMap
-34	alphaBlendScaled: srcWord with: dstWord. Alpha blend of scaled srcWord and destWord.
+16:	 fails (to simulate paint bits) - (CR_destinationWord_alt2) - oldPaint ""Answer the integer denoting the 'paint' combination rule.""
+17:	 fails (to simulate erase bits) - CR_destinationWord_alt3) - oldErase1bitShape ""Answer the integer denoting mode erase.""
+18:	 sourceWord + destinationWord - (CR_addWord)
+19:	 sourceWord - destinationWord - (CR_subWord)
+20:	 rgbAdd: sourceWord with: destinationWord.  Sum of color components - (CR_rgbAdd)
+21:	 rgbSub: sourceWord with: destinationWord.  Difference of color components - (CR_rgbSub)
+22:	 OLDrgbDiff: sourceWord with: destinationWord.  Sum of abs of differences in components - (CR_OLDrgbDiff)
+23:	 OLDtallyIntoMap: destinationWord.  Tallies pixValues into a colorMap. these old versions don't do bitwise dest clipping.  Use 32 and 33 now. - (CR_OLDtallyIntoMap)
+24:	 alphaBlend: sourceWord with: destinationWord.  32-bit source and dest only - (CR_alphaBlend)
+25:	 pixPaint: sourceWord with: destinationWord.  Wherever the sourceForm is non-zero, it replaces the destination.  Can be used with a 1-bit source color mapped to (0, FFFFFFFF), and a fillColor to fill the dest with that color wherever the source is 1. - (CR_pixPaint)
+26:	 pixMask: sourceWord with: destinationWord.  Like pixPaint, but fills with 0. - (CR_pixMask)
+27:	 rgbMax: sourceWord with: destinationWord.  Max of each color component. - (CR_rgbMax)
+28:	 rgbMin: sourceWord with: destinationWord.  Min of each color component. - (CR_rgbMin)
+29:	 rgbMin: sourceWord bitInvert32 with: destinationWord.  Min with (max-source) - (CR_rgbMinInvert)
+30:	 alphaBlendConst: sourceWord with: destinationWord.  alpha is an arg. works in 16 bits. (CR_alphaBlendConst)
+31: alphaPaintConst: sourceWord with: destinationWord.  alpha is an arg. works in 16 bits. (CR_alphaPaintConst)
+32: rgbDiff: sourceWord with: destinationWord.  Sum of abs of differences in components (CR_rgbDiff)
+33: tallyIntoMap: destinationWord.  Tallies pixValues into a colorMap (CR_tallyIntoMap)
+34: alphaBlendScaled: srcWord with: dstWord. Alpha blend of scaled srcWord and destWord. (CR_alphaBlendScaled)
+Blend sourceWord with destinationWord using the alpha value from sourceWord. Alpha is encoded as 0 meaning 0.0, and 255 meaning 1.0.
+In contrast to alphaBlend:with: the color produced is srcColor + (1-srcAlpha) * dstColor. e.g., it is assumed that the source color is already scaled.
+
+miss in documentation: 
+35: CR_alphaBlendScaled_alt1
+36: CR_alphaBlendScaled_alt2
+37: CR_rgbMul -  Multiply RGB or RGBA components of the pixel
+38: CR_pixSwap - Swap the pixels in destWord
+39: CR_pixClear - Clear all pixels in destinationWord for which the pixels of sourceWord	have the same values. Used to clear areas of some constant color to zero.
+40: CR_fixAlpha - For any non-zero pixel value in destinationWord with zero alpha channel take the alpha from sourceWord and fill it in. Intended for fixing alpha 	channels left at zero during 16->32 bpp conversions.
+41: CR_rgbComponentAlpha
+componentAlphaModeColor is the color, sourceWord contains an alpha value for each component of RGB, each of which is encoded as0 meaning 0.0 and 255 meaning 1.0 . the rule is...
+	
+	color = componentAlphaModeColor.
+	colorAlpha = componentAlphaModeAlpha.
+	mask = sourceWord.
+	dst.A = colorAlpha + (1 - colorAlpha) * dst.A
+	dst.R = color.R * mask.R * colorAlpha + (1 - (mask.R * colorAlpha)) *
+	dst.R dst.G = color.G * mask.G * colorAlpha + (1 - (mask.G* colorAlpha)) *
+	dst.G dst.B = color.B * mask.B * colorAlpha + (1 - (mask.B* colorAlpha)) *
+	dst.B
+	
+enum combination_rule_t taken From BitBltDispatch.h source code:
+
+
 "
 Class {
 	#name : #BitBltExperiment,
