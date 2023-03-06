@@ -23,26 +23,24 @@ The combination rule whose value is 0 through 15 programs the transfer to produc
 1:	if source is 1 and destination is 1.
 At each pixel the corresponding bits of the source and destination pixel values determine one of these conditions;  if the combination rule has a 1 in the corresponding bit position, then the new destination value will be 1, otherwise it will be zero.  Forms may be of different depths, see the comment in class Form.
 
-base combination rule - produce 1 or 0 -> apply to 1bit graphics ?
+base combination rule - produce 1 or 0 -> apply to 1 bit graphics 
 
-0: 0000 -> always return 0 ?
-1: 0001 -> source is 1 and destination is 1 => 1
-2: 0010 -> source is 1 and destination is 0 => 1
-3: 0011 
-4: 0100 -> source is 0 and destination is 1 => 1
-5: 0101
-6: 0110
-7: 0111
-8: 1000 -> source is 0 and destination is 0 => 1
-9: 1001
-10: 1010
-11: 1011
-12: 1100
-13: 1101
-14: 1110
-15: 1111 -> always return 1 ?
-
-if the combination rule has a 1 in the corresponding bit position, then the new destination value will be 1, otherwise it will be zero. 
+00: 0000 -> always return 0
+01: 0001 -> source is 1 and destination is 1 => 1
+02: 0010 -> source is 1 and destination is 0 => 1
+03: 0011 -> source is 1 and dest is 0 or 1
+04: 0100 -> source is 0 and destination is 1 => 1
+05: 0101 -> source is 0 or 1 and destination is 1
+06: 0110 -> source is 0 and destination is 1, or source is 1 and destination is 0
+07: 0111 -> source is 1, and destination is 0 or 1, or source is 0 and destination is 1
+08: 1000 -> source is 0 and destination is 0 => 1
+09: 1001 -> source is 0 and destination is 0 or source is 1 and destination is 1
+10: 1010 -> source is 0 and destination is 0, or source is 1 and destination is 0
+11: 1011 -> source is 0 and destination is 0, or source is 1 and destination is either 0 or 1
+12: 1100 -> source is 0 and destination is 0 or 1
+13: 1101 -> source is 0 and destination is 0 or 1, or source is 1 and destination is 1
+14: 1110 -> source is 0 and destination is 0 or 1, or source is 1 and destination is 0
+15: 1111 -> always return destination color.
 
 In addition to the original 16 combination rules, this BitBlt supports
 16	fails (to simulate paint bits)
@@ -135,32 +133,31 @@ blt
 
 { #category : #tests }
 BitBltExperiment >> testCombinationRule0To15 [
-
 	<gtExample>
 	| initForm destForm blt |
 	initForm := (Form extent: 32 @ 1 depth: 1) initFromArray:
 		            #( 2r10101010101010101010101010101010 ).
 
 	destForm := (Form extent: 32 @ 16 depth: 1) initFromArray:
-		            #( 2r00000000000000000000000000000000
-		               2r10101010101010101010101010101010
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000
-		               2r00000000000000000000000000000000 ).
+		            #( 2r10000000000000000000000000000001 "0: always return 0"
+		               2r10101010100010001000100010001000 "1: source is 1 and destination is 1"
+		               2r00101000000000000000000000001000 "2: source is 1 and destination is 0"
+		               2r10101010100010001000100010001000 "3: source is 1 and dest is 0 or 1"
+		               2r01010101010101010101010101010101 "4: source is 0 and destination is 1"
+		               2r01110111010101110101010111011101 "5: source is 0 or 1 and destination is 1"
+		               2r10110111010101110101010111011101 "6: source is 0 and destination is 1, or source is 1 and destination is 0"
+		               2r10001011101010101010101010101011 "7: source is 1, and destination is 0 or 1, or source is 0 and destination is 1"
+		               2r00000000000000000000000000000000 "8: source is 0 and destination is 0"
+		               2r10001000100010001000100010001010 "9: source is 0 and destination is 0 or source is 1 and destination is 1"
+		               2r10000000000000000000000000000101 "10: source is 0 and destination is 0, or source is 1 and destination is 0"
+		               2r01000000000000000000000000000010 "11: source is 0 and destination is 0, or source is 1 and destination is either 0 or 1"
+		               2r00000000000000000000000000000000 "12: source is 0 and destination is 0 or 1"
+		               2r10000000000000000000000000000010 "13: source is 0 and destination is 0 or 1, or source is 1 and destination is 1"
+		               2r00100000000000000000000000000010 "14: source is 0 and destination is 0 or 1, or source is 1 and destination is 0"
+		               2r11001111111111111111111111101101 "15: source is 0 or 1, and destination is 0 or 1 -> always return destination color").
 
 	blt := BitBlt toForm: destForm.
-0 to: 15 do: [ :i | 	blt
+	0 to: 15 do: [ :i | 	blt
 		sourceForm: initForm;
 		destOrigin: 0 @ i;
 		sourceOrigin: 0 @ 0;
