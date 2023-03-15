@@ -19,8 +19,9 @@ FormExperiment >> defaultLabel [
 
 { #category : #'instance creation' }
 FormExperiment >> drawOn: aCanvas [
+
 	aCanvas
-		paintImage: (sprite  magnifyBy: self magnifyFactor )
+		paintImage: (sprite magnifyBy: self magnifyFactor)
 		at: self topLeft
 ]
 
