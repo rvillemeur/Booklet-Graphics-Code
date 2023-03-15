@@ -38,6 +38,11 @@ CrossMorph3 class >> buildShortCutsOn: aBuilder [
 		description: 'move morph down'
 ]
 
+{ #category : #'class initialization' }
+CrossMorph3 class >> initialize [ 
+	self buildShortCutsOn: KMBuilder keymap  
+]
+
 { #category : #'geometry testing' }
 CrossMorph3 >> containsPoint: aPoint [
 
