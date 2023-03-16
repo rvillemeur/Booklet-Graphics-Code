@@ -84,7 +84,6 @@ CrossMorph3 >> initialize [
 
 	super initialize.
 	self extent: self defaultExtent.
-	self attachKeymapCategory: #CrossMorphShortcuts targetting: self.
 	self
 		on: #mouseEnter send: #processMouseEnter: to: self;
 		on: #mouseDown send: #processMouseDown: to: self;
