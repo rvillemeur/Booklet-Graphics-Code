@@ -9,10 +9,10 @@ BaselineOfBookletGraphics >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
-		spec package: 'BookletGraphics' with: [ spec requires: #( 'Bloc' ) ].
+		spec package: 'BookletGraphics' with: [ spec requires: #( 'Toplo' ) ].
 
 		spec
-			baseline: 'Bloc'
+			baseline: 'Toplo'
 			with: [
-			spec repository: 'github://pharo-graphics/Bloc:dev-1.0/src' ] ]
+			spec repository: 'github://plantec/Toplo:dev-lookandfeel' ] ]
 ]
