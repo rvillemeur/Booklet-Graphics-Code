@@ -8,14 +8,14 @@ Class {
 BaselineOfBookletGraphics >> baseline: spec [
 
 	<baseline>
-		spec
-			package: 'BookletGraphics'
+		spec for: #common do: [spec 
+			package: 'BookletGraphics']
 			"with: [ spec requires: #( 'Toplo' ) ].
 
 		spec baseline: 'Toplo' with: [
 			spec
 				repository: 'github://plantec/Toplo/src';
-				onConflictUseIncoming ]" ]
+				onConflictUseIncoming ]" 
 
 
 ]
