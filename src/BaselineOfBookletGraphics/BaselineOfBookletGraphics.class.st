@@ -10,12 +10,12 @@ BaselineOfBookletGraphics >> baseline: spec [
 	<baseline>
 		spec
 			package: 'BookletGraphics'
-			with: [ spec requires: #( 'Toplo' ) ].
+			"with: [ spec requires: #( 'Toplo' ) ].
 
 		spec baseline: 'Toplo' with: [
 			spec
 				repository: 'github://plantec/Toplo/src';
-				onConflictUseIncoming ] ]  
+				onConflictUseIncoming ]" ]
 
 
 ]
