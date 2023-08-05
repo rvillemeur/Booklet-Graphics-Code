@@ -15,6 +15,10 @@ BaselineOfBookletGraphics >> baseline: spec [
 
 		spec baseline: 'Toplo' with: [
 			spec
-				repository: 'github://plantec/Toplo/src';
-				onConflictUseIncoming ] ]  
+				repository: 'github://pharo-graphics/Bloc:dev-1.0/src';
+				onConflictUseIncoming; ignoreImage; 
+				on: MCMergeOrLoadWarning
+		do: [ :warning | warning load ] ]  
+
+
 ]
