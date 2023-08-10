@@ -7,7 +7,7 @@ Class {
 { #category : #examples }
 AlexandrieCanvasExperiment >> Outskirts1 [
 
-	<gtExample>
+	<bookExample>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -58,7 +58,7 @@ AlexandrieCanvasExperiment >> Outskirts1 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> Outskirts2 [
 
-	<gtExample>
+	<bookExample>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -110,7 +110,7 @@ AlexandrieCanvasExperiment >> Outskirts2 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> borderPathPaint1 [
 
-	<gtExample>
+	<bookExample>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -150,7 +150,7 @@ AlexandrieCanvasExperiment >> borderPathPaint1 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> borderPathPaint2 [
 
-	<gtExample>
+	<bookExample>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -190,7 +190,7 @@ AlexandrieCanvasExperiment >> borderPathPaint2 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> example1 [
 
-	<gtExample>
+	<bookExample>
 	| aFTLibrary aFace aeCanvas cairoScaledFont fontHeight paint |
 	aeCanvas := AeCanvas extent: 400 @ 400.
 	aeCanvas clear: Color white.
@@ -255,7 +255,7 @@ AlexandrieCanvasExperiment >> example1 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> fillPaint2 [
 
-	<gtExample>
+	<bookExample>
 	| canvas form transform|
 	transform := AeCairoMatrix newIdentity.
 	canvas := AeCanvas extent: 200 @ 200.
@@ -314,7 +314,7 @@ AlexandrieCanvasExperiment >> fillPaint2 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> fillPaint3 [
 
-	<gtExample>
+	<bookExample>
 	| canvas form |
 	canvas := AeCanvas extent: 200 @ 200.
 
@@ -374,7 +374,7 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 { #category : #examples }
 AlexandrieCanvasExperiment >> pathPaint1 [
 
-	<gtExample>
+	<bookExample>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.

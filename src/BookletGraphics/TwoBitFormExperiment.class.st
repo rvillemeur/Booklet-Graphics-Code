@@ -21,7 +21,7 @@ TwoBitFormExperiment >> magnifyFactor [
 
 { #category : #accessing }
 TwoBitFormExperiment >> twoBitColorDepth [
-<gtExample>
+<bookExample>
 ^ (Form extent: 16@1 "size of the form"
  depth: 2 "color depth - 16 => 2 bits to define color value")
  initFromArray: #( "pixel color, expressed on 4 bytes or 32 bits, which is the maximum of color depth"
@@ -37,7 +37,7 @@ TwoBitFormExperiment >> twoBitColorDepth [
 { #category : #accessing }
 TwoBitFormExperiment >> twoBitColorDepthWithColorForm [
 
-	<gtExample>
+	<bookExample>
 	| pict map |
 	pict := ColorForm extent: 16 @ 1 depth: 2.
 

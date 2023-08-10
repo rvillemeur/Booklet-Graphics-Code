@@ -14,7 +14,7 @@ ThirtyTwoBitExperiment >> magnifyFactor [
 
 { #category : #accessing }
 ThirtyTwoBitExperiment >> thirtyTwoBitColorDepth1 [
-<gtExample>
+<bookExample>
 ^(Form extent: 7@1 "size of the form"
  depth: 32 "color depth")
  initFromArray: #( "pixel color, expressed on 4 bytes or 32 bits, which is the maximum of color depth"
@@ -33,7 +33,7 @@ ThirtyTwoBitExperiment >> thirtyTwoBitColorDepth1 [
 
 { #category : #accessing }
 ThirtyTwoBitExperiment >> thirtyTwoBitColorDepth2 [
-<gtExample>
+<bookExample>
 ^(Form extent: 3@3 "size of the form"
  depth: 32 "color depth")
  initFromArray: #( "pixel color, expressed on 4 bytes or 32 bits, which is the maximum of color depth"

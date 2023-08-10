@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 EightBitFormExperiment >> eightBitColorWithBitmap [
-<gtExample>
+<bookExample>
 	| bitmap array |
 	array := ByteArray new: 256.
 	16r0 to: 16rff do: [ :i | array at: i + 1 put: i ].
@@ -27,7 +27,7 @@ EightBitFormExperiment >> eightBitColorWithBitmap [
 
 { #category : #accessing }
 EightBitFormExperiment >> eightBitColorWithoutBitmap [
-<gtExample>
+<bookExample>
 	| array |
 	array := ByteArray new: 256.
 
@@ -40,7 +40,7 @@ EightBitFormExperiment >> eightBitColorWithoutBitmap [
 
 { #category : #accessing }
 EightBitFormExperiment >> helloWorldInBitmap [
-<gtExample>
+<bookExample>
 	^ (Form extent: 4 @ 3 depth: 8) initFromArray:
 		  (('Hello world!' asByteArray groupsOf: 4) collect: [ :each | 
 			   each asInteger ]); magnifyBy: self magnifyFactor 

@@ -21,7 +21,7 @@ GeometryExperiment >> circle [
 { #category : #examples }
 GeometryExperiment >> ellipse [
 
-	<script: 'self new ellipse inspect'>
+	<bookExample>
 	^BlElement new
 		geometry: (BlEllipseGeometry new matchExtent: 100 @ 50);
 		size: 100 @ 50;
@@ -35,7 +35,7 @@ GeometryExperiment >> ellipse [
 { #category : #examples }
 GeometryExperiment >> line [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlLineGeometry from: 0@0 to: 50@50);
 		size: 100 @ 100;
@@ -49,7 +49,7 @@ GeometryExperiment >> line [
 { #category : #examples }
 GeometryExperiment >> polygon [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlPolygonGeometry vertices: {
 						 (10 @ 10).
@@ -68,7 +68,7 @@ GeometryExperiment >> polygon [
 { #category : #examples }
 GeometryExperiment >> polyline [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlPolylineGeometry vertices: {
 						 (10 @ 10).
@@ -87,7 +87,7 @@ GeometryExperiment >> polyline [
 { #category : #examples }
 GeometryExperiment >> rectangle [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlRoundedRectangleGeometry cornerRadius: 20);
 		background: Color orange;
@@ -101,7 +101,7 @@ GeometryExperiment >> rectangle [
 { #category : #examples }
 GeometryExperiment >> square [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlSquareGeometry new matchExtent: 70 @ 70);
 		size: 100 @ 90;
@@ -115,7 +115,7 @@ GeometryExperiment >> square [
 { #category : #examples }
 GeometryExperiment >> triangle [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlTriangleGeometry new
 				 matchExtent: 50 @ 100;

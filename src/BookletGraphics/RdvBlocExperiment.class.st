@@ -30,58 +30,63 @@ elt := BlElement new
 
 { #category : #accessing }
 RdvBlocExperiment >> example1 [
-<gtExample>
-^BlElement new size:200@100; geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
-background: (Color gray alpha:0.2);
-border: (BlBorder paint: Color red width: 1);
-"layout: BlLinearLayout horizontal alignCenter;"
-"constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
-outskirts: BlOutskirts centered
 
+	<bookExample>
+	^ BlElement new
+		  size: 200 @ 100;
+		  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
+		  background: (Color gray alpha: 0.2);
+		  border: (BlBorder paint: Color red width: 1);
+		  "layout: BlLinearLayout horizontal alignCenter;""constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
+		  outskirts: BlOutskirts centered
 ]
 
 { #category : #accessing }
 RdvBlocExperiment >> example2 [
-<gtExample>
-^BlElement new size: 22@14;
-	 layout: BlFrameLayout new;
-	 padding: (BlInsets all: 3);
-	 border: (BlBorder builder width: 1; build);
-	 geometry: (BlRoundedRectangleGeometry cornerRadius: 8).
+
+	<bookExample>
+	^ BlElement new
+		  size: 22 @ 14;
+		  layout: BlFrameLayout new;
+		  padding: (BlInsets all: 3);
+		  border: (BlBorder builder
+				   width: 1;
+				   build);
+		  geometry: (BlRoundedRectangleGeometry cornerRadius: 8)
 ]
 
 { #category : #accessing }
 RdvBlocExperiment >> exampleWithEvent [
-<gtExample>
-|element|
-element := BlDevElement new size:200@200;
-geometry:( BlPolygon
-		vertices:
-			{(100 @ 50).
-			(115 @ 90).
-			(150 @ 90).
-			(125 @ 110).
-			(135 @ 150).
-			(100 @ 130).
-			(65 @ 150).
-			(75 @ 110).
-			(50 @ 90).
-			(85 @ 90)});
-background: (Color pink alpha:0.2);
-border: (BlBorder paint: Color white width: 1);
-"layout: BlLinearLayout horizontal alignCenter;"
-"constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
-outskirts: BlOutskirts inside.
 
- element when: BlMouseEnterEvent do: [ :anEvent |
+	<bookExample>
+	| element |
+	element := BlDevElement new
+		           size: 200 @ 200;
+		           geometry: (BlPolygon vertices: {
+						            (100 @ 50).
+						            (115 @ 90).
+						            (150 @ 90).
+						            (125 @ 110).
+						            (135 @ 150).
+						            (100 @ 130).
+						            (65 @ 150).
+						            (75 @ 110).
+						            (50 @ 90).
+						            (85 @ 90) });
+		           background: (Color pink alpha: 0.2);
+		           border: (BlBorder paint: Color white width: 1);
+		           "layout: BlLinearLayout horizontal alignCenter;""constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
+		           outskirts: BlOutskirts inside.
+
+	element when: BlMouseEnterEvent do: [ :anEvent |
 		anEvent consumed: true.
-		element background: (Color red alpha:0.2) ].
-		
- element when: BlMouseLeaveEvent do: [ :anEvent |
+		element background: (Color red alpha: 0.2) ].
+
+	element when: BlMouseLeaveEvent do: [ :anEvent |
 		anEvent consumed: true.
-		element background: (Color blue alpha:0.2) ].
-		
-^element
+		element background: (Color blue alpha: 0.2) ].
+
+	^ element
 ]
 
 { #category : #accessing }
@@ -156,80 +161,8 @@ e := BlElement new
 ]
 
 { #category : #accessing }
-RdvBlocExperiment >> layoutExample1 [
-<gtExample>
-^BlElement new layout: BlLinearLayout horizontal;
-size: 400@300;
-background: (Color gray alpha: 0.2);
-addChildren: {
-BlElement new size: 100@200; background:(Color red alpha: 0.2).
-BlElement new size: 200@100; background:(Color blue alpha: 0.2)
-}
-]
-
-{ #category : #accessing }
-RdvBlocExperiment >> layoutExample2 [
-<gtExample>
-^BlElement new layout: BlLinearLayout horizontal alignCenter;
-size: 400@300;
-background: (Color gray alpha: 0.2);
-addChildren: {
-BlElement new size: 100@200; background:(Color red alpha: 0.2).
-BlElement new size: 200@100; background:(Color blue alpha: 0.2)
-}
-]
-
-{ #category : #accessing }
-RdvBlocExperiment >> layoutExample3 [
-<gtExample>
-^BlElement new layout: BlLinearLayout horizontal "alignCenter";
-size: 400@300;
-background: (Color gray alpha: 0.2);
-addChildren: {
-BlElement new size: 100@200; background:(Color red alpha: 0.2).
-BlElement new size: 200@100; background:(Color blue alpha: 0.2);
-constraintsDo:[ :c | c ignoreByLayout.
-c vertical exact: 200.
-			c horizontal exact: 100.
-			c ignored horizontal alignRight.
-			c ignored vertical alignBottom].
-}    
-]
-
-{ #category : #accessing }
-RdvBlocExperiment >> layoutExample4 [
-<gtExample>
-^BlElement new layout: BlLinearLayout horizontal "alignCenter";
-size: 400@300;
-background: (Color gray alpha: 0.2);
-addChildren: {
-BlElement new size: 100@200; background:(Color red alpha: 0.2).
-BlElement new size: 200@100; background:(Color blue alpha: 0.2);
-constraintsDo:[ :c | c ignoreByLayout.
-c vertical exact: 200.
-			c horizontal exact: 100.
-			c horizontal matchParent.
-			c ignored horizontal alignRight.
-			c ignored vertical alignBottom].
-}
-]
-
-{ #category : #accessing }
-RdvBlocExperiment >> layoutExample5 [
-<gtExample>
-^BlElement new layout: BlLinearLayout horizontal alignCenter;
-size: 400@300;
-background: (Color gray alpha: 0.2);
-addChildren: {
-BlElement new size: 100@200; background:(Color red alpha: 0.2).
-BlElement new size: 200@100; background:(Color blue alpha: 0.2);
-constraintsDo:[ :c | c margin: (BlInsets all: 10)].
-}
-]
-
-{ #category : #accessing }
 RdvBlocExperiment >> openSpaceInNewWindowExample [
-<gtExample>
+<bookExample>
 	| aSpace |
 	
 	aSpace := BlSpace new

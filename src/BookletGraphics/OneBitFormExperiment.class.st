@@ -24,7 +24,7 @@ OneBitFormExperiment >> magnifyFactor [
 { #category : #accessing }
 OneBitFormExperiment >> oneBitColorDepthWithBitmap [
 
-	<gtExample>
+	<bookExample>
 	| bitmap |
 	bitmap := Bitmap newFrom: #( 2r10011000000100010000000000000001
 		             2r11000000000000000000000000000000 ).
@@ -35,7 +35,7 @@ OneBitFormExperiment >> oneBitColorDepthWithBitmap [
 
 { #category : #accessing }
 OneBitFormExperiment >> oneBitColorDepthWithFormColor [
-<gtExample>
+<bookExample>
 	| pict map |
 	pict := ColorForm extent: 32 @ 2 depth: 1.
 
@@ -56,7 +56,7 @@ OneBitFormExperiment >> oneBitColorDepthWithFormColor [
 { #category : #accessing }
 OneBitFormExperiment >> oneBitColorDepthWithoutBitmap [
 
-	<gtExample>
+	<bookExample>
 	^ (Form extent: 32 @ 2 depth: 1)
 		  initFromArray: #( 2r10011000000100010000000000000001
 			     2r11000000000000000000000000000000 );

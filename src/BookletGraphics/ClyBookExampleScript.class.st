@@ -37,5 +37,5 @@ ClyBookExampleScript >> executeOn: aClass [
 
 { #category : #accessing }
 ClyBookExampleScript >> iconName [
-	^#smallDoItIcon
+	^#smallLanguage
 ]

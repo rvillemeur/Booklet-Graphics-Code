@@ -144,54 +144,62 @@ RdvNoteBlock >> bigAdaptableText [
 
 { #category : #accessing }
 RdvNoteBlock >> blAnnulusExample [
-<gtExample>
-|tagDict pingCount piAngles fromAngle chart centerLabel element|
-tagDict := { 'A' -> 10 . 'B' -> 20 . 'C' -> 30 . 'D' -> 40 } asDictionary.
 
-pingCount := tagDict values sum.
-piAngles := tagDict associations collect: [:assoc | assoc key -> ((assoc value / pingCount) * 360) ].
+	<bookExample>
+	| tagDict pingCount piAngles fromAngle chart centerLabel element |
+	tagDict := {
+		           ('A' -> 10).
+		           ('B' -> 20).
+		           ('C' -> 30).
+		           ('D' -> 40) } asDictionary.
 
-fromAngle := 0.
+	pingCount := tagDict values sum.
+	piAngles := tagDict associations collect: [ :assoc |
+		            assoc key -> (assoc value / pingCount * 360) ].
 
-chart := BlElement new
-    size: 700@700.
-    
-centerLabel := BlElement new relocate: 300@300.
+	fromAngle := 0.
 
-piAngles do: [:el |
-    | start end sec label |
-    start := fromAngle.
-    end := fromAngle + el value.
-    sec := BlAnnulusSector new 
-        startAngle: start;
-        endAngle: end;
-        innerRadius: 0.5.
-        
-    label := BlTextElement new text: (el key) asRopedText.
-    label relocate: 300@300.
-    
-    fromAngle := el value + fromAngle.
-    
-    element := BlElement new
-        background: (BlColorPaint color: Color random);
-        size: 400@400;
-        geometry: sec.
-        
-    element relocate: 100@100.
-    
-    (element addEventHandlerOn: BlMouseEnterEvent do: [ chart addChild: label as:#centerLabel ]).
-    
-    (element addEventHandlerOn: BlMouseLeaveEvent do: [ chart removeChildNamed: #centerLabel]).
-    
-    chart addChild: element.
-].
+	chart := BlElement new size: 700 @ 700.
 
-^chart.
+	centerLabel := BlElement new position: 300 @ 300.
+
+	piAngles do: [ :el |
+		| start end sec label |
+		start := fromAngle.
+		end := fromAngle + el value.
+		sec := BlAnnulusSector new
+			       startAngle: start;
+			       endAngle: end;
+			       innerRadius: 0.5.
+
+		label := BlTextElement new text: el key asRopedText.
+		label position: 300 @ 300.
+
+		fromAngle := el value + fromAngle.
+
+		element := BlElement new
+			           background: (BlColorPaint color: Color random);
+			           size: 400 @ 400;
+			           geometry: sec.
+
+		element position: 100 @ 100.
+
+		element
+			addEventHandlerOn: BlMouseEnterEvent
+			do: [ chart addChild: label as: #centerLabel ].
+
+		element
+			addEventHandlerOn: BlMouseLeaveEvent
+			do: [ chart removeChildNamed: #centerLabel ].
+
+		chart addChild: element ].
+
+	^ chart
 ]
 
 { #category : #accessing }
 RdvNoteBlock >> blAnnulusExample2 [
-<gtExample>
+<bookExample>
 "you can click on part of the circle to put some action"
 ^BlElement new
     size: 400@400;
@@ -228,7 +236,7 @@ RdvNoteBlock >> createSpace [
 
 { #category : #accessing }
 RdvNoteBlock >> donut [
-<gtExample>
+<bookExample>
 ^BlElement new
     size: 400@400;
     addChildren: ({
@@ -249,7 +257,7 @@ RdvNoteBlock >> donut [
 
 { #category : #accessing }
 RdvNoteBlock >> eventExample [
-<gtExample>
+<bookExample>
 	"This is a new method"
 |toto|
 toto := BlDevElement new size:200@200;
@@ -283,40 +291,42 @@ toto when: BlMouseEnterEvent do: [ :anEvent |
 
 { #category : #accessing }
 RdvNoteBlock >> eventExampleMouseMove [
-<gtExample>
-|surface elt|
-elt := BlElement new size:20@20;
-geometry: ( BlPolygon
-		vertices:
-			{(10 @ 5).
-			(11.5 @ 9).
-			(15 @ 9).
-			(12.5 @ 11).
-			(13.5 @ 15).
-			(10 @ 13).
-			(6.5 @ 15).
-			(7.5 @ 11).
-			(5 @ 9).
-			(8.5 @ 9)});
-background: (Color red alpha:0.5);
-border: (BlBorder paint: Color blue width: 1).
 
-surface := BlElement new size:400@400;
-geometry: BlSquare new;
-background: (Color pink alpha:0.2);
-border: (BlBorder paint: Color orange width: 4).
+	<gtExample>
+	| surface elt |
+	elt := BlElement new
+		       size: 20 @ 20;
+		       geometry: (BlPolygon vertices: {
+						        (10 @ 5).
+						        (11.5 @ 9).
+						        (15 @ 9).
+						        (12.5 @ 11).
+						        (13.5 @ 15).
+						        (10 @ 13).
+						        (6.5 @ 15).
+						        (7.5 @ 11).
+						        (5 @ 9).
+						        (8.5 @ 9) });
+		       background: (Color red alpha: 0.5);
+		       border: (BlBorder paint: Color blue width: 1).
 
-surface addChild: elt.
-elt relocate: -20@(-20).
-		
-surface when: BlMouseMoveEvent do: [ :anEvent |
+	surface := BlElement new
+		           size: 400 @ 400;
+		           geometry: BlSquare new;
+		           background: (Color pink alpha: 0.2);
+		           border: (BlBorder paint: Color orange width: 4).
+
+	surface addChild: elt.
+	elt position: -20 @ -20.
+
+	surface when: BlMouseMoveEvent do: [ :anEvent |
 		anEvent consumed: true.
-		elt relocate: (anEvent localPosition + (10@10)) ].
-		
-surface when: BlMouseLeaveEvent do: [ :anEvent |
+		elt relocate: anEvent localPosition + (10 @ 10) ].
+
+	surface when: BlMouseLeaveEvent do: [ :anEvent |
 		anEvent consumed: true.
-		elt relocate: -20@(-20) ].
-^surface
+		elt relocate: -20 @ -20 ].
+	^ surface
 ]
 
 { #category : #accessing }
@@ -418,62 +428,75 @@ e := BlElement new
 
 { #category : #accessing }
 RdvNoteBlock >> rainbow [
-<gtExample>
-|root stroke wh colors a|
-root := BlElement new size: (wh := (640@480)); background: (Color black).
-stroke := (BlBorder paint: Color black).
 
-"Draw a rainbow"
-colors := #(#red #orange #yellow #green #blue #purple).
-(1 to: (colors size)) do: [:i||r el|
-  r := (colors size + 1-i) *400 **0.8.
-  el := BlElement new size: (r@r);
-    geometry: (BlAnnulusSector new startAngle:180; endAngle:360);
-    background: (Color named: (colors at: i)); border: stroke;
-    relocate: (root extent + wh - (r@r)/2 + (0@120)).
-  root addChild: el].
+	<bookExample>
+	| root stroke wh colors a |
+	root := BlElement new
+		        size: (wh := 640 @ 480);
+		        background: Color black.
+	stroke := BlBorder paint: Color black.
 
-"Draggable card that says 'Rainbow!'"
-a := BlElement new
-  geometry: BlRectangleGeometry new;
-  size: (65@24); background: Color white; border: stroke;
-  addEventHandlerOn: BlMouseOverEvent do:[:e|a background: Color lightGray];
-  addEventHandlerOn: BlMouseOutEvent do:[:e|a background: Color white];
-  addEventHandler: BlPullHandler new disallowOutOfBounds;
-  addChild: (BlTextElement new relocate: 5@5;
-    text: ('Rainbow!' asRopedText attributes: {
-      BlTextForegroundAttribute paint: Color black})).
+	"Draw a rainbow"
+	colors := #( #red #orange #yellow #green #blue #purple ).
+	(1 to: colors size) do: [ :i |
+		| r el |
+		r := colors size + 1 - i * 400 ** 0.8.
+		el := BlElement new
+			      size: r @ r;
+			      geometry: (BlAnnulusSector new
+					       startAngle: 180;
+					       endAngle: 360);
+			      background: (Color named: (colors at: i));
+			      border: stroke;
+			      position: root extent + wh - (r @ r) / 2 + (0 @ 120).
+		root addChild: el ].
 
-root addChild: a.
-^root
+	"Draggable card that says 'Rainbow!'"
+	a := BlElement new
+		     geometry: BlRectangleGeometry new;
+		     size: 65 @ 24;
+		     background: Color white;
+		     border: stroke;
+		     addEventHandlerOn: BlMouseOverEvent
+		     do: [ :e | a background: Color lightGray ];
+		     addEventHandlerOn: BlMouseOutEvent
+		     do: [ :e | a background: Color white ];
+		     addEventHandler: BlPullHandler new disallowOutOfBounds;
+		     addChild: (BlTextElement new
+				      position: 5 @ 5;
+				      text: ('Rainbow!' asRopedText attributes:
+							       { (BlTextForegroundAttribute paint: Color black) })).
+
+	root addChild: a.
+	^ root
 ]
 
 { #category : #accessing }
 RdvNoteBlock >> squareSurroundedByNumbers [
-<gtExample>
-^BlElement new
-    layout: (BlGridLayout horizontal columnCount: 3);
-    constraintsDo: [ :c |
-        c horizontal matchParent.
-        c vertical matchParent ];
-    addChildren: {
-        "top row"
-        (BlTextElement new text: '5,0' asRopedText).
-        (BlElement new size: 0@0).
-        (BlTextElement new text: '13,0' asRopedText).
-        
-        "middle row"
-        (BlElement new size: 0@0).
-        (BlElement new
-            constraintsDo: [ :c |
-                c horizontal matchParent.
-                c vertical matchParent ];
-            border: (BlBorder paint: Color gray width: 1)).
-        (BlElement new size: 0@0).
-        
-        "bottom row"
-        (BlTextElement new text: '5,25' asRopedText).
-        (BlElement new size: 0@0).
-        (BlTextElement new text: '13,25' asRopedText). }.
-   
+
+	<bookExample>
+	^ BlElement new
+		  layout: (BlGridLayout horizontal columnCount: 3);
+		  constraintsDo: [ :c |
+			  c horizontal matchParent.
+			  c vertical matchParent ];
+		  addChildren: {
+				  (BlTextElement new text: '5,0' asRopedText).
+				  (BlElement new size: 0 @ 0).
+				  (BlTextElement new text: '13,0' asRopedText).
+
+				  "middle row"
+				  (BlElement new size: 0 @ 0).
+				  (BlElement new
+					   constraintsDo: [ :c |
+						   c horizontal matchParent.
+						   c vertical matchParent ];
+					   border: (BlBorder paint: Color gray width: 1)).
+				  (BlElement new size: 0 @ 0).
+
+				  "bottom row"
+				  (BlTextElement new text: '5,25' asRopedText).
+				  (BlElement new size: 0 @ 0).
+				  (BlTextElement new text: '13,25' asRopedText) }
+	"top row"
 ]

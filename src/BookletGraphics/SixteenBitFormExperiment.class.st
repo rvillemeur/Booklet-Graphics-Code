@@ -28,7 +28,7 @@ SixteenBitFormExperiment >> magnifyFactor [
 
 { #category : #accessing }
 SixteenBitFormExperiment >> sixteenColorDepth [
-<gtExample>
+<bookExample>
 ^(Form extent: 6@1 "size of the form"
  depth: 16 "color depth - 16 => 2 bits to define color value 65K color possible")
  initFromArray: #( "pixel color, expressed on 4 bytes or 32 bits, which is the maximum of color depth"

@@ -16,7 +16,7 @@ Class {
 
 { #category : #accessing }
 FourBitFormExperiment >> fourBitColorDepth [
-<gtExample>
+<bookExample>
 	^ (Form extent: 8 @ 2 depth: 4) initFromArray:
 		  #( 2r00000001001000110100010101100111
 		     2r10001001101010111100110111101111 ); magnifyBy: self magnifyFactor 
@@ -30,7 +30,7 @@ FourBitFormExperiment >> fourBitColorDepth [
 
 { #category : #accessing }
 FourBitFormExperiment >> fourBitColorDepthWithColorForm [
-<gtExample>
+<bookExample>
 |pict map|
 pict := ColorForm extent: 8@1 depth: 4.
 

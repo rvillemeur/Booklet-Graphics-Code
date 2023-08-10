@@ -49,7 +49,7 @@ context
 { #category : #examples }
 AlexandrieCairoExperiment >> clip2 [
 
-	<gtExample>
+	<bookExample>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -89,7 +89,7 @@ context
 { #category : #examples }
 AlexandrieCairoExperiment >> fillPaint1 [
 
-	<gtExample>
+	<bookExample>
 	| surface context fontFace scaledFont |
 	surface := AeCairoImageSurface
 		           extent: 700 @ 500
@@ -158,7 +158,7 @@ AlexandrieCairoExperiment >> fillPaint1 [
 { #category : #examples }
 AlexandrieCairoExperiment >> fillPaint2 [
 
-	<gtExample>
+	<bookExample>
 	| surface context fontFace scaledFont |
 	surface := AeCairoImageSurface
 		           extent: 700 @ 500
@@ -234,7 +234,7 @@ AlexandrieCairoExperiment >> fillPaint2 [
 { #category : #examples }
 AlexandrieCairoExperiment >> fillPaint3 [
 
-	<gtExample>
+	<bookExample>
 	| surface context gradient form |
 	surface := AeCairoImageSurface
 		           extent: 200 @ 200
@@ -297,7 +297,7 @@ AlexandrieCairoExperiment >> fillPaint3 [
 { #category : #examples }
 AlexandrieCairoExperiment >> mask1 [
 
-	<gtExample>
+	<bookExample>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -318,7 +318,7 @@ AlexandrieCairoExperiment >> mask1 [
 { #category : #examples }
 AlexandrieCairoExperiment >> maskAndClip1 [
 
-	<gtExample>
+	<bookExample>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -344,10 +344,10 @@ AlexandrieCairoExperiment >> maskAndClip1 [
 	^ surface asForm
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AlexandrieCairoExperiment >> radialGradientPattern1 [
 
-	<gtExample>
+	<bookExample>
 	| radius center extent mainSurface mainContext aGradient |
 	radius := 100.
 	center := radius asPoint.

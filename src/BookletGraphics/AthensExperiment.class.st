@@ -49,7 +49,7 @@ AthensExperiment >> example1 [
 { #category : #examples }
 AthensExperiment >> example2 [
 
-	<gtExample>
+	<bookExample>
 	| surface |
 	surface := AthensCairoSurface extent: 400 @ 400.
 
@@ -92,7 +92,7 @@ AthensExperiment >> example2 [
 { #category : #examples }
 AthensExperiment >> fillPaint1 [
 
-	<gtExample>
+	<bookExample>
 	| surface |
 	surface := AthensCairoSurface extent: 200 @ 200.
 
@@ -132,7 +132,7 @@ AthensExperiment >> fillPaint1 [
 { #category : #examples }
 AthensExperiment >> maskPaint1 [
 
-	<gtExample>
+	<bookExample>
 	| surface |
 	surface := AthensCairoSurface extent: 400 @ 120.
 
@@ -157,7 +157,7 @@ AthensExperiment >> maskPaint1 [
 { #category : #examples }
 AthensExperiment >> pathPaint1 [
 
-	<gtExample>
+	<bookExample>
 	| surface |
 	surface := AthensCairoSurface extent: 100 @ 100.
 
@@ -182,7 +182,7 @@ AthensExperiment >> pathPaint1 [
 
 { #category : #examples }
 AthensExperiment >> strokePaint1 [
-<gtExample>
+<bookExample>
 
 |surface|                                                                        
 surface := AthensCairoSurface extent: 200@200.                                   
@@ -199,7 +199,7 @@ surface drawDuring: [ :canvas  |
 { #category : #examples }
 AthensExperiment >> strokePaint2 [
 
-	<gtExample>
+	<bookExample>
 	| surface |
 	surface := AthensCairoSurface extent: 200 @ 200.
 

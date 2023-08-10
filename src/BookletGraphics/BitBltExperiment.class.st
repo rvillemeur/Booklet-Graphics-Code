@@ -96,35 +96,34 @@ Class {
 
 { #category : #tests }
 BitBltExperiment >> test1 [
-<gtExample>
 
-|initForm destForm blt|
+	<bookExample>
+	| initForm destForm blt |
+	initForm := (Form extent: 3 @ 3 depth: 32) initFromArray:
+		            #( 16rffff0000 16rff000000 16rff0000ff 16rff000000
+		               16rffffffff 16rff000000 16rff00ff00 16rff000000
+		               16rffffff00 ). "red" "black" "blue" "black" "white" "black" "green" "black" "yello"
 
-initForm := (Form extent: 3@3 depth: 32)
- initFromArray: #( 16rffff0000 "red" 	 16rff000000 "black" 16rff0000ff "blue"
-						 16rff000000 "black" 16rffffffff "white" 16rff000000 "black" 
-						 16rff00ff00 "green" 16rff000000 "black" 16rffffff00 "yello").
-						
-destForm := Form extent: 3@3 depth: 32.
-						
-blt := BitBlt toForm: destForm .
+	destForm := Form extent: 3 @ 3 depth: 32.
 
-blt
+	blt := BitBlt toForm: destForm.
+
+	blt
 		sourceForm: initForm;
-		destOrigin: 0@0;
-		sourceOrigin: 0@0;
+		destOrigin: 0 @ 0;
+		sourceOrigin: 0 @ 0;
 		halftoneForm: nil;
 		combinationRule: 18;
 		width: initForm width;
 		height: initForm height;
-		copyBits .
-		
-^destForm magnifyBy: 15
+		copyBits.
+
+	^ destForm magnifyBy: 15
 ]
 
 { #category : #tests }
 BitBltExperiment >> test2 [
-<gtExample>
+<bookExample>
 
 |initForm destForm halfForm blt|
 
@@ -157,7 +156,7 @@ blt
 
 { #category : #tests }
 BitBltExperiment >> testCombinationRule0To15 [
-	<gtExample>
+	<bookExample>
 	| initForm destForm blt |
 	initForm := (Form extent: 32 @ 1 depth: 1) initFromArray:
 		            #( 2r10101010101010101010101010101010 ).
@@ -197,7 +196,7 @@ BitBltExperiment >> testCombinationRule0To15 [
 
 { #category : #tests }
 BitBltExperiment >> testCombinationRule0To15v2 [
-	<gtExample>
+	<bookExample>
 	| initForm destForm halfForm blt |
 	initForm := (Form extent: 32 @ 1 depth: 1) initFromArray:
 		            #( 2r10101010101010101010101010101010 ).
