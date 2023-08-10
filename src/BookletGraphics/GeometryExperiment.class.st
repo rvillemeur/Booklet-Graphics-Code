@@ -7,7 +7,7 @@ Class {
 { #category : #examples }
 GeometryExperiment >> circle [
 
-	<gtExample>
+	<bookExample>
 	^BlElement new
 		geometry: (BlCircleGeometry new matchExtent: 100 @ 50);
 		size: 100 @ 50;
@@ -21,7 +21,7 @@ GeometryExperiment >> circle [
 { #category : #examples }
 GeometryExperiment >> ellipse [
 
-	<gtExample>
+	<script: 'self new ellipse inspect'>
 	^BlElement new
 		geometry: (BlEllipseGeometry new matchExtent: 100 @ 50);
 		size: 100 @ 50;

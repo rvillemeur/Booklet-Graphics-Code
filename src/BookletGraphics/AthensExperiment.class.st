@@ -6,7 +6,7 @@ Class {
 
 { #category : #examples }
 AthensExperiment >> example1 [
-<gtExample>
+<bookExample>
 	| surface |
 	surface := AthensCairoSurface extent: 400 @ 400.
 

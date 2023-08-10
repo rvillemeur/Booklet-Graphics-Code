@@ -20,7 +20,7 @@ Class {
 { #category : #examples }
 AlexandrieCairoExperiment >> clip1 [
 
-	<gtExample>
+	<bookExample>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
