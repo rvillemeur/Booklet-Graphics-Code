@@ -168,105 +168,99 @@ RdvBlocExperiment >> multipleElement [
 	container := BlElement new
 		             size: 450 @ 150;
 		             geometry: BlRectangleGeometry new;
-		             margin: (BlInsets all: 1);
-		             padding: (BlInsets all: 4);
+		             margin: (BlInsets all: 5);
+		             padding: (BlInsets all: 5);
 		             layout: BlLinearLayout horizontal;
-		             border: (BlBorder paint: Color black width: 2).
-	box2 := BlElement new
-		        size: 150 @ 150;
+		             border: (BlBorder paint: Color black width: 5).
+	box1 := BlElement new
+		        size: 150@150;
 		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 1);
-		        padding: (BlInsets all: 1);
+		        margin: (BlInsets all: 5);
+		        padding: (BlInsets all: 10);
+		        layout:  BlLinearLayout horizontal alignCenter;
+		       constraintsDo: [ :c |
+			        c horizontal matchParent  .
+			        c vertical matchParent ];
+		        border: (BlBorder paint: Color red width: 5).
+	box2 := BlElement new
+		        size:150@150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 10);
+		        padding: (BlInsets all: 10);
 		        layout: BlLinearLayout horizontal alignCenter;
 		        constraintsDo: [ :c |
 			        c horizontal matchParent.
 			        c vertical matchParent ];
-		        border: (BlBorder paint: Color red width: 2).
+		        border: (BlBorder paint: Color yellow width: 5).
 	box3 := BlElement new
-		        size: 150 @ 150;
+		        size: 150@150;
 		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 1);
-		        padding: (BlInsets all: 1);
-		        layout: BlLinearLayout horizontal;
+		        margin: (BlInsets all: 15);
+		        padding: (BlInsets all: 5);
+		        layout: BlLinearLayout horizontal alignCenter ;
 		        constraintsDo: [ :c |
 			        c horizontal matchParent.
 			        c vertical matchParent ];
-		        border: (BlBorder paint: Color yellow width: 2).
-	box1 := BlElement new
-		        size: 150 @ 150;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 1);
-		        padding: (BlInsets all: 1);
-		        layout: BlLinearLayout horizontal;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		        border: (BlBorder paint: Color blue width: 2).
+		        border: (BlBorder paint: Color blue width: 5).
+
+	element1 := BlElement new
+		            geometry: (BlPolygonGeometry vertices: {
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
+		            constraintsDo: [ :c |
+			            c horizontal matchParent .
+			            c vertical matchParent ];
+		            border: (BlBorder paint: Color orange width: 5);
+		            outskirts: BlOutskirts outside.
+	box1 addChild: element1.
+	element2 := BlElement new
+		            geometry: (BlPolygonGeometry vertices: {
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
+		            constraintsDo: [ :c |
+			            c horizontal matchParent.
+			            c vertical matchParent ];
+		            border: (BlBorder paint: Color green width: 5);
+		            outskirts: BlOutskirts centered.
+	box2  addChild: element2.
+	element3 := BlElement new
+		            geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
+		           constraintsDo: [ :c |
+			            c horizontal matchParent.
+			            c vertical matchParent ];
+		            border: (BlBorder paint: Color purple width: 5);
+		            outskirts: BlOutskirts inside.
+	box3 addChild: element3.
 	container addChildren: {
 			box1.
 			box2.
 			box3 }.
-	element1 := BlElement new
-		            size: 150 @ 150;
-		            geometry: (BlPolygonGeometry vertices: {
-						             (100 @ 50).
-						             (115 @ 90).
-						             (150 @ 90).
-						             (125 @ 110).
-						             (135 @ 150).
-						             (100 @ 130).
-						             (65 @ 150).
-						             (75 @ 110).
-						             (50 @ 90).
-						             (85 @ 90) });
-		            background: (Color pink alpha: 0.2);
-		            constraintsDo: [ :c |
-			            c horizontal matchParent.
-			            c vertical matchParent ];
-		            border: (BlBorder paint: Color white width: 2);
-		            outskirts: BlOutskirts inside.
-	box1 addChild: element1.
-	element2 := BlElement new
-		            size: 150 @ 150;
-		            geometry: (BlPolygonGeometry vertices: {
-						             (100 @ 50).
-						             (115 @ 90).
-						             (150 @ 90).
-						             (125 @ 110).
-						             (135 @ 150).
-						             (100 @ 130).
-						             (65 @ 150).
-						             (75 @ 110).
-						             (50 @ 90).
-						             (85 @ 90) });
-		            background: (Color pink alpha: 0.2);
-		            constraintsDo: [ :c |
-			            c horizontal matchParent.
-			            c vertical matchParent ];
-		            border: (BlBorder paint: Color white width: 2);
-		            outskirts: BlOutskirts outside.
-	box2 addChild: element2.
-	element3 := BlElement new
-		            size: 150 @ 150;
-		            geometry: (BlPolygonGeometry vertices: {
-						             (100 @ 50).
-						             (115 @ 90).
-						             (150 @ 90).
-						             (125 @ 110).
-						             (135 @ 150).
-						             (100 @ 130).
-						             (65 @ 150).
-						             (75 @ 110).
-						             (50 @ 90).
-						             (85 @ 90) });
-		            background: (Color pink alpha: 0.2);
-		            constraintsDo: [ :c |
-			            c horizontal matchParent.
-			            c vertical matchParent ];
-		            border: (BlBorder paint: Color white width: 2);
-		            outskirts: BlOutskirts centered.
-	box3 addChild: element3.
-
 	^ container
 ]
 
