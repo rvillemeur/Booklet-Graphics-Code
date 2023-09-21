@@ -160,6 +160,116 @@ e := BlElement new
 ^e
 ]
 
+{ #category : #'as yet unclassified' }
+RdvBlocExperiment >> multipleElement [
+
+	<bookExample>
+	| element1 element2 element3 container box1 box2 box3 |
+	container := BlElement new
+		             size: 450 @ 150;
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 1);
+		             padding: (BlInsets all: 4);
+		             layout: BlLinearLayout horizontal;
+		             border: (BlBorder paint: Color black width: 2).
+	box2 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 1);
+		        padding: (BlInsets all: 1);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        border: (BlBorder paint: Color red width: 2).
+	box3 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 1);
+		        padding: (BlInsets all: 1);
+		        layout: BlLinearLayout horizontal;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        border: (BlBorder paint: Color yellow width: 2).
+	box1 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 1);
+		        padding: (BlInsets all: 1);
+		        layout: BlLinearLayout horizontal;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        border: (BlBorder paint: Color blue width: 2).
+	container addChildren: {
+			box1.
+			box2.
+			box3 }.
+	element1 := BlElement new
+		            size: 150 @ 150;
+		            geometry: (BlPolygonGeometry vertices: {
+						             (100 @ 50).
+						             (115 @ 90).
+						             (150 @ 90).
+						             (125 @ 110).
+						             (135 @ 150).
+						             (100 @ 130).
+						             (65 @ 150).
+						             (75 @ 110).
+						             (50 @ 90).
+						             (85 @ 90) });
+		            background: (Color pink alpha: 0.2);
+		            constraintsDo: [ :c |
+			            c horizontal matchParent.
+			            c vertical matchParent ];
+		            border: (BlBorder paint: Color white width: 2);
+		            outskirts: BlOutskirts inside.
+	box1 addChild: element1.
+	element2 := BlElement new
+		            size: 150 @ 150;
+		            geometry: (BlPolygonGeometry vertices: {
+						             (100 @ 50).
+						             (115 @ 90).
+						             (150 @ 90).
+						             (125 @ 110).
+						             (135 @ 150).
+						             (100 @ 130).
+						             (65 @ 150).
+						             (75 @ 110).
+						             (50 @ 90).
+						             (85 @ 90) });
+		            background: (Color pink alpha: 0.2);
+		            constraintsDo: [ :c |
+			            c horizontal matchParent.
+			            c vertical matchParent ];
+		            border: (BlBorder paint: Color white width: 2);
+		            outskirts: BlOutskirts outside.
+	box2 addChild: element2.
+	element3 := BlElement new
+		            size: 150 @ 150;
+		            geometry: (BlPolygonGeometry vertices: {
+						             (100 @ 50).
+						             (115 @ 90).
+						             (150 @ 90).
+						             (125 @ 110).
+						             (135 @ 150).
+						             (100 @ 130).
+						             (65 @ 150).
+						             (75 @ 110).
+						             (50 @ 90).
+						             (85 @ 90) });
+		            background: (Color pink alpha: 0.2);
+		            constraintsDo: [ :c |
+			            c horizontal matchParent.
+			            c vertical matchParent ];
+		            border: (BlBorder paint: Color white width: 2);
+		            outskirts: BlOutskirts centered.
+	box3 addChild: element3.
+
+	^ container
+]
+
 { #category : #accessing }
 RdvBlocExperiment >> openSpaceInNewWindowExample [
 <bookExample>
