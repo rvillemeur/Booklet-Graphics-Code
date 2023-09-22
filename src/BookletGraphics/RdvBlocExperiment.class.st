@@ -278,6 +278,118 @@ RdvBlocExperiment >> multipleElement2 [
 		             geometry: BlRectangleGeometry new;
 		             margin: (BlInsets all: 3);
 		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3).
+	box1 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        "layout: BlLinearLayout horizontal alignCenter ;"
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightRed;
+		        border: (BlBorder paint: Color red width: 5).
+	element1 := BlElement new
+						size: 100@100;
+						position: 50@50;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (50 @ 0).
+						              (65 @ 40).
+						              (100 @ 40).
+						              (75 @ 60).
+						              (85 @ 100).
+						              (50 @ 80).
+						              (15 @ 100).
+						              (25 @ 60).
+						              (0 @ 40).
+						              (35 @ 40) });
+						geometryBounds: (BlBounds origin: 0@0 extent: 50@50 );
+		            border: (BlBorder paint: Color orange width: 5);
+		            background: Color lightOrange;
+		            outskirts: BlOutskirts centered.
+
+		box1 addChild: element1.
+	"element1 position: 100@50; forceLayout."
+	box2 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightYellow;
+		        border: (BlBorder paint: Color yellow width: 5).
+	element2 := BlElement new
+		            size: 100 @ 100;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (50 @ 0).
+						              (65 @ 40).
+						              (100 @ 40).
+						              (75 @ 60).
+						              (85 @ 100).
+						              (50 @ 80).
+						              (15 @ 100).
+						              (25 @ 60).
+						              (0 @ 40).
+						              (35 @ 40) });
+		            border: (BlBorder paint: Color green width: 5);
+		            background: Color lightGreen;
+		            outskirts: BlOutskirts centered.
+
+	box2 addChild: element2.
+	
+	box3 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		         background: Color lightBlue;
+		        border: (BlBorder paint: Color blue width: 5).
+	element3 := BlElement new
+		            size: 100 @ 100;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (50 @ 0).
+						              (65 @ 40).
+						              (100 @ 40).
+						              (75 @ 60).
+						              (85 @ 100).
+						              (50 @ 80).
+						              (15 @ 100).
+						              (25 @ 60).
+						              (0 @ 40).
+						              (35 @ 40) });
+		            border: (BlBorder paint: Color cyan width: 5);
+		            background: Color lightCyan;
+		            outskirts: BlOutskirts centered.
+	box3 addChild: element3.
+	container addChildren: {
+			box1.
+			box2.
+			box3 }.
+			
+
+	^ container 
+]
+
+{ #category : #'as yet unclassified' }
+RdvBlocExperiment >> multipleElementAlignments [
+
+	<bookExample>
+	| element1 element2 element3 container box1 box2 box3 |
+	container := BlElement new
+		             size: 450 @ 150;
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
 		             layout: BlLinearLayout horizontal alignCenter;
 		             background: Color lightGray;
 		             border: (BlBorder paint: Color black width: 3).
