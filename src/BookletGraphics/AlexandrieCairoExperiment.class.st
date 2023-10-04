@@ -427,7 +427,7 @@ AlexandrieCairoExperiment >> lineDash [
 		moveTo: 0 @ 30;
 		lineTo: 200 @ 30;
 		sourceColorRGB: Color red;
-		dash: (AeCairoDoubleArray newFrom: #( 4 6 )) offset: 2;
+		dash: (AeCairoDoubleArray newFrom: #( 4 6 )) offset: 4;
 		stroke.
 
 	context
@@ -443,7 +443,7 @@ AlexandrieCairoExperiment >> lineDash [
 		moveTo: 0 @ 90;
 		lineTo: 200 @ 90;
 		sourceColorRGB: Color red;
-		dash: (AeCairoDoubleArray newFrom: #( 2 4 2 8 )) offset: 2;
+		dash: (AeCairoDoubleArray newFrom: #( 2 5 2 10 )) offset: 0;
 		stroke.
 
 

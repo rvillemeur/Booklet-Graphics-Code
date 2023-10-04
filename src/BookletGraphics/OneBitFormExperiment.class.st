@@ -58,7 +58,8 @@ OneBitFormExperiment >> oneBitColorDepthWithoutBitmap [
 
 	<bookExample>
 	^ (Form extent: 32 @ 2 depth: 1)
-		  initFromArray: #( 2r10011000000100010000000000000001
+		  initFromArray: 
+			  #( 2r10011000000100010000000000000001
 			     2r11000000000000000000000000000000 );
 		  magnifyBy: self magnifyFactor
 ]
