@@ -294,6 +294,241 @@ AlexandrieCairoExperiment >> fillPaint3 [
 	^ surface asForm
 ]
 
+{ #category : #accessing }
+AlexandrieCairoExperiment >> lineCap [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 120 @ 120
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 30;
+		lineTo: 100 @ 30;
+		sourceColorRGB: Color red;
+		useLineCapButt;
+		stroke.
+
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 60;
+		lineTo:  100 @ 60;
+		sourceColorRGB: Color red;
+		useLineCapSquare;
+		stroke.
+
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 90;
+		relativeLineTo: 100 @ 0;
+		sourceColorRGB: Color red;
+		useLineCapRound;
+		stroke.
+
+
+	^ surface asForm
+]
+
+{ #category : #accessing }
+AlexandrieCairoExperiment >> lineColor [
+
+	<bookExample>
+	| surface context gradient|
+	surface := AeCairoImageSurface
+		           extent: 200 @ 120
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+	"A dash pattern is specified by an array of positive values.
+	Each value provides the length of alternate 'on' and 'off' portions of the stroke.
+	The offset specifies an offset into the pattern at which the stroke begins."
+
+"linear gradient fill"
+	gradient := AeCairoLinearGradientPattern
+		            from: 0 @ 30
+		            to: 200 @ 45
+		            addStopsFrom: {
+				            (0 -> Color white).
+				            (1 -> Color black) }.
+				
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 30;
+		lineTo: 200 @ 30;
+		source: gradient;
+		stroke.
+
+"solid color"
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 60;
+		lineTo: 200 @ 60;
+		sourceColorRGB: (Color black alpha:0.7);
+		stroke.
+
+"Radial gradient fill"
+	gradient := AeCairoRadialGradientPattern
+		            innerCenter: 50 @ 90
+		            innerRadius: 50
+		            outerCenter: 80 @ 105
+		            outerRadius: 0
+		            addStopsFrom: {
+				            (0 -> Color black).
+				            (1 -> Color white) }.
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 90;
+		lineTo: 200 @ 90;
+		source: gradient;
+		stroke.
+
+
+	^ surface asForm
+]
+
+{ #category : #accessing }
+AlexandrieCairoExperiment >> lineDash [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 200 @ 120
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+	"A dash pattern is specified by an array of positive values.
+	Each value provides the length of alternate 'on' and 'off' portions of the stroke.
+	The offset specifies an offset into the pattern at which the stroke begins."
+
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 30;
+		lineTo: 200 @ 30;
+		sourceColorRGB: Color red;
+		dash: (AeCairoDoubleArray newFrom: #( 4 6 )) offset: 2;
+		stroke.
+
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 60;
+		lineTo: 200 @ 60;
+		sourceColorRGB: Color red;
+		dash: (AeCairoDoubleArray newFrom: #( 4 6 )) offset: 0;
+		stroke.
+
+	context
+		lineWidth: 15;
+		moveTo: 0 @ 90;
+		lineTo: 200 @ 90;
+		sourceColorRGB: Color red;
+		dash: (AeCairoDoubleArray newFrom: #( 2 4 2 8 )) offset: 2;
+		stroke.
+
+
+	^ surface asForm
+]
+
+{ #category : #accessing }
+AlexandrieCairoExperiment >> linejoin [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 120 @ 170
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+
+	context
+		lineWidth: 15;
+		moveTo: 10 @ 60;
+		lineTo: 60 @ 10;
+		lineTo: 110 @ 60;
+		sourceColorRGB: Color red;
+		useLineJoinRound  ;
+		stroke.
+
+	context
+		lineWidth: 15;
+		moveTo: 10 @ 110;
+		lineTo: 60 @ 60;
+		lineTo: 110 @ 110;
+		sourceColorRGB: Color red;
+		useLineJoinMiter ;
+		stroke.
+		
+	context
+		lineWidth: 15;
+		moveTo: 10 @ 160;
+		lineTo: 60 @ 110;
+		lineTo: 110 @ 160;
+		sourceColorRGB: Color red;
+		useLineJoinBevel  ;
+		stroke.
+
+
+	^ surface asForm
+]
+
+{ #category : #accessing }
+AlexandrieCairoExperiment >> linejoin2 [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 60 @ 220
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+
+	context
+		lineWidth: 15;
+		moveTo: 10 @ 110;
+		lineTo: 30 @ 30;
+		lineTo: 50 @ 110;
+		sourceColorRGB: Color red;
+		useLineJoinMiter;
+		stroke.
+
+	" limit on the ratio of the miter length to the width used to draw a miter join it is possible for the miter to extend far beyond the thickness of the line stroking the path. the miterlimit ratio is used to define when the limit is exceeded, if so the join is converted from a miter to a bevel."
+
+	context
+		lineWidth: 15;
+		moveTo: 10 @ 210;
+		lineTo: 30 @ 130;
+		lineTo: 50 @ 210;
+		sourceColorRGB: Color red;
+		useLineJoinMiter;
+		miterLimit: 3;
+		stroke.
+
+	^ surface asForm
+]
+
 { #category : #examples }
 AlexandrieCairoExperiment >> mask1 [
 
