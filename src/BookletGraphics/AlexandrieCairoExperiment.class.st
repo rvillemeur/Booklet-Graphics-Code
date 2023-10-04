@@ -445,6 +445,37 @@ AlexandrieCairoExperiment >> lineDash [
 ]
 
 { #category : #accessing }
+AlexandrieCairoExperiment >> linePath [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 120 @ 100
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+	context
+		lineWidth: 3;
+		moveTo: 25 @ 25;
+		lineTo: 50 @ 37.75;
+		relativeLineTo: 25 @ -12.5;
+		arcCenter: 75 @ 50
+		radius: 20
+		startAngle: 0
+		endAngle: 135 degreesToRadians;
+		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
+		closePath;
+		sourceColorRGB: Color red;
+		stroke.
+	
+	^ surface asForm
+]
+
+{ #category : #accessing }
 AlexandrieCairoExperiment >> linejoin [
 
 	<bookExample>
@@ -613,4 +644,74 @@ AlexandrieCairoExperiment >> radialGradientPattern1 [
 		fill.
 	"mainSurface inspect"
 	^ mainSurface asForm
+]
+
+{ #category : #accessing }
+AlexandrieCairoExperiment >> strokeAndFill [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 120 @ 100
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+	context
+		lineWidth: 10;
+		moveTo: 25 @ 25;
+		lineTo: 50 @ 37.75;
+		relativeLineTo: 25 @ -12.5;
+		arcCenter: 75 @ 50
+		radius: 20
+		startAngle: 0
+		endAngle: 135 degreesToRadians;
+		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
+		closePath;
+		sourceColorRGB: Color red;
+		strokePreserve .
+
+
+	context sourceColorRGB: Color lightBlue ; fill.
+	
+	^ surface asForm
+]
+
+{ #category : #accessing }
+AlexandrieCairoExperiment >> strokeAndFill2 [
+
+	<bookExample>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 120 @ 100
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: Color yellow;
+		paint.
+
+	context
+		moveTo: 25 @ 25;
+		lineTo: 50 @ 37.75;
+		relativeLineTo: 25 @ -12.5;
+		arcCenter: 75 @ 50
+		radius: 20
+		startAngle: 0
+		endAngle: 135 degreesToRadians;
+		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
+		closePath;
+		sourceColorRGB: (Color blue alpha: 0.1);
+		fillPreserve.
+
+
+	context
+		lineWidth: 3;
+		sourceColorRGB: (Color red alpha: 0.2);
+		stroke.
+
+	^ surface asForm
 ]
