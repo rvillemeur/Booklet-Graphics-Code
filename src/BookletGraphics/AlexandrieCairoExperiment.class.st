@@ -300,7 +300,7 @@ AlexandrieCairoExperiment >> lineCap [
 	<bookExample>
 	| surface context |
 	surface := AeCairoImageSurface
-		           extent: 120 @ 120
+		           extent: 150 @ 120
 		           format: AeCairoSurfaceFormat argb32.
 	context := surface newContext.
 
@@ -315,6 +315,8 @@ AlexandrieCairoExperiment >> lineCap [
 		lineTo: 100 @ 30;
 		sourceColorRGB: Color red;
 		useLineCapButt;
+		moveTo: 115@33;
+		showText: 'butt';
 		stroke.
 
 	context
@@ -323,6 +325,8 @@ AlexandrieCairoExperiment >> lineCap [
 		lineTo:  100 @ 60;
 		sourceColorRGB: Color red;
 		useLineCapSquare;
+		moveTo: 115@63;
+		showText: 'square';
 		stroke.
 
 	context
@@ -331,6 +335,8 @@ AlexandrieCairoExperiment >> lineCap [
 		relativeLineTo: 100 @ 0;
 		sourceColorRGB: Color red;
 		useLineCapRound;
+		moveTo: 115@93;
+		showText: 'round';
 		stroke.
 
 
@@ -481,7 +487,7 @@ AlexandrieCairoExperiment >> linejoin [
 	<bookExample>
 	| surface context |
 	surface := AeCairoImageSurface
-		           extent: 120 @ 170
+		           extent: 150 @ 170
 		           format: AeCairoSurfaceFormat argb32.
 	context := surface newContext.
 
@@ -497,6 +503,8 @@ AlexandrieCairoExperiment >> linejoin [
 		lineTo: 110 @ 60;
 		sourceColorRGB: Color red;
 		useLineJoinRound  ;
+		moveTo: 115@30;
+		showText: 'round';
 		stroke.
 
 	context
@@ -506,6 +514,8 @@ AlexandrieCairoExperiment >> linejoin [
 		lineTo: 110 @ 110;
 		sourceColorRGB: Color red;
 		useLineJoinMiter ;
+		moveTo: 115@80;
+		showText: 'mitter';
 		stroke.
 		
 	context
@@ -515,6 +525,8 @@ AlexandrieCairoExperiment >> linejoin [
 		lineTo: 110 @ 160;
 		sourceColorRGB: Color red;
 		useLineJoinBevel  ;
+		moveTo: 115@130;
+		showText: 'bevel';
 		stroke.
 
 
@@ -527,7 +539,7 @@ AlexandrieCairoExperiment >> linejoin2 [
 	<bookExample>
 	| surface context |
 	surface := AeCairoImageSurface
-		           extent: 60 @ 220
+		           extent: 120 @ 220
 		           format: AeCairoSurfaceFormat argb32.
 	context := surface newContext.
 
@@ -543,6 +555,10 @@ AlexandrieCairoExperiment >> linejoin2 [
 		lineTo: 50 @ 110;
 		sourceColorRGB: Color red;
 		useLineJoinMiter;
+		moveTo: 60@80;
+		showText: 'mitter';
+		moveTo: 60@100;
+		showText: 'no limit';
 		stroke.
 
 	" limit on the ratio of the miter length to the width used to draw a miter join it is possible for the miter to extend far beyond the thickness of the line stroking the path. the miterlimit ratio is used to define when the limit is exceeded, if so the join is converted from a miter to a bevel."
@@ -555,7 +571,12 @@ AlexandrieCairoExperiment >> linejoin2 [
 		sourceColorRGB: Color red;
 		useLineJoinMiter;
 		miterLimit: 3;
+		moveTo: 60@180;
+		showText: 'mitter';
+		moveTo: 60@200;
+		showText: 'with limit';
 		stroke.
+		
 
 	^ surface asForm
 ]
