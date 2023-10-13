@@ -223,6 +223,54 @@ AlexandrieCanvasExperiment >> clip1 [
 ]
 
 { #category : #examples }
+AlexandrieCanvasExperiment >> clip2 [
+
+	<bookExample>
+	| canvas form |
+	form := PolymorphSystemSettings pharoLogoForm.
+	canvas := AeCanvas extent: form extent.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: form extent ].
+
+	"first, apply background color"
+	canvas clear: (Color purple alpha: 0.5).
+
+	"second, select clipping figure"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			arcCenterX: 180
+			centerY: 60
+			radius: 50
+			startAngle: 0
+			endAngle: Float twoPi.
+		cairoContext
+			arcCenterX: 60
+			centerY: 60
+			radius: 50
+			startAngle: 0
+			endAngle: Float twoPi.
+		cairoContext
+			arcCenterX: 300
+			centerY: 60
+			radius: 50
+			startAngle: 0
+			endAngle: Float twoPi ].
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color white alpha: 0.5) ].
+	canvas setBorderOff.
+	"don't forget this call"
+	canvas drawFigureAndPrepareToClip.
+
+	"third, set the form you want to clip"
+	canvas setBackgroundWithForm: form alpha: 1.0.
+	canvas setBorderOff.
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
 AlexandrieCanvasExperiment >> example1 [
 
 	<bookExample>
