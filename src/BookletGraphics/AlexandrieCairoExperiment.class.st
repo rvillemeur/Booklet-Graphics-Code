@@ -29,7 +29,7 @@ AlexandrieCairoExperiment >> clip1 [
 		           format: AeCairoSurfaceFormat argb32.
 	context := surface newContext.
 
-context
+	context
 		sourceColorRGBA: (Color purple alpha: 0.5);
 		paint.
 	context
@@ -38,7 +38,6 @@ context
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
-		sourceColorRGBA: (Color black alpha: 0.7);
 		clip.
 	context sourceSurface: form x: 0 y: 0.
 	context paint.
