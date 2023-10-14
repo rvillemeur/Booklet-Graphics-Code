@@ -594,9 +594,117 @@ AlexandrieCairoExperiment >> mask1 [
 
 	context
 		sourceColorRGBA: (Color purple alpha: 0.5);
+		maskSurface: form x: 0 y: 0;
+		fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> mask2 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+
+	context := surface newContext.
+
+"let the background transparent, et let the mask appear in purple alpha"
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		mask: pattern;
+		fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> mask3 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+
+	context := surface newContext.
+
+"paint the background in purple, et let the mask appear in alpha"
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		mask: pattern;
 		paint.
-	context maskSurface: form x: 0 y: 0.
-	context fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> mask4 [
+
+	<bookExample>
+	| surface context form |
+	form := AeCairoImageSurface fromForm:
+		        PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		maskSurface: form x: 0 y: 0;
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> mask5 [
+
+	<bookExample>
+	| surface context form |
+	form := AeCairoImageSurface fromForm:
+		        PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		maskSurface: form x: 0 y: 0;
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> mask6 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+
+	context := surface newContext.
+
+"paint the background in purple, et let the mask appear in alpha"
+	context
+		mask: pattern;
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		paint.
 
 	^ surface asForm
 ]
@@ -626,6 +734,153 @@ AlexandrieCairoExperiment >> maskAndClip1 [
 		clip.
 	context maskSurface: form x: 0 y: 0.
 	context fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> maskAndClip2 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+	context := surface newContext.
+
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		sourceColorRGBA: (Color white alpha: 0.7);
+		clip;
+		mask: pattern;
+		fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> maskAndClip3 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+	context := surface newContext.
+
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		sourceColorRGBA: (Color white alpha: 0.7);
+		clip;
+		mask: pattern;
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> maskAndClip4 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+	context := surface newContext.
+
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		clip;
+		mask: pattern;
+		fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> maskAndClip5 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+	context := surface newContext.
+
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+				mask: pattern;
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		paint;
+		sourceColorRGBA: (Color white alpha: 0.7);
+		clip;
+
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> maskAndClip6 [
+
+	<bookExample>
+	| surface context form pattern |
+	form := PolymorphSystemSettings pharoLogoForm.
+	surface := AeCairoImageSurface
+		           extent: form extent
+		           format: AeCairoSurfaceFormat argb32.
+	pattern := AeCairoSurfacePattern surface:
+		           (AeCairoImageSurface fromForm: form).
+	context := surface newContext.
+
+
+	context
+		sourceColorRGBA: (Color purple alpha: 0.5);
+		mask: pattern;
+		arcCenterX: 180
+		centerY: 60
+		radius: 50
+		startAngle: 0
+		endAngle: Float twoPi;
+		fill;
+		sourceColorRGBA: (Color white alpha: 0.9);
+		clip;
+		fill.
 
 	^ surface asForm
 ]

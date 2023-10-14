@@ -114,7 +114,7 @@ AlexandrieCanvasExperiment >> borderPathPaint1 [
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
-
+"need to either define outskirts, or set border off"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext
 			moveTo: 25 @ 25;
@@ -265,6 +265,41 @@ AlexandrieCanvasExperiment >> clip2 [
 	"third, set the form you want to clip"
 	canvas setBackgroundWithForm: form alpha: 1.0.
 	canvas setBorderOff.
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieCanvasExperiment >> clip3 [
+
+	<bookExample>
+	| canvas form |
+	form := PolymorphSystemSettings pharoLogoForm.
+	canvas := AeCanvas extent: form extent.
+	canvas setBorderOff.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: form extent ].
+
+	"first, apply background color"
+	canvas clear: (Color purple alpha: 0.5).
+
+	"second, select clipping figure"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			arcCenterX: 180
+			centerY: 60
+			radius: 50
+			startAngle: 0
+			endAngle: Float twoPi ].
+	canvas setBackgroundWith: [ canvas setSourceColor: (Color white alpha: 0.5) ].
+
+	"don't forget this call"
+	canvas drawFigureAndPrepareToClip:false.
+
+	"third, set the form you want to clip"
+	canvas setBackgroundWithForm: form alpha: 1.0.
 	canvas drawFigure.
 
 	^ canvas asForm
@@ -451,6 +486,41 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 		pathScale: 4 @ 4.
 	canvas setBorderOff.
 	canvas drawFigure.
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieCanvasExperiment >> mask [
+
+	<bookExample>
+	| canvas form |
+	form := PolymorphSystemSettings pharoLogoForm.
+
+	canvas := AeCanvas extent: form extent.
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color yellow;
+			setBorderWidth: 5.0 ].
+	canvas setOutskirtsCentered.
+
+	"first, apply background color"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: form extent ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color purple alpha: 0.5)].
+
+
+	canvas paintGroupWith: [ canvas privateAeCairoContext fill  ].
+
+	canvas paintGroupWith: [ canvas setSourceColor: (Color purple alpha: 0.5) ].
+	canvas maskGroupWith: [
+		canvas setSourceColor: (Color blue alpha: 0.5).
+		AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form).
+		 ].
+	
+	canvas drawFigure.
+
 	^ canvas asForm
 ]
 
