@@ -503,22 +503,26 @@ AlexandrieCanvasExperiment >> mask [
 			setBorderWidth: 5.0 ].
 	canvas setOutskirtsCentered.
 
-	"first, apply background color"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext rectangleTo: form extent ].
 
-	canvas setBackgroundWith: [
-		canvas setSourceColor: (Color purple alpha: 0.5)].
+	canvas setBackgroundOff.
 
+	"canvas paintGroupWith: [
+		canvas maskGroupWith: [
+		AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form) ].
+		canvas
+			setBackgroundWith: [ canvas setSourceColor: Color purple ]
+			alpha: 0.5.]."
 
-	canvas paintGroupWith: [ canvas privateAeCairoContext fill  ].
+	canvas paintGroupWith: [
+		canvas privateAeCairoContext
+			sourceColorRGBA: (Color purple alpha: 0.5);
+			mask:
+				(AeCairoSurfacePattern surface:
+						 (AeCairoImageSurface fromForm: form));
+			paint ].
 
-	canvas paintGroupWith: [ canvas setSourceColor: (Color purple alpha: 0.5) ].
-	canvas maskGroupWith: [
-		canvas setSourceColor: (Color blue alpha: 0.5).
-		AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form).
-		 ].
-	
 	canvas drawFigure.
 
 	^ canvas asForm
