@@ -108,6 +108,125 @@ AlexandrieCanvasExperiment >> Outskirts2 [
 ]
 
 { #category : #examples }
+AlexandrieCanvasExperiment >> backGround1 [
+
+	<bookExample>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+	canvas setBorderOff .
+
+"keep a buffer of 4, so we can still see outskirts outside"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 4 @ 4;
+			lineTo: 96 @ 4;
+			lineTo: 96 @ 96;
+			lineTo: 4 @ 96;
+			closePath ].
+
+
+	canvas setBackgroundWith: [ canvas setSourceSolidColor: Color  red].
+
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieCanvasExperiment >> backGround2 [
+
+	<bookExample>
+	| canvas form |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+	canvas setBorderOff.
+
+	form := Smalltalk ui icons iconNamed: #pharoBig.
+	canvas pathScale: (canvas extent / form extent) asFloatPoint.
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: form extent ].
+
+
+	canvas setBackgroundWithForm: form alpha: 0.5.
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieCanvasExperiment >> backGround3 [
+
+	<bookExample>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+	canvas setBorderOff.
+
+	"keep a buffer of 4, so we can still see outskirts outside"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 4 @ 4;
+			lineTo: 96 @ 4;
+			lineTo: 96 @ 96;
+			lineTo: 4 @ 96;
+			closePath ].
+
+
+	canvas
+		setBackgroundWith: [
+			canvas
+				setSourceLinearPatternStops: {
+						(0 -> Color white).
+						(1 -> Color black) }
+				start: 0 @ 0
+				end: 100 @ 100 ]
+		alpha: 0.5.
+
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieCanvasExperiment >> backGround4 [
+
+	<bookExample>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+	canvas setBorderOff.
+
+	"keep a buffer of 4, so we can still see outskirts outside"
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 4 @ 4;
+			lineTo: 96 @ 4;
+			lineTo: 96 @ 96;
+			lineTo: 4 @ 96;
+			closePath ].
+
+
+	canvas
+		setBackgroundWith: [
+			canvas
+				setSourceRadialPatternStops:  {
+						(0 -> Color white).
+						(1 -> Color black) }
+				center: 20 @ 20
+				radius: 50 ]
+		alpha: 0.5.
+
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
 AlexandrieCanvasExperiment >> borderPathPaint1 [
 
 	<bookExample>
@@ -508,6 +627,12 @@ AlexandrieCanvasExperiment >> mask [
 
 	canvas setBackgroundOff.
 
+	canvas setBackgroundWith: [
+		canvas maskGroupWith: [
+			AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form) ].
+		canvas
+			paintGroupWith: [ canvas setSourceColor: Color purple ]
+			alpha: 0.5 ].
 	"canvas paintGroupWith: [
 		canvas maskGroupWith: [
 		AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form) ].
@@ -515,13 +640,13 @@ AlexandrieCanvasExperiment >> mask [
 			setBackgroundWith: [ canvas setSourceColor: Color purple ]
 			alpha: 0.5.]."
 
-	canvas paintGroupWith: [
+	"canvas paintGroupWith: [
 		canvas privateAeCairoContext
 			sourceColorRGBA: (Color purple alpha: 0.5);
 			mask:
 				(AeCairoSurfacePattern surface:
 						 (AeCairoImageSurface fromForm: form));
-			paint ].
+			paint ]."
 
 	canvas drawFigure.
 
