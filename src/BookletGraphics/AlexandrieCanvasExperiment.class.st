@@ -108,6 +108,39 @@ AlexandrieCanvasExperiment >> Outskirts2 [
 ]
 
 { #category : #examples }
+AlexandrieCanvasExperiment >> PaintAndClip1 [
+
+	<bookExample>
+	| canvas form |
+	form := PolymorphSystemSettings pharoLogoForm.
+
+	canvas := AeCanvas extent: form extent.
+	canvas clear: (Color purple alpha: 0.5).
+	canvas setBorderOff.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			arcCenterX: 180
+			centerY: 60
+			radius: 50
+			startAngle: 0
+			endAngle: Float twoPi ].
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color white alpha: 0.5) ].
+
+	"don't forget this call"
+	canvas drawFigureAndPrepareToClip.
+
+	canvas paintGroupWith:  [
+		canvas pathFactory: [ :cairoContext |
+			cairoContext rectangleTo: form extent ].
+		canvas setBackgroundWithForm: form alpha: 0.5.
+		canvas drawFigure ].
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
 AlexandrieCanvasExperiment >> backGround1 [
 
 	<bookExample>
@@ -732,18 +765,16 @@ AlexandrieCanvasExperiment >> mask4 [
 	form := PolymorphSystemSettings pharoLogoForm.
 
 	canvas := AeCanvas extent: form extent.
-	
 	canvas setBorderOff.
+
 	canvas pathFactory: [ :cairoContext | cairoContext rectangleTo: form extent ].
 	canvas setBackgroundWith: [ canvas setSourceColor: (Color purple alpha: 0.5) ].
 	canvas drawFigure.
-	
+
 	canvas maskGroupWith: [
-		canvas pathFactory: [ :cairoContext |
-			cairoContext rectangleTo: form extent ].
 		canvas setBackgroundWithForm: form alpha: 0.5.
 		canvas drawFigure ].
-	
+
 	^ canvas asForm
 ]
 
@@ -771,7 +802,7 @@ AlexandrieCanvasExperiment >> maskAndClip1 [
 	"don't forget this call"
 	canvas drawFigureAndPrepareToClip.
 
-	canvas maskGroupWith: [
+	canvas maskGroupWith:   [
 		canvas pathFactory: [ :cairoContext |
 			cairoContext rectangleTo: form extent ].
 		canvas setBackgroundWithForm: form alpha: 0.5.
