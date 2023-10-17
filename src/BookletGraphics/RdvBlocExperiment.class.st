@@ -29,6 +29,21 @@ elt := BlElement new
 ]
 
 { #category : #accessing }
+RdvBlocExperiment >> effect1 [
+
+	<bookExample>
+	^ BlElement new
+		  size: 200 @ 100;
+		  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
+		  background: (Color red alpha: 0.2);
+		  border: (BlBorder paint: Color yellow width: 1);
+		  "layout: BlLinearLayout horizontal alignCenter;""constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
+		  outskirts: BlOutskirts centered;
+		  effect:
+			  (BlSimpleShadowEffect color: Color orange offset: -10 @ -20)
+]
+
+{ #category : #accessing }
 RdvBlocExperiment >> example1 [
 
 	<bookExample>
