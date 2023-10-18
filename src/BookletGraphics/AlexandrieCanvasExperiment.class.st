@@ -147,7 +147,7 @@ AlexandrieCanvasExperiment >> backGround1 [
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
-	canvas setBorderOff .
+
 
 "keep a buffer of 4, so we can still see outskirts outside"
 	canvas pathFactory: [ :cairoContext |
@@ -161,7 +161,7 @@ AlexandrieCanvasExperiment >> backGround1 [
 
 	canvas setBackgroundWith: [ canvas setSourceSolidColor: Color  red].
 
-
+	canvas setBorderOff .
 	canvas drawFigure.
 
 	^ canvas asForm
@@ -642,51 +642,6 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> mask [
-
-	<bookExample>
-	| canvas form |
-	form := PolymorphSystemSettings pharoLogoForm.
-
-	canvas := AeCanvas extent: form extent.
-	canvas setBorderBlock: [
-		canvas
-			setSourceColor: Color yellow;
-			setBorderWidth: 5.0 ].
-	canvas setOutskirtsCentered.
-
-	canvas pathFactory: [ :cairoContext |
-		cairoContext rectangleTo: form extent ].
-
-	canvas setBackgroundOff.
-
-	canvas setBackgroundWith: [
-		canvas maskGroupWith: [
-			AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form) ].
-		canvas
-			paintGroupWith: [ canvas setSourceColor: Color purple ]
-			alpha: 0.5 ].
-	"canvas paintGroupWith: [
-		canvas maskGroupWith: [
-		AeCairoSurfacePattern surface: (AeCairoImageSurface fromForm: form) ].
-		canvas
-			setBackgroundWith: [ canvas setSourceColor: Color purple ]
-			alpha: 0.5.]."
-
-	"canvas paintGroupWith: [
-		canvas privateAeCairoContext
-			sourceColorRGBA: (Color purple alpha: 0.5);
-			mask:
-				(AeCairoSurfacePattern surface:
-						 (AeCairoImageSurface fromForm: form));
-			paint ]."
-
-	canvas drawFigure.
-
-	^ canvas asForm
-]
-
-{ #category : #examples }
 AlexandrieCanvasExperiment >> mask2 [
 
 	<bookExample>
@@ -694,12 +649,13 @@ AlexandrieCanvasExperiment >> mask2 [
 	form := PolymorphSystemSettings pharoLogoForm.
 
 	canvas := AeCanvas extent: form extent.
+
 	canvas setBorderBlock: [
 		canvas
 			setSourceColor: Color yellow;
 			setBorderWidth: 5.0 ].
 	canvas setOutskirtsCentered.
-
+	
 	canvas maskGroupWith: [
 		canvas pathFactory: [ :cairoContext |
 			cairoContext rectangleTo: form extent ].
@@ -807,6 +763,38 @@ AlexandrieCanvasExperiment >> maskAndClip1 [
 			cairoContext rectangleTo: form extent ].
 		canvas setBackgroundWithForm: form alpha: 0.5.
 		canvas drawFigure ].
+
+	^ canvas asForm
+]
+
+{ #category : #examples }
+AlexandrieCanvasExperiment >> maskWithPrivateContext [
+
+	<bookExample>
+	| canvas form |
+	form := PolymorphSystemSettings pharoLogoForm.
+
+	canvas := AeCanvas extent: form extent.
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color yellow;
+			setBorderWidth: 5.0 ].
+	canvas setOutskirtsCentered.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext rectangleTo: form extent ].
+
+	canvas setBackgroundOff.
+
+	canvas paintGroupWith: [
+		canvas privateAeCairoContext
+			sourceColorRGBA: (Color purple alpha: 0.5);
+			mask:
+				(AeCairoSurfacePattern surface:
+						 (AeCairoImageSurface fromForm: form));
+			paint ].
+
+	canvas drawFigure.
 
 	^ canvas asForm
 ]
