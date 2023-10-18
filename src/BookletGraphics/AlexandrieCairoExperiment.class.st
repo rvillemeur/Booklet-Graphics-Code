@@ -886,6 +886,43 @@ AlexandrieCairoExperiment >> maskAndClip6 [
 ]
 
 { #category : #examples }
+AlexandrieCairoExperiment >> meshPattern [
+
+	<bookExample>
+	| surface context    meshPattern  |
+	surface := AeCairoImageSurface
+		           extent: 130 asPoint 
+		           format: AeCairoSurfaceFormat argb32.
+
+	context := surface newContext.
+
+	
+	meshPattern := AeCairoMeshPattern newEmpty.
+	meshPattern beginPatch.
+	
+	meshPattern
+		moveToX: 0 y: 0;
+		curveViaX:  30 y: -30 viaX: 60 y:  30 toX: 100 y: 0;
+		curveViaX: 130 y: 140 viaX: 60 y: -40 toX: 100 y: 100;
+		curveViaX:  60 y:  70 viaX: 30 y: 130 toX:   0 y: 100;
+		curveViaX: -30 y: -40 viaX: 30 y: 140 toX:   0 y: 0.
+
+	meshPattern
+		cornerAt: 0 putColorRGB: Color red;
+		cornerAt: 1 putColorRGB: Color green;
+		cornerAt: 2 putColorRGB: Color blue;
+		cornerAt: 3 putColorRGB: Color yellow.
+		
+	meshPattern endPatch.
+
+	context
+		source: meshPattern;
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
 AlexandrieCairoExperiment >> radialGradientPattern1 [
 
 	<bookExample>
