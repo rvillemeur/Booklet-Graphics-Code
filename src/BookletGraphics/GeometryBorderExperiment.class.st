@@ -1,144 +1,138 @@
 Class {
-	#name : #RdvLayoutBlock,
+	#name : #GeometryBorderExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #accessing }
-RdvLayoutBlock >> frameDrawingExample [
-<gtExample>
-^BlElement new
-    layout: (BlGridLayout horizontal columnCount: 3);
-    constraintsDo: [ :c |
-        c horizontal matchParent.
-        c vertical matchParent ];
-    addChildren: {
-        "top row"
-        (BlTextElement new text: '5,0' asRopedText).
-        (BlElement new size: 0@0).
-        (BlTextElement new text: '13,0' asRopedText).
-        
-        "middle row"
-        (BlElement new size: 0@0).
-        (BlElement new
-            constraintsDo: [ :c |
-                c horizontal matchParent.
-                c vertical matchParent ];
-            border: (BlBorder paint: Color gray width: 1)).
-        (BlElement new size: 0@0).
-        
-        "bottom row"
-        (BlTextElement new text: '5,25' asRopedText).
-        (BlElement new size: 0@0).
-        (BlTextElement new text: '13,25' asRopedText). }
-]
-
-{ #category : #accessing }
-RdvLayoutBlock >> layout1 [
-	"This is a new method"
+{ #category : #shapes }
+GeometryBorderExperiment >> TriangleColorDashedMulti [
 
 	<bookExample>
 	^ BlElement new
-		  layout: BlLinearLayout horizontal;
-		  size: 400 @ 300;
-		  background: (Color gray alpha: 0.2);
-		  addChildren: {
-				  (BlElement new
-					   size: 100 @ 200;
-					   background: (Color red alpha: 0.2)).
-				  (BlElement new
-					   size: 200 @ 100;
-					   background: (Color blue alpha: 0.2)) }
-]
-
-{ #category : #accessing }
-RdvLayoutBlock >> layout2 [
-	"This is a new method"
-
-	<bookExample>
-	^ BlElement new
-		  layout: BlLinearLayout horizontal alignCenter;
-		  size: 400 @ 300;
-		  background: (Color gray alpha: 0.2);
-		  addChildren: {
-				  (BlElement new
-					   size: 100 @ 200;
-					   background: (Color red alpha: 0.2)).
-				  (BlElement new
-					   size: 200 @ 100;
-					   background: (Color blue alpha: 0.2)) }
-]
-
-{ #category : #accessing }
-RdvLayoutBlock >> layout3 [
-	"This is a new method"
-
-	<bookExample>
-	^ BlElement new
-		  layout: BlLinearLayout horizontal;
-		  size: 400 @ 300;
-		  background: (Color gray alpha: 0.2);
-		  addChildren: {
-				  (BlElement new
-					   size: 100 @ 200;
-					   background: (Color red alpha: 0.2)).
-				  (BlElement new
-					   size: 200 @ 100;
-					   background: (Color blue alpha: 0.2);
-					   constraintsDo: [ :c |
-						   c ignoreByLayout.
-						   c vertical exact: 200.
-						   c horizontal exact: 100.
-						   c ignored horizontal alignRight.
-						   c ignored vertical alignBottom ]) } "alignCenter"
-]
-
-{ #category : #accessing }
-RdvLayoutBlock >> layout4 [
-	"This is a new method"
-
-	<bookExample>
-	^ BlElement new
-		  layout: BlLinearLayout horizontal;
-		  size: 400 @ 300;
-		  background: (Color gray alpha: 0.2);
-		  addChildren: {
-				  (BlElement new
-					   size: 100 @ 200;
-					   background: (Color red alpha: 0.2)).
-				  (BlElement new
-					   size: 200 @ 100;
-					   background: (Color blue alpha: 0.2);
-					   constraintsDo: [ :c |
-						   c ignoreByLayout.
-						   c vertical exact: 200.
-						   c horizontal exact: 100.
-						   c horizontal matchParent.
-						   c ignored horizontal alignRight.
-						   c ignored vertical alignBottom ]) } "alignCenter"
-]
-
-{ #category : #accessing }
-RdvLayoutBlock >> layout5 [
-	"This is a new method"
-
-	<bookExample>
-	^ BlElement new
-		  layout: BlLinearLayout horizontal alignCenter;
-		  size: 400 @ 300;
-		  background: (Color gray alpha: 0.2);
-		  addChildren: {
-				  (BlElement new
-					   size: 100 @ 200;
-					   background: (Color red alpha: 0.2)).
-				  (BlElement new
-					   size: 200 @ 100;
-					   background: (Color blue alpha: 0.2);
-					   constraintsDo: [ :c | c margin: (BlInsets all: 10) ]) }
+		  geometry: (BlTriangleGeometry new
+				 matchExtent: 50 @ 100;
+				 beLeft);
+		  background: Color yellow;
+		  border: (BlBorder builder
+				   width: 5;
+				   paint: (Color red alpha: 1);
+					dashOffset: 0;
+				dashArray: #(6 4 2);
+				   joinBevel  ;
+				   build);
+		  size: 200 @ 200
 ]
 
 { #category : #'as yet unclassified' }
-RdvLayoutBlock >> multipleElement [
+GeometryBorderExperiment >> multipleElementOutskirts [
+
+	<bookExample>
+	| element1 element2 element3 container box1 box2 box3 |
+	container := BlElement new
+		             size: 450 @ 150;
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 5);
+		             padding: (BlInsets all: 5);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 5).
+	box1 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightRed;
+		        border: (BlBorder paint: Color red width: 5).
+	element1 := BlElement new
+		            size: 100 @ 100;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (50 @ 0).
+						              (65 @ 40).
+						              (100 @ 40).
+						              (75 @ 60).
+						              (85 @ 100).
+						              (50 @ 80).
+						              (15 @ 100).
+						              (25 @ 60).
+						              (0 @ 40).
+						              (35 @ 40) });
+		            border: (BlBorder paint: Color orange width: 10);
+		            background: Color lightOrange;
+		            outskirts: BlOutskirts outside.
+
+	box1 addChild: element1.
+	box2 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightYellow;
+		        border: (BlBorder paint: Color yellow width: 5).
+	element2 := BlElement new
+		            size: 100 @ 100;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (50 @ 0).
+						              (65 @ 40).
+						              (100 @ 40).
+						              (75 @ 60).
+						              (85 @ 100).
+						              (50 @ 80).
+						              (15 @ 100).
+						              (25 @ 60).
+						              (0 @ 40).
+						              (35 @ 40) });
+		            border: (BlBorder paint: Color green width: 10);
+		            background: Color lightGreen;
+		            outskirts: BlOutskirts centered.
+
+	box2 addChild: element2.
+	
+	box3 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		         background: Color lightBlue;
+		        border: (BlBorder paint: Color blue width: 5).
+	element3 := BlElement new
+		            size: 100 @ 100;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (50 @ 0).
+						              (65 @ 40).
+						              (100 @ 40).
+						              (75 @ 60).
+						              (85 @ 100).
+						              (50 @ 80).
+						              (15 @ 100).
+						              (25 @ 60).
+						              (0 @ 40).
+						              (35 @ 40) });
+		            border: (BlBorder paint: Color cyan width: 10);
+		            background: Color lightCyan;
+		            outskirts: BlOutskirts inside.
+
+	box3 addChild: element3.
+	container addChildren: {
+			box1.
+			box2.
+			box3 }.
+	^ container
+]
+
+{ #category : #'as yet unclassified' }
+GeometryBorderExperiment >> multipleElementWithOpacity [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
@@ -149,6 +143,7 @@ RdvLayoutBlock >> multipleElement [
 		             padding: (BlInsets all: 3);
 		             layout: BlLinearLayout horizontal;
 		             background: Color lightGray;
+		             opacity: 0.5;
 		             border: (BlBorder paint: Color black width: 3).
 	box1 := BlElement new
 		        size: 150 @ 150;
@@ -164,17 +159,17 @@ RdvLayoutBlock >> multipleElement [
 	element1 := BlElement new
 		            size: 100 @ 100;
 		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder  paint: (Color orange) width: 5);
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
+		            border: (BlBorder paint: Color orange width: 5);
 		            background: Color lightOrange;
 		            outskirts: BlOutskirts centered.
 
@@ -193,22 +188,22 @@ RdvLayoutBlock >> multipleElement [
 	element2 := BlElement new
 		            size: 100 @ 100;
 		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
 		            border: (BlBorder paint: Color green width: 5);
 		            background: Color lightGreen;
 		            outskirts: BlOutskirts centered.
 
 	box2 addChild: element2.
-	
+
 	box3 := BlElement new
 		        size: 150 @ 150;
 		        geometry: BlRectangleGeometry new;
@@ -218,21 +213,21 @@ RdvLayoutBlock >> multipleElement [
 		        constraintsDo: [ :c |
 			        c horizontal matchParent.
 			        c vertical matchParent ];
-		         background: Color lightBlue;
+		        background: Color lightBlue;
 		        border: (BlBorder paint: Color blue width: 5).
 	element3 := BlElement new
 		            size: 100 @ 100;
 		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
 		            border: (BlBorder paint: Color cyan width: 5);
 		            background: Color lightCyan;
 		            outskirts: BlOutskirts centered.
@@ -246,12 +241,12 @@ RdvLayoutBlock >> multipleElement [
 ]
 
 { #category : #'as yet unclassified' }
-RdvLayoutBlock >> multipleElement2 [
+GeometryBorderExperiment >> multipleTriangle [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
-		             size: 450 @ 150;
+		             size: 1350 @ 450;
 		             geometry: BlRectangleGeometry new;
 		             margin: (BlInsets all: 3);
 		             padding: (BlInsets all: 3);
@@ -259,119 +254,7 @@ RdvLayoutBlock >> multipleElement2 [
 		             background: Color lightGray;
 		             border: (BlBorder paint: Color black width: 3).
 	box1 := BlElement new
-		        size: 150 @ 150;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        "layout: BlLinearLayout horizontal alignCenter ;"
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		        background: Color lightRed;
-		        border: (BlBorder paint: Color red width: 5).
-	element1 := BlElement new
-						size: 100@100;
-						position: 50@50;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-						geometryBounds: (BlBounds origin: 0@0 extent: 50@50 );
-		            border: (BlBorder paint: Color orange width: 5);
-		            background: Color lightOrange;
-		            outskirts: BlOutskirts centered.
-
-		box1 addChild: element1.
-	"element1 position: 100@50; forceLayout."
-	box2 := BlElement new
-		        size: 150 @ 150;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		        background: Color lightYellow;
-		        border: (BlBorder paint: Color yellow width: 5).
-	element2 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color green width: 5);
-		            background: Color lightGreen;
-		            outskirts: BlOutskirts centered.
-
-	box2 addChild: element2.
-	
-	box3 := BlElement new
-		        size: 150 @ 150;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		         background: Color lightBlue;
-		        border: (BlBorder paint: Color blue width: 5).
-	element3 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color cyan width: 5);
-		            background: Color lightCyan;
-		            outskirts: BlOutskirts centered.
-	box3 addChild: element3.
-	container addChildren: {
-			box1.
-			box2.
-			box3 }.
-			
-
-	^ container 
-]
-
-{ #category : #'as yet unclassified' }
-RdvLayoutBlock >> multipleElementAlignments [
-
-	<bookExample>
-	| element1 element2 element3 container box1 box2 box3 |
-	container := BlElement new
-		             size: 450 @ 150;
-		             geometry: BlRectangleGeometry new;
-		             margin: (BlInsets all: 3);
-		             padding: (BlInsets all: 3);
-		             layout: BlLinearLayout horizontal alignCenter;
-		             background: Color lightGray;
-		             border: (BlBorder paint: Color black width: 3).
-	box1 := BlElement new
-		        size: 150 @ 150;
+		        size: 450 @ 450;
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
@@ -382,81 +265,51 @@ RdvLayoutBlock >> multipleElementAlignments [
 		        background: Color lightRed;
 		        border: (BlBorder paint: Color red width: 5).
 	element1 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-						constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent  ];
-		            border: (BlBorder paint: Color orange width: 5);
+		            size: 300 @ 300;
+		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color orange); width: 15; build);
 		            background: Color lightOrange;
 		            outskirts: BlOutskirts centered.
 
 	box1 addChild: element1.
 	box2 := BlElement new
-		        size: 150 @ 150;
+		        size: 450 @450;
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter  ;
+		        layout: BlLinearLayout horizontal alignCenter;
 		        constraintsDo: [ :c |
 			        c horizontal matchParent.
 			        c vertical matchParent ];
 		        background: Color lightYellow;
 		        border: (BlBorder paint: Color yellow width: 5).
 	element2 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color green width: 5);
+		            size: 300 @ 300;
+		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color green); width: 15;  build);
 		            background: Color lightGreen;
 		            outskirts: BlOutskirts centered.
 
 	box2 addChild: element2.
 	
 	box3 := BlElement new
-		        size: 150 @ 150;
+		        size: 450 @ 450;
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignBottomLeft  ;
+		        layout: BlLinearLayout horizontal alignCenter;
 		        constraintsDo: [ :c |
 			        c horizontal matchParent.
 			        c vertical matchParent ];
 		         background: Color lightBlue;
 		        border: (BlBorder paint: Color blue width: 5).
 	element3 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color cyan width: 5);
+		            size: 300@300;
+		           		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color cyan); width: 15; build);
 		            background: Color lightCyan;
 		            outskirts: BlOutskirts centered.
 
@@ -469,102 +322,76 @@ RdvLayoutBlock >> multipleElementAlignments [
 ]
 
 { #category : #'as yet unclassified' }
-RdvLayoutBlock >> multipleElementFitParameter [
+GeometryBorderExperiment >> multipleTriangleDashed [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
-		             size: 450 @ 150;
+		             size: 1350 @ 450;
 		             geometry: BlRectangleGeometry new;
 		             margin: (BlInsets all: 3);
 		             padding: (BlInsets all: 3);
-		             layout: BlLinearLayout horizontal alignCenter ;
+		             layout: BlLinearLayout horizontal;
 		             background: Color lightGray;
 		             border: (BlBorder paint: Color black width: 3).
 	box1 := BlElement new
-		        size: 150 @ 150;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal fitContent   .
-			        c vertical fitContent ];
-		        background: Color lightRed;
-		        border: (BlBorder paint: Color red width: 5).
-	element1 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color orange width: 5);
-		            background: Color lightOrange;
-		            outskirts: BlOutskirts centered.
-
-	box1 addChild: element1.
-	box2 := BlElement new
-		        size: 150 @ 150;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal fitContent.
-			        c vertical matchParent ];
-		        background: Color lightYellow;
-		        border: (BlBorder paint: Color yellow width: 5).
-	element2 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color green width: 5);
-		            background: Color lightGreen;
-		            outskirts: BlOutskirts centered.
-
-	box2 addChild: element2.
-	
-	box3 := BlElement new
-		        size: 150 @ 150;
+		        size: 450 @ 450;
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
 		        layout: BlLinearLayout horizontal alignCenter;
 		        constraintsDo: [ :c |
 			        c horizontal matchParent.
-			        c vertical fitContent  ];
+			        c vertical matchParent ];
+		        background: Color lightRed;
+		        border: (BlBorder paint: Color red width: 5).
+	element1 := BlElement new
+		            size: 300 @ 300;
+		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color orange); width: 15; dashedSmall; joinRound; build );
+		            background: Color lightOrange;
+		            outskirts: BlOutskirts centered.
+
+	box1 addChild: element1.
+	box2 := BlElement new
+		        size: 450 @450;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightYellow;
+		        border: (BlBorder paint: Color yellow width: 5).
+	element2 := BlElement new
+		            size: 300 @ 300;
+		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color green); width: 15; dashOffset: 0;
+				dashArray: #(6 4 2); capButt  ;build);
+		            background: Color lightGreen;
+		            outskirts: BlOutskirts centered.
+
+	box2 addChild: element2.
+	
+	box3 := BlElement new
+		        size: 450 @ 450;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
 		         background: Color lightBlue;
 		        border: (BlBorder paint: Color blue width: 5).
 	element3 := BlElement new
-		            size: 100 @ 100;
-		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-		            border: (BlBorder paint: Color cyan width: 5);
+		            size: 300@300;
+		           		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color cyan); width: 15; dashed; joinRound;build);
 		            background: Color lightCyan;
 		            outskirts: BlOutskirts centered.
 
@@ -576,32 +403,148 @@ RdvLayoutBlock >> multipleElementFitParameter [
 	^ container
 ]
 
-{ #category : #accessing }
-RdvLayoutBlock >> squareSurroundedByNumbers [
+{ #category : #'as yet unclassified' }
+GeometryBorderExperiment >> multipleTriangleWithCapAndJoin [
+
+	<bookExample>
+	| element1 element2 element3 container box1 box2 box3 |
+	container := BlElement new
+		             size: 1350 @ 450;
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3).
+	box1 := BlElement new
+		        size: 450 @ 450;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightRed;
+		        border: (BlBorder paint: Color red width: 5).
+	element1 := BlElement new
+		            size: 300 @ 300;
+		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color orange); width: 15; capRound; joinRound; build);
+		            background: Color lightOrange;
+		            outskirts: BlOutskirts centered.
+
+	box1 addChild: element1.
+	box2 := BlElement new
+		        size: 450 @450;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightYellow;
+		        border: (BlBorder paint: Color yellow width: 5).
+	element2 := BlElement new
+		            size: 300 @ 300;
+		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color green); width: 15; capButt; joinBevel; build);
+		            background: Color lightGreen;
+		            outskirts: BlOutskirts centered.
+
+	box2 addChild: element2.
+	
+	box3 := BlElement new
+		        size: 450 @ 450;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		         background: Color lightBlue;
+		        border: (BlBorder paint: Color blue width: 5).
+	element3 := BlElement new
+		            size: 300@300;
+		           		            geometry: (BlTriangleGeometry new
+				   matchExtent: 150 @ 300);
+		            border: (BlBorder  builder paint: (Color cyan); width: 15; capSquare; joinMiter; build);
+		            background: Color lightCyan;
+		            outskirts: BlOutskirts centered.
+
+	box3 addChild: element3.
+	container addChildren: {
+			box1.
+			box2.
+			box3 }.
+	^ container
+]
+
+{ #category : #shapes }
+GeometryBorderExperiment >> triangleColorDashed [
 
 	<bookExample>
 	^ BlElement new
-		  layout: (BlGridLayout horizontal columnCount: 3);
-		  constraintsDo: [ :c |
-			  c horizontal matchParent.
-			  c vertical matchParent ];
-		  addChildren: {
-				  (BlTextElement new text: '5,0' asRopedText).
-				  (BlElement new size: 0 @ 0).
-				  (BlTextElement new text: '13,0' asRopedText).
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: Color yellow;
+		  border: (BlBorder builder
+				   width: 5;
+				   paint: (Color red alpha: 1);
+				   dashOffset: 0;
+				   dashArray: #( 6 4 2 );
+				   joinBevel;
+				   build);
+		  size: 200 @ 200
+]
 
-				  "middle row"
-				  (BlElement new size: 0 @ 0).
-				  (BlElement new
-					   constraintsDo: [ :c |
-						   c horizontal matchParent.
-						   c vertical matchParent ];
-					   border: (BlBorder paint: Color gray width: 1)).
-				  (BlElement new size: 0 @ 0).
+{ #category : #shapes }
+GeometryBorderExperiment >> triangleDashedColorWithBuilder [
 
-				  "bottom row"
-				  (BlTextElement new text: '5,25' asRopedText).
-				  (BlElement new size: 0 @ 0).
-				  (BlTextElement new text: '13,25' asRopedText) }
-	"top row"
+	<bookExample>
+	^ BlElement new
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: Color yellow;
+		  border: (BlBorder builder
+				   width: 5;
+				   paint: (Color red alpha: 0.5);
+				   dashed;
+				   build);
+		  size: 100 @ 100
+]
+
+{ #category : #shapes }
+GeometryBorderExperiment >> triangleSolidColor [
+
+	<bookExample>
+	^BlElement new
+		geometry: (BlTriangleGeometry new
+				 matchExtent: 50 @ 100;
+				 beLeft);
+		background:  Color yellow;
+		border: (BlBorder paint: Color red width: 5);
+		size: 100 @ 100
+]
+
+{ #category : #shapes }
+GeometryBorderExperiment >> triangleSolidColorWithBuilder [
+
+	<bookExample>
+	^ BlElement new
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: Color yellow;
+		  border: (BlBorder builder
+				   width: 5;
+				   paint: Color red;
+				   build);
+		  size: 100 @ 100
 ]

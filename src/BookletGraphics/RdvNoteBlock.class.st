@@ -107,33 +107,34 @@ element addAnimation: animation.
 
 { #category : #accessing }
 RdvNoteBlock >> baseStar [
-<gtExample>
 	"This is a new method"
-|element|
-element := BlDevElement new size:200@200;
-geometry:( BlPolygon
-		vertices:
-			{(100 @ 50).
-			(115 @ 90).
-			(150 @ 90).
-			(125 @ 110).
-			(135 @ 150).
-			(100 @ 130).
-			(65 @ 150).
-			(75 @ 110).
-			(50 @ 90).
-			(85 @ 90)});
-background: (Color pink alpha:0.2);
-border: (BlBorder paint: Color orange width: 4).
 
-element when: BlMouseEnterEvent do: [ :anEvent |
+	<gtExample>
+	| element |
+	element := BlDevElement new
+		           size: 200 @ 200;
+		           geometry: (BlPolygon vertices: {
+						            (100 @ 50).
+						            (115 @ 90).
+						            (150 @ 90).
+						            (125 @ 110).
+						            (135 @ 150).
+						            (100 @ 130).
+						            (65 @ 150).
+						            (75 @ 110).
+						            (50 @ 90).
+						            (85 @ 90) });
+		           background: (Color pink alpha: 0.2);
+		           border: (BlBorder paint: Color orange width: 4).
+
+	element when: BlMouseEnterEvent do: [ :anEvent |
 		anEvent consumed: true.
-		element background: (Color red alpha:0.2) ].
-		
- element when: BlMouseLeaveEvent do: [ :anEvent |
+		element background: (Color red alpha: 0.2) ].
+
+	element when: BlMouseLeaveEvent do: [ :anEvent |
 		anEvent consumed: true.
-		element background: (Color blue alpha:0.2) ].
-^element
+		element background: (Color blue alpha: 0.2) ].
+	^ element
 ]
 
 { #category : #accessing }
@@ -469,34 +470,4 @@ RdvNoteBlock >> rainbow [
 
 	root addChild: a.
 	^ root
-]
-
-{ #category : #accessing }
-RdvNoteBlock >> squareSurroundedByNumbers [
-
-	<bookExample>
-	^ BlElement new
-		  layout: (BlGridLayout horizontal columnCount: 3);
-		  constraintsDo: [ :c |
-			  c horizontal matchParent.
-			  c vertical matchParent ];
-		  addChildren: {
-				  (BlTextElement new text: '5,0' asRopedText).
-				  (BlElement new size: 0 @ 0).
-				  (BlTextElement new text: '13,0' asRopedText).
-
-				  "middle row"
-				  (BlElement new size: 0 @ 0).
-				  (BlElement new
-					   constraintsDo: [ :c |
-						   c horizontal matchParent.
-						   c vertical matchParent ];
-					   border: (BlBorder paint: Color gray width: 1)).
-				  (BlElement new size: 0 @ 0).
-
-				  "bottom row"
-				  (BlTextElement new text: '5,25' asRopedText).
-				  (BlElement new size: 0 @ 0).
-				  (BlTextElement new text: '13,25' asRopedText) }
-	"top row"
 ]
