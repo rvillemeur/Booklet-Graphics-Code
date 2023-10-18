@@ -970,9 +970,10 @@ AlexandrieCairoExperiment >> strokeAndFill [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColorRGBA: Color lightYellow ;
 		paint.
 
+"stroke first and fill second. The color of fill appear on the top of stroke"
 	context
 		lineWidth: 10;
 		moveTo: 25 @ 25;
@@ -984,11 +985,11 @@ AlexandrieCairoExperiment >> strokeAndFill [
 		endAngle: 135 degreesToRadians;
 		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
 		closePath;
-		sourceColorRGB: Color red;
+		sourceColorRGBA: (Color red alpha: 0.7);
 		strokePreserve .
 
 
-	context sourceColorRGB: Color lightBlue ; fill.
+	context sourceColorRGBA: (Color blue alpha: 0.5) ; fill.
 	
 	^ surface asForm
 ]
@@ -1004,9 +1005,10 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColorRGBA: Color lightYellow ;
 		paint.
 
+"fill first and stroke second. The color of stroke appear on the top of fill"
 	context
 		moveTo: 25 @ 25;
 		lineTo: 50 @ 37.75;
@@ -1017,13 +1019,13 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 		endAngle: 135 degreesToRadians;
 		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
 		closePath;
-		sourceColorRGB: (Color blue alpha: 0.1);
+		sourceColorRGBA: (Color blue alpha: 0.7);
 		fillPreserve.
 
 
 	context
-		lineWidth: 3;
-		sourceColorRGB: (Color red alpha: 0.2);
+		lineWidth: 10;
+		sourceColorRGBA: (Color red alpha: 0.5);
 		stroke.
 
 	^ surface asForm
