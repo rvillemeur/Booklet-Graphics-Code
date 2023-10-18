@@ -106,38 +106,6 @@ element addAnimation: animation.
 ]
 
 { #category : #accessing }
-RdvNoteBlock >> baseStar [
-	"This is a new method"
-
-	<gtExample>
-	| element |
-	element := BlDevElement new
-		           size: 200 @ 200;
-		           geometry: (BlPolygon vertices: {
-						            (100 @ 50).
-						            (115 @ 90).
-						            (150 @ 90).
-						            (125 @ 110).
-						            (135 @ 150).
-						            (100 @ 130).
-						            (65 @ 150).
-						            (75 @ 110).
-						            (50 @ 90).
-						            (85 @ 90) });
-		           background: (Color pink alpha: 0.2);
-		           border: (BlBorder paint: Color orange width: 4).
-
-	element when: BlMouseEnterEvent do: [ :anEvent |
-		anEvent consumed: true.
-		element background: (Color red alpha: 0.2) ].
-
-	element when: BlMouseLeaveEvent do: [ :anEvent |
-		anEvent consumed: true.
-		element background: (Color blue alpha: 0.2) ].
-	^ element
-]
-
-{ #category : #accessing }
 RdvNoteBlock >> bigAdaptableText [
 <gtExample>
 ^(BlTextElement new text: 'hello' asRopedText) asScalableElement.
@@ -356,33 +324,6 @@ toto styles
 			border: (BlBorder paint: Color purple width: 1) ].
 			
 ^toto
-]
-
-{ #category : #accessing }
-RdvNoteBlock >> exampleOutSkirtsCentered [
-<gtExample>
-	| element |
-	element := self baseStar.
-	element outskirts: BlOutskirts centered.
-	^ element
-]
-
-{ #category : #accessing }
-RdvNoteBlock >> exampleOutSkirtsInside [
-<gtExample>
-	| element |
-	element := self baseStar.
-	element outskirts: BlOutskirts inside.
-	^ element
-]
-
-{ #category : #accessing }
-RdvNoteBlock >> exampleOutSkirtsOutside [
-<gtExample>
-	| element |
-	element := self baseStar.
-	element outskirts: BlOutskirts outside.
-	^ element
 ]
 
 { #category : #accessing }
