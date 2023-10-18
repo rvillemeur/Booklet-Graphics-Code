@@ -896,6 +896,7 @@ AlexandrieCairoExperiment >> meshPattern [
 
 	context := surface newContext.
 
+	"https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-mesh"
 	
 	meshPattern := AeCairoMeshPattern newEmpty.
 	meshPattern beginPatch.
