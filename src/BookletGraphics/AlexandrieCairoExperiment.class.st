@@ -1033,30 +1033,6 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 
 { #category : #examples }
 AlexandrieCairoExperiment >> textWithOrWithoutHarfbuzz [
-
-	<bookExample>
-	| aFTLibrary freetypeFace surface context cairoScaledFont fontHeight fontOptions fontFace string |
-	string := 'a := A->B->>C <= c|=>d~~>e.'.
-	fontHeight := 22.
-
-	surface := AeCairoImageSurface
-		           extent: 1000 @ (fontHeight * 4)
-		           format: AeCairoSurfaceFormat argb32.
-	context := surface newContext.
-
-	context
-		sourceColorRGBA: Color white;
-		paint.
-
-
-	aFTLibrary := AeFTLibrary newInitialized.
-	freetypeFace := AeCascadiaCodeDownloadedFont new
-		                downloadDirectory:
-			                AeFilesystemResources downloadedFontsDirectory;
-		                ensureDownloaded;
-		                firstFaceUsing: aFTLibrary.
-
-
 	"~~>, ->, <=, |=>  and ->> have special representation using cascadia font.
 see 
 https://github.com/microsoft/cascadia-code/blob/main/images/arrow_support.png 
@@ -1067,6 +1043,23 @@ Used together, HarfBuzz can perform shaping on Unicode text segments, outputting
 the glyph IDs that FreeType should rasterize from the active font as well as the 
 positions at which those glyphs should be drawn. "
 
+	<bookExample>
+	|   surface context cairoScaledFont fontHeight freetypeFace fontOptions fontFace fontMatrix string |
+	string := 'a := A->B->>C <= c|=>d~~>e.'.
+	fontHeight := 22.
+
+	surface := AeCairoImageSurface
+		           extent: 1000 @ (fontHeight * 4)
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context sourceColorRGBA: Color white; paint.
+
+	freetypeFace := AeCascadiaCodeDownloadedFont new
+		                downloadDirectory:
+			                AeFilesystemResources downloadedFontsDirectory;
+		                ensureDownloaded;
+		                firstFaceUsing: (AeFTLibrary newInitialized).
 
 	context
 		tolerance: 0.2;
@@ -1080,16 +1073,17 @@ positions at which those glyphs should be drawn. "
 		               hintMetrics: AeCairoHintMetrics on;
 		               hintStyle: AeCairoHintStyle slight;
 		               subpixelOrder: AeCairoSubpixelOrder default.
+		fontMatrix := 		                   (AeCairoMatrix
+			                    newScalingByX: fontHeight
+			                    y: fontHeight).
 
 
 	cairoScaledFont := fontFace
-		                   newScaledFontWithFontMatrix:
-		                   (AeCairoMatrix
-			                    newScalingByX: fontHeight
-			                    y: fontHeight)
+		                   newScaledFontWithFontMatrix: fontMatrix
+
 		                   userToDeviceMatrix: AeCairoMatrix newIdentity
 		                   options: fontOptions.
-		
+
 	"Margin"
 	context translateBy: fontHeight / 2 @ 0.
 
@@ -1099,12 +1093,13 @@ positions at which those glyphs should be drawn. "
 	context
 		scaledFont: cairoScaledFont;
 		showGlyphs: (cairoScaledFont glyphArrayForString: string).
-
+	context fill.
 
 	"Draw text with Harfbuzz:"
 	context translateBy: 0 @ (fontHeight * 1.1).
 	context sourceColorRGB: Color green muchDarker.
 	context
+		scaledFont: cairoScaledFont;
 		showGlyphs: (AeHbBuffer new
 				 direction: AeHbDirection leftToRight;
 				 script: AeHbScript latin;
@@ -1112,8 +1107,9 @@ positions at which those glyphs should be drawn. "
 				 clusterLevel: AeHbBufferClusterLevel recommended;
 				 flags: AeHbBufferFlags beginningOrEndingOfText;
 				 addUtf8String: string;
-				 cairoGlyphArrayForFace: freetypeFace size: fontHeight);
-		scaledFont: cairoScaledFont.
-	context paint.
+				 cairoGlyphArrayForFace: freetypeFace size: fontHeight).
+
+	context fill.
+
 	^ surface asForm
 ]
