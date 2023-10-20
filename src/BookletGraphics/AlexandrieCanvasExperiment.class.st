@@ -831,3 +831,52 @@ AlexandrieCanvasExperiment >> pathPaint1 [
 
 	^ canvas asForm
 ]
+
+{ #category : #'as yet unclassified' }
+AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz [
+
+	<bookExample>
+	| aFTLibrary freetypeFace aeCanvas cairoScaledFont fontHeight string |
+	aFTLibrary := AeFTLibrary newInitialized.
+	freetypeFace := AeCascadiaCodeDownloadedFont new
+		                downloadDirectory:
+			                AeFilesystemResources downloadedFontsDirectory;
+		                ensureDownloaded;
+		                firstFaceUsing: aFTLibrary.
+
+	string := 'a := A->B->>C <= c|=>d~~>e.'.
+	fontHeight := 22.
+
+	aeCanvas := AeCanvas extent: 1000 @ (fontHeight * 4).
+	aeCanvas clear: Color white.
+
+	cairoScaledFont := aeCanvas
+		                   scaledFontForFace: freetypeFace
+		                   size: fontHeight.
+
+	"Margin"
+	aeCanvas pathTranslate: fontHeight / 2 @ 0.
+
+	"Draw text withOUT Harfbuzz:"
+	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
+	aeCanvas setSourceColor: Color red muchDarker.
+	aeCanvas
+		drawText: (cairoScaledFont glyphArrayForString: string)
+		font: cairoScaledFont.
+
+	"Draw text with Harfbuzz:"
+	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
+	aeCanvas setSourceColor: Color green muchDarker.
+	aeCanvas
+		drawText: (AeHbBuffer new
+				 direction: AeHbDirection leftToRight;
+				 script: AeHbScript latin;
+				 language: AeHbLanguage en;
+				 clusterLevel: AeHbBufferClusterLevel recommended;
+				 flags: AeHbBufferFlags beginningOrEndingOfText;
+				 addUtf8String: string;
+				 cairoGlyphArrayForFace: freetypeFace size: fontHeight)
+		font: cairoScaledFont.
+
+	^ aeCanvas asForm
+]
