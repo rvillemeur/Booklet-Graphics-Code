@@ -844,6 +844,17 @@ AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz [
 		                ensureDownloaded;
 		                firstFaceUsing: aFTLibrary.
 
+
+	"~~>, ->, <=, |=>  and ->> have special representation using cascadia font.
+see 
+https://github.com/microsoft/cascadia-code/blob/main/images/arrow_support.png 
+and 
+https://github.com/microsoft/cascadia-code/blob/main/images/ligatures.png
+
+Used together, HarfBuzz can perform shaping on Unicode text segments, outputting 
+the glyph IDs that FreeType should rasterize from the active font as well as the 
+positions at which those glyphs should be drawn. "
+
 	string := 'a := A->B->>C <= c|=>d~~>e.'.
 	fontHeight := 22.
 
