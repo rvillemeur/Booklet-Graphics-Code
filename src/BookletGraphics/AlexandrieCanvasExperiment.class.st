@@ -832,7 +832,7 @@ AlexandrieCanvasExperiment >> pathPaint1 [
 	^ canvas asForm
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz [
 
 	<bookExample>
