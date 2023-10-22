@@ -891,3 +891,50 @@ positions at which those glyphs should be drawn. "
 
 	^ aeCanvas asForm
 ]
+
+{ #category : #'as yet unclassified' }
+AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz2 [
+	<bookExample>
+
+	| fontLibrary fontFace fontHeight canvas scaledFont text buffer |
+	fontLibrary := AeFTLibrary newInitialized.
+	fontFace := AeCascadiaCodeDownloadedFont new
+		            downloadDirectory:
+			            AeFilesystemResources downloadedFontsDirectory;
+		            ensureDownloaded;
+		            firstFaceUsing: fontLibrary.
+	fontHeight := 22.
+	text := 'a := A->B->>C <= c|=>d~~>e.'.
+
+	canvas := AeCanvas extent: 1000 @ (fontHeight * 4).
+	canvas clear: Color white.
+
+	scaledFont := canvas scaledFontForFace: fontFace size: fontHeight.
+
+	"Margin"
+	canvas pathTranslate: fontHeight / 2 @ 0.
+
+	"Draw text withOUT Harfbuzz:"
+	canvas pathTranslate: 0 @ (fontHeight * 1.1).
+	canvas setSourceColor: Color red muchDarker.
+	canvas
+		drawText: (scaledFont glyphArrayForString: text)
+		font: scaledFont.
+
+	"Draw text with Harfbuzz:"
+	buffer := AeHbBuffer new
+		          direction: AeHbDirection leftToRight;
+		          script: AeHbScript latin;
+		          language: AeHbLanguage en;
+		          clusterLevel: AeHbBufferClusterLevel recommended;
+		          flags: AeHbBufferFlags beginningOrEndingOfText;
+		          addUtf8String: text.
+
+	canvas pathTranslate: 0 @ (fontHeight * 1.1).
+	canvas setSourceColor: Color green muchDarker.
+	canvas
+		drawText: (buffer cairoGlyphArrayForFace: fontFace size: fontHeight)
+		font: scaledFont.
+
+	^ canvas asForm
+]
