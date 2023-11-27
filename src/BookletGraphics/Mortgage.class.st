@@ -175,18 +175,34 @@ Mortgage >> inspectAmortizationChart [
 ]
 
 { #category : #inspector }
+Mortgage >> inspectAmortizationChartContext: aContext [
+
+	^ aContext active: rate > 0
+]
+
+{ #category : #inspector }
+Mortgage >> inspectAmortizationContext: aContext [
+
+	^ aContext active: rate > 0
+]
+
+{ #category : #inspector }
 Mortgage >> inspectLoan: aBuilder [
 
 	<inspectorPresentationOrder: 1 title: 'detail'>
-	^ (StSimpleInspectorBuilder on: aBuilder)
-		  key: 'Principal' value: (self formatAmount: self amount) , ' $';
-		  key: 'Duration' value: self duration asString , ' months';
-		  key: 'Nominal Rate' value: (self rate * 100) asString , ' %';
-		  key: 'Monthly rate'
-		  value: (self monthlyRate * 100) asString , ' %';
-		  key: 'Monthly payment'
-		  value: (self formatAmount: self payment asString) , ' $';
-		  table
+	| builder |
+	builder := StSimpleInspectorBuilder on: aBuilder.
+	builder
+		key: 'Principal' value: (self formatAmount: self amount) , ' $';
+		key: 'Duration' value: self duration asString , ' months';
+		key: 'Nominal Rate' value: (self rate * 100) asString , ' %';
+		key: 'Monthly rate' value: (self monthlyRate * 100) asString , ' %';
+		key: 'Monthly payment'
+		value: (self formatAmount: self payment asString) , ' $'.
+	self rate < 0 ifTrue: [
+		builder key: '' value: ''; key: 'Warning' value: 'rate cannot be negative' ].
+
+	^ builder table
 ]
 
 { #category : #api }

@@ -19,6 +19,13 @@ MortgageExample class >> example [
 	^ Mortgage  principal: 330000 duration: 12 * 3 rate: 4.5 percent "month" "year"
 ]
 
+{ #category : #examples }
+MortgageExample class >> example2 [
+
+	<sampleInstance>
+	^ Mortgage  principal: 330000 duration: 12 * 3 rate: -4.5 percent "month" "year"
+]
+
 { #category : #'see class side' }
 MortgageExample >> seeClassSide [ 
 ]
