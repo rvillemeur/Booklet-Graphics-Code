@@ -96,16 +96,16 @@ AlexandrieCairoExperiment >> fillPaint1 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: (Color red alpha: 0.6);
+		sourceColor: (Color red alpha: 0.6);
 		paint.
 
 
 	"green rectangle"
 	context
-		sourceColorRGB: Color green;
+		sourceColor: Color green;
 		rectangle: (100 @ 100 extent: 100 @ 100);
 		fillPreserve;
-		sourceColorRGB: Color yellow;
+		sourceColor: Color yellow;
 		stroke.
 
 	"draw a blue triangle"
@@ -114,7 +114,7 @@ AlexandrieCairoExperiment >> fillPaint1 [
 		lineTo: 400 @ 100;
 		lineTo: 400 @ 200;
 		closePath;
-		sourceColorRGB: Color blue;
+		sourceColor: Color blue;
 		stroke.
 
 	"black circle"
@@ -124,7 +124,7 @@ AlexandrieCairoExperiment >> fillPaint1 [
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
-		sourceColorRGB: Color black;
+		sourceColor: Color black;
 		stroke.
 
 	"Thick magenta line"
@@ -132,7 +132,7 @@ AlexandrieCairoExperiment >> fillPaint1 [
 		lineWidth: 15;
 		moveTo: 300 @ 350;
 		relativeLineTo: 100 @ 0;
-		sourceColorRGB: Color magenta;
+		sourceColor: Color magenta;
 		stroke.
 
 	"some text in white blending in the background"
@@ -145,7 +145,7 @@ AlexandrieCairoExperiment >> fillPaint1 [
 		              userToDeviceMatrix: AeCairoMatrix newIdentity
 		              options: AeCairoFontOptions new.
 	context
-		sourceColorRGBA: (Color white alpha: 0.5);
+		sourceColor: (Color white alpha: 0.5);
 		translateByX: 500 y: 100.
 	context
 		scaledFont: scaledFont;
@@ -165,20 +165,20 @@ AlexandrieCairoExperiment >> fillPaint2 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color red ;
+		sourceColor: Color red;
 		paintWithAlpha: 0.5.
 
 
 	"green rectangle"
 	context
-		sourceColorRGB: Color green;
+		sourceColor: Color green;
 		rectangle: (100 @ 100 extent: 100 @ 100);
 		fillPreserve;
-		sourceColorRGB: Color yellow;
+		sourceColor: Color yellow;
 		lineWidth: 4;
 		antialias: AeCairoAntialias CAIRO_ANTIALIAS_NONE;
-		operator: AeCairoCompositionOp CAIRO_OPERATOR_DARKEN;
-		dash: (AeCairoDoubleArray newFrom: #(8 4 2)) count: 3 offset: 0;
+		operator: AeCairoOperator CAIRO_OPERATOR_DARKEN;
+		dash: (AeFFIDoubleArray newFrom: #( 8 4 2 )) count: 3 offset: 0;
 		useLineCapRound;
 		stroke.
 
@@ -188,7 +188,7 @@ AlexandrieCairoExperiment >> fillPaint2 [
 		lineTo: 400 @ 100;
 		lineTo: 400 @ 200;
 		closePath;
-		dash: (AeCairoDoubleArray newFrom: #(1)) count: 1 offset: 0;
+		dash: (AeFFIDoubleArray newFrom: #( 1 )) count: 1 offset: 0;
 		lineWidth: 2;
 		sourceColorRGB: Color blue;
 		stroke.
@@ -241,7 +241,7 @@ AlexandrieCairoExperiment >> fillPaint3 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		paint.
 	"linear gradient fill"
 	gradient := AeCairoLinearGradientPattern
@@ -257,7 +257,7 @@ AlexandrieCairoExperiment >> fillPaint3 [
 
 	"plain color fill"
 	context
-		sourceColorRGBA: (Color yellow alpha: 0.2);
+		sourceColor: (Color yellow alpha: 0.2);
 		rectangle: (100 @ 0 extent: 100 @ 100);
 		fill.
 
@@ -304,7 +304,7 @@ AlexandrieCairoExperiment >> lineCap [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColor: Color yellow;
 		paint.
 
 
@@ -312,19 +312,19 @@ AlexandrieCairoExperiment >> lineCap [
 		lineWidth: 15;
 		moveTo: 0 @ 30;
 		lineTo: 100 @ 30;
-		sourceColorRGB: Color red;
+		sourceColor: Color red;
 		useLineCapButt;
-		moveTo: 115@33;
+		moveTo: 115 @ 33;
 		showText: 'butt';
 		stroke.
 
 	context
 		lineWidth: 15;
 		moveTo: 0 @ 60;
-		lineTo:  100 @ 60;
-		sourceColorRGB: Color red;
+		lineTo: 100 @ 60;
+		sourceColor: Color red;
 		useLineCapSquare;
-		moveTo: 115@63;
+		moveTo: 115 @ 63;
 		showText: 'square';
 		stroke.
 
@@ -332,9 +332,9 @@ AlexandrieCairoExperiment >> lineCap [
 		lineWidth: 15;
 		moveTo: 0 @ 90;
 		relativeLineTo: 100 @ 0;
-		sourceColorRGB: Color red;
+		sourceColor: Color red;
 		useLineCapRound;
-		moveTo: 115@93;
+		moveTo: 115 @ 93;
 		showText: 'round';
 		stroke.
 
@@ -414,7 +414,7 @@ AlexandrieCairoExperiment >> lineDash [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColor: Color yellow;
 		paint.
 
 	"A dash pattern is specified by an array of positive values.
@@ -425,24 +425,24 @@ AlexandrieCairoExperiment >> lineDash [
 		lineWidth: 15;
 		moveTo: 0 @ 30;
 		lineTo: 200 @ 30;
-		sourceColorRGB: Color red;
-		dash: (AeCairoDoubleArray newFrom: #( 4 6 )) offset: 4;
+		sourceColor: Color red;
+		dash: (AeFFIDoubleArray newFrom: #( 4 6 )) offset: 4;
 		stroke.
 
 	context
 		lineWidth: 15;
 		moveTo: 0 @ 60;
 		lineTo: 200 @ 60;
-		sourceColorRGB: Color red;
-		dash: (AeCairoDoubleArray newFrom: #( 4 6 )) offset: 0;
+		sourceColor: Color red;
+		dash: (AeFFIDoubleArray newFrom: #( 4 6 )) offset: 0;
 		stroke.
 
 	context
 		lineWidth: 15;
 		moveTo: 0 @ 90;
 		lineTo: 200 @ 90;
-		sourceColorRGB: Color red;
-		dash: (AeCairoDoubleArray newFrom: #( 2 5 2 10 )) offset: 0;
+		sourceColor: Color red;
+		dash: (AeFFIDoubleArray newFrom: #( 2 5 2 10 )) offset: 0;
 		stroke.
 
 
