@@ -31,25 +31,6 @@ PasswordDialogPresenter >> cancelButton: anObject [
 ]
 
 { #category : #initialization }
-PasswordDialogPresenter >> initializeLayout [
-self layout: (SpGridLayout new
-				borderWidth: 0;
-				add: 'Name:' at: 1 @ 1;
-				add: #nameText at: 2 @ 1;
-				add: 'Password:' at: 1 @ 2;
-				add: #passwordText at: 2 @ 2;
-				add:
-					(SpBoxLayout newVertical
-						add: #acceptButton;
-						add: #cancelButton; yourself)
-					at: 1 @ 3
-					span: 2 @ 1;
-					add: #acceptButton at: 1@3;
-					add: #cancelButton at: 2@3;
-				yourself)
-]
-
-{ #category : #initialization }
 PasswordDialogPresenter >> initializePresenters [
 	nameText := self newTextInput.
 	passwordText := self newTextInput
@@ -57,7 +38,6 @@ PasswordDialogPresenter >> initializePresenters [
 		bePassword.
 	acceptButton := self newButton label: 'OK'.
 	cancelButton := self newButton label: 'Cancel'.
-	self initializeLayout.
 	self focusOrder
 		add: nameText;
 		add: passwordText
@@ -65,10 +45,41 @@ PasswordDialogPresenter >> initializePresenters [
 
 { #category : #initialization }
 PasswordDialogPresenter >> initializeWindow: aWindowPresenter [
+"is it better to use this window, or method self withWindowDo: [ :window |
+		window
+			title: 'password window example';
+			initialExtent: 300 @ 140 ]"
+		
+	"aWindowPresenter
+		title: 'password window example';
+		initialExtent: 300 @ 140"
+]
 
-	aWindowPresenter 
-		title: 'password window example'
-		";initialExtent: 300@400"
+{ #category : #accessing }
+PasswordDialogPresenter >> layout [
+
+	^ SpBoxLayout newTopToBottom
+		  vAlignStart;
+		  spacing: 10;
+		  add: (SpBoxLayout newLeftToRight
+				   vAlignCenter;
+				   add: 'Name:';
+				   add: nameText;
+				   yourself);
+		  add: (SpBoxLayout newLeftToRight
+				   vAlignCenter;
+				   add: 'Password:';
+				   add: passwordText;
+				   yourself);
+		  addLast: (SpBoxLayout newLeftToRight beHomogeneous
+				   borderWidth: 10;
+				   add: (SpBoxLayout newTopToBottom hAlignCenter
+						    add: acceptButton expand: false;
+						    yourself);
+				   add: (SpBoxLayout newTopToBottom hAlignCenter
+						    add: cancelButton expand: false;
+						    yourself);
+				   yourself)
 ]
 
 { #category : #accessing }
@@ -79,6 +90,16 @@ PasswordDialogPresenter >> nameText [
 { #category : #accessing }
 PasswordDialogPresenter >> nameText: anObject [
 	nameText := anObject
+]
+
+{ #category : #showing }
+PasswordDialogPresenter >> open [
+
+	super open.
+	self withWindowDo: [ :window |
+		window
+			title: 'password window example';
+			initialExtent: 300 @ 140 ]
 ]
 
 { #category : #accessing }
