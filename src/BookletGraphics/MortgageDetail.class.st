@@ -6,9 +6,9 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'beginningPrincipal',
-		'InterestPayment',
 		'principalPayment',
-		'remainingPrincipal'
+		'remainingPrincipal',
+		'interestPayment'
 	],
 	#category : #'BookletGraphics-inspector'
 }
@@ -28,13 +28,13 @@ MortgageDetail >> beginningPrincipal: anObject [
 { #category : #accessing }
 MortgageDetail >> interestPayment [
 
-	^ InterestPayment
+	^ interestPayment
 ]
 
 { #category : #accessing }
 MortgageDetail >> interestPayment: anObject [
 
-	InterestPayment := anObject
+	interestPayment := anObject
 ]
 
 { #category : #accessing }
