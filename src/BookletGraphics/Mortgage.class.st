@@ -25,7 +25,7 @@ Class {
 	#category : #'BookletGraphics-inspector'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 Mortgage class >> principal: anAmount duration: aDuration rate: aRate [
 
 	^ self new
