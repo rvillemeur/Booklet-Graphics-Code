@@ -368,6 +368,88 @@ e := BlElement new
 ^e
 ]
 
+{ #category : #'as yet unclassified' }
+RdvNoteBlock >> periodicEvent [
+
+	<bookExample>
+	| space hero dxy speed simulatorProcess keyUpBlockByKey keyDownBlockByKey |
+	"-- Setup visual properties of space and hero --""from http://ws.stfx.eu/5UQ515CAGRDU "
+	space := BlSpace new.
+	space
+		position: 20 @ 20;
+		extent: 640 @ 480;
+		show.
+
+	hero := BlElement new
+		        size: 64 @ 64;
+		        position: space extent // 3;
+		        background: Color magenta;
+		        yourself.
+
+	space root
+		addChild: hero;
+		background: Color blue muchDarker.
+
+
+	"-- Add some keyboard reactions --"
+
+	dxy := 0 @ 0.
+	speed := 2.
+
+	keyDownBlockByKey := {
+		                     (KeyboardKey up
+		                      -> [ dxy := dxy x @ speed negated ]).
+		                     (KeyboardKey down -> [ dxy := dxy x @ speed ]).
+		                     (KeyboardKey left
+		                      -> [ dxy := speed negated @ dxy y ]).
+		                     (KeyboardKey right -> [ dxy := speed @ dxy y ]).
+		                     (KeyboardKey Q -> [ space close ]) "quit" }
+		                     asOrderedDictionary.
+
+	keyUpBlockByKey := {
+		                   (KeyboardKey up -> [ dxy := dxy x @ 0 ]).
+		                   (KeyboardKey down -> [ dxy := dxy x @ 0 ]).
+		                   (KeyboardKey left -> [ dxy := 0 @ dxy y ]).
+		                   (KeyboardKey right -> [ dxy := 0 @ dxy y ]) }
+		                   asOrderedDictionary.
+
+	space root
+		when: BlKeyDownEvent do: [ :evt |
+			keyDownBlockByKey at: evt key ifPresent: [ :aBlock | aBlock value ] ];
+		when: BlKeyUpEvent do: [ :evt |
+			keyUpBlockByKey at: evt key ifPresent: [ :aBlock | aBlock value ] ]
+				yourself.
+
+	hero enqueueTask: (BlRepeatedTaskAction new
+			 delay: 0 milliSeconds;
+			 action: [
+				 dxy isZero ifFalse: [ hero position: hero position + dxy ] ];
+			 yourself).
+
+
+
+	"-- Simulate arrows, then quit --"
+
+	simulatorProcess := [ "Simulate arrows"
+	                    {
+		                    KeyboardKey right.
+		                    KeyboardKey down.
+		                    KeyboardKey left.
+		                    KeyboardKey up } do: [ :simulatedKeyPress |
+		                    space root dispatchEvent: (BlKeyDownEvent new
+				                     key: simulatedKeyPress;
+				                     yourself).
+		                    0.75 seconds wait.
+		                    space root dispatchEvent: (BlKeyUpEvent new
+				                     key: simulatedKeyPress;
+				                     yourself) ].
+
+	                    "Quit"
+	                    space root dispatchEvent: (BlKeyDownEvent new
+			                     key: KeyboardKey Q;
+			                     yourself) ] fork
+]
+
 { #category : #accessing }
 RdvNoteBlock >> rainbow [
 
