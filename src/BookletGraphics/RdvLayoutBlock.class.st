@@ -576,6 +576,115 @@ RdvLayoutBlock >> multipleElementFitParameter [
 	^ container
 ]
 
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> multipleElementFitParameter2 [
+
+	<bookExample>
+	| element1 element2 element3 container box1 box2 box3 |
+	container := BlElement new
+		             size: 450 @ 150;
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal alignCenter ;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3).
+	box1 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal fitContent   .
+			        c vertical fitContent ];
+		        background: Color lightRed;
+		        border: (BlBorder paint: Color red width: 5).
+	element1 := BlElement new
+		            size: 20 @ 20;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (10 @ 0).
+						              (13 @ 8).
+						              (20 @ 8).
+						              (15 @ 12).
+						              (17 @ 20).
+						              (10 @ 16).
+						              (3 @ 20).
+						              (5 @ 12).
+						              (0 @ 8).
+						              (7 @ 8) });
+		            border: (BlBorder paint: Color orange width: 5);
+		            background: Color lightOrange;
+		            outskirts: BlOutskirts centered.
+
+	box1 addChild: element1.
+	box2 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        background: Color lightYellow;
+		        border: (BlBorder paint: Color yellow width: 5).
+	element2 := BlElement new
+		            size: 20 @ 20;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (10 @ 0).
+						              (13 @ 8).
+						              (20 @ 8).
+						              (15 @ 12).
+						              (17 @ 20).
+						              (10 @ 16).
+						              (3 @ 20).
+						              (5 @ 12).
+						              (0 @ 8).
+						              (7 @ 8) });
+		            border: (BlBorder paint: Color green width: 5);
+						transformDo: [ :t | t "BlTransformationBuilder" scaleBy: (BlVector x: 4 y: 2 z: 1) ];
+		            background: Color lightGreen;
+		            outskirts: BlOutskirts centered.
+
+	box2 addChild: element2.
+	
+	box3 := BlElement new
+		        size: 150 @ 150;
+		        geometry: BlRectangleGeometry new;
+		        margin: (BlInsets all: 3);
+		        padding: (BlInsets all: 3);
+		        layout: BlLinearLayout horizontal alignCenter;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical fitContent  ];
+		         background: Color lightBlue;
+		        border: (BlBorder paint: Color blue width: 5).
+	element3 := BlElement new
+		            size: 20 @ 20;
+		            geometry: (BlPolygonGeometry vertices: {
+						              (10 @ 0).
+						              (13 @ 8).
+						              (20 @ 8).
+						              (15 @ 12).
+						              (17 @ 20).
+						              (10 @ 16).
+						              (3 @ 20).
+						              (5 @ 12).
+						              (0 @ 8).
+						              (7 @ 8) });
+		            border: (BlBorder paint: Color cyan width: 5);
+		            background: Color lightCyan;
+		            outskirts: BlOutskirts centered.
+
+	box3 addChild: element3.
+	container addChildren: {
+			box1.
+			box2.
+			box3 }.
+	^ container
+]
+
 { #category : #accessing }
 RdvLayoutBlock >> squareSurroundedByNumbers [
 

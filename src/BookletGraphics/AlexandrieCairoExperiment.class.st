@@ -30,7 +30,7 @@ AlexandrieCairoExperiment >> clip1 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		paint.
 	context
 		arcCenterX: 180
@@ -346,28 +346,28 @@ AlexandrieCairoExperiment >> lineCap [
 AlexandrieCairoExperiment >> lineColor [
 
 	<bookExample>
-	| surface context gradient|
+	| surface context gradient |
 	surface := AeCairoImageSurface
 		           extent: 200 @ 120
 		           format: AeCairoSurfaceFormat argb32.
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColor: Color yellow;
 		paint.
 
 	"A dash pattern is specified by an array of positive values.
 	Each value provides the length of alternate 'on' and 'off' portions of the stroke.
 	The offset specifies an offset into the pattern at which the stroke begins."
 
-"linear gradient fill"
+	"linear gradient fill"
 	gradient := AeCairoLinearGradientPattern
 		            from: 0 @ 30
 		            to: 200 @ 45
 		            addStopsFrom: {
 				            (0 -> Color white).
 				            (1 -> Color black) }.
-				
+
 	context
 		lineWidth: 15;
 		moveTo: 0 @ 30;
@@ -375,15 +375,15 @@ AlexandrieCairoExperiment >> lineColor [
 		source: gradient;
 		stroke.
 
-"solid color"
+	"solid color"
 	context
 		lineWidth: 15;
 		moveTo: 0 @ 60;
 		lineTo: 200 @ 60;
-		sourceColorRGB: (Color black alpha:0.7);
+		sourceColor: (Color black alpha: 0.7);
 		stroke.
 
-"Radial gradient fill"
+	"Radial gradient fill"
 	gradient := AeCairoRadialGradientPattern
 		            innerCenter: 50 @ 90
 		            innerRadius: 50
@@ -614,9 +614,9 @@ AlexandrieCairoExperiment >> mask2 [
 
 	context := surface newContext.
 
-"let the background transparent, et let the mask appear in purple alpha"
+	"let the background transparent, et let the mask appear in purple alpha"
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		mask: pattern;
 		fill.
 
