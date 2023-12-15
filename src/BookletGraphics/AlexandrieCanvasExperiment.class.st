@@ -890,7 +890,7 @@ positions at which those glyphs should be drawn. "
 				 language: AeHbLanguage en;
 				 clusterLevel: AeHbBufferClusterLevel recommended;
 				 flags: AeHbBufferFlags beginningOrEndingOfText;
-				 addUtf8String: string;
+				 addString: string;
 				 cairoGlyphArrayForFace: freetypeFace size: fontHeight)
 		font: cairoScaledFont.
 
@@ -899,47 +899,49 @@ positions at which those glyphs should be drawn. "
 
 { #category : #'as yet unclassified' }
 AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz2 [
+
 	<bookExample>
+	| aFTLibrary aFace aeCanvas cairoScaledFont fontHeight string glyphs form |
+	aFTLibrary := AeFTLibrary newInitialized.
+	aFace := AeCascadiaCodeDownloadedFont new
+		         downloadDirectory:
+			         AeFilesystemResources downloadedFontsDirectory;
+		         ensureDownloaded;
+		         firstFaceUsing: aFTLibrary.
 
-	| fontLibrary fontFace fontHeight canvas scaledFont text buffer |
-	fontLibrary := AeFTLibrary newInitialized.
-	fontFace := AeCascadiaCodeDownloadedFont new
-		            downloadDirectory:
-			            AeFilesystemResources downloadedFontsDirectory;
-		            ensureDownloaded;
-		            firstFaceUsing: fontLibrary.
 	fontHeight := 22.
-	text := 'a := A->B->>C <= c|=>d~~>e.'.
+	string := 'a := A->B->>C <= c|=>d~~>e.'.
 
-	canvas := AeCanvas extent: 1000 @ (fontHeight * 4).
-	canvas clear: Color white.
+	aeCanvas := AeCanvas extent: 1000 @ (fontHeight * 4).
+	aeCanvas clear: Color white.
 
-	scaledFont := canvas scaledFontForFace: fontFace size: fontHeight.
+	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
 
 	"Margin"
-	canvas pathTranslate: fontHeight / 2 @ 0.
+	aeCanvas pathTranslate: fontHeight / 2 @ 0.
 
 	"Draw text withOUT Harfbuzz:"
-	canvas pathTranslate: 0 @ (fontHeight * 1.1).
-	canvas setSourceColor: Color red muchDarker.
-	canvas
-		drawText: (scaledFont glyphArrayForString: text)
-		font: scaledFont.
+	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
+	aeCanvas setSourceColor: Color red muchDarker.
+	aeCanvas
+		drawText: (cairoScaledFont glyphArrayForString: string)
+		font: cairoScaledFont.
 
 	"Draw text with Harfbuzz:"
-	buffer := AeHbBuffer new
+	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
+	aeCanvas setSourceColor: Color green muchDarker.
+
+	glyphs := AeHbBuffer new
 		          direction: AeHbDirection leftToRight;
 		          script: AeHbScript latin;
 		          language: AeHbLanguage en;
 		          clusterLevel: AeHbBufferClusterLevel recommended;
 		          flags: AeHbBufferFlags beginningOrEndingOfText;
-		          addUtf8String: text.
+		          addString: string;
+		          cairoGlyphArrayForFace: aFace size: fontHeight.
 
-	canvas pathTranslate: 0 @ (fontHeight * 1.1).
-	canvas setSourceColor: Color green muchDarker.
-	canvas
-		drawText: (buffer cairoGlyphArrayForFace: fontFace size: fontHeight)
-		font: scaledFont.
+	aeCanvas drawText: glyphs font: cairoScaledFont.
 
-	^ canvas asForm
+	form := aeCanvas asForm.
+	^ form
 ]
