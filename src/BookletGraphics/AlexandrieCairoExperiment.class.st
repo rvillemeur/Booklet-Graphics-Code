@@ -1105,8 +1105,8 @@ the glyph IDs that FreeType should rasterize from the active font as well as the
 positions at which those glyphs should be drawn. "
 
 	<bookExample>
-	| surface context cairoScaledFont fontHeight freetypeFace fontOptions fontFace fontMatrix string buffer |
-	string := 'a := A->B->>C <= c|=>d~~>e.'.
+	| surface context scaledFont fontHeight freetypeFace fontOptions text buffer fontLibrary glyphs |
+	text := 'a := A->B->>C <= c|=>d~~>e.'.
 	fontHeight := 22.
 
 	surface := AeCairoImageSurface
@@ -1118,31 +1118,33 @@ positions at which those glyphs should be drawn. "
 		sourceColor: Color white;
 		paint.
 
+	fontLibrary := AeFTLibrary newInitialized.
 	freetypeFace := AeCascadiaCodeDownloadedFont new
 		                downloadDirectory:
 			                AeFilesystemResources downloadedFontsDirectory;
 		                ensureDownloaded;
 		                firstFaceUsing: AeFTLibrary newInitialized.
 
+	"may not be necessary"
 	context
 		tolerance: 0.2;
 		antialias: AeCairoAntialias fast.
 
-
-	fontFace := AeCairoFreetypeFontFace newForFace: freetypeFace.
 
 	fontOptions := AeCairoFontOptions new
 		               antialias: AeCairoAntialias fast;
 		               hintMetrics: AeCairoHintMetrics on;
 		               hintStyle: AeCairoHintStyle slight;
 		               subpixelOrder: AeCairoSubpixelOrder default.
-	fontMatrix := AeCairoMatrix newScalingByX: fontHeight y: fontHeight.
 
 
-	cairoScaledFont := fontFace
-		                   newScaledFontWithFontMatrix: fontMatrix
-		                   userToDeviceMatrix: AeCairoMatrix newIdentity
-		                   options: fontOptions.
+	scaledFont := AeCairoScaledFont
+		              fontFace:
+		              (AeCairoFreetypeFontFace newForFace: freetypeFace)
+		              fontMatrix:
+		              (AeCairoMatrix newScalingByX: fontHeight y: fontHeight)
+		              userToDeviceMatrix: AeCairoMatrix newIdentity
+		              options: fontOptions.
 
 	"Margin"
 	context translateBy: fontHeight / 2 @ 0.
@@ -1151,8 +1153,8 @@ positions at which those glyphs should be drawn. "
 	context translateBy: 0 @ (fontHeight * 1.1).
 	context sourceColor: Color red muchDarker.
 	context
-		scaledFont: cairoScaledFont;
-		showGlyphs: (cairoScaledFont glyphArrayForString: string).
+		scaledFont: scaledFont;
+		showGlyphs: (scaledFont glyphArrayForString: text).
 	"context fill."
 
 	"Draw text with Harfbuzz:"
@@ -1162,16 +1164,16 @@ positions at which those glyphs should be drawn. "
 		          language: AeHbLanguage en;
 		          clusterLevel: AeHbBufferClusterLevel recommended;
 		          flags: AeHbBufferFlags beginningOrEndingOfText;
-		          addUtf8String: string.
+		          addString: text.
 
+	glyphs := buffer
+		          cairoGlyphArrayForFace: freetypeFace
+		          size: fontHeight.
 	context translateBy: 0 @ (fontHeight * 1.1).
-	context sourceColorRGB: Color green muchDarker.
-	buffer cairoGlyphArrayForFace: freetypeFace size: fontHeight.
-	"context
-		scaledFont: cairoScaledFont;
-		showGlyphs: (buffer  cairoGlyphArrayForFace: freetypeFace size: fontHeight)."
-
-	"context fill."
+	context sourceColor: Color green muchDarker.
+	context
+		scaledFont: scaledFont;
+		showGlyphs: glyphs.
 
 	^ surface asForm
 ]
