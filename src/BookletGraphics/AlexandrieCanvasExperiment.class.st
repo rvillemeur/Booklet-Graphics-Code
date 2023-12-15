@@ -573,8 +573,11 @@ AlexandrieCanvasExperiment >> fillPaint2 [
 			setSourceRadialPatternStops: {
 					(0 -> Color white).
 					(1 -> Color black) }
-			center: 50 @ 50
-			radius: 50 ].
+			innerCenter: 50 @ 50
+		            innerRadius: 50
+		            outerCenter: 80 @ 80
+		            outerRadius: 0
+		             ].
 	canvas pathTransform: (transform beIdentity; translateByX: 400 y:-135; scaleBy: 4@4).
 	canvas setBorderOff.
 	canvas drawFigure.
@@ -629,10 +632,12 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 	canvas setBackgroundWith: [
 		canvas
 			setSourceRadialPatternStops: {
-					(0 -> Color white).
-					(1 -> Color black) }
-			center: 50 @ 50
-			radius: 50 ].
+					(0 -> Color black).
+					(1 -> Color white) }
+			innerCenter: 50 @ 50
+			innerRadius: 50
+			outerCenter: 80 @ 80
+			outerRadius: 0 ].
 	canvas
 		pathTranslate: 400 @ -135;
 		pathScale: 4 @ 4.

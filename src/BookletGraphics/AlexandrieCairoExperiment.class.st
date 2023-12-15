@@ -190,7 +190,7 @@ AlexandrieCairoExperiment >> fillPaint2 [
 		closePath;
 		dash: (AeFFIDoubleArray newFrom: #( 1 )) count: 1 offset: 0;
 		lineWidth: 2;
-		sourceColorRGB: Color blue;
+		sourceColor: Color blue;
 		stroke.
 
 	"black circle"
@@ -200,7 +200,7 @@ AlexandrieCairoExperiment >> fillPaint2 [
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
-		sourceColorRGB: Color black;
+		sourceColor: Color black;
 		stroke.
 
 	"Thick magenta line"
@@ -208,7 +208,7 @@ AlexandrieCairoExperiment >> fillPaint2 [
 		lineWidth: 15;
 		moveTo: 300 @ 350;
 		relativeLineTo: 100 @ 0;
-		sourceColorRGB: Color magenta;
+		sourceColor: Color magenta;
 		stroke.
 
 	"some text in white blending in the background"
@@ -221,7 +221,7 @@ AlexandrieCairoExperiment >> fillPaint2 [
 		              userToDeviceMatrix: AeCairoMatrix newIdentity
 		              options: AeCairoFontOptions new.
 	context
-		sourceColorRGBA: (Color white alpha: 0.5);
+		sourceColor: (Color white alpha: 0.5);
 		translateByX: 500 y: 100.
 	context
 		scaledFont: scaledFont;
@@ -839,17 +839,16 @@ AlexandrieCairoExperiment >> maskAndClip5 [
 
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
-				mask: pattern;
+		sourceColor: (Color purple alpha: 0.5);
+		mask: pattern;
 		arcCenterX: 180
 		centerY: 60
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
 		paint;
-		sourceColorRGBA: (Color white alpha: 0.7);
+		sourceColor: (Color white alpha: 0.7);
 		clip;
-
 		paint.
 
 	^ surface asForm
@@ -870,7 +869,7 @@ AlexandrieCairoExperiment >> maskAndClip6 [
 
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		mask: pattern;
 		arcCenterX: 180
 		centerY: 60
@@ -878,7 +877,7 @@ AlexandrieCairoExperiment >> maskAndClip6 [
 		startAngle: 0
 		endAngle: Float twoPi;
 		fill;
-		sourceColorRGBA: (Color white alpha: 0.9);
+		sourceColor: (Color white alpha: 0.9);
 		clip;
 		fill.
 
@@ -898,7 +897,7 @@ AlexandrieCairoExperiment >> meshPattern [
 
 	"https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-mesh"
 	
-	meshPattern := AeCairoMeshPattern newEmpty.
+	meshPattern := AeCairoMeshPattern new.
 	meshPattern beginPatch.
 	
 	meshPattern
@@ -939,7 +938,7 @@ AlexandrieCairoExperiment >> radialGradientPattern1 [
 
 	"paint background"
 	mainContext
-		sourceColorRGB: Color blue muchDarker;
+		sourceColor: Color blue muchDarker;
 		paint.
 
 	"draw sphere"
@@ -1005,10 +1004,10 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color lightYellow ;
+		sourceColor: Color lightYellow;
 		paint.
 
-"fill first and stroke second. The color of stroke appear on the top of fill"
+	"fill first and stroke second. The color of stroke appear on the top of fill"
 	context
 		moveTo: 25 @ 25;
 		lineTo: 50 @ 37.75;
@@ -1019,13 +1018,13 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 		endAngle: 135 degreesToRadians;
 		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
 		closePath;
-		sourceColorRGBA: (Color blue alpha: 0.7);
+		sourceColor: (Color blue alpha: 0.7);
 		fillPreserve.
 
 
 	context
 		lineWidth: 10;
-		sourceColorRGBA: (Color red alpha: 0.5);
+		sourceColor: (Color red alpha: 0.5);
 		stroke.
 
 	^ surface asForm
@@ -1045,7 +1044,7 @@ AlexandrieCairoExperiment >> textWithHarfBuzz [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color white;
+		sourceColor: Color white;
 		paint.
 	"context
 		tolerance: 0.2;
@@ -1116,7 +1115,7 @@ positions at which those glyphs should be drawn. "
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color white;
+		sourceColor: Color white;
 		paint.
 
 	freetypeFace := AeCascadiaCodeDownloadedFont new
@@ -1150,7 +1149,7 @@ positions at which those glyphs should be drawn. "
 
 	"Draw text withOUT Harfbuzz:"
 	context translateBy: 0 @ (fontHeight * 1.1).
-	context sourceColorRGB: Color red muchDarker.
+	context sourceColor: Color red muchDarker.
 	context
 		scaledFont: cairoScaledFont;
 		showGlyphs: (cairoScaledFont glyphArrayForString: string).
@@ -1163,11 +1162,11 @@ positions at which those glyphs should be drawn. "
 		          language: AeHbLanguage en;
 		          clusterLevel: AeHbBufferClusterLevel recommended;
 		          flags: AeHbBufferFlags beginningOrEndingOfText;
-				addUtf8String: string.
+		          addUtf8String: string.
 
 	context translateBy: 0 @ (fontHeight * 1.1).
 	context sourceColorRGB: Color green muchDarker.
-buffer  cairoGlyphArrayForFace: freetypeFace size: fontHeight.
+	buffer cairoGlyphArrayForFace: freetypeFace size: fontHeight.
 	"context
 		scaledFont: cairoScaledFont;
 		showGlyphs: (buffer  cairoGlyphArrayForFace: freetypeFace size: fontHeight)."
