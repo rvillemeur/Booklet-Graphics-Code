@@ -460,7 +460,7 @@ AlexandrieCairoExperiment >> linePath [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColor: Color yellow;
 		paint.
 
 	context
@@ -474,9 +474,9 @@ AlexandrieCairoExperiment >> linePath [
 		endAngle: 135 degreesToRadians;
 		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
 		closePath;
-		sourceColorRGB: Color red;
+		sourceColor: Color red;
 		stroke.
-	
+
 	^ surface asForm
 ]
 
@@ -722,7 +722,7 @@ AlexandrieCairoExperiment >> maskAndClip1 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		paint.
 	context
 		arcCenterX: 180
@@ -730,7 +730,7 @@ AlexandrieCairoExperiment >> maskAndClip1 [
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
-		sourceColorRGBA: (Color white alpha: 0.7);
+		sourceColor: (Color white alpha: 0.7);
 		clip.
 	context maskSurface: form x: 0 y: 0.
 	context fill.
@@ -969,10 +969,10 @@ AlexandrieCairoExperiment >> strokeAndFill [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color lightYellow ;
+		sourceColor: Color lightYellow;
 		paint.
 
-"stroke first and fill second. The color of fill appear on the top of stroke"
+	"stroke first and fill second. The color of fill appear on the top of stroke"
 	context
 		lineWidth: 10;
 		moveTo: 25 @ 25;
@@ -984,12 +984,14 @@ AlexandrieCairoExperiment >> strokeAndFill [
 		endAngle: 135 degreesToRadians;
 		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
 		closePath;
-		sourceColorRGBA: (Color red alpha: 0.7);
-		strokePreserve .
+		sourceColor: (Color red alpha: 0.7);
+		strokePreserve.
 
 
-	context sourceColorRGBA: (Color blue alpha: 0.5) ; fill.
-	
+	context
+		sourceColor: (Color blue alpha: 0.5);
+		fill.
+
 	^ surface asForm
 ]
 
@@ -1174,6 +1176,72 @@ positions at which those glyphs should be drawn. "
 	context
 		scaledFont: scaledFont;
 		showGlyphs: glyphs.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> textWithoutHarfbuzz [
+
+	<bookExample>
+	| surface context scaledFont fontHeight freetypeFace fontOptions text fontLibrary  |
+	text := 'a := A->B->>C <= c|=>d~~>e.'.
+	fontHeight := 22.
+
+	surface := AeCairoImageSurface
+		           extent: 1000 @ (fontHeight * 4)
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color white;
+		paint.
+
+	fontLibrary := AeFTLibrary newInitialized.
+	freetypeFace := AeCascadiaCodeDownloadedFont new
+		                downloadDirectory:
+			                AeFilesystemResources downloadedFontsDirectory;
+		                ensureDownloaded;
+		                firstFaceUsing: AeFTLibrary newInitialized.
+
+
+
+	fontOptions := AeCairoFontOptions new
+		               antialias: AeCairoAntialias fast;
+		               hintMetrics: AeCairoHintMetrics on;
+		               hintStyle: AeCairoHintStyle slight;
+		               subpixelOrder: AeCairoSubpixelOrder default.
+
+
+	scaledFont := AeCairoScaledFont
+		              fontFace:
+		              (AeCairoFreetypeFontFace newForFace: freetypeFace)
+		              fontMatrix:
+		              (AeCairoMatrix newScalingByX: fontHeight y: fontHeight)
+		              userToDeviceMatrix: AeCairoMatrix newIdentity
+		              options: fontOptions.
+	context scaledFont: scaledFont.
+	"Margin"
+	context translateBy: fontHeight / 2 @ 0.
+
+	"full stroke and fill paint"
+	context translateBy: 0 @ (fontHeight * 1.1);
+	 sourceColor: Color red muchDarker;
+	 showGlyphs: (scaledFont glyphArrayForString: text).
+
+	"different paint between fill and stroke"
+	context
+		translateBy: 0 @ (fontHeight * 1.5);
+		appendGlyphsPath: (scaledFont glyphArrayForString: text);
+		sourceColor: (Color blue   alpha: 0.7);
+		strokePreserve;
+		source: (AeCairoLinearGradientPattern
+		            from: 0 @ 0
+		            to: 100 @ 100
+		            addStopsFrom: {
+				            (0 -> Color white).
+				            (1 -> Color darkGray ) });
+		fill.
 
 	^ surface asForm
 ]
