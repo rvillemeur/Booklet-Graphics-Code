@@ -57,8 +57,8 @@ AlexandrieCairoExperiment >> clip2 [
 		           format: AeCairoSurfaceFormat argb32.
 	context := surface newContext.
 
-context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+	context
+		sourceColor: (Color purple alpha: 0.5);
 		paint.
 	context
 		arcCenterX: 180
@@ -491,7 +491,7 @@ AlexandrieCairoExperiment >> linejoin [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColor: Color yellow;
 		paint.
 
 
@@ -500,9 +500,9 @@ AlexandrieCairoExperiment >> linejoin [
 		moveTo: 10 @ 60;
 		lineTo: 60 @ 10;
 		lineTo: 110 @ 60;
-		sourceColorRGB: Color red;
-		useLineJoinRound  ;
-		moveTo: 115@30;
+		sourceColor: Color red;
+		useLineJoinRound;
+		moveTo: 115 @ 30;
 		showText: 'round';
 		stroke.
 
@@ -511,20 +511,20 @@ AlexandrieCairoExperiment >> linejoin [
 		moveTo: 10 @ 110;
 		lineTo: 60 @ 60;
 		lineTo: 110 @ 110;
-		sourceColorRGB: Color red;
-		useLineJoinMiter ;
-		moveTo: 115@80;
+		sourceColor: Color red;
+		useLineJoinMiter;
+		moveTo: 115 @ 80;
 		showText: 'mitter';
 		stroke.
-		
+
 	context
 		lineWidth: 15;
 		moveTo: 10 @ 160;
 		lineTo: 60 @ 110;
 		lineTo: 110 @ 160;
-		sourceColorRGB: Color red;
-		useLineJoinBevel  ;
-		moveTo: 115@130;
+		sourceColor: Color red;
+		useLineJoinBevel;
+		moveTo: 115 @ 130;
 		showText: 'bevel';
 		stroke.
 
@@ -543,7 +543,7 @@ AlexandrieCairoExperiment >> linejoin2 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: Color yellow;
+		sourceColor: Color yellow;
 		paint.
 
 
@@ -552,11 +552,11 @@ AlexandrieCairoExperiment >> linejoin2 [
 		moveTo: 10 @ 110;
 		lineTo: 30 @ 30;
 		lineTo: 50 @ 110;
-		sourceColorRGB: Color red;
+		sourceColor: Color red;
 		useLineJoinMiter;
-		moveTo: 60@80;
+		moveTo: 60 @ 80;
 		showText: 'mitter';
-		moveTo: 60@100;
+		moveTo: 60 @ 100;
 		showText: 'no limit';
 		stroke.
 
@@ -567,15 +567,15 @@ AlexandrieCairoExperiment >> linejoin2 [
 		moveTo: 10 @ 210;
 		lineTo: 30 @ 130;
 		lineTo: 50 @ 210;
-		sourceColorRGB: Color red;
+		sourceColor: Color red;
 		useLineJoinMiter;
 		miterLimit: 3;
-		moveTo: 60@180;
+		moveTo: 60 @ 180;
 		showText: 'mitter';
-		moveTo: 60@200;
+		moveTo: 60 @ 200;
 		showText: 'with limit';
 		stroke.
-		
+
 
 	^ surface asForm
 ]
@@ -1032,6 +1032,88 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 	^ surface asForm
 ]
 
+{ #category : #examples }
+AlexandrieCairoExperiment >> texWithHarfbuzzWithFontManager [
+
+	<bookExample>
+	| surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs |
+	text := 'a := A->B->>C <= c|=>d~~>e.'.
+	fontHeight := 22.
+
+	surface := AeCairoImageSurface
+		           extent: 1000 @ (fontHeight * 4)
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color white;
+		paint.
+
+	"Margin"
+	context translateBy: fontHeight / 2 @ 0.
+
+	"font definition"
+	AeFontManager resetGlobalInstance.
+	aManager := AeFontManager globalInstance.
+	aManager
+		scanDirectory: AeFilesystemResources fontsDirectory;
+		scanEmbeddedFonts.
+
+	aFace := aManager
+		         detectFamilyName: 'Cascadia Code'
+		         slant: AeFontSlant normal
+		         weight: AeFontWeight normal
+		         stretch: AeFontStretch normal
+		         ifNone: [ self inform: 'missing font' ].
+
+	fontOptions := AeCairoFontOptions new
+		               antialias: AeCairoAntialias fast;
+		               hintMetrics: AeCairoHintMetrics on;
+		               hintStyle: AeCairoHintStyle slight;
+		               subpixelOrder: AeCairoSubpixelOrder default.
+
+	scaledFont := AeCairoScaledFont
+		              fontFace: (AeCairoFreetypeFontFace newForFace: aFace)
+		              fontMatrix:
+		              (AeCairoMatrix newScalingByX: fontHeight y: fontHeight)
+		              userToDeviceMatrix: AeCairoMatrix newIdentity
+		              options: fontOptions.
+	context scaledFont: scaledFont.
+
+
+	"Draw text with Harfbuzz:"
+	buffer := AeHbBuffer new
+		          direction: AeHbDirection leftToRight;
+		          script: AeHbScript latin;
+		          language: AeHbLanguage en;
+		          clusterLevel: AeHbBufferClusterLevel recommended;
+		          flags: AeHbBufferFlags beginningOrEndingOfText;
+		          addString: text.
+
+	glyphs := buffer cairoGlyphArrayForFace: aFace size: fontHeight.
+	"full stroke and fill paint"
+	context
+		translateBy: 0 @ (fontHeight * 1.1);
+		sourceColor: Color red muchDarker;
+		showGlyphs: glyphs.
+	
+	"different paint between fill and stroke"
+	context
+		translateBy: 0 @ (fontHeight * 1.5);
+		appendGlyphsPath: glyphs;
+		sourceColor: (Color blue alpha: 0.7);
+		strokePreserve;
+		source: (AeCairoLinearGradientPattern
+				 from: 0 @ 0
+				 to: 100 @ 100
+				 addStopsFrom: {
+						 (0 -> Color white).
+						 (1 -> Color darkGray) });
+		fill.
+
+	^ surface asForm
+]
+
 { #category : #'as yet unclassified' }
 AlexandrieCairoExperiment >> textWithHarfBuzz [
 
@@ -1082,10 +1164,10 @@ AlexandrieCairoExperiment >> textWithHarfBuzz [
 		          language: AeHbLanguage en;
 		          clusterLevel: AeHbBufferClusterLevel recommended;
 		          flags: AeHbBufferFlags beginningOrEndingOfText;
-		          addUtf8String: text.
+		          addString: text.
 
 	context translateBy: 0 @ (fontHeight * 1.1).
-	context sourceColorRGB: Color green muchDarker.
+	context sourceColor: Color green muchDarker.
 	context
 		scaledFont: scaledFont;
 		showGlyphs:
@@ -1241,6 +1323,76 @@ AlexandrieCairoExperiment >> textWithoutHarfbuzz [
 		            addStopsFrom: {
 				            (0 -> Color white).
 				            (1 -> Color darkGray ) });
+		fill.
+
+	^ surface asForm
+]
+
+{ #category : #examples }
+AlexandrieCairoExperiment >> textWithoutHarfbuzzWithFontManager [
+
+	<bookExample>
+	| surface context scaledFont fontHeight fontOptions text aManager aFace |
+	text := 'a := A->B->>C <= c|=>d~~>e.'.
+	fontHeight := 22.
+
+	surface := AeCairoImageSurface
+		           extent: 1000 @ (fontHeight * 4)
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color white; paint.
+
+	"Margin"
+	context translateBy: fontHeight / 2 @ 0.
+
+	"font definition"
+	AeFontManager resetGlobalInstance.
+	aManager := AeFontManager globalInstance.
+	aManager
+		scanDirectory: AeFilesystemResources fontsDirectory;
+		scanEmbeddedFonts.
+
+	aFace := aManager
+		         detectFamilyName: 'Cascadia Code'
+		         slant: AeFontSlant normal
+		         weight: AeFontWeight normal
+		         stretch: AeFontStretch normal
+		         ifNone: [ self inform: 'missing font' ].
+
+	fontOptions := AeCairoFontOptions new
+		               antialias: AeCairoAntialias fast;
+		               hintMetrics: AeCairoHintMetrics on;
+		               hintStyle: AeCairoHintStyle slight;
+		               subpixelOrder: AeCairoSubpixelOrder default.
+
+	scaledFont := AeCairoScaledFont
+		              fontFace: (AeCairoFreetypeFontFace newForFace: aFace)
+		              fontMatrix:
+		              (AeCairoMatrix newScalingByX: fontHeight y: fontHeight)
+		              userToDeviceMatrix: AeCairoMatrix newIdentity
+		              options: fontOptions.
+	context scaledFont: scaledFont.
+
+	"full stroke and fill paint"
+	context
+		translateBy: 0 @ (fontHeight * 1.1);
+		sourceColor: Color red muchDarker;
+		showGlyphs: (scaledFont glyphArrayForString: text).
+
+	"different paint between fill and stroke"
+	context
+		translateBy: 0 @ (fontHeight * 1.5);
+		appendGlyphsPath: (scaledFont glyphArrayForString: text);
+		sourceColor: (Color blue alpha: 0.7);
+		strokePreserve;
+		source: (AeCairoLinearGradientPattern
+				 from: 0 @ 0
+				 to: 100 @ 100
+				 addStopsFrom: {
+						 (0 -> Color white).
+						 (1 -> Color darkGray) });
 		fill.
 
 	^ surface asForm
