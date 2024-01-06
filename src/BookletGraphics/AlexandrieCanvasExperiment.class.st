@@ -249,8 +249,10 @@ AlexandrieCanvasExperiment >> backGround4 [
 				setSourceRadialPatternStops:  {
 						(0 -> Color white).
 						(1 -> Color black) }
-				center: 20 @ 20
-				radius: 50 ]
+				innerCenter: 20 @ 20
+				innerRadius: 0
+				outerCenter: 80 @ 80
+				outerRadius:  50 ]
 		alpha: 0.5.
 
 
@@ -841,13 +843,21 @@ AlexandrieCanvasExperiment >> pathPaint1 [
 AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz [
 
 	<bookExample>
-	| aFTLibrary freetypeFace aeCanvas cairoScaledFont fontHeight string |
-	aFTLibrary := AeFTLibrary newInitialized.
-	freetypeFace := AeCascadiaCodeDownloadedFont new
-		                downloadDirectory:
-			                AeFilesystemResources downloadedFontsDirectory;
-		                ensureDownloaded;
-		                firstFaceUsing: aFTLibrary.
+	| aManager aFace aeCanvas cairoScaledFont fontHeight string |
+"font definition"
+	AeFontManager resetGlobalInstance.
+	aManager := AeFontManager globalInstance.
+	aManager
+		scanDirectory: AeFilesystemResources fontsDirectory;
+		scanEmbeddedFonts.
+
+	aFace := aManager
+		         detectFamilyName: 'Cascadia Code'
+		         slant: AeFontSlant normal
+		         weight: AeFontWeight normal
+		         stretch: AeFontStretch normal
+		         ifNone: [ self inform: 'missing font' ].
+
 
 
 	"~~>, ->, <=, |=>  and ->> have special representation using cascadia font.
@@ -867,7 +877,7 @@ positions at which those glyphs should be drawn. "
 	aeCanvas clear: Color white.
 
 	cairoScaledFont := aeCanvas
-		                   scaledFontForFace: freetypeFace
+		                   scaledFontForFace: aFace
 		                   size: fontHeight.
 
 	"Margin"
@@ -891,57 +901,8 @@ positions at which those glyphs should be drawn. "
 				 clusterLevel: AeHbBufferClusterLevel recommended;
 				 flags: AeHbBufferFlags beginningOrEndingOfText;
 				 addString: string;
-				 cairoGlyphArrayForFace: freetypeFace size: fontHeight)
+				 cairoGlyphArrayForFace: aFace size: fontHeight)
 		font: cairoScaledFont.
 
 	^ aeCanvas asForm
-]
-
-{ #category : #'as yet unclassified' }
-AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz2 [
-
-	<bookExample>
-	| aFTLibrary aFace aeCanvas cairoScaledFont fontHeight string glyphs form |
-	aFTLibrary := AeFTLibrary newInitialized.
-	aFace := AeCascadiaCodeDownloadedFont new
-		         downloadDirectory:
-			         AeFilesystemResources downloadedFontsDirectory;
-		         ensureDownloaded;
-		         firstFaceUsing: aFTLibrary.
-
-	fontHeight := 22.
-	string := 'a := A->B->>C <= c|=>d~~>e.'.
-
-	aeCanvas := AeCanvas extent: 1000 @ (fontHeight * 4).
-	aeCanvas clear: Color white.
-
-	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
-
-	"Margin"
-	aeCanvas pathTranslate: fontHeight / 2 @ 0.
-
-	"Draw text withOUT Harfbuzz:"
-	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
-	aeCanvas setSourceColor: Color red muchDarker.
-	aeCanvas
-		drawText: (cairoScaledFont glyphArrayForString: string)
-		font: cairoScaledFont.
-
-	"Draw text with Harfbuzz:"
-	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
-	aeCanvas setSourceColor: Color green muchDarker.
-
-	glyphs := AeHbBuffer new
-		          direction: AeHbDirection leftToRight;
-		          script: AeHbScript latin;
-		          language: AeHbLanguage en;
-		          clusterLevel: AeHbBufferClusterLevel recommended;
-		          flags: AeHbBufferFlags beginningOrEndingOfText;
-		          addString: string;
-		          cairoGlyphArrayForFace: aFace size: fontHeight.
-
-	aeCanvas drawText: glyphs font: cairoScaledFont.
-
-	form := aeCanvas asForm.
-	^ form
 ]
