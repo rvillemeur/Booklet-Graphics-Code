@@ -360,7 +360,7 @@ AlexandrieCanvasExperiment >> clip3 [
 AlexandrieCanvasExperiment >> example1 [
 
 	<bookExample>
-	| aFTLibrary aFace aeCanvas cairoScaledFont fontHeight paint |
+	| aManager aFace aeCanvas cairoScaledFont fontHeight paint |
 	aeCanvas := AeCanvas extent: 400 @ 400.
 	aeCanvas clear: Color white.
 
@@ -391,10 +391,20 @@ AlexandrieCanvasExperiment >> example1 [
 		cairoContext rectangleTo: paint extent ].
 	aeCanvas setBackgroundWithForm: paint alpha: 0.2.
 	aeCanvas drawFigure.
-	"--------------------------------"
-	aFTLibrary := AeFTLibrary newInitialized.
-	fontHeight := 30.
-	aFace := AeSourceSansPro_Regular firstFaceUsing: aFTLibrary.
+
+	aManager := AeFontManager globalInstance.
+	aManager
+		scanDirectory: AeFilesystemResources fontsDirectory;
+		scanEmbeddedFonts.
+
+	fontHeight := 25.
+	aFace := aManager
+		         detectFamilyName: 'Inria Serif'
+		         slant: AeFontSlant normal
+		         weight: AeFontWeight normal
+		         stretch: AeFontStretch normal
+		         ifNone: [ self inform: 'missing font' ].
+
 	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
 
 	aeCanvas pathTransform: (AeCairoMatrix
@@ -405,7 +415,6 @@ AlexandrieCanvasExperiment >> example1 [
 			 shx: -25 degreesToRadians
 			 shy: 25 degreesToRadians).
 
-	"Draw text withOUT Harfbuzz:"
 	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
 	aeCanvas
 		setSourceLinearPatternStops: {
