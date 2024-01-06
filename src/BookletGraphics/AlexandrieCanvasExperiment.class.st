@@ -109,7 +109,7 @@ AlexandrieCanvasExperiment >> backGround3 [
 		setBackgroundWith: [
 			canvas
 				setSourceLinearPatternStops: {
-						(0 -> Color white).
+						(0 -> Color red).
 						(1 -> Color black) }
 				start: 0 @ 0
 				end: 100 @ 100 ]
@@ -144,13 +144,13 @@ AlexandrieCanvasExperiment >> backGround4 [
 		setBackgroundWith: [
 			canvas
 				setSourceRadialPatternStops:  {
-						(0 -> Color white).
+						(0 -> Color red).
 						(1 -> Color black) }
-				innerCenter: 20 @ 20
-				innerRadius: 0
+				innerCenter: 50 @ 50
+				innerRadius: 50
 				outerCenter: 80 @ 80
-				outerRadius:  50 ]
-		alpha: 0.5.
+				outerRadius:  0 ]
+		alpha: 0.95.
 
 
 	canvas drawFigure.
