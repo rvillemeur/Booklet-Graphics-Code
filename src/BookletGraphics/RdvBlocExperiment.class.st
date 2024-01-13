@@ -120,10 +120,12 @@ RdvBlocExperiment >> example2 [
 RdvBlocExperiment >> exampleWithEvent [
 
 	<bookExample>
-	| element |
-	element := BlDevElement new
+	| element space |
+	space := BlSpace new.
+
+	element := BlElement new
 		           size: 200 @ 200;
-		           geometry: (BlPolygon vertices: {
+		           geometry: (BlPolygonGeometry vertices: {
 						            (100 @ 50).
 						            (115 @ 90).
 						            (150 @ 90).
@@ -136,34 +138,52 @@ RdvBlocExperiment >> exampleWithEvent [
 						            (85 @ 90) });
 		           background: (Color pink alpha: 0.2);
 		           border: (BlBorder paint: Color white width: 1);
-		           "layout: BlLinearLayout horizontal alignCenter;""constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
 		           outskirts: BlOutskirts inside.
 
-	element when: BlMouseEnterEvent do: [ :anEvent |
-		anEvent consumed: true.
-		element background: (Color red alpha: 0.2) ].
+	element addEventHandler: (BlEventHandler
+			 on: BlMouseEnterEvent
+			 do: [ :anEvent |
+				 anEvent consumed: true.
+				 element background: (Color red alpha: 0.2) ]).
 
-	element when: BlMouseLeaveEvent do: [ :anEvent |
-		anEvent consumed: true.
-		element background: (Color blue alpha: 0.2) ].
+	element addEventHandler: (BlEventHandler
+			 on: BlMouseLeaveEvent
+			 do: [ :anEvent |
+				 anEvent consumed: true.
+				 element background: (Color blue alpha: 0.2) ]).
 
-	^ element
+	space root addChild: element.
+	space show.
+
+	^ space
 ]
 
-{ #category : #accessing }
-RdvBlocExperiment >> helloWorldScene [
-	<gtExample>
-	| aContainer |
-	
-	aContainer := BrVerticalPane new
-		matchParent;
-		alignCenter.
-		
-	aContainer addChild: (BrLabel new
-		aptitude: (BrGlamorousLabelAptitude new fontSize: 30);
-		text: 'Hello world!').
-		
-	^ aContainer
+{ #category : #'as yet unclassified' }
+RdvBlocExperiment >> exampleWithEvent2 [
+	<bookExample>
+	| space elt offset |
+	space := BlSpace new.
+
+	elt := BlElement new
+		       background: Color purple;
+		       size: 100 @ 100.
+
+	elt
+		addEventHandlerOn: BlBaseDragEvent
+		do: [ elt background: Color random ].
+
+	elt addEventHandlerOn: BlDragStartEvent do: [ :event |
+		event consumed: true.
+		offset := event position - elt position ].
+
+	elt
+		addEventHandlerOn: BlDragEvent
+		do: [ :event | elt position: event position - offset ].
+
+
+	space root addChild: elt.
+	space show.
+	^space.
 ]
 
 { #category : #accessing }
@@ -190,17 +210,4 @@ e := BlElement new
     yourself.
     
 ^e
-]
-
-{ #category : #accessing }
-RdvBlocExperiment >> openSpaceInNewWindowExample [
-<bookExample>
-	| aSpace |
-	
-	aSpace := BlSpace new
-		addChild: self helloWorldScene;
-		extent: 800@600;
-		title: 'Hello World'.
-
-	^ aSpace show
 ]
