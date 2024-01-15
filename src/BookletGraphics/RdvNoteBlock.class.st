@@ -291,32 +291,6 @@ toto styles
 ^toto
 ]
 
-{ #category : #accessing }
-RdvNoteBlock >> iconScaleToFitElement [
-<gtExample>
-|icon scaledIcon e|
-icon := BrGlamorousVectorIcons transcript asElement.
-scaledIcon := icon asScalableElement
-    scaleStrategy: (BlScalableFixedStrategy zoom: 2);
-    constraintsDo: [ :c |
-        c horizontal fitContent.
-        c vertical fitContent ].
-    
-e := BlElement new
-    background: Color white;
-    border: (BlBorder paint: Color gray width: 1);
-    geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
-    padding: (BlInsets top: 5 left: 10 bottom: 5 right: 10);
-    layout: BlFrameLayout new;
-    constraintsDo: [ :c |
-        c vertical fitContent.
-        c horizontal fitContent ];
-    addChild: scaledIcon;
-    yourself.
-    
-^e
-]
-
 { #category : #'as yet unclassified' }
 RdvNoteBlock >> periodicEvent [
 

@@ -4,7 +4,7 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvBlocExperiment >> blocSpaceIntoMorphicExample [
 <bookExample>
 	| spacePresenter aSpace |
@@ -33,7 +33,7 @@ RdvBlocExperiment >> blocSpaceIntoMorphicExample [
 	^ spacePresenter
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> effectComposite [
 
 	<bookExample>
@@ -53,7 +53,7 @@ RdvBlocExperiment >> effectComposite [
 		
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> effectGaussianShadow [
 
 	<bookExample>
@@ -66,7 +66,7 @@ RdvBlocExperiment >> effectGaussianShadow [
 		
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> effectSimpleShadow [
 
 	<bookExample>
@@ -79,7 +79,7 @@ RdvBlocExperiment >> effectSimpleShadow [
 		
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> effectSimpleShadow2 [
 
 	<bookExample>
@@ -94,7 +94,7 @@ RdvBlocExperiment >> effectSimpleShadow2 [
 			  (BlSimpleShadowEffect color: Color orange offset: -10 @ -20)
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> example1 [
 
 	<bookExample>
@@ -107,7 +107,7 @@ RdvBlocExperiment >> example1 [
 		  outskirts: BlOutskirts centered
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> example2 [
 
 	<bookExample>
@@ -121,7 +121,7 @@ RdvBlocExperiment >> example2 [
 		  geometry: (BlRoundedRectangleGeometry cornerRadius: 8)
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvBlocExperiment >> exampleWithEvent [
 
 	<bookExample>
@@ -163,7 +163,7 @@ RdvBlocExperiment >> exampleWithEvent [
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvBlocExperiment >> exampleWithEvent2 [
 	<bookExample>
 	| space elt offset |
@@ -189,30 +189,4 @@ RdvBlocExperiment >> exampleWithEvent2 [
 	space root addChild: elt.
 	space show.
 	^space.
-]
-
-{ #category : #accessing }
-RdvBlocExperiment >> iconScaleToFitElementExample [
-<gtExample>
-|icon scaledIcon e|
-icon := BrGlamorousVectorIcons transcript asElement.
-scaledIcon := icon asScalableElement
-    scaleStrategy: (BlScalableFixedStrategy zoom: 2);
-    constraintsDo: [ :c |
-        c horizontal fitContent.
-        c vertical fitContent ].
-    
-e := BlElement new
-    background: Color white;
-    border: (BlBorder paint: Color gray width: 1);
-    geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
-    padding: (BlInsets top: 5 left: 10 bottom: 5 right: 10);
-    layout: BlFrameLayout new;
-    constraintsDo: [ :c |
-        c vertical fitContent.
-        c horizontal fitContent ];
-    addChild: scaledIcon;
-    yourself.
-    
-^e
 ]

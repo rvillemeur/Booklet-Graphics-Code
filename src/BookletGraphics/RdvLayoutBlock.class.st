@@ -4,7 +4,7 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> basicLayoutExample [
 
 	<bookExample>
@@ -42,7 +42,7 @@ RdvLayoutBlock >> basicLayoutExample [
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> flowLayoutExample [
 
 	<bookExample>
@@ -73,7 +73,39 @@ RdvLayoutBlock >> flowLayoutExample [
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
+RdvLayoutBlock >> frameLayoutExample [
+
+	<bookExample>
+	| space container child |
+	space := BlSpace new.
+"designed to block out an area on the screen to display a single child."
+
+	container := BlElement new
+		             background: (Color red alpha: 0.2);
+		             border: (BlBorder paint: Color red width: 1);
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+			             c horizontal matchParent.
+			             c vertical matchParent ].
+
+	child := BlElement new
+		         size: 30 @ 30;
+		         clipChildren: false;
+		         background: (Color blue alpha: 0.2);
+		         border: (BlBorder paint: Color blue width: 1);
+		         constraintsDo: [ :c |
+			         c frame horizontal alignCenter.
+			         c frame vertical alignBottom  ].
+
+	container addChild: child.
+
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : #example }
 RdvLayoutBlock >> gridLayoutExample [
 
 	<bookExample>
@@ -138,7 +170,7 @@ RdvLayoutBlock >> gridLayoutExample [
 	^ space
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> layout1 [
 	"This is a new method"
 
@@ -156,7 +188,7 @@ RdvLayoutBlock >> layout1 [
 					   background: (Color blue alpha: 0.2)) }
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> layout2 [
 	"This is a new method"
 
@@ -174,7 +206,7 @@ RdvLayoutBlock >> layout2 [
 					   background: (Color blue alpha: 0.2)) }
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> layout3 [
 	"This is a new method"
 
@@ -198,7 +230,7 @@ RdvLayoutBlock >> layout3 [
 						   c ignored vertical alignBottom ]) } "alignCenter"
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> layout4 [
 	"This is a new method"
 
@@ -223,7 +255,7 @@ RdvLayoutBlock >> layout4 [
 						   c ignored vertical alignBottom ]) } "alignCenter"
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> layout5 [
 	"This is a new method"
 
@@ -242,7 +274,7 @@ RdvLayoutBlock >> layout5 [
 					   constraintsDo: [ :c | c margin: (BlInsets all: 10) ]) }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> linearLayoutExample [
 
 	<bookExample>
@@ -276,7 +308,7 @@ RdvLayoutBlock >> linearLayoutExample [
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> multipleElement [
 
 	<bookExample>
@@ -384,7 +416,7 @@ RdvLayoutBlock >> multipleElement [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> multipleElement2 [
 
 	<bookExample>
@@ -496,7 +528,7 @@ RdvLayoutBlock >> multipleElement2 [
 	^ container 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> multipleElementAlignments [
 
 	<bookExample>
@@ -607,7 +639,7 @@ RdvLayoutBlock >> multipleElementAlignments [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> multipleElementFitParameter [
 
 	<bookExample>
@@ -715,7 +747,7 @@ RdvLayoutBlock >> multipleElementFitParameter [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> multipleElementFitParameter2 [
 
 	<bookExample>
@@ -824,7 +856,7 @@ RdvLayoutBlock >> multipleElementFitParameter2 [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> spacingAndPaddindExampleWithTriangleGeometry [
 
 	<bookExample>
@@ -865,7 +897,7 @@ RdvLayoutBlock >> spacingAndPaddindExampleWithTriangleGeometry [
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 RdvLayoutBlock >> spacingAndPaddingdExample [
 
 	<bookExample>
@@ -906,7 +938,7 @@ RdvLayoutBlock >> spacingAndPaddingdExample [
 	^ space
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> squareSurroundedByNumbers [
 
 	<bookExample>
@@ -936,7 +968,7 @@ RdvLayoutBlock >> squareSurroundedByNumbers [
 	"top row"
 ]
 
-{ #category : #accessing }
+{ #category : #example }
 RdvLayoutBlock >> zoomLayoutExample [
 
 	<bookExample>
