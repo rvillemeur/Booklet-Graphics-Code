@@ -935,3 +935,40 @@ RdvLayoutBlock >> squareSurroundedByNumbers [
 				  (BlTextElement new text: '13,25' asRopedText) }
 	"top row"
 ]
+
+{ #category : #accessing }
+RdvLayoutBlock >> zoomLayoutExample [
+
+	<bookExample>
+	| container elt space |
+	space := BlSpace new.
+
+	elt := BlElement new
+				size: 200@200;
+		       background: (Color blue alpha: 0.2);
+		       border: (BlBorder paint: Color blue width: 1);
+		constraintsDo: [ :c | c accountTransformation ].
+
+	container := BlElement new
+		             background: Color white;
+		             border: (BlBorder paint: Color gray width: 1);
+		             geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
+		             padding: (BlInsets
+				              top: 10
+				              left: 10
+				              bottom: 10
+				              right: 10);
+		             layout: (BlZoomableLayout new
+				              addLayout: BlFrameLayout new;
+				              defaultScale: 2;
+				              animationDuration: 1 second);
+		             constraintsDo: [ :c |
+			             c vertical fitContent.
+			             c horizontal fitContent ];
+		             addChild: elt;
+		             yourself.
+
+	space root addChild: container.
+	space show.
+	^ space
+]

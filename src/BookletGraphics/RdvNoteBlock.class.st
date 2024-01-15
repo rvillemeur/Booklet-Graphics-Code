@@ -62,27 +62,6 @@ Class {
 }
 
 { #category : #accessing }
-RdvNoteBlock >> animatedIcon [
-<gtExample>
-|icon e|
-icon := BrGlamorousVectorIcons transcript asElement.
-icon constraintsDo: [ :c | c accountTransformation ].
-
-e := BlElement new
-    background: Color white;
-    border: (BlBorder paint: Color gray width: 1);
-    geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
-    padding: (BlInsets top: 5 left: 10 bottom: 5 right: 10);
-    layout: (BlZoomableLayout new addLayout: BlFrameLayout new; defaultScale: 2; animationDuration: 1 second);
-    constraintsDo: [ :c |
-        c vertical fitContent.
-        c horizontal fitContent ];
-    addChild: icon;
-    yourself.
- ^e
-]
-
-{ #category : #accessing }
 RdvNoteBlock >> animtedBackground [
 <gtExample>
 |element animation|
@@ -187,20 +166,6 @@ RdvNoteBlock >> blAnnulusExample2 [
             constraintsDo: [ :c |
                 c horizontal matchParent.
                 c vertical matchParent ] ])
-]
-
-{ #category : #accessing }
-RdvNoteBlock >> createSpace [
-	"This is a new method"
-<gtExample>	
-	| aSpace |
-	
-	aSpace := BlSpace new
-		addChild: self helloWorldScene;
-		extent: 800@600;
-		title: 'Hello World'.
-
-	^ aSpace show
 ]
 
 { #category : #accessing }
@@ -324,22 +289,6 @@ toto styles
 			border: (BlBorder paint: Color purple width: 1) ].
 			
 ^toto
-]
-
-{ #category : #accessing }
-RdvNoteBlock >> helloWorldScene [
-	<gtExample>
-	| aContainer |
-	
-	aContainer := BrVerticalPane new
-		matchParent;
-		alignCenter.
-		
-	aContainer addChild: (BrLabel new
-		aptitude: (BrGlamorousLabelAptitude new fontSize: 30);
-		text: 'Hello world!').
-		
-	^ aContainer
 ]
 
 { #category : #accessing }

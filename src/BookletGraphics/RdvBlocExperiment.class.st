@@ -4,30 +4,6 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #accessing }
-RdvBlocExperiment >> animatedIconExample [
-<gtExample>
-
-|icon elt|
-
-icon := BrGlamorousVectorIcons transcript asElement.
-icon constraintsDo: [ :c | c accountTransformation ].
-
-elt := BlElement new
-    background: Color white;
-    border: (BlBorder paint: Color gray width: 1);
-    geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
-    padding: (BlInsets top: 5 left: 10 bottom: 5 right: 10);
-    layout: (BlZoomableLayout new addLayout: BlFrameLayout new; defaultScale: 2; animationDuration: 1 second);
-    constraintsDo: [ :c |
-        c vertical fitContent.
-        c horizontal fitContent ];
-    addChild: icon;
-    yourself.
-    
-^elt
-]
-
 { #category : #'as yet unclassified' }
 RdvBlocExperiment >> blocSpaceIntoMorphicExample [
 <bookExample>
