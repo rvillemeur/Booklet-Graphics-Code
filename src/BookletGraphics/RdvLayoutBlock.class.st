@@ -4,33 +4,138 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #accessing }
-RdvLayoutBlock >> frameDrawingExample [
-<gtExample>
-^BlElement new
-    layout: (BlGridLayout horizontal columnCount: 3);
-    constraintsDo: [ :c |
-        c horizontal matchParent.
-        c vertical matchParent ];
-    addChildren: {
-        "top row"
-        (BlTextElement new text: '5,0' asRopedText).
-        (BlElement new size: 0@0).
-        (BlTextElement new text: '13,0' asRopedText).
-        
-        "middle row"
-        (BlElement new size: 0@0).
-        (BlElement new
-            constraintsDo: [ :c |
-                c horizontal matchParent.
-                c vertical matchParent ];
-            border: (BlBorder paint: Color gray width: 1)).
-        (BlElement new size: 0@0).
-        
-        "bottom row"
-        (BlTextElement new text: '5,25' asRopedText).
-        (BlElement new size: 0@0).
-        (BlTextElement new text: '13,25' asRopedText). }
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> basicLayoutExample [
+
+	<bookExample>
+	| space root elt1 elt2 |
+	space := BlSpace new.
+
+	"BlBasicLayout let you position your children at the position you want them to be
+	Layout constraint are irrelevant for this layout, you should specify the size of 
+	each child element to be added. Those child can them implement their own layout strategy"
+	root := BlElement new
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        "not necessary, except for reminder, this is the default layout"
+				  "layout: BlBasicLayout new;"
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ].
+
+	elt1 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        size: 40 @ 80;
+		        background: (Color blue alpha: 0.2);
+		        position: 50 @ 40.
+	elt2 := BlElement new
+		        border: (BlBorder paint: Color yellow width: 1);
+		        size: 40 @ 80;
+		        background: (Color yellow alpha: 0.2);
+		        position: 60 @ 60.
+
+	root addChildren: {
+			elt1.
+			elt2 }.
+	space root addChild: root.
+	space show.
+	^ space
+]
+
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> flowLayoutExample [
+
+	<bookExample>
+	| space root |
+	space := BlSpace new.
+
+	root := BlElement new
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlFlowLayout horizontal;
+				constraintsDo: [ :c |
+			           c horizontal matchParent .
+			           c vertical fitContent  ].
+	"Child need to specify their size. If they use constraint, the last one will hide previous one.
+	They will fit available space + move to next line if necessary"
+
+	50 timesRepeat: [
+		| elt |
+		elt := BlElement new
+			       size: 40 @ 80;
+			       border: (BlBorder paint: Color blue width: 1);
+			       background: (Color blue alpha: 0.2);
+			       margin: (BlInsets all: 5).
+		root addChild: elt ].
+
+	space root addChild: root.
+	space show.
+	^ space
+]
+
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> gridLayoutExample [
+
+	<bookExample>
+	| space container e1 e2 e3 e4 e5 |
+	space := BlSpace new.
+
+	e1 := BlElement new
+		      constraintsDo: [ :c |
+			      c horizontal matchParent.
+			      c vertical matchParent ];
+		      background: (Color red alpha: 0.2);
+		      border: (BlBorder paint: Color red width: 1).
+
+	e2 := BlElement new
+		      constraintsDo: [ :c |
+			      c horizontal matchParent.
+			      c vertical matchParent ];
+		      background: (Color yellow alpha: 0.2);
+		      border: (BlBorder paint: Color yellow width: 1).
+	e3 := BlElement new
+		      constraintsDo: [ :c |
+			      c horizontal matchParent.
+			      c vertical matchParent ];
+		      background: (Color blue alpha: 0.2);
+		      border: (BlBorder paint: Color blue width: 1).
+
+	e4 := BlElement new
+		      constraintsDo: [ :c |
+			      c horizontal matchParent.
+			      c vertical matchParent ];
+		      background: (Color green alpha: 0.2);
+		      margin: (BlInsets all: 5);
+		      border: (BlBorder paint: Color green width: 1).
+
+	e5 := BlElement new
+		      constraintsDo: [ :c |
+			      c horizontal matchParent.
+			      c vertical matchParent.
+			      c grid horizontal span: 4 ];
+		      background: (Color purple alpha: 0.2);
+		      border: (BlBorder paint: Color purple width: 1).
+
+	container := BlElement new
+		             layout: (BlGridLayout new
+				              columnCount: 4;
+				              cellSpacing: 10);
+		             background: Color veryLightGray;
+		             border: (BlBorder paint: Color gray width: 3);
+		             constraintsDo: [ :c |
+			             c horizontal matchParent.
+			             c vertical matchParent ];
+		             addChildren: {
+				             e1.
+				             e2.
+				             e3.
+				             e4.
+				             e5 };
+		             yourself.
+	space root addChild: container.
+
+	space show.
+	^ space
 ]
 
 { #category : #accessing }
@@ -135,6 +240,40 @@ RdvLayoutBlock >> layout5 [
 					   size: 200 @ 100;
 					   background: (Color blue alpha: 0.2);
 					   constraintsDo: [ :c | c margin: (BlInsets all: 10) ]) }
+]
+
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> linearLayoutExample [
+
+	<bookExample>
+	| space root |
+	space := BlSpace new.
+
+	root := BlElement new
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlLinearLayout horizontal ;
+				  constraintsDo: [ :c |
+			           c horizontal fitContent.
+			           c vertical fitContent  ].
+
+	"Child can use dynamic size with constraints. The number of element will then fit its 
+	parents available space. 	If you specify their size, and the total is over its parents, 
+	they will be hidden. need to specify their size. If they use constraint, the last one 
+	will hide previous one. They will fit available space + move to next line if necessary"
+	
+	50 timesRepeat:  [  |elt| elt := BlElement new border: (BlBorder paint: Color blue width: 1);
+					size: 40@80;
+		           background: (Color blue alpha: 0.2);
+		           margin: (BlInsets all: 5);
+		           padding: (BlInsets all: 5).
+
+			root addChild: elt. ].
+
+
+	space root addChild: root.
+	space show.
+	^ space
 ]
 
 { #category : #'as yet unclassified' }
@@ -683,6 +822,88 @@ RdvLayoutBlock >> multipleElementFitParameter2 [
 			box2.
 			box3 }.
 	^ container
+]
+
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> spacingAndPaddindExampleWithTriangleGeometry [
+
+	<bookExample>
+	| space root element child |
+	space := BlSpace new.
+
+	root := BlElement new
+		        size: 400 @ 500;
+		        geometry: BlTriangleGeometry new;
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlFlowLayout horizontal alignCenter.
+
+	element := BlElement new
+		           border: (BlBorder paint: Color blue width: 1);
+		           geometry: BlTriangleGeometry new;
+		           background: (Color blue alpha: 0.2);
+		           margin: (BlInsets all: 15);
+		           padding: (BlInsets all: 25);
+		           layout: BlFlowLayout horizontal alignCenter;
+		           constraintsDo: [ :c |
+			           c horizontal matchParent.
+			           c vertical matchParent ].
+
+	root addChild: element.
+
+
+	child := BlElement new
+		         border: (BlBorder paint: Color yellow width: 1);
+		         geometry: BlTriangleGeometry new;
+		         background: (Color yellow alpha: 0.2);
+		         constraintsDo: [ :c |
+			         c horizontal matchParent.
+			         c vertical matchParent ].
+	element addChild: child.
+	space root addChild: root.
+	space show.
+	^ space
+]
+
+{ #category : #'as yet unclassified' }
+RdvLayoutBlock >> spacingAndPaddingdExample [
+
+	<bookExample>
+	| space root element child |
+	space := BlSpace new.
+
+	root := BlElement new
+				 "no dynamic constraints, we specify element size"
+		        size: 400 @ 400;
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlFlowLayout horizontal alignCenter.
+
+	element := BlElement new
+		           border: (BlBorder paint: Color blue width: 1);
+		           background: (Color blue alpha: 0.2);
+		           margin: (BlInsets all: 15);
+		           padding: (BlInsets all: 35);
+					  "element has a child, specify its layoutSpec: "
+		           layout: BlFlowLayout horizontal alignCenter;
+					 "dynamic size computed relatively to its parent"
+		           constraintsDo: [ :c |
+			           c horizontal matchParent.
+			           c vertical matchParent ].
+
+	root addChild: element.
+
+	child := BlElement new
+		         border: (BlBorder paint: Color yellow width: 1);
+		         background: (Color yellow alpha: 0.2);
+					"dynamic size computed relatively to its parent"
+		         constraintsDo: [ :c |
+			         c horizontal matchParent.
+			         c vertical matchParent ].
+	element addChild: child.
+	space root addChild: root.
+	space show.
+	^ space
 ]
 
 { #category : #accessing }

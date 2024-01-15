@@ -28,6 +28,35 @@ elt := BlElement new
 ^elt
 ]
 
+{ #category : #'as yet unclassified' }
+RdvBlocExperiment >> blocSpaceIntoMorphicExample [
+<bookExample>
+	| spacePresenter aSpace |
+	
+	"copy this example from bloc-spec2. It's really cool to open a bloc space window into morphic"
+	spacePresenter := SpBlSpaceInMorphPresenter new.
+
+	"The space is ready to play with it"
+	aSpace := spacePresenter space.
+
+	aSpace root
+		background: Color paleBlue;
+		layout: BlFlowLayout horizontal.
+
+	50 timesRepeat: [ 
+		aSpace root addChild:
+			(BlElement new
+				background: Color random translucent;
+				addEventHandlerOn: BlMouseEnterEvent
+					do: [ :evt | evt target
+						background: Color random ];
+				yourself) ].
+
+	spacePresenter open.
+
+	^ spacePresenter
+]
+
 { #category : #accessing }
 RdvBlocExperiment >> effectComposite [
 
