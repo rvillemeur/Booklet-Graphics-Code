@@ -110,7 +110,7 @@ GeometryBorderExperiment >> multipleElementWithOpacity [
 		             padding: (BlInsets all: 3);
 		             layout: BlLinearLayout horizontal;
 		             background: Color lightGray;
-		             opacity: 0.5;
+		             
 		             border: (BlBorder paint: Color black width: 3).
 	box1 := BlElement new
 		        size: 150 @ 150;
@@ -122,6 +122,7 @@ GeometryBorderExperiment >> multipleElementWithOpacity [
 			        c horizontal matchParent.
 			        c vertical matchParent ];
 		        background: Color lightRed;
+		opacity: 0.1;
 		        border: (BlBorder paint: Color red width: 5).
 	element1 := BlElement new
 		            size: 100 @ 100;
@@ -151,6 +152,7 @@ GeometryBorderExperiment >> multipleElementWithOpacity [
 			        c horizontal matchParent.
 			        c vertical matchParent ];
 		        background: Color lightYellow;
+		opacity: 0.5;
 		        border: (BlBorder paint: Color yellow width: 5).
 	element2 := BlElement new
 		            size: 100 @ 100;
@@ -181,6 +183,7 @@ GeometryBorderExperiment >> multipleElementWithOpacity [
 			        c horizontal matchParent.
 			        c vertical matchParent ];
 		        background: Color lightBlue;
+		opacity: 0.9;
 		        border: (BlBorder paint: Color blue width: 5).
 	element3 := BlElement new
 		            size: 100 @ 100;
@@ -289,6 +292,64 @@ GeometryBorderExperiment >> multipleTriangle [
 ]
 
 { #category : #'as yet unclassified' }
+GeometryBorderExperiment >> multipleTriangleBackground [
+
+	<bookExample>
+	|  container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3);
+						constraintsDo: [ :c | c horizontal fitContent. c vertical fitContent  ].
+	
+	container addChild:
+		(self box: self triangleBackgroundImage   text: 'image').
+	container addChild:
+		(self box: self triangleBackgroundSolidColor   text: 'solid color').
+	container addChild:
+		(self box: self triangleBackgroundLinearColor   text: 'linear color').
+		container addChild:
+		(self box: self triangleBackgroundRadialColor    text: 'radial color').
+		
+	space root addChild: container.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+GeometryBorderExperiment >> multipleTriangleBorderColor [
+
+	<bookExample>
+	| container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	container addChild:
+		(self box: self triangleBorderSolidColor text: 'solid color').
+	container addChild:
+		(self box: self triangleBorderLinearGradient text: 'linear color').
+	container addChild:
+		(self box: self triangleBorderRadialGradient text: 'radial color').
+
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : #'as yet unclassified' }
 GeometryBorderExperiment >> multipleTriangleDashed [
 
 	<bookExample>
@@ -304,11 +365,11 @@ GeometryBorderExperiment >> multipleTriangleDashed [
 						constraintsDo: [ :c | c horizontal fitContent. c vertical fitContent  ].
 	
 	container addChild:
-		(self box: self triangleDashedSmall  text: 'small dash').
+		(self box: self triangleDashedSmall  text: 'dashedSmall').
 	container addChild:
-		(self box: self triangleDashedArray  text: 'dash specified with array').
+		(self box: self triangleDashedArray  text: 'dashOffset: 0; dashArray: #( 6 4 2 )').
 	container addChild:
-		(self box: self triangleDashedNormal  text: 'dash with no parameter').
+		(self box: self triangleDashedNormal  text: 'dashed').
 	space root addChild: container.
 	space show.
 	^space
@@ -318,81 +379,26 @@ GeometryBorderExperiment >> multipleTriangleDashed [
 GeometryBorderExperiment >> multipleTriangleWithCapAndJoin [
 
 	<bookExample>
-	| element1 element2 element3 container box1 box2 box3 |
+	| container space |
+	space := BlSpace new.
 	container := BlElement new
-		             size: 1350 @ 450;
 		             geometry: BlRectangleGeometry new;
 		             margin: (BlInsets all: 3);
 		             padding: (BlInsets all: 3);
 		             layout: BlLinearLayout horizontal;
 		             background: Color lightGray;
-		             border: (BlBorder paint: Color black width: 3).
-	box1 := BlElement new
-		        size: 450 @ 450;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		        background: Color lightRed;
-		        border: (BlBorder paint: Color red width: 5).
-	element1 := BlElement new
-		            size: 300 @ 300;
-		            geometry: (BlTriangleGeometry new
-				   matchExtent: 150 @ 300);
-		            border: (BlBorder  builder paint: (Color orange); width: 15; capRound; joinRound; build);
-		            background: Color lightOrange;
-		            outskirts: BlOutskirts centered.
+		             border: (BlBorder paint: Color black width: 3);
+						constraintsDo: [ :c | c horizontal fitContent. c vertical fitContent. ].
 
-	box1 addChild: element1.
-	box2 := BlElement new
-		        size: 450 @450;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		        background: Color lightYellow;
-		        border: (BlBorder paint: Color yellow width: 5).
-	element2 := BlElement new
-		            size: 300 @ 300;
-		            geometry: (BlTriangleGeometry new
-				   matchExtent: 150 @ 300);
-		            border: (BlBorder  builder paint: (Color green); width: 15; capButt; joinBevel; build);
-		            background: Color lightGreen;
-		            outskirts: BlOutskirts centered.
-
-	box2 addChild: element2.
-	
-	box3 := BlElement new
-		        size: 450 @ 450;
-		        geometry: BlRectangleGeometry new;
-		        margin: (BlInsets all: 3);
-		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		         background: Color lightBlue;
-		        border: (BlBorder paint: Color blue width: 5).
-	element3 := BlElement new
-		            size: 300@300;
-		           		            geometry: (BlTriangleGeometry new
-				   matchExtent: 150 @ 300);
-		            border: (BlBorder  builder paint: (Color cyan); width: 15; capSquare; joinMiter; build);
-		            background: Color lightCyan;
-		            outskirts: BlOutskirts centered.
-
-	box3 addChild: element3.
-	container addChildren: {
-			box1.
-			box2.
-			box3 }.
-	^ container
+	container addChild:
+		(self box: self triangleJoinRound text: 'round join').
+	container addChild:
+		(self box: self triangleJoinBevel text: 'bevel join').
+	container addChild:
+		(self box: self triangleJoinMiter text: 'miter join').
+	space root addChild: container.
+	space show.
+	^ space
 ]
 
 { #category : #'as yet unclassified' }
@@ -739,6 +745,90 @@ GeometryBorderExperiment >> triangleDashedSmall [
 				            paint: Color orange;
 				            width: 15;
 				            dashedSmall;
+				            joinRound;
+				            build);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	box addChild: element.
+	^ box
+]
+
+{ #category : #'as yet unclassified' }
+GeometryBorderExperiment >> triangleJoinBevel [
+
+	| box element |
+	box := BlElement new
+		       size: 450 @ 450;
+		       geometry: BlRectangleGeometry new;
+		       margin: (BlInsets all: 3);
+		       padding: (BlInsets all: 3);
+		       layout: BlLinearLayout horizontal alignCenter;
+		       background: Color lightYellow;
+		       border: (BlBorder paint: Color yellow width: 5).
+	element := BlElement new
+		           size: 300 @ 300;
+		           geometry: (BlTriangleGeometry new matchExtent: 150 @ 300);
+		           border: (BlBorder builder
+				            paint: Color green;
+				            width: 15;
+				            capButt;
+				            joinBevel;
+				            build);
+		           background: Color lightGreen;
+		           outskirts: BlOutskirts centered.
+
+	box addChild: element.
+	^ box
+]
+
+{ #category : #'as yet unclassified' }
+GeometryBorderExperiment >> triangleJoinMiter [
+
+	| box element |
+	box := BlElement new
+		       size: 450 @ 450;
+		       geometry: BlRectangleGeometry new;
+		       margin: (BlInsets all: 3);
+		       padding: (BlInsets all: 3);
+		       layout: BlLinearLayout horizontal alignCenter;
+		       background: Color lightBlue;
+		       border: (BlBorder paint: Color blue width: 5).
+	element := BlElement new
+		           size: 300 @ 300;
+		           geometry: (BlTriangleGeometry new matchExtent: 150 @ 300);
+		           border: (BlBorder builder
+				            paint: Color cyan;
+				            width: 15;
+				            capSquare;
+				            joinMiter;
+				            build);
+		           background: Color lightCyan;
+		           outskirts: BlOutskirts centered.
+
+	box addChild: element.
+	^ box
+]
+
+{ #category : #'as yet unclassified' }
+GeometryBorderExperiment >> triangleJoinRound [
+
+	| box element |
+	box := BlElement new
+		       size: 450 @ 450;
+		       geometry: BlRectangleGeometry new;
+		       margin: (BlInsets all: 3);
+		       padding: (BlInsets all: 3);
+		       layout: BlLinearLayout horizontal alignCenter;
+		       background: Color lightRed;
+		       border: (BlBorder paint: Color red width: 5).
+	element := BlElement new
+		           size: 300 @ 300;
+		           geometry: (BlTriangleGeometry new matchExtent: 150 @ 300);
+		           border: (BlBorder builder
+				            paint: Color orange;
+				            width: 15;
+				            capRound;
 				            joinRound;
 				            build);
 		           background: Color lightOrange;

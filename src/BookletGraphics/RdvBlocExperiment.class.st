@@ -33,6 +33,30 @@ RdvBlocExperiment >> blocSpaceIntoMorphicExample [
 	^ spacePresenter
 ]
 
+{ #category : #'as yet unclassified' }
+RdvBlocExperiment >> centerAndSize [
+
+	<bookExample>
+	| centersAndSizes container |
+	centersAndSizes := {
+		                   {
+			                   (50 @ 10).
+			                   (100 @ 10) }.
+		                   {
+			                   (50 @ 10).
+			                   (80 @ 15) } }.
+	container := BlElement new
+		             size: 200 @ 100;
+		             yourself.
+	centersAndSizes do: [ :c |
+		container addChild: (BlElement new
+				 background: (Color random alpha: 0.5);
+				 position: c first - (c second / 2);
+				 size: c second;
+				 yourself) ].
+	^container
+]
+
 { #category : #example }
 RdvBlocExperiment >> effectComposite [
 
