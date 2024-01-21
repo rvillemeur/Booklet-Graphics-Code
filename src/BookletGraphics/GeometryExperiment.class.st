@@ -4,6 +4,44 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
+{ #category : #'as yet unclassified' }
+GeometryExperiment >> allGeometryExample [
+
+	<bookExample>
+	| space root elements |
+	space := BlSpace new.
+
+	root := BlElement new
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlFlowLayout horizontal;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical fitContent ].
+
+
+	elements := Dictionary  new.
+	elements at: 'annulul' put: self annulus.
+	elements at: 'bezier' put: self bezier.
+	elements at: 'circle' put: self circle.
+	elements at: 'ellipse' put: self ellipse.
+	elements at: 'line' put: self line.
+	elements at: 'polygon' put: self polygon .
+	elements at: 'polyline' put: self polyline .
+	elements at: 'rectangle' put: self rectangle.
+	elements at: 'rounded rectangle' put: self roundedRectangle .
+	elements at: 'square' put: self square.
+	elements at: 'triangle' put: self triangle.
+	elements keysAndValuesDo: [ :key : value |
+				
+		root addChild: (self box: value text: key). ].
+
+	space root addChild: root.
+
+	space show.
+	^ space
+]
+
 { #category : #geometry }
 GeometryExperiment >> annulus [
 
@@ -54,6 +92,49 @@ GeometryExperiment >> bezier [
 GeometryExperiment >> border [
 
 	^ BlBorder paint: Color red width: 5
+]
+
+{ #category : #'as yet unclassified' }
+GeometryExperiment >> box: element text: aText [
+|container elt1 elt2 text|
+
+container := BlElement new
+				border: (BlBorder paint: Color blue width: 1);
+		        background: (Color blue alpha: 0.2);
+		        layout: BlLinearLayout vertical ;
+				  constraintsDo: [ :c |
+			           c horizontal fitContent.
+			           c vertical fitContent  ].
+		
+		elt1 := BlElement new
+ 					size: 110 @ 110;
+			       background: (Color orange alpha: 0.2);
+			       border: (BlBorder paint: Color orange width: 1);
+			       layout: BlFrameLayout new.
+			
+		element  constraintsDo: [ :c |
+			c frame horizontal alignCenter.
+			c frame vertical alignCenter. ].
+
+		elt1 addChild: element.
+		
+		
+		elt2 := BlElement new
+ 					size: 110 @ 25;
+			       background: (Color orange alpha: 0.2);
+			       border: (BlBorder paint: Color orange width: 1);
+			       layout: BlFrameLayout new.
+			
+		text := BlTextElement new
+				      position: 5 @ 5;
+				      text: (aText asRopedText attributes: { (BlTextForegroundAttribute paint: Color black)});
+				constraintsDo: [ :c |
+			c frame horizontal alignCenter.
+			c frame vertical alignCenter. ].
+		elt2 addChild: text.
+
+container addChildren: { elt1 . elt2 }.
+^ container.
 ]
 
 { #category : #border }
@@ -130,7 +211,7 @@ GeometryExperiment >> line [
 
 	<bookExample>
 	^BlElement new
-		geometry: (BlLineGeometry from: 0@0 to: 50@50);
+		geometry: (BlLineGeometry from: 10@10 to: 90@90);
 		size: 100 @ 100;
 		background: self background;
 		outskirts: (BlOutskirts centered );
