@@ -51,8 +51,5 @@ RdvTextExperiment >> textAlignment2 [
 				     t2 };
 		     transformDo: [ :t | t scaleBy: 3.0 ].
 
-	"force size calculation"
-	"p forceLayout."
-
 	^ p
 ]

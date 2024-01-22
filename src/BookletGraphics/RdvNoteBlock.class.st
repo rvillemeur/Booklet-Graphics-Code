@@ -62,29 +62,6 @@ Class {
 }
 
 { #category : #accessing }
-RdvNoteBlock >> animtedBackground [
-<gtExample>
-|element animation|
-	
-	element := BlElement new.
-element size: 50@50.
-
-animation := BlNumberTransition new
-    from: 0;
-    to: 1;
-    by: 0.5;
-    beInfinite;
-    duration: 3 seconds;
-    onStepDo: [ :aValue :anElement |
-        aValue < 0.5
-            ifTrue: [ anElement background: Color red ]
-            ifFalse: [ anElement background: Color blue ] ].
-
-element addAnimation: animation.
-^element
-]
-
-{ #category : #accessing }
 RdvNoteBlock >> bigAdaptableText [
 <gtExample>
 ^(BlTextElement new text: 'hello' asRopedText) asScalableElement.
