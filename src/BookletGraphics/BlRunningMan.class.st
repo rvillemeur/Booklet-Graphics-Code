@@ -2,53 +2,47 @@ Class {
 	#name : #BlRunningMan,
 	#superclass : #Object,
 	#instVars : [
-		'sprite',
-		'position',
-		'topLeft',
-		'bottomRight',
+		'spriteGrid',
 		'view'
 	],
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #drawing }
-BlRunningMan >> computeNewSpriteBounds [
-	"coordinate of next sprite, 32 pixels on the left"
-
-	topLeft := topLeft translateBy: 32 @ 0.
-	bottomRight := bottomRight translateBy: 32 @ 0.
-
-	"we move to the next sprite. If we reach the end of one line"
-	bottomRight x > 128
-		ifTrue: [ bottomRight := 32 @ (bottomRight y + 32).
-			topLeft := 0 @ (topLeft y + 32) ].
-	"we reach the end of the grid, restart from 0"
-	bottomRight y > 128
-		ifTrue: [ self initSpritePosition ]
-]
-
 { #category : #accessing }
 BlRunningMan >> container [
 
 	^ BlElement new
-		  size: (32 * self magnifyFactor)  @ (32 * self magnifyFactor );
-		  background: (BlPaintBackground paint: (Color green alpha: 0.2))
+		  size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
+		  background: (BlPaintBackground paint: (Color green alpha: 0.2));
+		  border: (BlBorder paint: Color black width: 3)
 ]
 
 { #category : #initialization }
 BlRunningMan >> initSpritePosition [
-	topLeft := 0 @ 0.
-	bottomRight := 32 @ 32.
+
+	| sprite |
+	sprite := ZnEasy getPng:
+		          'https://opengameart.org/sites/default/files/spritesheet_caveman.png'.
+
+	spriteGrid := OrderedCollection new.
+
+	0 to: 3 do: [ :y |
+		0 to: 3 do: [ :x |
+			spriteGrid add: (BlImageBackground image: ((sprite contentsOfArea:
+						   (Rectangle
+							    point: (x * 32) @ (y * 32)
+							    point: ((x + 1) * 32) @ ((y + 1) * 32))) magnifyBy:
+						  self magnifyFactor)) ] ].
+
+	
 ]
 
 { #category : #initialization }
 BlRunningMan >> initialize [
-	super initialize.
-	sprite := ZnEasy
-		getPng: 'https://opengameart.org/sites/default/files/spritesheet_caveman.png'.
 
+	super initialize.
 	self initSpritePosition.
-	view := (self container) addChild: (self runningMan)
+	view := self container addChild: self runningMan
 ]
 
 { #category : #initialization }
@@ -66,26 +60,17 @@ BlRunningMan >> runningMan [
 
 	| animation |
 	animation := BlNumberTransition new
-		             from: 0;
-		             to: 16;
+		             from: 1;
+		             to: spriteGrid size;
 		             by: 1;
 		             beInfinite;
-		             duration: 3 seconds;
+		             duration: 2 seconds;
 		             onStepDo: [ :aValue :anElement |
-			             self computeNewSpriteBounds . anElement background: self runningManBackground  ].
+			             anElement background: (spriteGrid at: aValue) ].
 
 	^ BlElement new
-		  size: 32 * 5 @ (32 * 5);
+		  size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
 		  addAnimation: animation
-		  
-]
-
-{ #category : #'as yet unclassified' }
-BlRunningMan >> runningManBackground [
-
-	^ BlImageBackground image:
-		  ((sprite contentsOfArea:
-			    (Rectangle point: topLeft point: bottomRight)) magnifyBy: 5)
 ]
 
 { #category : #accessing }
