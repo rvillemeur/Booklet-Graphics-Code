@@ -106,6 +106,263 @@ RdvLayoutBlock >> frameLayoutExample [
 ]
 
 { #category : #example }
+RdvLayoutBlock >> frameLayoutExample2 [
+
+	<bookExample>
+	| root elt1 elt2 elt3 elt4 elt5 elt6 elt7 elt8 elt9 |
+	root := BlElement new
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlFrameLayout new;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ].
+
+"weight can only be used if the size, or if fitContent are not specified"
+	elt1 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignLeft weight: 0.2.
+			        c frame vertical alignTop weight: 0.2.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild: (BlTextElement new text: 'left top' asRopedText).
+	root addChild: elt1.
+
+	elt2 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignLeft weight: 0.33.
+			        c frame vertical alignCenter weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild:
+			        (BlTextElement new text: 'left center' asRopedText).
+	root addChild: elt2.
+
+	elt3 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignLeft weight: 0.33.
+			        c frame vertical alignBottom weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild:
+			        (BlTextElement new text: 'left bottom' asRopedText).
+	root addChild: elt3.
+
+	elt4 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter weight: 0.33.
+			        c frame vertical alignTop weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild: (BlTextElement new text: 'center top' asRopedText).
+	root addChild: elt4.
+
+	elt5 := BlElement new
+		        size: 40 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter weight: 0.33.
+			        c frame vertical alignCenter weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild:
+			        (BlTextElement new text: 'center center' asRopedText).
+	root addChild: elt5.
+
+	elt6 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter weight: 0.33.
+			        c frame vertical alignBottom weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild:
+			        (BlTextElement new text: 'center bottom' asRopedText).
+	root addChild: elt6.
+
+	elt7 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignRight weight: 0.33.
+			        c frame vertical alignTop weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild: (BlTextElement new text: 'right top' asRopedText).
+	root addChild: elt7.
+
+	elt8 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignRight weight: 0.33.
+			        c frame vertical alignCenter weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild:
+			        (BlTextElement new text: 'right center' asRopedText).
+	root addChild: elt8.
+
+	elt9 := BlElement new
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignRight weight: 0.33.
+			        c frame vertical alignBottom weight: 0.33.
+			        c horizontal matchParent.
+			        c vertical matchParent ];
+		        addChild:
+			        (BlTextElement new text: 'right bottom' asRopedText).
+	root addChild: elt9.
+
+	root openInNewSpace.
+	^ root
+]
+
+{ #category : #example }
+RdvLayoutBlock >> frameLayoutExample3 [
+
+	<bookExample>
+	"this could probably be achieved with grid layout as well."
+	| root elt1 elt2 elt3 elt4 elt5 elt6 elt7 elt8 elt9 |
+	root := BlElement new
+		        border: (BlBorder paint: Color red width: 1);
+		        background: (Color red alpha: 0.2);
+		        layout: BlFrameLayout new;
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ].
+
+	elt1 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignLeft.
+			        c frame vertical alignTop ];
+		        addChild: (BlTextElement new text: 'left top' asRopedText).
+	root addChild: elt1.
+
+	elt2 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignLeft.
+			        c frame vertical alignCenter ];
+		        addChild:
+			        (BlTextElement new text: 'left center' asRopedText).
+	root addChild: elt2.
+
+	elt3 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignLeft.
+			        c frame vertical alignBottom ];
+		        addChild:
+			        (BlTextElement new text: 'left bottom' asRopedText).
+	root addChild: elt3.
+
+	elt4 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter.
+			        c frame vertical alignTop ];
+		        addChild: (BlTextElement new text: 'center top' asRopedText).
+	root addChild: elt4.
+
+	elt5 := BlElement new
+		        size: 80@80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter.
+			        c frame vertical alignCenter ];
+		        addChild:
+			        (BlTextElement new text: 'center center' asRopedText).
+	root addChild: elt5.
+
+	elt6 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter.
+			        c frame vertical alignBottom ];
+		        addChild:
+			        (BlTextElement new text: 'center bottom' asRopedText).
+	root addChild: elt6.
+
+	elt7 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignRight.
+			        c frame vertical alignTop ];
+		        addChild: (BlTextElement new text: 'right top' asRopedText).
+	root addChild: elt7.
+
+	elt8 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignRight.
+			        c frame vertical alignCenter ];
+		        addChild:
+			        (BlTextElement new text: 'right center' asRopedText).
+	root addChild: elt8.
+
+	elt9 := BlElement new
+		        size: 80 @ 80;
+		        border: (BlBorder paint: Color blue width: 1);
+		        background: Color random;
+		        margin: (BlInsets all: 5);
+		        constraintsDo: [ :c |
+			        c frame horizontal alignRight.
+			        c frame vertical alignBottom ];
+		        addChild:
+			        (BlTextElement new text: 'right bottom' asRopedText).
+	root addChild: elt9.
+
+
+	root openInNewSpace.
+	^ root
+]
+
+{ #category : #example }
 RdvLayoutBlock >> gridLayoutExample [
 
 	<bookExample>
