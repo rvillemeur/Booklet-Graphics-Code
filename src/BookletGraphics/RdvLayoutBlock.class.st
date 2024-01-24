@@ -1004,3 +1004,40 @@ RdvLayoutBlock >> zoomLayoutExample [
 	space show.
 	^ space
 ]
+
+{ #category : #example }
+RdvLayoutBlock >> zoomLayoutExample2 [
+
+	<bookExample>
+	| elt zoom space |
+	space := BlSpace new.
+
+	elt := BlSvgIcons settingsIcon.
+	elt
+		border: (BlBorder paint: Color red width: 2);
+		background: Color yellow;
+		size: 24@24;
+		transformDo: [ :t | t scaleBy: 2 ];
+		constraintsDo: [ :c |
+			c accountTransformation.].
+
+
+	zoom := BlElement new
+		        background: Color white;
+		        border: (BlBorder paint: Color gray width: 10);
+		        geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
+		        padding: (BlInsets all: 10);
+		        layout: (BlZoomableLayout new
+				         addLayout: BlFrameLayout new;
+				         defaultScale: 5;
+				         animationDuration: 2 second);
+		        constraintsDo: [ :c |
+			             c vertical fitContent.
+			             c horizontal fitContent ];
+		        addChild: elt;
+		        yourself.
+
+	space root addChild: zoom.
+	space show.
+	^ space
+]
