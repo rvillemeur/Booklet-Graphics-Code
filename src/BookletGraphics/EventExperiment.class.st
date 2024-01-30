@@ -228,7 +228,7 @@ EventExperiment class >> eventExampleMouseMove [
 			 on: BlMouseLeaveEvent
 			 do: [ :anEvent |
 				 anEvent consumed: true.
-				 elt relocate: -20 @ -20 ]).
+				 elt position: -20 @ -20 ]).
 	surface openInNewSpace.
 	^ surface
 ]

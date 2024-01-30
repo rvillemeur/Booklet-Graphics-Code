@@ -1,13 +1,16 @@
+"
+canvas API example as used by Bloc
+"
 Class {
 	#name : #AlexandrieCanvasExperiment,
 	#superclass : #Object,
-	#category : #'BookletGraphics-Alexandrie'
+	#category : #'BookletGraphics-Bloc'
 }
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> PaintAndClip1 [
+AlexandrieCanvasExperiment class >> PaintAndClip1 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 
@@ -38,9 +41,9 @@ AlexandrieCanvasExperiment >> PaintAndClip1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> backGround1 [
+AlexandrieCanvasExperiment class >> backGround1 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -65,9 +68,9 @@ AlexandrieCanvasExperiment >> backGround1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> backGround2 [
+AlexandrieCanvasExperiment class >> backGround2 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -87,9 +90,9 @@ AlexandrieCanvasExperiment >> backGround2 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> backGround3 [
+AlexandrieCanvasExperiment class >> backGround3 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -122,9 +125,9 @@ AlexandrieCanvasExperiment >> backGround3 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> backGround4 [
+AlexandrieCanvasExperiment class >> backGround4 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -159,9 +162,9 @@ AlexandrieCanvasExperiment >> backGround4 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> borderPathPaint1 [
+AlexandrieCanvasExperiment class >> borderPathPaint1 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -199,9 +202,9 @@ AlexandrieCanvasExperiment >> borderPathPaint1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> borderPathPaint2 [
+AlexandrieCanvasExperiment class >> borderPathPaint2 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -239,9 +242,9 @@ AlexandrieCanvasExperiment >> borderPathPaint2 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> clip1 [
+AlexandrieCanvasExperiment class >> clip1 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 	canvas := AeCanvas extent: form extent.
@@ -274,9 +277,9 @@ AlexandrieCanvasExperiment >> clip1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> clip2 [
+AlexandrieCanvasExperiment class >> clip2 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 	canvas := AeCanvas extent: form extent.
@@ -322,9 +325,9 @@ AlexandrieCanvasExperiment >> clip2 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> clip3 [
+AlexandrieCanvasExperiment class >> clip3 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 	canvas := AeCanvas extent: form extent.
@@ -357,10 +360,11 @@ AlexandrieCanvasExperiment >> clip3 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> example1 [
+AlexandrieCanvasExperiment class >> example1 [
 
-	<bookExample>
-	| aManager aFace aeCanvas cairoScaledFont fontHeight paint |
+	<sampleInstance>
+	| aManager aFace aeCanvas cairoScaledFont fontHeight paint anAlexandrieCanvasExperiment |
+	anAlexandrieCanvasExperiment := self new.
 	aeCanvas := AeCanvas extent: 400 @ 400.
 	aeCanvas clear: Color white.
 
@@ -403,7 +407,8 @@ AlexandrieCanvasExperiment >> example1 [
 		         slant: AeFontSlant normal
 		         weight: AeFontWeight normal
 		         stretch: AeFontStretch normal
-		         ifNone: [ self inform: 'missing font' ].
+		         ifNone: [
+		         anAlexandrieCanvasExperiment inform: 'missing font' ].
 
 	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
 
@@ -431,9 +436,9 @@ AlexandrieCanvasExperiment >> example1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> fillPaint2 [
+AlexandrieCanvasExperiment class >> fillPaint2 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form transform|
 	transform := AeCairoMatrix newIdentity.
 	canvas := AeCanvas extent: 200 @ 200.
@@ -493,9 +498,9 @@ AlexandrieCanvasExperiment >> fillPaint2 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> fillPaint3 [
+AlexandrieCanvasExperiment class >> fillPaint3 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	canvas := AeCanvas extent: 200 @ 200.
 
@@ -555,9 +560,9 @@ AlexandrieCanvasExperiment >> fillPaint3 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> mask2 [
+AlexandrieCanvasExperiment class >> mask2 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 
@@ -583,9 +588,9 @@ AlexandrieCanvasExperiment >> mask2 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> mask3 [
+AlexandrieCanvasExperiment class >> mask3 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 250 @ 250.
 
@@ -627,9 +632,9 @@ AlexandrieCanvasExperiment >> mask3 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> mask4 [
+AlexandrieCanvasExperiment class >> mask4 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 
@@ -648,9 +653,9 @@ AlexandrieCanvasExperiment >> mask4 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> maskAndClip1 [
+AlexandrieCanvasExperiment class >> maskAndClip1 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 
@@ -681,9 +686,9 @@ AlexandrieCanvasExperiment >> maskAndClip1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> maskWithPrivateContext [
+AlexandrieCanvasExperiment class >> maskWithPrivateContext [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas form |
 	form := PolymorphSystemSettings pharoLogoForm.
 
@@ -713,9 +718,9 @@ AlexandrieCanvasExperiment >> maskWithPrivateContext [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> pathPaint1 [
+AlexandrieCanvasExperiment class >> pathPaint1 [
 
-	<bookExample>
+	<sampleInstance>
 	| canvas |
 	canvas := AeCanvas extent: 100 @ 100.
 	canvas clear: Color white.
@@ -746,11 +751,12 @@ AlexandrieCanvasExperiment >> pathPaint1 [
 ]
 
 { #category : #examples }
-AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz [
+AlexandrieCanvasExperiment class >> textWithOrWithoutHarfbuzz [
 
-	<bookExample>
-	| aManager aFace aeCanvas cairoScaledFont fontHeight string |
-"font definition"
+	<sampleInstance>
+	| aManager aFace aeCanvas cairoScaledFont fontHeight string anAlexandrieCanvasExperiment |
+	"font definition"
+	anAlexandrieCanvasExperiment := self new.
 	AeFontManager resetGlobalInstance.
 	aManager := AeFontManager globalInstance.
 	aManager
@@ -762,7 +768,8 @@ AlexandrieCanvasExperiment >> textWithOrWithoutHarfbuzz [
 		         slant: AeFontSlant normal
 		         weight: AeFontWeight normal
 		         stretch: AeFontStretch normal
-		         ifNone: [ self inform: 'missing font' ].
+		         ifNone: [
+		         anAlexandrieCanvasExperiment inform: 'missing font' ].
 
 
 
@@ -782,9 +789,7 @@ positions at which those glyphs should be drawn. "
 	aeCanvas := AeCanvas extent: 1000 @ (fontHeight * 4).
 	aeCanvas clear: Color white.
 
-	cairoScaledFont := aeCanvas
-		                   scaledFontForFace: aFace
-		                   size: fontHeight.
+	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
 
 	"Margin"
 	aeCanvas pathTranslate: fontHeight / 2 @ 0.
@@ -811,4 +816,8 @@ positions at which those glyphs should be drawn. "
 		font: cairoScaledFont.
 
 	^ aeCanvas asForm
+]
+
+{ #category : #'see class side' }
+AlexandrieCanvasExperiment >> seeClassSide [ 
 ]

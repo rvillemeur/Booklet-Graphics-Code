@@ -58,7 +58,7 @@ BlRunningMan >> open [
 	<script: 'self new view openInNewSpace'>
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'execution - private' }
 BlRunningMan >> runningMan [
 
 	| animation |

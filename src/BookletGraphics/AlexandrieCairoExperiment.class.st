@@ -18,9 +18,9 @@ Class {
 }
 
 { #category : #examples }
-AlexandrieCairoExperiment >> clip1 [
+AlexandrieCairoExperiment class >> clip1 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -46,9 +46,9 @@ AlexandrieCairoExperiment >> clip1 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> clip2 [
+AlexandrieCairoExperiment class >> clip2 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -86,9 +86,9 @@ AlexandrieCairoExperiment >> clip2 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> fillPaint1 [
+AlexandrieCairoExperiment class >> fillPaint1 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context fontFace scaledFont |
 	surface := AeCairoImageSurface
 		           extent: 700 @ 500
@@ -155,9 +155,9 @@ AlexandrieCairoExperiment >> fillPaint1 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> fillPaint2 [
+AlexandrieCairoExperiment class >> fillPaint2 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context fontFace scaledFont |
 	surface := AeCairoImageSurface
 		           extent: 700 @ 500
@@ -231,9 +231,9 @@ AlexandrieCairoExperiment >> fillPaint2 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> fillPaint3 [
+AlexandrieCairoExperiment class >> fillPaint3 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context gradient form |
 	surface := AeCairoImageSurface
 		           extent: 200 @ 200
@@ -293,10 +293,10 @@ AlexandrieCairoExperiment >> fillPaint3 [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> lineCap [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> lineCap [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 150 @ 120
@@ -342,10 +342,10 @@ AlexandrieCairoExperiment >> lineCap [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> lineColor [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> lineColor [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context gradient |
 	surface := AeCairoImageSurface
 		           extent: 200 @ 120
@@ -403,10 +403,10 @@ AlexandrieCairoExperiment >> lineColor [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> lineDash [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> lineDash [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 200 @ 120
@@ -449,10 +449,10 @@ AlexandrieCairoExperiment >> lineDash [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> linePath [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> linePath [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 120 @ 100
@@ -480,10 +480,10 @@ AlexandrieCairoExperiment >> linePath [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> linejoin [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> linejoin [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 150 @ 170
@@ -532,10 +532,10 @@ AlexandrieCairoExperiment >> linejoin [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> linejoin2 [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> linejoin2 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 120 @ 220
@@ -581,9 +581,9 @@ AlexandrieCairoExperiment >> linejoin2 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> mask1 [
+AlexandrieCairoExperiment class >> mask1 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -601,9 +601,9 @@ AlexandrieCairoExperiment >> mask1 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> mask2 [
+AlexandrieCairoExperiment class >> mask2 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -624,9 +624,9 @@ AlexandrieCairoExperiment >> mask2 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> mask3 [
+AlexandrieCairoExperiment class >> mask3 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -647,9 +647,9 @@ AlexandrieCairoExperiment >> mask3 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> mask4 [
+AlexandrieCairoExperiment class >> mask4 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -667,9 +667,9 @@ AlexandrieCairoExperiment >> mask4 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> mask5 [
+AlexandrieCairoExperiment class >> mask5 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -687,9 +687,9 @@ AlexandrieCairoExperiment >> mask5 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> mask6 [
+AlexandrieCairoExperiment class >> mask6 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -710,9 +710,9 @@ AlexandrieCairoExperiment >> mask6 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> maskAndClip1 [
+AlexandrieCairoExperiment class >> maskAndClip1 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form |
 	form := AeCairoImageSurface fromForm:
 		        PolymorphSystemSettings pharoLogoForm.
@@ -739,9 +739,9 @@ AlexandrieCairoExperiment >> maskAndClip1 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> maskAndClip2 [
+AlexandrieCairoExperiment class >> maskAndClip2 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -768,9 +768,9 @@ AlexandrieCairoExperiment >> maskAndClip2 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> maskAndClip3 [
+AlexandrieCairoExperiment class >> maskAndClip3 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -797,9 +797,9 @@ AlexandrieCairoExperiment >> maskAndClip3 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> maskAndClip4 [
+AlexandrieCairoExperiment class >> maskAndClip4 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -825,9 +825,9 @@ AlexandrieCairoExperiment >> maskAndClip4 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> maskAndClip5 [
+AlexandrieCairoExperiment class >> maskAndClip5 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -855,9 +855,9 @@ AlexandrieCairoExperiment >> maskAndClip5 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> maskAndClip6 [
+AlexandrieCairoExperiment class >> maskAndClip6 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context form pattern |
 	form := PolymorphSystemSettings pharoLogoForm.
 	surface := AeCairoImageSurface
@@ -885,9 +885,9 @@ AlexandrieCairoExperiment >> maskAndClip6 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> meshPattern [
+AlexandrieCairoExperiment class >> meshPattern [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context    meshPattern  |
 	surface := AeCairoImageSurface
 		           extent: 130 asPoint 
@@ -923,9 +923,9 @@ AlexandrieCairoExperiment >> meshPattern [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> radialGradientPattern1 [
+AlexandrieCairoExperiment class >> radialGradientPattern1 [
 
-	<bookExample>
+	<sampleInstance>
 	| radius center extent mainSurface mainContext aGradient |
 	radius := 100.
 	center := radius asPoint.
@@ -958,10 +958,10 @@ AlexandrieCairoExperiment >> radialGradientPattern1 [
 	^ mainSurface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> strokeAndFill [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> strokeAndFill [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 120 @ 100
@@ -995,10 +995,10 @@ AlexandrieCairoExperiment >> strokeAndFill [
 	^ surface asForm
 ]
 
-{ #category : #accessing }
-AlexandrieCairoExperiment >> strokeAndFill2 [
+{ #category : #examples }
+AlexandrieCairoExperiment class >> strokeAndFill2 [
 
-	<bookExample>
+	<sampleInstance>
 	| surface context |
 	surface := AeCairoImageSurface
 		           extent: 120 @ 100
@@ -1033,10 +1033,11 @@ AlexandrieCairoExperiment >> strokeAndFill2 [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> texWithHarfbuzzWithFontManager [
+AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 
-	<bookExample>
-	| surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs |
+	<sampleInstance>
+	| surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs anAlexandrieCairoExperiment |
+	anAlexandrieCairoExperiment := self new.
 	text := 'a := A->B->>C <= c|=>d~~>e.'.
 	fontHeight := 22.
 
@@ -1064,7 +1065,8 @@ AlexandrieCairoExperiment >> texWithHarfbuzzWithFontManager [
 		         slant: AeFontSlant normal
 		         weight: AeFontWeight normal
 		         stretch: AeFontStretch normal
-		         ifNone: [ self inform: 'missing font' ].
+		         ifNone: [
+		         anAlexandrieCairoExperiment inform: 'missing font' ].
 
 	fontOptions := AeCairoFontOptions new
 		               antialias: AeCairoAntialias fast;
@@ -1096,7 +1098,7 @@ AlexandrieCairoExperiment >> texWithHarfbuzzWithFontManager [
 		translateBy: 0 @ (fontHeight * 1.1);
 		sourceColor: Color red muchDarker;
 		showGlyphs: glyphs.
-	
+
 	"different paint between fill and stroke"
 	context
 		translateBy: 0 @ (fontHeight * 1.5);
@@ -1115,10 +1117,11 @@ AlexandrieCairoExperiment >> texWithHarfbuzzWithFontManager [
 ]
 
 { #category : #examples }
-AlexandrieCairoExperiment >> textWithoutHarfbuzzWithFontManager [
+AlexandrieCairoExperiment class >> textWithoutHarfbuzzWithFontManager [
 
-	<bookExample>
-	| surface context scaledFont fontHeight fontOptions text aManager aFace |
+	<sampleInstance>
+	| surface context scaledFont fontHeight fontOptions text aManager aFace anAlexandrieCairoExperiment |
+	anAlexandrieCairoExperiment := self new.
 	text := 'a := A->B->>C <= c|=>d~~>e.'.
 	fontHeight := 22.
 
@@ -1128,7 +1131,8 @@ AlexandrieCairoExperiment >> textWithoutHarfbuzzWithFontManager [
 	context := surface newContext.
 
 	context
-		sourceColor: Color white; paint.
+		sourceColor: Color white;
+		paint.
 
 	"Margin"
 	context translateBy: fontHeight / 2 @ 0.
@@ -1145,7 +1149,8 @@ AlexandrieCairoExperiment >> textWithoutHarfbuzzWithFontManager [
 		         slant: AeFontSlant normal
 		         weight: AeFontWeight normal
 		         stretch: AeFontStretch normal
-		         ifNone: [ self inform: 'missing font' ].
+		         ifNone: [
+		         anAlexandrieCairoExperiment inform: 'missing font' ].
 
 	fontOptions := AeCairoFontOptions new
 		               antialias: AeCairoAntialias fast;
@@ -1182,4 +1187,8 @@ AlexandrieCairoExperiment >> textWithoutHarfbuzzWithFontManager [
 		fill.
 
 	^ surface asForm
+]
+
+{ #category : #'see class side' }
+AlexandrieCairoExperiment >> seeClassSide [ 
 ]
