@@ -1,13 +1,16 @@
+"
+various example on background and border settings in Bloc
+"
 Class {
-	#name : #GeometryBorderExperiment,
+	#name : #BackgroundAndBorderExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #shapes }
-GeometryBorderExperiment >> TriangleColorDashedMulti [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> TriangleColorDashedMulti [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				 matchExtent: 50 @ 100;
@@ -23,8 +26,8 @@ GeometryBorderExperiment >> TriangleColorDashedMulti [
 		  size: 200 @ 200
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> box: element text: aText [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> box: element text: aText [
 
 	| container elt1 elt2 text |
 	container := BlElement new
@@ -68,14 +71,14 @@ GeometryBorderExperiment >> box: element text: aText [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleElementOutskirts [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleElementOutskirts [
 
-	<bookExample>
-	| container space |
+	<sampleInstance>
+	| container space aBackgroundAndBorderExperiment |
+	aBackgroundAndBorderExperiment := self new.
 	space := BlSpace new.
 	container := BlElement new
-	"size: 450 @ 150;"
 		             geometry: BlRectangleGeometry new;
 		             margin: (BlInsets all: 5);
 		             padding: (BlInsets all: 5);
@@ -85,23 +88,27 @@ GeometryBorderExperiment >> multipleElementOutskirts [
 		             constraintsDo: [ :c |
 			             c horizontal fitContent.
 			             c vertical fitContent ].
-	
+	"size: 450 @ 150;"
 
-	container addChild:
-		(self box: self outskirtsOutside text: 'outskirts outside').
-	container addChild:
-		(self box: self outskirtsCentered text: 'outskirts centered').
-	container addChild:
-		(self box: self outskirtsInside text: 'outskirts inside').
+
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment outskirtsOutside
+			 text: 'outskirts outside').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment outskirtsCentered
+			 text: 'outskirts centered').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment outskirtsInside
+			 text: 'outskirts inside').
 	space root addChild: container.
 	space show.
-	^space
+	^ space
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleElementWithOpacity [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleElementWithOpacity [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 450 @ 150;
@@ -210,10 +217,10 @@ GeometryBorderExperiment >> multipleElementWithOpacity [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleTriangle [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleTriangle [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 1350 @ 450;
@@ -291,40 +298,12 @@ GeometryBorderExperiment >> multipleTriangle [
 	^ container
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleTriangleBackground [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleTriangleBackground [
 
-	<bookExample>
-	|  container space |
-	space := BlSpace new.
-	container := BlElement new
-		             geometry: BlRectangleGeometry new;
-		             margin: (BlInsets all: 3);
-		             padding: (BlInsets all: 3);
-		             layout: BlLinearLayout horizontal;
-		             background: Color lightGray;
-		             border: (BlBorder paint: Color black width: 3);
-						constraintsDo: [ :c | c horizontal fitContent. c vertical fitContent  ].
-	
-	container addChild:
-		(self box: self triangleBackgroundImage   text: 'image').
-	container addChild:
-		(self box: self triangleBackgroundSolidColor   text: 'solid color').
-	container addChild:
-		(self box: self triangleBackgroundLinearColor   text: 'linear color').
-		container addChild:
-		(self box: self triangleBackgroundRadialColor    text: 'radial color').
-		
-	space root addChild: container.
-	space show.
-	^space
-]
-
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleTriangleBorderColor [
-
-	<bookExample>
-	| container space |
+	<sampleInstance>
+	| container space aBackgroundAndBorderExperiment |
+	aBackgroundAndBorderExperiment := self new.
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -337,23 +316,30 @@ GeometryBorderExperiment >> multipleTriangleBorderColor [
 			             c horizontal fitContent.
 			             c vertical fitContent ].
 
-	container addChild:
-		(self box: self triangleBorderSolidColor text: 'solid color').
-	container addChild:
-		(self box: self triangleBorderLinearGradient text: 'linear color').
-	container addChild:
-		(self box: self triangleBorderRadialGradient text: 'radial color').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBackgroundImage
+			 text: 'image').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBackgroundSolidColor
+			 text: 'solid color').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBackgroundLinearColor
+			 text: 'linear color').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBackgroundRadialColor
+			 text: 'radial color').
 
 	space root addChild: container.
 	space show.
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleTriangleDashed [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleTriangleBorderColor [
 
-	<bookExample>
-	|  container space |
+	<sampleInstance>
+	| container space aBackgroundAndBorderExperiment |
+	aBackgroundAndBorderExperiment := self new.
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -362,24 +348,31 @@ GeometryBorderExperiment >> multipleTriangleDashed [
 		             layout: BlLinearLayout horizontal;
 		             background: Color lightGray;
 		             border: (BlBorder paint: Color black width: 3);
-						constraintsDo: [ :c | c horizontal fitContent. c vertical fitContent  ].
-	
-	container addChild:
-		(self box: self triangleDashedSmall  text: 'dashedSmall').
-	container addChild:
-		(self box: self triangleDashedArray  text: 'dashOffset: 0; dashArray: #( 6 4 2 )').
-	container addChild:
-		(self box: self triangleDashedNormal  text: 'dashed').
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBorderSolidColor
+			 text: 'solid color').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBorderLinearGradient
+			 text: 'linear color').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleBorderRadialGradient
+			 text: 'radial color').
+
 	space root addChild: container.
 	space show.
-	^space
+	^ space
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> multipleTriangleWithCapAndJoin [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleTriangleDashed [
 
-	<bookExample>
-	| container space |
+	<sampleInstance>
+	| container space aBackgroundAndBorderExperiment |
+	aBackgroundAndBorderExperiment := self new.
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -388,21 +381,58 @@ GeometryBorderExperiment >> multipleTriangleWithCapAndJoin [
 		             layout: BlLinearLayout horizontal;
 		             background: Color lightGray;
 		             border: (BlBorder paint: Color black width: 3);
-						constraintsDo: [ :c | c horizontal fitContent. c vertical fitContent. ].
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
 
-	container addChild:
-		(self box: self triangleJoinRound text: 'round join').
-	container addChild:
-		(self box: self triangleJoinBevel text: 'bevel join').
-	container addChild:
-		(self box: self triangleJoinMiter text: 'miter join').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleDashedSmall
+			 text: 'dashedSmall').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleDashedArray
+			 text: 'dashOffset: 0; dashArray: #( 6 4 2 )').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleDashedNormal
+			 text: 'dashed').
 	space root addChild: container.
 	space show.
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> outskirtsCentered [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> multipleTriangleWithCapAndJoin [
+
+	<sampleInstance>
+	| container space aBackgroundAndBorderExperiment |
+	aBackgroundAndBorderExperiment := self new.
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleJoinRound
+			 text: 'round join').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleJoinBevel
+			 text: 'bevel join').
+	container addChild: (aBackgroundAndBorderExperiment
+			 box: aBackgroundAndBorderExperiment triangleJoinMiter
+			 text: 'miter join').
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> outskirtsCentered [
 
 	| box element |
 	box := BlElement new
@@ -434,8 +464,8 @@ GeometryBorderExperiment >> outskirtsCentered [
 	^ box
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> outskirtsInside [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> outskirtsInside [
 |box element|
 box := BlElement new
 		        size: 150 @ 150;
@@ -467,8 +497,8 @@ box := BlElement new
 	^box
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> outskirtsOutside [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> outskirtsOutside [
 
 	| box element |
 	box := BlElement new
@@ -500,10 +530,10 @@ GeometryBorderExperiment >> outskirtsOutside [
 	^ box
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBackgroundImage [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBackgroundImage [
 "not working currently"
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -513,11 +543,11 @@ GeometryBorderExperiment >> triangleBackgroundImage [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBackgroundLinearColor [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBackgroundLinearColor [
 	"not working currently"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -529,11 +559,11 @@ GeometryBorderExperiment >> triangleBackgroundLinearColor [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBackgroundRadialColor [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBackgroundRadialColor [
 	"not working currently"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -549,11 +579,11 @@ GeometryBorderExperiment >> triangleBackgroundRadialColor [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBackgroundSolidColor [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBackgroundSolidColor [
 	"not working currently"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -567,10 +597,10 @@ GeometryBorderExperiment >> triangleBackgroundSolidColor [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBorderImage [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBorderImage [
 "not working currently"
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -582,10 +612,10 @@ GeometryBorderExperiment >> triangleBorderImage [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBorderLinearGradient [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBorderLinearGradient [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -599,10 +629,10 @@ GeometryBorderExperiment >> triangleBorderLinearGradient [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBorderRadialGradient [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBorderRadialGradient [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -620,10 +650,10 @@ GeometryBorderExperiment >> triangleBorderRadialGradient [
 		  size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleBorderSolidColor [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleBorderSolidColor [
 
-	<bookExample>
+	<sampleInstance>
 	^BlElement new
 		geometry: (BlTriangleGeometry new
 				 matchExtent: 50 @ 100;
@@ -633,10 +663,10 @@ GeometryBorderExperiment >> triangleBorderSolidColor [
 		size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleColorDashed [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleColorDashed [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -652,8 +682,8 @@ GeometryBorderExperiment >> triangleColorDashed [
 		  size: 200 @ 200
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> triangleDashedArray [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> triangleDashedArray [
 
 	| box element |
 	box := BlElement new
@@ -681,10 +711,10 @@ GeometryBorderExperiment >> triangleDashedArray [
 	^ box
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleDashedColorWithBuilder [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleDashedColorWithBuilder [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -698,8 +728,8 @@ GeometryBorderExperiment >> triangleDashedColorWithBuilder [
 		  size: 100 @ 100
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> triangleDashedNormal [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> triangleDashedNormal [
 
 	| box element |
 	box := BlElement new
@@ -726,8 +756,8 @@ GeometryBorderExperiment >> triangleDashedNormal [
 	^ box
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> triangleDashedSmall [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> triangleDashedSmall [
 
 	| box element |
 	box := BlElement new
@@ -754,8 +784,8 @@ GeometryBorderExperiment >> triangleDashedSmall [
 	^ box
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> triangleJoinBevel [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> triangleJoinBevel [
 
 	| box element |
 	box := BlElement new
@@ -782,8 +812,8 @@ GeometryBorderExperiment >> triangleJoinBevel [
 	^ box
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> triangleJoinMiter [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> triangleJoinMiter [
 
 	| box element |
 	box := BlElement new
@@ -810,8 +840,8 @@ GeometryBorderExperiment >> triangleJoinMiter [
 	^ box
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryBorderExperiment >> triangleJoinRound [
+{ #category : #'examples - helpers' }
+BackgroundAndBorderExperiment class >> triangleJoinRound [
 
 	| box element |
 	box := BlElement new
@@ -838,10 +868,10 @@ GeometryBorderExperiment >> triangleJoinRound [
 	^ box
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleSolidColor [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleSolidColor [
 
-	<bookExample>
+	<sampleInstance>
 	^BlElement new
 		geometry: (BlTriangleGeometry new
 				 matchExtent: 50 @ 100;
@@ -851,10 +881,10 @@ GeometryBorderExperiment >> triangleSolidColor [
 		size: 100 @ 100
 ]
 
-{ #category : #shapes }
-GeometryBorderExperiment >> triangleSolidColorWithBuilder [
+{ #category : #examples }
+BackgroundAndBorderExperiment class >> triangleSolidColorWithBuilder [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
@@ -865,4 +895,8 @@ GeometryBorderExperiment >> triangleSolidColorWithBuilder [
 				   paint: Color red;
 				   build);
 		  size: 100 @ 100
+]
+
+{ #category : #'see class side' }
+BackgroundAndBorderExperiment >> seeClassSide [ 
 ]

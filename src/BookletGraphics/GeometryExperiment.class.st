@@ -1,14 +1,17 @@
+"
+examples of geometry bonds and possibility within Bloc
+"
 Class {
 	#name : #GeometryExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
-GeometryExperiment >> allGeometryExample [
+{ #category : #examples }
+GeometryExperiment class >> allGeometryExample [
 
-	<bookExample>
-	| space root elements |
+	<sampleInstance>
+	| space root elements  |
 	space := BlSpace new.
 
 	root := BlElement new
@@ -20,21 +23,22 @@ GeometryExperiment >> allGeometryExample [
 			        c vertical fitContent ].
 
 
-	elements := Dictionary  new.
+	elements := Dictionary new.
 	elements at: 'annulul' put: self annulus.
 	elements at: 'bezier' put: self bezier.
 	elements at: 'circle' put: self circle.
 	elements at: 'ellipse' put: self ellipse.
 	elements at: 'line' put: self line.
-	elements at: 'polygon' put: self polygon .
-	elements at: 'polyline' put: self polyline .
+	elements at: 'polygon' put: self polygon.
+	elements at: 'polyline' put: self polyline.
 	elements at: 'rectangle' put: self rectangle.
-	elements at: 'rounded rectangle' put: self roundedRectangle .
+	elements
+		at: 'rounded rectangle'
+		put: self roundedRectangle.
 	elements at: 'square' put: self square.
 	elements at: 'triangle' put: self triangle.
-	elements keysAndValuesDo: [ :key : value |
-				
-		root addChild: (self box: value text: key). ].
+	elements keysAndValuesDo: [ :key :value |
+		root addChild: (self box: value text: key) ].
 
 	space root addChild: root.
 
@@ -42,10 +46,11 @@ GeometryExperiment >> allGeometryExample [
 	^ space
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> annulus [
+{ #category : #examples }
+GeometryExperiment class >> annulus [
 
-	<bookExample>
+	<sampleInstance>
+
 	^ BlElement new
 		  geometry: (BlAnnulusSectorGeometry new
 				   startAngle: 225;
@@ -57,45 +62,51 @@ GeometryExperiment >> annulus [
 		  border: self border
 ]
 
-{ #category : #accessing }
-GeometryExperiment >> background [
+{ #category : #'examples - helpers' }
+GeometryExperiment class >> background [
 
 	^ Color yellow
 ]
 
-{ #category : #border }
-GeometryExperiment >> basicBorder [
+{ #category : #examples }
+GeometryExperiment class >> basicBorder [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlTriangleGeometry new
-				 matchExtent: 50 @ 100;
-				 beLeft);
-		background: self background;
-		border: (BlBorder paint: Color red width: 5);
-		size: 100 @ 100
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: self background;
+		  border: (BlBorder paint: Color red width: 5);
+		  size: 100 @ 100
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> bezier [
+{ #category : #examples }
+GeometryExperiment class >> bezier [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlBezierCurveGeometry controlPoints: { 5@0. 25@80. 75@30. 95@100 });
-		size: 100 @ 100;
-		background: self background;
-		outskirts: (BlOutskirts centered);
-		border: self border
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlBezierCurveGeometry controlPoints: {
+						   (5 @ 0).
+						   (25 @ 80).
+						   (75 @ 30).
+						   (95 @ 100) });
+		  size: 100 @ 100;
+		  background: self background;
+		  outskirts: BlOutskirts centered;
+		  border: self border
 ]
 
-{ #category : #accessing }
-GeometryExperiment >> border [
+{ #category : #'examples - helpers' }
+GeometryExperiment class >> border [
 
 	^ BlBorder paint: Color red width: 5
 ]
 
-{ #category : #'as yet unclassified' }
-GeometryExperiment >> box: element text: aText [
+{ #category : #'examples - helpers' }
+GeometryExperiment class >> box: element text: aText [
 |container elt1 elt2 text|
 
 container := BlElement new
@@ -137,68 +148,79 @@ container addChildren: { elt1 . elt2 }.
 ^ container.
 ]
 
-{ #category : #border }
-GeometryExperiment >> builderBorder [
+{ #category : #examples }
+GeometryExperiment class >> builderBorder [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlTriangleGeometry new
-				 matchExtent: 50 @ 100;
-				 beLeft);
-		background: self background;
-		border: (BlBorder builder paint: Color red; width: 5; build);
-		size: 100 @ 100
-]
+	<sampleInstance>
 
-{ #category : #border }
-GeometryExperiment >> builderCapButtBorder [
-
-	<bookExample>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
-				 matchExtent: 100 @ 200;
-				 beLeft);
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: self background;
+		  border: (BlBorder builder
+				   paint: Color red;
+				   width: 5;
+				   build);
+		  size: 100 @ 100
+]
+
+{ #category : #examples }
+GeometryExperiment class >> builderCapButtBorder [
+
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 100 @ 200;
+				   beLeft);
 		  background: self background;
 		  border: (BlBorder builder
 				   paint: Color red;
 				   width: 5;
 				   lineCap: BlStrokeLineCap butt;
 				   lineJoin: BlStrokeLineJoin bevel;
-				miterLimit: 2.0;
-				dashArray: #(10 5);
-				dashOffset: 0;
+				   miterLimit: 2.0;
+				   dashArray: #( 10 5 );
+				   dashOffset: 0;
 				   build);
 		  size: 200 @ 200
 ]
 
-{ #category : #border }
-GeometryExperiment >> builderOpacityBorder [
+{ #category : #examples }
+GeometryExperiment class >> builderOpacityBorder [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlTriangleGeometry new
-				 matchExtent: 50 @ 100;
-				 beLeft);
-		background: self background;
-		border: (BlBorder builder paint: Color red; width: 5; opacity: 0.1; build);
-		size: 100 @ 100  
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: self background;
+		  border: (BlBorder builder
+				   paint: Color red;
+				   width: 5;
+				   opacity: 0.1;
+				   build);
+		  size: 100 @ 100
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> circle [
+{ #category : #examples }
+GeometryExperiment class >> circle [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlCircleGeometry new matchExtent: 100 @ 50);
-		size: 100 @ 100;
-		background: self background;
-		border: self border
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlCircleGeometry new matchExtent: 100 @ 50);
+		  size: 100 @ 100;
+		  background: self background;
+		  border: self border
 ]
 
-{ #category : #accessing }
-GeometryExperiment >> donutAnnulusGeometry [
+{ #category : #examples }
+GeometryExperiment class >> donutAnnulusGeometry [
 
-	<bookExample>
+	<sampleInstance>
 	| elt |
 	elt := BlElement new
 		       size: 400 @ 400;
@@ -245,103 +267,114 @@ GeometryExperiment >> donutAnnulusGeometry [
 	^ elt
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> ellipse [
+{ #category : #examples }
+GeometryExperiment class >> ellipse [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlEllipseGeometry new matchExtent: 100 @ 50);
-		size: 100 @ 50;
-		background: self background;
-		border: self border
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlEllipseGeometry new matchExtent: 100 @ 50);
+		  size: 100 @ 50;
+		  background: self background;
+		  border: self border
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> line [
+{ #category : #examples }
+GeometryExperiment class >> line [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlLineGeometry from: 10@10 to: 90@90);
-		size: 100 @ 100;
-		background: self background;
-		outskirts: (BlOutskirts centered );
-		border: self border
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlLineGeometry from: 10 @ 10 to: 90 @ 90);
+		  size: 100 @ 100;
+		  background: self background;
+		  outskirts: BlOutskirts centered;
+		  border: self border
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> polygon [
+{ #category : #examples }
+GeometryExperiment class >> polygon [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlPolygonGeometry vertices: {
-						 (10 @ 10).
-						 (10 @ 90).
-						 (50 @ 50).
-						 (90 @ 90).
-						 (90 @ 10) });
-		size: 100 @ 100;
-		background: self background;
-		border:self border
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlPolygonGeometry vertices: {
+						   (10 @ 10).
+						   (10 @ 90).
+						   (50 @ 50).
+						   (90 @ 90).
+						   (90 @ 10) });
+		  size: 100 @ 100;
+		  background: self background;
+		  border: self border
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> polyline [
+{ #category : #examples }
+GeometryExperiment class >> polyline [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlPolylineGeometry vertices: {
-						 (10 @ 10).
-						 (10 @ 90).
-						 (50 @ 50).
-						 (90 @ 90).
-						 (90 @ 10) });
-		size: 100 @ 100;
-		background: self background;
-		border: self border
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlPolylineGeometry vertices: {
+						   (10 @ 10).
+						   (10 @ 90).
+						   (50 @ 50).
+						   (90 @ 90).
+						   (90 @ 10) });
+		  size: 100 @ 100;
+		  background: self background;
+		  border: self border
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> rectangle [
+{ #category : #examples }
+GeometryExperiment class >> rectangle [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlRectangleGeometry  new);
-		background: self background;
-		border: self border;
-		size: 100 @ 70
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: BlRectangleGeometry new;
+		  background: self background;
+		  border: self border;
+		  size: 100 @ 70
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> roundedRectangle [
+{ #category : #examples }
+GeometryExperiment class >> roundedRectangle [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlRoundedRectangleGeometry cornerRadius: 20);
-		background: self background;
-		border: self border;
-		size: 100 @ 70
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlRoundedRectangleGeometry cornerRadius: 20);
+		  background: self background;
+		  border: self border;
+		  size: 100 @ 70
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> square [
+{ #category : #examples }
+GeometryExperiment class >> square [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlSquareGeometry new matchExtent: 70 @ 70);
-		size: 100 @ 100;
-		background: self background;
-		border: self border
+	<sampleInstance>
+	^ BlElement new
+		  geometry: (BlSquareGeometry new matchExtent: 70 @ 70);
+		  size: 100 @ 100;
+		  background: self background;
+		  border: self border
 ]
 
-{ #category : #geometry }
-GeometryExperiment >> triangle [
+{ #category : #examples }
+GeometryExperiment class >> triangle [
 
-	<bookExample>
-	^BlElement new
-		geometry: (BlTriangleGeometry new
-				 matchExtent: 50 @ 100;
-				 beLeft);
-		background: self background;
-		border: self border;
-		size: 100 @ 100
+	<sampleInstance>
+
+	^ BlElement new
+		  geometry: (BlTriangleGeometry new
+				   matchExtent: 50 @ 100;
+				   beLeft);
+		  background: self background;
+		  border: self border;
+		  size: 100 @ 100
+]
+
+{ #category : #'see class side' }
+GeometryExperiment >> seeClassSide [ 
 ]

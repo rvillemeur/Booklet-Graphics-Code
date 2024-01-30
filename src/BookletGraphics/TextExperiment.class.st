@@ -1,23 +1,29 @@
+"
+text experiment and example in bloc
+- font selection
+- font effect (background and foreground color)
+- etc.
+"
 Class {
 	#name : #TextExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #accessing }
-TextExperiment >> helloWorldExample [
+{ #category : #examples }
+TextExperiment class >> exampleHelloWorld [
 
-	<bookExample>
+	<simpleInstance>
 	| elt |
 	elt := BlTextElement new text: 'Hello world!' asRopedText.
 	elt openInNewSpace.
 	^ elt
 ]
 
-{ #category : #'as yet unclassified' }
-TextExperiment >> textAlignment1 [
+{ #category : #examples }
+TextExperiment class >> textAlignment1 [
 
-	<bookExample>
+	<sampleInstance>
 	| t1 t2 p |
 	t1 := BlTextElement text: 'Element' asRopedText.
 	t2 := BlTextElement text: 'Élément' asRopedText.
@@ -39,10 +45,10 @@ TextExperiment >> textAlignment1 [
 	^ p
 ]
 
-{ #category : #'as yet unclassified' }
-TextExperiment >> textAlignment2 [
+{ #category : #examples }
+TextExperiment class >> textAlignment2 [
 
-	<bookExample>
+	<sampleInstance>
 	| t1 t2 p |
 	t1 := BlTextElement text: 'Element' asRopedText.
 	t1 constraintsDo: [ :c |
@@ -62,4 +68,8 @@ TextExperiment >> textAlignment2 [
 		     transformDo: [ :t | t scaleBy: 3.0 ].
 
 	^ p
+]
+
+{ #category : #'see class side' }
+TextExperiment >> seeClassSide [ 
 ]

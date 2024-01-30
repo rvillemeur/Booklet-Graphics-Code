@@ -1,13 +1,16 @@
+"
+various demo of layout capabilities of Bloc
+"
 Class {
 	#name : #LayoutExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #example }
-LayoutExperiment >> basicLayoutExample [
+{ #category : #examples }
+LayoutExperiment class >> basicLayoutExample [
 
-	<bookExample>
+	<sampleInstance>
 	| space root elt1 elt2 |
 	space := BlSpace new.
 
@@ -42,10 +45,10 @@ LayoutExperiment >> basicLayoutExample [
 	^ space
 ]
 
-{ #category : #'as yet unclassified' }
-LayoutExperiment >> centerAndSize [
+{ #category : #examples }
+LayoutExperiment class >> centerAndSize [
 
-	<bookExample>
+	<sampleInstance>
 	| centersAndSizes container |
 	centersAndSizes := {
 		                   {
@@ -66,10 +69,10 @@ LayoutExperiment >> centerAndSize [
 	^container
 ]
 
-{ #category : #example }
-LayoutExperiment >> flowLayoutExample [
+{ #category : #examples }
+LayoutExperiment class >> flowLayoutExample [
 
-	<bookExample>
+	<sampleInstance>
 	| space root |
 	space := BlSpace new.
 
@@ -97,10 +100,10 @@ LayoutExperiment >> flowLayoutExample [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> frameLayoutExample [
+{ #category : #examples }
+LayoutExperiment class >> frameLayoutExample [
 
-	<bookExample>
+	<sampleInstance>
 	| space container child |
 	space := BlSpace new.
 "designed to block out an area on the screen to display a single child."
@@ -129,10 +132,10 @@ LayoutExperiment >> frameLayoutExample [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> frameLayoutExample2 [
+{ #category : #examples }
+LayoutExperiment class >> frameLayoutExample2 [
 
-	<bookExample>
+	<sampleInstance>
 	| root elt1 elt2 elt3 elt4 elt5 elt6 elt7 elt8 elt9 |
 	root := BlElement new
 		        border: (BlBorder paint: Color red width: 1);
@@ -262,10 +265,10 @@ LayoutExperiment >> frameLayoutExample2 [
 	^ root
 ]
 
-{ #category : #example }
-LayoutExperiment >> frameLayoutExample3 [
+{ #category : #examples }
+LayoutExperiment class >> frameLayoutExample3 [
 
-	<bookExample>
+	<sampleInstance>
 	"this could probably be achieved with grid layout as well."
 	| root elt1 elt2 elt3 elt4 elt5 elt6 elt7 elt8 elt9 |
 	root := BlElement new
@@ -386,10 +389,10 @@ LayoutExperiment >> frameLayoutExample3 [
 	^ root
 ]
 
-{ #category : #example }
-LayoutExperiment >> gridLayoutExample [
+{ #category : #examples }
+LayoutExperiment class >> gridLayoutExample [
 
-	<bookExample>
+	<sampleInstance>
 	| space container e1 e2 e3 e4 e5 |
 	space := BlSpace new.
 
@@ -451,11 +454,11 @@ LayoutExperiment >> gridLayoutExample [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> layout1 [
+{ #category : #examples }
+LayoutExperiment class >> layout1 [
 	"This is a new method"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  layout: BlLinearLayout horizontal;
 		  size: 400 @ 300;
@@ -469,11 +472,11 @@ LayoutExperiment >> layout1 [
 					   background: (Color blue alpha: 0.2)) }
 ]
 
-{ #category : #example }
-LayoutExperiment >> layout2 [
+{ #category : #examples }
+LayoutExperiment class >> layout2 [
 	"This is a new method"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  layout: BlLinearLayout horizontal alignCenter;
 		  size: 400 @ 300;
@@ -487,11 +490,11 @@ LayoutExperiment >> layout2 [
 					   background: (Color blue alpha: 0.2)) }
 ]
 
-{ #category : #example }
-LayoutExperiment >> layout3 [
+{ #category : #examples }
+LayoutExperiment class >> layout3 [
 	"This is a new method"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  layout: BlLinearLayout horizontal;
 		  size: 400 @ 300;
@@ -511,11 +514,11 @@ LayoutExperiment >> layout3 [
 						   c ignored vertical alignBottom ]) } "alignCenter"
 ]
 
-{ #category : #example }
-LayoutExperiment >> layout4 [
+{ #category : #examples }
+LayoutExperiment class >> layout4 [
 	"This is a new method"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  layout: BlLinearLayout horizontal;
 		  size: 400 @ 300;
@@ -536,11 +539,11 @@ LayoutExperiment >> layout4 [
 						   c ignored vertical alignBottom ]) } "alignCenter"
 ]
 
-{ #category : #example }
-LayoutExperiment >> layout5 [
+{ #category : #examples }
+LayoutExperiment class >> layout5 [
 	"This is a new method"
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  layout: BlLinearLayout horizontal alignCenter;
 		  size: 400 @ 300;
@@ -555,10 +558,10 @@ LayoutExperiment >> layout5 [
 					   constraintsDo: [ :c | c margin: (BlInsets all: 10) ]) }
 ]
 
-{ #category : #example }
-LayoutExperiment >> linearLayoutExample [
+{ #category : #examples }
+LayoutExperiment class >> linearLayoutExample [
 
-	<bookExample>
+	<sampleInstance>
 	| space root |
 	space := BlSpace new.
 
@@ -589,10 +592,10 @@ LayoutExperiment >> linearLayoutExample [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> multipleElement [
+{ #category : #examples }
+LayoutExperiment class >> multipleElement [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 450 @ 150;
@@ -697,10 +700,10 @@ LayoutExperiment >> multipleElement [
 	^ container
 ]
 
-{ #category : #example }
-LayoutExperiment >> multipleElement2 [
+{ #category : #examples }
+LayoutExperiment class >> multipleElement2 [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 450 @ 150;
@@ -809,10 +812,10 @@ LayoutExperiment >> multipleElement2 [
 	^ container 
 ]
 
-{ #category : #example }
-LayoutExperiment >> multipleElementAlignments [
+{ #category : #examples }
+LayoutExperiment class >> multipleElementAlignments [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 450 @ 150;
@@ -920,10 +923,10 @@ LayoutExperiment >> multipleElementAlignments [
 	^ container
 ]
 
-{ #category : #example }
-LayoutExperiment >> multipleElementFitParameter [
+{ #category : #examples }
+LayoutExperiment class >> multipleElementFitParameter [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 450 @ 150;
@@ -1028,10 +1031,10 @@ LayoutExperiment >> multipleElementFitParameter [
 	^ container
 ]
 
-{ #category : #example }
-LayoutExperiment >> multipleElementFitParameter2 [
+{ #category : #examples }
+LayoutExperiment class >> multipleElementFitParameter2 [
 
-	<bookExample>
+	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
 		             size: 450 @ 150;
@@ -1137,10 +1140,10 @@ LayoutExperiment >> multipleElementFitParameter2 [
 	^ container
 ]
 
-{ #category : #example }
-LayoutExperiment >> spacingAndPaddindExampleWithTriangleGeometry [
+{ #category : #examples }
+LayoutExperiment class >> spacingAndPaddindExampleWithTriangleGeometry [
 
-	<bookExample>
+	<sampleInstance>
 	| space root element child |
 	space := BlSpace new.
 
@@ -1178,10 +1181,10 @@ LayoutExperiment >> spacingAndPaddindExampleWithTriangleGeometry [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> spacingAndPaddingdExample [
+{ #category : #examples }
+LayoutExperiment class >> spacingAndPaddingdExample [
 
-	<bookExample>
+	<sampleInstance>
 	| space root element child |
 	space := BlSpace new.
 
@@ -1219,10 +1222,10 @@ LayoutExperiment >> spacingAndPaddingdExample [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> squareSurroundedByNumbers [
+{ #category : #examples }
+LayoutExperiment class >> squareSurroundedByNumbers [
 
-	<bookExample>
+	<sampleInstance>
 	^ BlElement new
 		  layout: (BlGridLayout horizontal columnCount: 3);
 		  constraintsDo: [ :c |
@@ -1249,10 +1252,10 @@ LayoutExperiment >> squareSurroundedByNumbers [
 	"top row"
 ]
 
-{ #category : #example }
-LayoutExperiment >> zoomLayoutExample [
+{ #category : #examples }
+LayoutExperiment class >> zoomLayoutExample [
 
-	<bookExample>
+	<sampleInstance>
 	| container elt space |
 	space := BlSpace new.
 
@@ -1286,10 +1289,10 @@ LayoutExperiment >> zoomLayoutExample [
 	^ space
 ]
 
-{ #category : #example }
-LayoutExperiment >> zoomLayoutExample2 [
+{ #category : #examples }
+LayoutExperiment class >> zoomLayoutExample2 [
 
-	<bookExample>
+	<sampleInstance>
 	| elt zoom space |
 	space := BlSpace new.
 
@@ -1321,4 +1324,8 @@ LayoutExperiment >> zoomLayoutExample2 [
 	space root addChild: zoom.
 	space show.
 	^ space
+]
+
+{ #category : #'see class side' }
+LayoutExperiment >> seeClassSide [ 
 ]

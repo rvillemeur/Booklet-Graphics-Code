@@ -1,13 +1,16 @@
+"
+animation experiment and example in Bloc
+"
 Class {
 	#name : #AnimationExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #accessing }
-AnimationExperiment >> animatedBackground [
+{ #category : #examples }
+AnimationExperiment class >> animatedBackground [
 
-	<bookExample>
+	<sampleInstance>
 	| element animation |
 	element := BlElement new size: 50 @ 50.
 
@@ -27,10 +30,10 @@ AnimationExperiment >> animatedBackground [
 	^ element
 ]
 
-{ #category : #accessing }
-AnimationExperiment >> animatedBackground2 [
+{ #category : #examples }
+AnimationExperiment class >> animatedBackground2 [
 
-	<bookExample>
+	<sampleInstance>
 	| element animation |
 	element := BlElement new size: 50 @ 50.
 
@@ -49,4 +52,8 @@ AnimationExperiment >> animatedBackground2 [
 	element addAnimation: animation.
 	element openInNewSpace.
 	^ element
+]
+
+{ #category : #'see class side' }
+AnimationExperiment >> seeClassSide [ 
 ]

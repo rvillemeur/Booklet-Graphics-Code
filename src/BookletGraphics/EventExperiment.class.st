@@ -1,13 +1,16 @@
+"
+some example on managing events and keyboard handling with bloc
+"
 Class {
 	#name : #EventExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #accessing }
-EventExperiment >> blAnnulusExample [
+{ #category : #examples }
+EventExperiment class >> blAnnulusExample [
 
-	<bookExample>
+	<sampleInstance>
 	| tagDict pingCount piAngles fromAngle chart centerLabel element |
 	tagDict := {
 		           ('A' -> 10).
@@ -60,12 +63,13 @@ EventExperiment >> blAnnulusExample [
 	^ chart
 ]
 
-{ #category : #accessing }
-EventExperiment >> blAnnulusExample2 [
+{ #category : #examples }
+EventExperiment class >> blAnnulusExample2 [
 	"you can click on part of the circle to put some action"
 
-	<bookExample>
-	| elt |
+	<sampleInstance>
+	| elt anEventExperiment |
+	anEventExperiment := self new.
 	elt := BlElement new
 		       size: 400 @ 400;
 		       addChildren: ({
@@ -102,7 +106,7 @@ EventExperiment >> blAnnulusExample2 [
 					        BlElement new
 						        addEventHandler: (BlEventHandler
 								         on: BlClickEvent
-								         do: [ :e | self inform: each key ]);
+								         do: [ :e | anEventExperiment inform: each key ]);
 						        geometry: (BlAnnulusSectorGeometry new
 								         startAngle: each key first;
 								         endAngle: each key last);
@@ -114,11 +118,11 @@ EventExperiment >> blAnnulusExample2 [
 	^ elt
 ]
 
-{ #category : #example }
-EventExperiment >> blocSpaceIntoMorphicExample [
-<bookExample>
+{ #category : #examples }
+EventExperiment class >> blocSpaceIntoMorphicExample [
+
+	<sampleInstance>
 	| spacePresenter aSpace |
-	
 	"copy this example from bloc-spec2. It's really cool to open a bloc space window into morphic"
 	spacePresenter := SpBlSpaceInMorphPresenter new.
 
@@ -129,86 +133,23 @@ EventExperiment >> blocSpaceIntoMorphicExample [
 		background: Color paleBlue;
 		layout: BlFlowLayout horizontal.
 
-	50 timesRepeat: [ 
-		aSpace root addChild:
-			(BlElement new
-				background: Color random translucent;
-				addEventHandlerOn: BlMouseEnterEvent
-					do: [ :evt | evt target
-						background: Color random ];
-				yourself) ].
+	50 timesRepeat: [
+		aSpace root addChild: (BlElement new
+				 background: Color random translucent;
+				 addEventHandlerOn: BlMouseEnterEvent
+				 do: [ :evt | evt target background: Color random ];
+				 yourself) ].
 
 	spacePresenter open.
 
 	^ spacePresenter
 ]
 
-{ #category : #example }
-EventExperiment >> effectComposite [
-
-	<bookExample>
-	
-	| compositeEffect|
-	
-	compositeEffect := BlCompositeEffect effects: {
-		BlGaussianShadowEffect color: Color red width: 3 offset: 7 @ 11.
-		BlGaussianShadowEffect color: Color green width: 7 offset: -5 @ 7.
-		BlGaussianShadowEffect color: Color blue width: 11 offset: 7 @ -5 }.
-	^ BlElement new
-		  size: 300 @ 150;
-		  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
-		  background: (Color blue alpha: 0.5);
-		  border: (BlBorder paint: Color red width: 10);
-			effect: compositeEffect
-		
-]
-
-{ #category : #example }
-EventExperiment >> effectGaussianShadow [
-
-	<bookExample>
-	^ BlElement new
-		  size: 300 @ 150;
-		  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
-		  background: (Color blue alpha: 0.5);
-		  border: (BlBorder paint: Color red width: 10);
-			effect: (BlGaussianShadowEffect color: Color yellow offset: 10@20 width: 5)
-		
-]
-
-{ #category : #example }
-EventExperiment >> effectSimpleShadow [
-
-	<bookExample>
-	^ BlElement new
-		  size: 300 @ 150;
-		  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
-		  background: (Color blue alpha: 0.5);
-		  border: (BlBorder paint: Color red width: 10);
-			effect: (BlSimpleShadowEffect color: Color yellow offset: 10@20)
-		
-]
-
-{ #category : #example }
-EventExperiment >> effectSimpleShadow2 [
-
-	<bookExample>
-	^ BlElement new
-		  size: 200 @ 100;
-		  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
-		  background: (Color red alpha: 0.2);
-		  border: (BlBorder paint: Color yellow width: 1);
-		  "layout: BlLinearLayout horizontal alignCenter;""constraintsDo: [:c | c horizontal matchParent. c vertical matchParent.];"
-		  outskirts: BlOutskirts centered;
-		  effect:
-			  (BlSimpleShadowEffect color: Color orange offset: -10 @ -20)
-]
-
-{ #category : #accessing }
-EventExperiment >> eventExample [
+{ #category : #examples }
+EventExperiment class >> eventExample [
 	"This is a new method"
 
-	<bookExample>
+	<sampleInstance>
 	| elt |
 	elt := BlElement new
 		       size: 200 @ 200;
@@ -247,10 +188,10 @@ EventExperiment >> eventExample [
 	^ elt
 ]
 
-{ #category : #accessing }
-EventExperiment >> eventExampleMouseMove [
+{ #category : #examples }
+EventExperiment class >> eventExampleMouseMove [
 
-	<bookExample>
+	<sampleInstance>
 	| surface elt |
 	elt := BlElement new
 		       size: 20 @ 20;
@@ -292,10 +233,10 @@ EventExperiment >> eventExampleMouseMove [
 	^ surface
 ]
 
-{ #category : #accessing }
-EventExperiment >> exampleDragAndRainbow [
+{ #category : #examples }
+EventExperiment class >> exampleDragAndRainbow [
 
-	<bookExample>
+	<sampleInstance>
 	| root stroke wh colors a |
 	root := BlElement new
 		        size: (wh := 640 @ 480);
@@ -340,10 +281,10 @@ EventExperiment >> exampleDragAndRainbow [
 	^ root
 ]
 
-{ #category : #accessing }
-EventExperiment >> exampleMouseOver [
+{ #category : #examples }
+EventExperiment class >> exampleMouseOver [
 
-	<bookExample>
+	<sampleInstance>
 	| elt |
 	elt := BlElement new
 		       size: 200 @ 200;
@@ -373,9 +314,10 @@ EventExperiment >> exampleMouseOver [
 	^ elt
 ]
 
-{ #category : #example }
-EventExperiment >> exampleWithDragAndDropEvent [
-	<bookExample>
+{ #category : #examples }
+EventExperiment class >> exampleWithDragAndDropEvent [
+
+	<sampleInstance>
 	| space elt offset |
 	space := BlSpace new.
 
@@ -398,13 +340,55 @@ EventExperiment >> exampleWithDragAndDropEvent [
 
 	space root addChild: elt.
 	space show.
-	^space.
+	^ space
 ]
 
-{ #category : #'as yet unclassified' }
-EventExperiment >> keyboardKeyAndSimulationExample [
+{ #category : #examples }
+EventExperiment class >> exampleWithEvent [
 
-	<bookExample>
+	<sampleInstance>
+	| element space |
+	space := BlSpace new.
+
+	element := BlElement new
+		           size: 200 @ 200;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (100 @ 50).
+						            (115 @ 90).
+						            (150 @ 90).
+						            (125 @ 110).
+						            (135 @ 150).
+						            (100 @ 130).
+						            (65 @ 150).
+						            (75 @ 110).
+						            (50 @ 90).
+						            (85 @ 90) });
+		           background: (Color pink alpha: 0.2);
+		           border: (BlBorder paint: Color white width: 1);
+		           outskirts: BlOutskirts inside.
+
+	element addEventHandler: (BlEventHandler
+			 on: BlMouseEnterEvent
+			 do: [ :anEvent |
+				 anEvent consumed: true.
+				 element background: (Color red alpha: 0.2) ]).
+
+	element addEventHandler: (BlEventHandler
+			 on: BlMouseLeaveEvent
+			 do: [ :anEvent |
+				 anEvent consumed: true.
+				 element background: (Color blue alpha: 0.2) ]).
+
+	space root addChild: element.
+	space show.
+
+	^ space
+]
+
+{ #category : #examples }
+EventExperiment class >> keyboardKeyAndSimulationExample [
+
+	<sampleInstance>
 	| space hero dxy speed simulatorProcess keyUpBlockByKey keyDownBlockByKey |
 	"-- Setup visual properties of space and hero --""from http://ws.stfx.eu/5UQ515CAGRDU "
 	space := BlSpace new.
@@ -484,4 +468,8 @@ EventExperiment >> keyboardKeyAndSimulationExample [
 	                    space root dispatchEvent: (BlKeyDownEvent new
 			                     key: KeyboardKey Q;
 			                     yourself) ] fork
+]
+
+{ #category : #'see class side' }
+EventExperiment >> seeClassSide [ 
 ]

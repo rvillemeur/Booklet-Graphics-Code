@@ -1,13 +1,19 @@
+"
+A couple of example on the transform possibility in bloc
+- rotating
+- translating
+- scaling.
+"
 Class {
 	#name : #transformExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
-transformExperiment >> transformExample [
+{ #category : #examples }
+transformExperiment class >> transformExample [
 
-	<bookExample>
+	<sampleInstance>
 	| aContainer node space |
 	space := BlSpace new.
 	aContainer := BlElement new
@@ -39,4 +45,8 @@ transformExperiment >> transformExample [
 	space root addChild: aContainer.
 	space show.
 	^ space
+]
+
+{ #category : #'see class side' }
+transformExperiment >> seeClassSide [ 
 ]

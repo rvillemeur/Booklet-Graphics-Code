@@ -1,3 +1,6 @@
+"
+Sprite animation in bloc, click in the open method to look at it.
+"
 Class {
 	#name : #BlRunningMan,
 	#superclass : #Object,
