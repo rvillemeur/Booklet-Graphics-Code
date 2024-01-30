@@ -1,11 +1,11 @@
 Class {
-	#name : #RdvLayoutBlock,
+	#name : #LayoutExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
 { #category : #example }
-RdvLayoutBlock >> basicLayoutExample [
+LayoutExperiment >> basicLayoutExample [
 
 	<bookExample>
 	| space root elt1 elt2 |
@@ -42,8 +42,32 @@ RdvLayoutBlock >> basicLayoutExample [
 	^ space
 ]
 
+{ #category : #'as yet unclassified' }
+LayoutExperiment >> centerAndSize [
+
+	<bookExample>
+	| centersAndSizes container |
+	centersAndSizes := {
+		                   {
+			                   (50 @ 10).
+			                   (100 @ 10) }.
+		                   {
+			                   (50 @ 10).
+			                   (80 @ 15) } }.
+	container := BlElement new
+		             size: 200 @ 100;
+		             yourself.
+	centersAndSizes do: [ :c |
+		container addChild: (BlElement new
+				 background: (Color random alpha: 0.5);
+				 position: c first - (c second / 2);
+				 size: c second;
+				 yourself) ].
+	^container
+]
+
 { #category : #example }
-RdvLayoutBlock >> flowLayoutExample [
+LayoutExperiment >> flowLayoutExample [
 
 	<bookExample>
 	| space root |
@@ -74,7 +98,7 @@ RdvLayoutBlock >> flowLayoutExample [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> frameLayoutExample [
+LayoutExperiment >> frameLayoutExample [
 
 	<bookExample>
 	| space container child |
@@ -106,7 +130,7 @@ RdvLayoutBlock >> frameLayoutExample [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> frameLayoutExample2 [
+LayoutExperiment >> frameLayoutExample2 [
 
 	<bookExample>
 	| root elt1 elt2 elt3 elt4 elt5 elt6 elt7 elt8 elt9 |
@@ -239,7 +263,7 @@ RdvLayoutBlock >> frameLayoutExample2 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> frameLayoutExample3 [
+LayoutExperiment >> frameLayoutExample3 [
 
 	<bookExample>
 	"this could probably be achieved with grid layout as well."
@@ -363,7 +387,7 @@ RdvLayoutBlock >> frameLayoutExample3 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> gridLayoutExample [
+LayoutExperiment >> gridLayoutExample [
 
 	<bookExample>
 	| space container e1 e2 e3 e4 e5 |
@@ -428,7 +452,7 @@ RdvLayoutBlock >> gridLayoutExample [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> layout1 [
+LayoutExperiment >> layout1 [
 	"This is a new method"
 
 	<bookExample>
@@ -446,7 +470,7 @@ RdvLayoutBlock >> layout1 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> layout2 [
+LayoutExperiment >> layout2 [
 	"This is a new method"
 
 	<bookExample>
@@ -464,7 +488,7 @@ RdvLayoutBlock >> layout2 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> layout3 [
+LayoutExperiment >> layout3 [
 	"This is a new method"
 
 	<bookExample>
@@ -488,7 +512,7 @@ RdvLayoutBlock >> layout3 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> layout4 [
+LayoutExperiment >> layout4 [
 	"This is a new method"
 
 	<bookExample>
@@ -513,7 +537,7 @@ RdvLayoutBlock >> layout4 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> layout5 [
+LayoutExperiment >> layout5 [
 	"This is a new method"
 
 	<bookExample>
@@ -532,7 +556,7 @@ RdvLayoutBlock >> layout5 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> linearLayoutExample [
+LayoutExperiment >> linearLayoutExample [
 
 	<bookExample>
 	| space root |
@@ -566,7 +590,7 @@ RdvLayoutBlock >> linearLayoutExample [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> multipleElement [
+LayoutExperiment >> multipleElement [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
@@ -674,7 +698,7 @@ RdvLayoutBlock >> multipleElement [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> multipleElement2 [
+LayoutExperiment >> multipleElement2 [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
@@ -786,7 +810,7 @@ RdvLayoutBlock >> multipleElement2 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> multipleElementAlignments [
+LayoutExperiment >> multipleElementAlignments [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
@@ -897,7 +921,7 @@ RdvLayoutBlock >> multipleElementAlignments [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> multipleElementFitParameter [
+LayoutExperiment >> multipleElementFitParameter [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
@@ -1005,7 +1029,7 @@ RdvLayoutBlock >> multipleElementFitParameter [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> multipleElementFitParameter2 [
+LayoutExperiment >> multipleElementFitParameter2 [
 
 	<bookExample>
 	| element1 element2 element3 container box1 box2 box3 |
@@ -1114,7 +1138,7 @@ RdvLayoutBlock >> multipleElementFitParameter2 [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> spacingAndPaddindExampleWithTriangleGeometry [
+LayoutExperiment >> spacingAndPaddindExampleWithTriangleGeometry [
 
 	<bookExample>
 	| space root element child |
@@ -1155,7 +1179,7 @@ RdvLayoutBlock >> spacingAndPaddindExampleWithTriangleGeometry [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> spacingAndPaddingdExample [
+LayoutExperiment >> spacingAndPaddingdExample [
 
 	<bookExample>
 	| space root element child |
@@ -1196,7 +1220,7 @@ RdvLayoutBlock >> spacingAndPaddingdExample [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> squareSurroundedByNumbers [
+LayoutExperiment >> squareSurroundedByNumbers [
 
 	<bookExample>
 	^ BlElement new
@@ -1226,7 +1250,7 @@ RdvLayoutBlock >> squareSurroundedByNumbers [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> zoomLayoutExample [
+LayoutExperiment >> zoomLayoutExample [
 
 	<bookExample>
 	| container elt space |
@@ -1263,7 +1287,7 @@ RdvLayoutBlock >> zoomLayoutExample [
 ]
 
 { #category : #example }
-RdvLayoutBlock >> zoomLayoutExample2 [
+LayoutExperiment >> zoomLayoutExample2 [
 
 	<bookExample>
 	| elt zoom space |

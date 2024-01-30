@@ -195,6 +195,56 @@ GeometryExperiment >> circle [
 		border: self border
 ]
 
+{ #category : #accessing }
+GeometryExperiment >> donutAnnulusGeometry [
+
+	<bookExample>
+	| elt |
+	elt := BlElement new
+		       size: 400 @ 400;
+		       addChildren: ({
+				        ((-90 to: 30) -> (Color
+						          r: 111
+						          g: 91
+						          b: 149
+						          range: 255)).
+				        ((30 to: 60) -> (Color
+						          r: 152
+						          g: 138
+						          b: 193
+						          range: 255)).
+				        ((60 to: 120) -> (Color
+						          r: 237
+						          g: 150
+						          b: 54
+						          range: 255)).
+				        ((120 to: 150) -> (Color
+						          r: 243
+						          g: 189
+						          b: 55
+						          range: 255)).
+				        ((150 to: 230) -> (Color
+						          r: 36
+						          g: 174
+						          b: 226
+						          range: 255)).
+				        ((230 to: 270) -> (Color
+						          r: 99
+						          g: 197
+						          b: 198
+						          range: 255)) } collect: [ :each |
+					        BlElement new
+						        geometry: (BlAnnulusSectorGeometry new
+								         startAngle: each key first;
+								         endAngle: each key last);
+						        background: each value;
+						        constraintsDo: [ :c |
+							        c horizontal matchParent.
+							        c vertical matchParent ] ]).
+	elt openInNewSpace.
+	^ elt
+]
+
 { #category : #geometry }
 GeometryExperiment >> ellipse [
 

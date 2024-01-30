@@ -1,11 +1,11 @@
 Class {
-	#name : #RdvAnimationExperiment,
+	#name : #AnimationExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
 { #category : #accessing }
-RdvAnimationExperiment >> animatedBackground [
+AnimationExperiment >> animatedBackground [
 
 	<bookExample>
 	| element animation |
@@ -28,7 +28,7 @@ RdvAnimationExperiment >> animatedBackground [
 ]
 
 { #category : #accessing }
-RdvAnimationExperiment >> animatedBackground2 [
+AnimationExperiment >> animatedBackground2 [
 
 	<bookExample>
 	| element animation |

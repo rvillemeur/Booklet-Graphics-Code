@@ -31,7 +31,7 @@ RdvSpriteAnimation >> computeNewSpriteBounds [
 		ifTrue: [ self initSpritePosition ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #drawing }
 RdvSpriteAnimation >> drawMagnifiedSpriteOn: aCanvas [
 
 	aCanvas
@@ -42,7 +42,7 @@ RdvSpriteAnimation >> drawMagnifiedSpriteOn: aCanvas [
 		at: self topLeft
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #drawing }
 RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas [
 
 	self drawMiniSpriteOn: aCanvas at: (self topRight translateBy: -32 @ 0).
@@ -57,7 +57,7 @@ RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #drawing }
 RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas at: aPosition [
 
 	aCanvas

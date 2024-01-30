@@ -1,11 +1,21 @@
 Class {
-	#name : #RdvTextExperiment,
+	#name : #TextExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
+{ #category : #accessing }
+TextExperiment >> helloWorldExample [
+
+	<bookExample>
+	| elt |
+	elt := BlTextElement new text: 'Hello world!' asRopedText.
+	elt openInNewSpace.
+	^ elt
+]
+
 { #category : #'as yet unclassified' }
-RdvTextExperiment >> textAlignment1 [
+TextExperiment >> textAlignment1 [
 
 	<bookExample>
 	| t1 t2 p |
@@ -30,7 +40,7 @@ RdvTextExperiment >> textAlignment1 [
 ]
 
 { #category : #'as yet unclassified' }
-RdvTextExperiment >> textAlignment2 [
+TextExperiment >> textAlignment2 [
 
 	<bookExample>
 	| t1 t2 p |
