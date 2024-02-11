@@ -318,6 +318,82 @@ EventExperiment class >> exampleMouseOver [
 EventExperiment class >> exampleWithDragAndDropEvent [
 
 	<sampleInstance>
+	| space source target reject offset |
+	space := BlSpace new.
+
+	source := BlElement new
+		          id: #blue;
+		          background: Color blue;
+		          size: 100 @ 100;
+		          position: 10 @ 10.
+
+	target := BlElement new
+		          id: #red;
+					zIndex: 1000; "to put it in front of the others."
+		          background: Color red;
+		          size: 100 @ 100;
+		          position: 200 @ 200.
+
+	reject := BlElement new
+		          id: #green;
+		          background: Color green;
+		          size: 100 @ 100;
+		          position: 100 @ 200.
+
+	"mandatory to be able to move element"
+	"first pick of the element"
+	source addEventHandlerOn: BlDragStartEvent do: [ :event |
+		event consumed: true.
+		offset := event position - source position ].
+
+	"drag motion with the mouse is ongoing."
+	source
+		addEventHandlerOn: BlDragEvent
+		do: [ :event | 
+			source position: event position - offset ].
+
+	"Consider mouse has left element (when going over another element for ex"
+	"source addEventHandlerOn: BlDragLeaveEvent do: [ :event |
+		self inform: 'leave'.
+		source position: event position - offset ]."
+
+	"Consider mouse has entered element (when leaving over another element for ex"
+	"source addEventHandlerOn: BlDragEnterEvent do: [ :event |
+		self inform: 'enter'.
+		source position: event position - offset ]."
+
+	"mandatory to be able to move element"
+	reject addEventHandlerOn: BlDragStartEvent do: [ :event |
+		event consumed: true.
+		offset := event position - reject position ].
+	
+	reject
+		addEventHandlerOn: BlDragEvent
+		do: [ :event | reject position: event position - offset ].
+
+	target addEventHandlerOn: BlDropEvent do: [ :event |
+		event consumed: true.
+		event gestureSource background paint color = Color blue
+			ifTrue: [ self inform: 'drop accepted' ]
+			ifFalse: [
+				self inform: 'drop rejected'.
+				event gestureSource position: 100 @ 400 ] ].
+
+	"note: order is important. Otherwise, use zIndex"
+	space root addChildren: {
+			target.
+			source.
+			reject
+			 }.
+	
+	space show.
+	^ space
+]
+
+{ #category : #examples }
+EventExperiment class >> exampleWithDragEvent [
+
+	<sampleInstance>
 	| space elt offset |
 	space := BlSpace new.
 
