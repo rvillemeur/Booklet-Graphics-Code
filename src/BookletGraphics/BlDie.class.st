@@ -1,14 +1,19 @@
 Class {
 	#name : #BlDie,
-	#superclass : #Object,
+	#superclass : #BlElement,
 	#instVars : [
 		'faces',
 		'dieValue',
-		'isStopped',
-		'extent'
+		'animation'
 	],
 	#category : #'BookletGraphics-Bloc'
 }
+
+{ #category : #accessing }
+BlDie class >> faces: aNumber [
+
+	^ self new faces: aNumber
+]
 
 { #category : #accessing }
 BlDie >> dieValue: aNumber [
@@ -16,42 +21,27 @@ BlDie >> dieValue: aNumber [
 	((aNumber isInteger and: [ aNumber > 0 ]) and: [ aNumber <= faces ])
 		ifFalse: [ ^ self ].
 	dieValue := aNumber.
-	self changed
+	self removeChildren.
+
+	self requestLayout.
+		self whenLayoutedDoOnce: [
+		(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
+			self drawPointAt: aPoint ] ].
 ]
 
 { #category : #drawing }
-BlDie >> drawDie [
-
-	| die |
-	die := BlElement new
-		       size: extent;
-		       geometry: (BlRoundedRectangleGeometry cornerRadius: 10);
-		       border: (BlBorder paint: Color black width: 2);
-		       background:  ((BlLinearGradientPaint direction: 1 @ 1)
-						    		matchExtent: extent;
-						   		   from: Color green to: Color lightGreen ).
-
-	"die forceLayout."
-	(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
-		self drawPointAt: aPoint on: die ].
-
-	^ die
-]
-
-{ #category : #drawing }
-BlDie >> drawPointAt: aPoint on: aDie [
+BlDie >> drawPointAt: aPoint [
 
 	| element  x y|
-
-	x := extent / 6.
-	y := extent  / 6.
+	x := self extent / 6.
+	y := self extent  / 6.
 
 	element := BlElement new
 		           geometry: BlCircleGeometry new;
 		           size: x @ y ;
 		           background: Color black;
-		           position: aDie position + (extent * aPoint) - ((x/2)@(y/2)).
-	aDie addChild: element.
+		           position: self position + (self extent * aPoint) - ((x/2)@(y/2)).
+	self addChild: element.
 ]
 
 { #category : #geometry }
@@ -164,14 +154,39 @@ BlDie >> faces: aNumber [
 BlDie >> initialize [
 
 	super initialize.
+	
+	dieValue := 1.
+	faces := 6.
+	
+	self size: 150@150;
+		       geometry: (BlRoundedRectangleGeometry cornerRadius: 10);
+		       border: (BlBorder paint: Color black width: 2);
+		       background: ((BlLinearGradientPaint direction: 1 @ 1)
+				        from: Color green to: Color lightGreen).
+	self whenLayoutedDoOnce: [
+		(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
+			self drawPointAt: aPoint ] ].
+	
+	animation := BlNumberTransition new
+		             from: 1;
+		             to: faces;
+		             by: 1;
+		             beInfinite;
+		             duration: 0.1 seconds;
+		             onStepDo: [ :aValue :anElement |
+			             self dieValue: (1 to: faces) atRandom ].
+	
+		self addEventHandler: (BlEventHandler
+                on: BlClickEvent 
+                do: [ :anEvent | animation isRunning ifTrue: [ animation stop ] ifFalse: [ animation start ] ]).
 
-	extent := 50@50.
-	dieValue := 9.
-	faces := 9.
-	isStopped := false
+
+	self addAnimation: animation.
+		
+
 ]
 
 { #category : #'instance creation' }
 BlDie >> open [
-	<script: 'self new drawDie openInNewSpace'>
+	<script: '(self new faces:8) openInNewSpace'>
 ]
