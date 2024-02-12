@@ -5,8 +5,7 @@ Class {
 		'faces',
 		'dieValue',
 		'isStopped',
-		'width',
-		'height'
+		'extent'
 	],
 	#category : #'BookletGraphics-Bloc'
 }
@@ -25,11 +24,14 @@ BlDie >> drawDie [
 
 	| die |
 	die := BlElement new
-		       size: (self width) @ (self height);
-		       geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
+		       size: extent;
+		       geometry: (BlRoundedRectangleGeometry cornerRadius: 10);
 		       border: (BlBorder paint: Color black width: 2);
-		       background: Color green.
+		       background:  ((BlLinearGradientPaint direction: 1 @ 1)
+						    		matchExtent: extent;
+						   		   from: Color green to: Color lightGreen ).
 
+	"die forceLayout."
 	(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
 		self drawPointAt: aPoint on: die ].
 
@@ -41,14 +43,14 @@ BlDie >> drawPointAt: aPoint on: aDie [
 
 	| element  x y|
 
-	x := (aDie extent) / 6.
-	y := (aDie extent)  / 6.
+	x := extent / 6.
+	y := extent  / 6.
 
 	element := BlElement new
 		           geometry: BlCircleGeometry new;
 		           size: x @ y ;
 		           background: Color black;
-		           position: aDie position + (aDie extent * aPoint).
+		           position: aDie position + (extent * aPoint) - ((x/2)@(y/2)).
 	aDie addChild: element.
 ]
 
@@ -158,29 +160,18 @@ BlDie >> faces: aNumber [
 		ifTrue: [ faces := aNumber ]
 ]
 
-{ #category : #'api - bounds' }
-BlDie >> height [
-
-	^ 50
-]
-
 { #category : #initialization }
 BlDie >> initialize [
 
 	super initialize.
 
-	dieValue := 6.
-	faces := 6.
+	extent := 50@50.
+	dieValue := 9.
+	faces := 9.
 	isStopped := false
 ]
 
 { #category : #'instance creation' }
 BlDie >> open [
 	<script: 'self new drawDie openInNewSpace'>
-]
-
-{ #category : #'api - bounds' }
-BlDie >> width [
-
-	^ 50
 ]
