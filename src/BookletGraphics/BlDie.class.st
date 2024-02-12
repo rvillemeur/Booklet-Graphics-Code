@@ -1,3 +1,6 @@
+"
+A die example ported from Morphic to pharo, and used in Pharo by example book
+"
 Class {
 	#name : #BlDie,
 	#superclass : #BlElement,
@@ -21,12 +24,7 @@ BlDie >> dieValue: aNumber [
 	((aNumber isInteger and: [ aNumber > 0 ]) and: [ aNumber <= faces ])
 		ifFalse: [ ^ self ].
 	dieValue := aNumber.
-	self removeChildren.
-
-	self requestLayout.
-		self whenLayoutedDoOnce: [
-		(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
-			self drawPointAt: aPoint ] ].
+	self removeChildren
 ]
 
 { #category : #drawing }
@@ -154,39 +152,43 @@ BlDie >> faces: aNumber [
 BlDie >> initialize [
 
 	super initialize.
-	
+
 	dieValue := 1.
 	faces := 6.
-	
-	self size: 150@150;
-		       geometry: (BlRoundedRectangleGeometry cornerRadius: 10);
-		       border: (BlBorder paint: Color black width: 2);
-		       background: ((BlLinearGradientPaint direction: 1 @ 1)
-				        from: Color green to: Color lightGreen).
-	self whenLayoutedDoOnce: [
+
+	self
+		size: 150 @ 150;
+		geometry: (BlRoundedRectangleGeometry cornerRadius: 10);
+		border: (BlBorder paint: Color black width: 2);
+		background: ((BlLinearGradientPaint direction: 1 @ 1)
+				 from: Color green
+				 to: Color lightGreen).
+				
+	self whenLayoutedDo: [
 		(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
 			self drawPointAt: aPoint ] ].
-	
-	animation := BlNumberTransition new
-		             from: 1;
-		             to: faces;
-		             by: 1;
+
+	animation := BlAnimation new
 		             beInfinite;
-		             duration: 0.1 seconds;
-		             onStepDo: [ :aValue :anElement |
-			             self dieValue: (1 to: faces) atRandom ].
-	
-		self addEventHandler: (BlEventHandler
-                on: BlClickEvent 
-                do: [ :anEvent | animation isRunning ifTrue: [ animation stop ] ifFalse: [ animation start ] ]).
+		             duration: 1 seconds.
 
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationLoopDoneEvent
+			 do: [ :anEvent | self dieValue: (1 to: faces) atRandom ]).
 
-	self addAnimation: animation.
-		
+	self addEventHandler: (BlEventHandler
+			 on: BlMouseDownEvent
+			 do: [ :anEvent |
+				 animation isRunning
+					 ifTrue: [
+						 animation stop ]
+					 ifFalse: [
+						 animation start ] ]).
 
+	self addAnimation: animation
 ]
 
 { #category : #'instance creation' }
 BlDie >> open [
-	<script: '(self new faces:8) openInNewSpace'>
+	<script: '(self new faces:9) openInNewSpace'>
 ]
