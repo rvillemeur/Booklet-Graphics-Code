@@ -329,8 +329,8 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 
 	target := BlElement new
 		          id: #red;
-					zIndex: 1000; "to put it in front of the others."
-		          background: Color red;
+		          zIndex: 1000; "to put it in front of the others."
+					 background: Color red;
 		          size: 100 @ 100;
 		          position: 200 @ 200.
 
@@ -349,8 +349,7 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 	"drag motion with the mouse is ongoing."
 	source
 		addEventHandlerOn: BlDragEvent
-		do: [ :event | 
-			source position: event position - offset ].
+		do: [ :event | source position: event position - offset ].
 
 	"Consider mouse has left element (when going over another element for ex"
 	"source addEventHandlerOn: BlDragLeaveEvent do: [ :event |
@@ -366,7 +365,7 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 	reject addEventHandlerOn: BlDragStartEvent do: [ :event |
 		event consumed: true.
 		offset := event position - reject position ].
-	
+
 	reject
 		addEventHandlerOn: BlDragEvent
 		do: [ :event | reject position: event position - offset ].
@@ -383,9 +382,8 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 	space root addChildren: {
 			target.
 			source.
-			reject
-			 }.
-	
+			reject }.
+
 	space show.
 	^ space
 ]
