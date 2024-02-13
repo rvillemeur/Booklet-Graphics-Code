@@ -25,6 +25,6 @@ DroppedMorph >> rejectDropMorphEvent: anEvent [
 
 	| h |
 	h := anEvent hand.
-	WorldState addDeferredUIMessage: [ h grabMorph: self ].
+	Smalltalk currentWorld worldState defer: [ h grabMorph: self ].
 	anEvent wasHandled: true
 ]
