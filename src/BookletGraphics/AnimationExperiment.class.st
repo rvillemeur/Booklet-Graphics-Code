@@ -133,6 +133,238 @@ AnimationExperiment class >> crossElement [
 	^ cross
 ]
 
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialBounceIn [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlEasing bounceIn ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlEasing bounceIn;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialBounceInOut [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlEasing bounceInOut ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlEasing bounceInOut ;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialBounceOut [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlEasing bounceOut;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlEasing bounceOut;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialElastic [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlEasingElastic new ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlEasingElastic new;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialQuad [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlEasingQuad new ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlEasingQuad new;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialQuintic [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlQuinticInterpolator new ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlQuinticInterpolator new;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialSine [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlSineInterpolator new ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlSineInterpolator new;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> sequentialViscousFluid [
+
+	<sampleInstance>
+	| space element translation scale sequential |
+	translation := (BlTransformAnimation translate: 300 @ 300)
+		               easing: BlViscousFluidInterpolator new ;
+		               duration: 2 seconds.
+
+	scale := (BlTransformAnimation scale: 2 @ 2)
+		         easing: BlViscousFluidInterpolator new;
+		         duration: 2 seconds.
+
+	sequential := BlSequentialAnimation new addAll: {
+			              translation.
+			              scale }.
+
+	element := BlElement new
+		           background: Color blue;
+		           size: 100 @ 100;
+		           position: 100 @ 100.
+	element addAnimation: sequential.
+
+	space := BlSpace new.
+	space root addChild: element.
+	space show.
+	^space
+]
+
 { #category : #'see class side' }
 AnimationExperiment >> seeClassSide [ 
 ]
