@@ -7,7 +7,7 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> GaussianEffectAnimation [
 
 	<sampleInstance>
@@ -156,7 +156,7 @@ AnimationExperiment class >> crossElement [
 	^ cross
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> opacityAnimation [
 
 	<sampleInstance>
@@ -176,7 +176,7 @@ AnimationExperiment class >> opacityAnimation [
 	^ element
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialBounceIn [
 
 	<sampleInstance>
@@ -205,7 +205,7 @@ AnimationExperiment class >> sequentialBounceIn [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialBounceInOut [
 
 	<sampleInstance>
@@ -234,7 +234,7 @@ AnimationExperiment class >> sequentialBounceInOut [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialBounceOut [
 
 	<sampleInstance>
@@ -263,7 +263,7 @@ AnimationExperiment class >> sequentialBounceOut [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialElastic [
 
 	<sampleInstance>
@@ -292,7 +292,7 @@ AnimationExperiment class >> sequentialElastic [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialQuad [
 
 	<sampleInstance>
@@ -321,7 +321,7 @@ AnimationExperiment class >> sequentialQuad [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialQuintic [
 
 	<sampleInstance>
@@ -350,7 +350,7 @@ AnimationExperiment class >> sequentialQuintic [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialSine [
 
 	<sampleInstance>
@@ -379,7 +379,7 @@ AnimationExperiment class >> sequentialSine [
 	^space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 AnimationExperiment class >> sequentialViscousFluid [
 
 	<sampleInstance>

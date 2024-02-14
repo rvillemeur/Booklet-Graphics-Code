@@ -3,22 +3,12 @@ Sprite animation in bloc, click in the open method to look at it.
 "
 Class {
 	#name : #BlRunningMan,
-	#superclass : #Object,
+	#superclass : #BlElement,
 	#instVars : [
-		'spriteGrid',
-		'view'
+		'spriteGrid'
 	],
 	#category : #'BookletGraphics-Bloc'
 }
-
-{ #category : #accessing }
-BlRunningMan >> container [
-
-	^ BlElement new
-		  size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
-		  background: (BlPaintBackground paint: (Color green alpha: 0.2));
-		  border: (BlBorder paint: Color black width: 3)
-]
 
 { #category : #initialization }
 BlRunningMan >> initSpritePosition [
@@ -44,18 +34,24 @@ BlRunningMan >> initSpritePosition [
 BlRunningMan >> initialize [
 
 	super initialize.
+
 	self initSpritePosition.
-	view := self container addChild: self runningMan
+
+	self
+		size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
+		background: (BlPaintBackground paint: (Color green alpha: 0.2));
+		border: (BlBorder paint: Color black width: 3);
+		addChild: self runningMan
 ]
 
 { #category : #initialization }
 BlRunningMan >> magnifyFactor [
-	^ 5
+	^ 10
 ]
 
 { #category : #'instance creation' }
 BlRunningMan >> open [
-	<script: 'self new view openInNewSpace'>
+	<script: 'self new openInNewSpace'>
 ]
 
 { #category : #'execution - private' }
@@ -74,10 +70,4 @@ BlRunningMan >> runningMan [
 	^ BlElement new
 		  size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
 		  addAnimation: animation
-]
-
-{ #category : #accessing }
-BlRunningMan >> view [
-
-	^ view
 ]
