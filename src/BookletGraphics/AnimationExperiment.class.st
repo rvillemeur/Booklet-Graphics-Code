@@ -7,6 +7,29 @@ Class {
 	#category : #'BookletGraphics-Bloc'
 }
 
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> GaussianEffectAnimation [
+
+	<sampleInstance>
+	| element animation |
+	element := BlElement new
+		           size: 150 @ 150;
+		           position: 25 @ 25;
+		           background: Color yellow;
+		           border: (BlBorder paint: Color red width: 3).
+
+	animation := BlGaussianEffectOpacityAnimation new
+		             delay: 1 second;
+		             color: Color red;
+		             width: 25;
+		             opacity: 0.9;
+		             duration: 300 milliSeconds.
+
+	element addAnimation: animation.
+	element openInNewSpace.
+	^ element
+]
+
 { #category : #examples }
 AnimationExperiment class >> animatedBackground [
 
@@ -41,7 +64,7 @@ AnimationExperiment class >> animatedBackground2 [
 		             from: 0;
 		             to: 1;
 		             by: 0.5;
-		             beInfinite;
+		             loops: 5;
 		             duration: 3 seconds;
 		"onStepDo: is called on every space pulse. Color are updated at each pulse..."
 		             onStepDo: [ :aValue :anElement |
@@ -131,6 +154,26 @@ AnimationExperiment class >> crossElement [
 	cross openInNewSpace.
 	cross requestFocus.
 	^ cross
+]
+
+{ #category : #'as yet unclassified' }
+AnimationExperiment class >> opacityAnimation [
+
+	<sampleInstance>
+	| element animation |
+	element := BlElement new
+		           size: 150 @ 150;
+		           background: Color yellow;
+		           border: (BlBorder paint: Color red width: 3).
+
+	animation := BlOpacityAnimation new
+						delay: 1 second;
+		             opacity: 0.1;
+		             duration: 300 milliSeconds.
+
+	element addAnimation: animation.
+	element openInNewSpace.
+	^ element
 ]
 
 { #category : #'as yet unclassified' }
