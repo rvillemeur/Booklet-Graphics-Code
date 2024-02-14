@@ -25,6 +25,6 @@ DroppedMorph >> rejectDropMorphEvent: anEvent [
 
 	| h |
 	h := anEvent hand.
-	Smalltalk currentWorld worldState defer: [ h grabMorph: self ].
+	self currentWorld worldState defer: [ h grabMorph: self ].
 	anEvent wasHandled: true
 ]
