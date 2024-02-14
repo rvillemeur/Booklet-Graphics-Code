@@ -20,6 +20,30 @@ TextExperiment class >> exampleHelloWorld [
 	^ elt
 ]
 
+{ #category : #'as yet unclassified' }
+TextExperiment class >> helloBloc [
+
+	<sampleInstance>
+	| labelText label |
+	labelText := 'hello from bloc' asRopedText
+		             background: Color orange ;
+		             fontSize: 75;
+		             fontName: 'Source Code Pro';
+		             italic;
+		             underline;
+		             underlineColor: Color red;
+		             vertical.
+
+	(labelText from: 1 to: 5) foreground: Color blue.
+	(labelText from: 7 to: 11) foreground: Color white.
+	(labelText from: 12 to: 15) foreground: Color red.
+
+	label := (BlTextElement text: labelText) position: 50 @ 10.
+
+	label openInNewSpace.
+	^ label
+]
+
 { #category : #examples }
 TextExperiment class >> textAlignment1 [
 
