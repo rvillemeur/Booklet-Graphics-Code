@@ -20,7 +20,7 @@ TextExperiment class >> exampleHelloWorld [
 	^ elt
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
 TextExperiment class >> helloBloc [
 
 	<sampleInstance>
@@ -38,7 +38,7 @@ TextExperiment class >> helloBloc [
 	(labelText from: 7 to: 11) foreground: Color white.
 	(labelText from: 12 to: 15) foreground: Color red.
 
-	label := (BlTextElement text: labelText) position: 50 @ 10.
+	label := (BlTextElement text: labelText) position: 50 @ 10; background: Color yellow.
 
 	label openInNewSpace.
 	^ label
