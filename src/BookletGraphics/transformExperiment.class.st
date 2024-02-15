@@ -14,9 +14,8 @@ Class {
 transformExperiment class >> transformExample [
 
 	<sampleInstance>
-	| aContainer node space |
-	space := BlSpace new.
-	aContainer := BlElement new
+	| container node |
+	container := BlElement new
 		              layout: BlFrameLayout new;
 		              constraintsDo: [ :c |
 			              c horizontal fitContent.
@@ -30,21 +29,19 @@ transformExperiment class >> transformExample [
 		        background: Color white;
 		        constraintsDo: [ :c |
 			        c frame horizontal alignCenter.
-			        c frame vertical alignBottom ];
+			        c frame vertical alignCenter ];
 		        size: 20 @ 20.
 
-	aContainer transformDo: [ :t |
+	container transformDo: [ :t |
 		t
 			scaleBy: 2.0;
 			rotateBy: 69;
 			translateBy: 50 @ 50 ].
-	aContainer addChild: node.
 
-	aContainer forceLayout.
+	container whenLayoutedDoOnce:  [ container addChild: node.].
 
-	space root addChild: aContainer.
-	space show.
-	^ space
+	container openInNewSpace. 
+	^ container
 ]
 
 { #category : #'see class side' }
