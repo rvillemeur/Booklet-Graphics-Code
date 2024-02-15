@@ -5,13 +5,13 @@ A couple of example on the transform possibility in bloc
 - scaling.
 "
 Class {
-	#name : #transformExperiment,
+	#name : #TransformExperiment,
 	#superclass : #Object,
 	#category : #'BookletGraphics-Bloc'
 }
 
 { #category : #examples }
-transformExperiment class >> transformExample [
+TransformExperiment class >> transformExample [
 
 	<sampleInstance>
 	| container node |
@@ -45,5 +45,5 @@ transformExperiment class >> transformExample [
 ]
 
 { #category : #'see class side' }
-transformExperiment >> seeClassSide [ 
+TransformExperiment >> seeClassSide [ 
 ]
