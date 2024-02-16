@@ -49,23 +49,31 @@ TextExperiment class >> helloHarfbuzz [
 
 	<sampleInstance>
 	| labelText label |
+	"Harfbuzz rendering is currently commented out in BATextParagraphSpan >> measure "
 	labelText := 'a := A->B->>C <= c|=>d~~>e.' asRopedText
-		             background: Color orange ;
-		             fontSize: 75;
-		             fontName: 'Source Code Pro';
-		             italic;
-		             underline;
-		             underlineColor: Color red;
-		             vertical.
+		             background: Color orange;
+		             fontSize: 25;
+		             fontName: 'Cascadia Code';
+						 underline;
+						 underlineColor: Color red.
 
 	(labelText from: 1 to: 5) foreground: Color blue.
 	(labelText from: 7 to: 11) foreground: Color white.
 	(labelText from: 12 to: 15) foreground: Color red.
+	
+	label := (BlTextElement text: labelText)
+		         position: 50 @ 10;
+		         background: Color yellow;
+		         margin: (BlInsets all: 10);
+		         padding: (BlInsets all: 5);
+		         outskirts: BlOutskirts centered;
+		         border: (BlBorder paint: Color red width: 5).
+	label tightMeasurement.
 
-	label := (BlTextElement text: labelText) position: 50 @ 10; background: Color yellow.
-
-	label openInNewSpace.
 	^ label
+
+
+
 ]
 
 { #category : #examples }
