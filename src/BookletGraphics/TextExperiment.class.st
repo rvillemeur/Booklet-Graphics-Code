@@ -81,18 +81,17 @@ TextExperiment class >> sampleEditorMeasure [
 
 	<sampleInstance>
 	| labelText label |
-	labelText := 'a := A->B->>C <= c|=>d~~>e.' asRopedText
+	labelText := 'Sphinx - a := A->B->>C <= c|=>d~~>e.' asRopedText
 		             background: Color orange;
 		             fontSize: 25;
 		             fontName: 'Cascadia Code'.
 
 	label := (BlTextElement text: labelText)
-		         position: 50 @ 10;
 		         background: Color yellow;
-		         margin: (BlInsets all: 10);
-		         padding: (BlInsets all: 5);
-		         outskirts: BlOutskirts centered;
-		         border: (BlBorder paint: Color red width: 5).
+		         "margin: (BlInsets all: 5);"
+		         "padding: (BlInsets all: 5);"
+		         "outskirts: BlOutskirts outside;"
+		         border: (BlBorder paint: Color red width: 1).
 	label editorMeasurement.
 	^ label
 ]
@@ -102,18 +101,17 @@ TextExperiment class >> sampleLabelMeasure [
 
 	<sampleInstance>
 	| labelText label |
-	labelText := 'a := A->B->>C <= c|=>d~~>e.' asRopedText
+	labelText := 'Sphinx - a := A->B->>C <= c|=>d~~>e.' asRopedText
 		             background: Color orange;
 		             fontSize: 25;
 		             fontName: 'Cascadia Code'.
 
 	label := (BlTextElement text: labelText)
-		         position: 50 @ 10;
 		         background: Color yellow;
-		         margin: (BlInsets all: 10);
-		         padding: (BlInsets all: 5);
-		         outskirts: BlOutskirts centered;
-		         border: (BlBorder paint: Color red width: 5).
+		         "margin: (BlInsets all: 5);"
+		         "padding: (BlInsets all: 5);"
+		         "outskirts: BlOutskirts outside;"
+		         border: (BlBorder paint: Color red width: 1).
 	label labelMeasurement.
 
 	^ label
@@ -126,7 +124,8 @@ TextExperiment class >> sampleMeasure [
 	| container |
 	container := BlElement new
 		             border: (BlBorder paint: Color black width: 2);
-		             layout: BlLinearLayout vertical alignCenter ;
+		             layout: BlLinearLayout vertical alignCenterLeft ;
+		 				padding: (BlInsets all: 5);
 		             constraintsDo: [ :c |
 			             c horizontal fitContent.
 			             c vertical fitContent ];
@@ -150,18 +149,17 @@ TextExperiment class >> sampletightMeasure [
 
 	<sampleInstance>
 	| labelText label |
-	labelText := 'a := A->B->>C <= c|=>d~~>e.' asRopedText
+	labelText := 'Sphinx - a := A->B->>C <= c|=>d~~>e.' asRopedText
 		             background: Color orange;
 		             fontSize: 25;
 		             fontName: 'Cascadia Code'.
 
 	label := (BlTextElement text: labelText)
-		         position: 50 @ 10;
 		         background: Color yellow;
-		         margin: (BlInsets all: 10);
-		         padding: (BlInsets all: 5);
-		         outskirts: BlOutskirts centered;
-		         border: (BlBorder paint: Color red width: 5).
+		         "margin: (BlInsets all: 5);"
+		         "padding: (BlInsets all: 5);"
+		         "outskirts: BlOutskirts outside;"
+		         border: (BlBorder paint: Color red width: 1).
 	label tightMeasurement.
 
 	^ label
