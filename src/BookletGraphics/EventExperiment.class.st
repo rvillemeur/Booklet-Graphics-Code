@@ -323,20 +323,20 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 
 	source := BlElement new
 		          id: #blue;
-		          background: Color blue;
+		          background: (Color blue alpha: 0.2);
 		          size: 100 @ 100;
 		          position: 10 @ 10.
 
 	target := BlElement new
 		          id: #red;
-		          zIndex: 1000; "to put it in front of the others."
-					 background: Color red;
+		          "zIndex: 1000;" "to put it in front of the others."
+					 background: (Color red alpha: 0.2);
 		          size: 100 @ 100;
 		          position: 200 @ 200.
 
 	reject := BlElement new
 		          id: #green;
-		          background: Color green;
+		          background: (Color green alpha: 0.2);
 		          size: 100 @ 100;
 		          position: 100 @ 200.
 
@@ -372,7 +372,7 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 
 	target addEventHandlerOn: BlDropEvent do: [ :event |
 		event consumed: true.
-		event gestureSource background paint color = Color blue
+		event gestureSource background paint color = (Color blue alpha: 0.2)
 			ifTrue: [ self inform: 'drop accepted' ]
 			ifFalse: [
 				self inform: 'drop rejected'.
@@ -380,9 +380,85 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 
 	"note: order is important. Otherwise, use zIndex"
 	space root addChildren: {
-			target.
 			source.
-			reject }.
+			reject. target. }.
+
+	space show.
+	^ space
+]
+
+{ #category : #examples }
+EventExperiment class >> exampleWithDragAndDropEvent2 [
+
+	<sampleInstance>
+	| space source target reject offset |
+	space := BlSpace new.
+
+	source := BlElement new
+		          id: #blue;
+		          background: (Color blue);
+		          size: 50 @ 50;
+		          position: 10 @ 10.
+
+	target := BlElement new
+		          id: #red;
+		          "zIndex: 1000;" "to put it in front of the others."
+					 background: (Color red);
+		          size: 100 @ 100;
+		          position: 200 @ 200.
+
+	reject := BlElement new
+		          id: #green;
+		          background: (Color green);
+		          size: 50 @ 50;
+		          position: 100 @ 200.
+
+	"mandatory to be able to move element"
+	"first pick of the element"
+	source addEventHandlerOn: BlDragStartEvent do: [ :event |
+		event consumed: true.
+		offset := event position - source position ].
+
+	"drag motion with the mouse is ongoing."
+	source
+		addEventHandlerOn: BlDragEvent
+		do: [ :event | source position: event position - offset ].
+
+	"Consider mouse has left element (when going over another element for ex"
+	"source addEventHandlerOn: BlDragLeaveEvent do: [ :event |
+		self inform: 'leave'.
+		source position: event position - offset ]."
+
+	"Consider mouse has entered element (when leaving over another element for ex"
+	"source addEventHandlerOn: BlDragEnterEvent do: [ :event |
+		self inform: 'enter'.
+		source position: event position - offset ]."
+
+	"mandatory to be able to move element"
+	reject addEventHandlerOn: BlDragStartEvent do: [ :event |
+		event consumed: true.
+		offset := event position - reject position ].
+
+	reject
+		addEventHandlerOn: BlDragEvent
+		do: [ :event | reject position: event position - offset ].
+
+	target addEventHandlerOn: BlDropEvent do: [ :event |
+		event consumed: true.
+		event gestureSource background paint color = (Color blue)
+			ifTrue: [ self inform: 'drop accepted' ]
+			ifFalse: [
+				self inform: 'drop rejected'.
+				event gestureSource position: 100 @ 400 ] ].
+
+target addEventHandlerOn: BlDragEnterEvent do: [ :event |
+		self inform: 'target enter'].
+	
+	target addEventHandlerOn: BlDragLeaveEvent  do: [ :event |
+		self inform: 'target leave'].
+	"note: order is important. Otherwise, use zIndex"
+	space root addChildren: {
+						reject. target. source. }.
 
 	space show.
 	^ space
