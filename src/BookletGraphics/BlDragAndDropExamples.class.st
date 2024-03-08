@@ -4,8 +4,8 @@ Class {
 	#category : #'BookletGraphics-BlocDragNDrop'
 }
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> labelContainer: anElement with: aText [
+{ #category : #letters }
+BlDragAndDropExamples class >> labelContainer: anElement with: aText [
 
 	^ BlElement new
 		  layout: (BlLinearLayout vertical alignTopCenter cellSpacing: 10);
@@ -16,8 +16,8 @@ BlDragAndDropExamples >> labelContainer: anElement with: aText [
 		  addChild: anElement
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> letterFor: aCharacter [
+{ #category : #letters }
+BlDragAndDropExamples class >> letterFor: aCharacter [
 
 	^ BlElement new
 		  layout: BlLinearLayout horizontal alignCenter;
@@ -35,13 +35,14 @@ BlDragAndDropExamples >> letterFor: aCharacter [
 				   text: aCharacter asString asRopedText)
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> lettersSorter [
+{ #category : #letters }
+BlDragAndDropExamples class >> lettersSorter [
 
-	<gtExample>
-	| letters vowels consonants |
+	<sampleInstance>
+	| letters vowels consonants  |
 	letters := self lettersSorterContainer.
-	vowels := self lettersSorterRoundedContainerWithBorder.
+	vowels := self
+		          lettersSorterRoundedContainerWithBorder.
 	vowels addEventHandler: (BlDropHandler new
 			 acceptItemsSuchThat: [ :aDragItem :aDropArea |
 				 aDragItem sourceElement parent ~~ aDropArea ];
@@ -50,10 +51,11 @@ BlDragAndDropExamples >> lettersSorter [
 			 whenDroppedDo: [ :anItemsDroppedEvent |
 				 anItemsDroppedEvent currentTarget addChildren:
 						 (anItemsDroppedEvent items collect: [ :eachDragItem |
-								  self lettersSorterDraggableLetterFor:
-										  eachDragItem domainObject ]) ]).
+								  self
+									  lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
 
-	consonants := self lettersSorterRoundedContainerWithBorder.
+	consonants := self
+		              lettersSorterRoundedContainerWithBorder.
 	consonants addEventHandler: (BlDropHandler new
 			 acceptItemsSuchThat: [ :aDragItem :aDropArea |
 				 aDragItem sourceElement parent ~~ aDropArea ];
@@ -62,12 +64,13 @@ BlDragAndDropExamples >> lettersSorter [
 			 whenDroppedDo: [ :anItemsDroppedEvent |
 				 anItemsDroppedEvent currentTarget addChildren:
 						 (anItemsDroppedEvent items collect: [ :eachDragItem |
-								  self lettersSorterDraggableLetterFor:
-										  eachDragItem domainObject ]) ]).
+								  self
+									  lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
 
 	letters addChildren:
 		({ $a. $c. $Q. $o. $j. $E. $y. $Z. $U. $B. $p. $i } collect: [ :each |
-			 self lettersSorterDraggableLetterFor: each ]).
+			 self lettersSorterDraggableLetterFor:
+				 each ]).
 
 	^ BlElement new
 		  layout: (BlLinearLayout horizontal cellSpacing: 30);
@@ -75,13 +78,19 @@ BlDragAndDropExamples >> lettersSorter [
 			  c horizontal matchParent.
 			  c vertical matchParent ];
 		  addChildren: {
-				  (self labelContainer: letters with: 'Letters to sort').
-				  (self labelContainer: vowels with: 'Vowel letters').
-				  (self labelContainer: consonants with: 'Consonant letters') }
+				  (self
+					   labelContainer: letters
+					   with: 'Letters to sort').
+				  (self
+					   labelContainer: vowels
+					   with: 'Vowel letters').
+				  (self
+					   labelContainer: consonants
+					   with: 'Consonant letters') }; openInNewSpace .
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> lettersSorterContainer [
+{ #category : #letters }
+BlDragAndDropExamples class >> lettersSorterContainer [
 
 	^ BlElement new
 		  layout: BlFlowLayout horizontal;
@@ -91,25 +100,28 @@ BlDragAndDropExamples >> lettersSorterContainer [
 		  padding: (BlInsets all: 10)
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> lettersSorterDraggableLetterFor: aCharacter [
+{ #category : #letters }
+BlDragAndDropExamples class >> lettersSorterDraggableLetterFor: aCharacter [
 
-	| element |
+	| element  |
 	element := self letterFor: aCharacter.
 	element
 		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
 					 BlDragItem new
 						 sourceElement: aSourceElement;
 						 domainObject: aCharacter;
-						 stencil: [ :aDragItem | self letterFor: aDragItem domainObject ] ]);
+						 stencil: [ :aDragItem |
+							 self letterFor:
+									 aDragItem domainObject ] ]);
 		addEventHandlerOn: BlAboutToBeDroppedEvent
 		do: [ :anEvent | anEvent currentTarget removeFromParent ].
 
 	^ element
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> lettersSorterRoundedContainerWithBorder [
+{ #category : #letters }
+BlDragAndDropExamples class >> lettersSorterRoundedContainerWithBorder [
+
 
 	^ self lettersSorterContainer
 		  border: (BlBorderBuilder new
@@ -120,8 +132,8 @@ BlDragAndDropExamples >> lettersSorterRoundedContainerWithBorder [
 		  geometry: (BlRoundedRectangleGeometry cornerRadius: 5)
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> tagFor: aString [
+{ #category : #tags }
+BlDragAndDropExamples class >> tagFor: aString [
 
 	^ BlElement new
 		  layout: BlLinearLayout horizontal alignCenter;
@@ -142,10 +154,21 @@ BlDragAndDropExamples >> tagFor: aString [
 				   text: aString asString asRopedText)
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> tagOrdererDraggableTagFor: aString [
-	^ (self tagFor: aString)
-		"withStylesDo: [ :theStyles |
+{ #category : #tags }
+BlDragAndDropExamples class >> tagOrdererDraggableTagFor: aString [
+
+	| element  |
+	element := self tagFor: aString.
+	element
+		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
+					 BlDragItem new
+						 sourceElement: aSourceElement;
+						 domainObject: aString;
+						 stencil: [ :aDragItem |
+							 self tagFor: aDragItem domainObject ] ]);
+		addEventHandlerOn: BlAboutToBeDroppedEvent
+		do: [ :anEvent | anEvent currentTarget removeFromParent ].
+	"withStylesDo: [ :theStyles |
 			theStyles
 				addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance;
@@ -153,18 +176,27 @@ BlDragAndDropExamples >> tagOrdererDraggableTagFor: aString [
 			 	addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance not;
 					background: Color veryVeryLightGray)  ];"
-		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
-			BlDragItem new
-				sourceElement: aSourceElement;
-				domainObject: aString;
-				stencil: [ :aDragItem | self tagFor: aDragItem domainObject ] ]);
-		when: BlAboutToBeDroppedEvent do: [ :anEvent | anEvent currentTarget removeFromParent ]
+
+	^ element
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> tagOrdererSlidingTagFor: aString [
-	^ (self tagFor: aString)
-		"withStylesDo: [ :theStyles |
+{ #category : #tags }
+BlDragAndDropExamples class >> tagOrdererSlidingTagFor: aString [
+
+	| element  |
+	element := self tagFor: aString.
+	element
+		addEventHandler: (BlDragHandler new
+				 dragArea: [ :aSourceElement | aSourceElement parent ];
+				 liftItem: [ :aSourceElement |
+					 BlDragItem new
+						 sourceElement: aSourceElement;
+						 domainObject: aString;
+						 stencil: [ :aDragItem |
+							 self tagFor: aDragItem domainObject ] ]);
+		addEventHandlerOn: BlAboutToBeDroppedEvent
+		do: [ :anEvent | anEvent currentTarget removeFromParent ].
+	"withStylesDo: [ :theStyles |
 			theStyles
 				addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance;
@@ -172,20 +204,13 @@ BlDragAndDropExamples >> tagOrdererSlidingTagFor: aString [
 			 	addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance not;
 					visibility: BlVisibility visible)  ];"
-		addEventHandler: (BlDragHandler new
-			dragArea: [ :aSourceElement | aSourceElement parent ];
-			liftItem: [ :aSourceElement |
-				BlDragItem new
-					sourceElement: aSourceElement;
-					domainObject: aString;
-					stencil: [ :aDragItem | self tagFor: aDragItem domainObject ] ]);
-		when: BlAboutToBeDroppedEvent do: [ :anEvent | anEvent currentTarget removeFromParent ]
+	^ element
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> tagsOrderer [
+{ #category : #tags }
+BlDragAndDropExamples class >> tagsOrderer [
 
-	<gtExample>
+	<sampleInstance>
 	| aContainer |
 	aContainer := BlElement new.
 	aContainer layout: (BlLinearLayout horizontal cellSpacing: 5).
@@ -249,14 +274,14 @@ BlDragAndDropExamples >> tagsOrderer [
 		({ 'One'. 'Two'. 'Three'. 'Four' } collect: [ :eachName |
 			 self tagOrdererDraggableTagFor: eachName ]).
 
-	^ aContainer
+	^ aContainer openInNewSpace
 ]
 
-{ #category : #'as yet unclassified' }
-BlDragAndDropExamples >> tagsSlidingOrderer [
+{ #category : #tags }
+BlDragAndDropExamples class >> tagsSlidingOrderer [
 
-	<gtExample>
-	| aContainer |
+	<sampleInstance>
+	| aContainer  |
 	aContainer := BlElement new.
 	aContainer layout: (BlLinearLayout horizontal cellSpacing: 5).
 	aContainer constraintsDo: [ :c |
@@ -287,5 +312,9 @@ BlDragAndDropExamples >> tagsSlidingOrderer [
 		({ 'One'. 'Two'. 'Three'. 'Four' } collect: [ :eachName |
 			 self tagOrdererSlidingTagFor: eachName ]).
 
-	^ aContainer
+	^ aContainer openInNewSpace 
+]
+
+{ #category : #'see class side' }
+BlDragAndDropExamples >> seeClassSide [ 
 ]
