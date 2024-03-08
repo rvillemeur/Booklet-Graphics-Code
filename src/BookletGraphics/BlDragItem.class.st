@@ -38,7 +38,7 @@ BlDragItem >> draggedElement [
 BlDragItem >> initialize [
 	super initialize.
 
-	draggedElementStencil := BlDragItemStencil new
+	"draggedElementStencil := BlDragItemStencil new"
 ]
 
 { #category : #'as yet unclassified' }
@@ -63,5 +63,5 @@ BlDragItem >> stencil [
 
 { #category : #accessing }
 BlDragItem >> stencil: aBlDragItemStencil [
-	draggedElementStencil := aBlDragItemStencil asStencilBuilder: BlDragItemStencil
+	"draggedElementStencil := aBlDragItemStencil asStencilBuilder: BlDragItemStencil"
 ]

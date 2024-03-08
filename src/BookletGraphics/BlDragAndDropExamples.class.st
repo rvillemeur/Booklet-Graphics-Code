@@ -109,10 +109,10 @@ BlDragAndDropExamples class >> lettersSorterDraggableLetterFor: aCharacter [
 		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
 					 BlDragItem new
 						 sourceElement: aSourceElement;
-						 domainObject: aCharacter;
+						 domainObject: aCharacter";
 						 stencil: [ :aDragItem |
 							 self letterFor:
-									 aDragItem domainObject ] ]);
+									 aDragItem domainObject ]" ]);
 		addEventHandlerOn: BlAboutToBeDroppedEvent
 		do: [ :anEvent | anEvent currentTarget removeFromParent ].
 
@@ -163,9 +163,9 @@ BlDragAndDropExamples class >> tagOrdererDraggableTagFor: aString [
 		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
 					 BlDragItem new
 						 sourceElement: aSourceElement;
-						 domainObject: aString;
+						 domainObject: aString";
 						 stencil: [ :aDragItem |
-							 self tagFor: aDragItem domainObject ] ]);
+							 self tagFor: aDragItem domainObject ]" ]);
 		addEventHandlerOn: BlAboutToBeDroppedEvent
 		do: [ :anEvent | anEvent currentTarget removeFromParent ].
 	"withStylesDo: [ :theStyles |
@@ -191,9 +191,9 @@ BlDragAndDropExamples class >> tagOrdererSlidingTagFor: aString [
 				 liftItem: [ :aSourceElement |
 					 BlDragItem new
 						 sourceElement: aSourceElement;
-						 domainObject: aString;
+						 domainObject: aString";
 						 stencil: [ :aDragItem |
-							 self tagFor: aDragItem domainObject ] ]);
+							 self tagFor: aDragItem domainObject ]" ]);
 		addEventHandlerOn: BlAboutToBeDroppedEvent
 		do: [ :anEvent | anEvent currentTarget removeFromParent ].
 	"withStylesDo: [ :theStyles |
@@ -252,7 +252,7 @@ BlDragAndDropExamples class >> tagsOrderer [
 
 				 locationElement relocate: childPosition @ 0 ];
 			 whenDragLeftDo: [ :anItemsLeftEvent |
-				 anItemsLeftEvent currentTarget removeChildNamed:
+				 anItemsLeftEvent currentTarget removeChildWithId:
 					 #'drop-area--drop-location' ];
 			 whenDroppedDo: [ :anItemsDroppedEvent |
 				 | container position childBefore |

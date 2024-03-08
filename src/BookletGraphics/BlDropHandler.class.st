@@ -43,7 +43,7 @@ BlDropHandler >> createDropDelegate [
 BlDropHandler >> dragEnterEvent: aDropEnterEvent [
 
 	| aSpaceDropEnterEvent |
-	aSpaceDropEnterEvent := BlSpaceDragDropEnterEvent new
+	aSpaceDropEnterEvent := BlSpaceDragDropEnterEvent2 new
 		                        element: aDropEnterEvent currentTarget;
 		                        delegate: self createDropDelegate;
 		                        position: aDropEnterEvent position.

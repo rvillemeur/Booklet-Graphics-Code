@@ -50,7 +50,7 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 BlDragDelegate >> drag: aDraggedContainer to: aPoint [
 	"Drag a container with all previews to a given point in the parent coordinate of the container"
 
-	aDraggedContainer relocate: aPoint - offset
+	aDraggedContainer position: aPoint - offset
 ]
 
 { #category : #accessing }
@@ -103,7 +103,8 @@ BlDragDelegate >> liftAt: aPoint [
 			c horizontal fitContent.
 			c vertical fitContent ].
 
-	aContainer addChildren: (self items collect: [ :aDragItem | aDragItem previewElement ]).
+	"aContainer addChildren: (self items collect: [ :aDragItem | aDragItem previewElement ])."
+	aContainer addChildren: (self items collect: [ :aDragItem | aDragItem sourceElement removeFromParent. aDragItem sourceElement  ]).
 
 "didn't include element state in my code picking"
 	"self items do: [ :each |
