@@ -33,7 +33,7 @@ BlDropHandler >> acceptOnlyFromThisElement [
 		aDragItem sourceElement parent == aDropArea ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 BlDropHandler >> createDropDelegate [
 
 	^ BlDropDelegate new acceptConditions: acceptConditions
@@ -42,14 +42,14 @@ BlDropHandler >> createDropDelegate [
 { #category : #'dnd handlers' }
 BlDropHandler >> dragEnterEvent: aDropEnterEvent [
 
-	| aSpaceDropEnterEvent |
-	aSpaceDropEnterEvent := BlSpaceDragDropEnterEvent2 new
+	"| aSpaceDropEnterEvent |
+	aSpaceDropEnterEvent := BlSpaceDragDropEnterEvent new
 		                        element: aDropEnterEvent currentTarget;
 		                        delegate: self createDropDelegate;
 		                        position: aDropEnterEvent position.
 
 	aDropEnterEvent currentTarget space dispatchEvent:
-		aSpaceDropEnterEvent
+		aSpaceDropEnterEvent"
 ]
 
 { #category : #'dnd handlers' }
@@ -113,19 +113,19 @@ BlDropHandler >> initialize [
 	itemsDragLeftAction := [ :aBlItemsDragLeftEvent |  ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'dnd handlers' }
 BlDropHandler >> itemsDraggedEvent: anItemsDraggedEvent [
 
 	itemsDraggedAction cull: anItemsDraggedEvent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'dnd handlers' }
 BlDropHandler >> itemsDroppedEvent: anItemsDroppedEvent [
 
 	itemsDroppedAction cull: anItemsDroppedEvent
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'dnd handlers' }
 BlDropHandler >> itemsLeftEvent: anItemsLeftEvent [
 
 	itemsDragLeftAction cull: anItemsLeftEvent
