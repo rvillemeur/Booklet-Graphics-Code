@@ -1252,6 +1252,60 @@ LayoutExperiment class >> squareSurroundedByNumbers [
 	"top row"
 ]
 
+{ #category : #tests }
+LayoutExperiment class >> testLayout [
+
+	<sampleInstance>
+	| aContainer elt1 elt2 elt3 |
+	elt1 := BlElement new
+		               size: 40 @ 40;
+		               border: (BlBorder paint: Color blue width: 1);
+		               background: (Color blue alpha: 0.2);
+		               constraintsDo: [ :c |
+			               c linear horizontal alignCenter ];
+		               margin: (BlInsets all: 5).
+
+	elt2 := BlElement new
+		                 size: 60 @ 80;
+		                 border: (BlBorder paint: Color blue width: 1);
+		                 background: (Color red alpha: 0.2);
+		                 constraintsDo: [ :c |
+			                 c linear horizontal alignCenter ];
+		                 margin: (BlInsets all: 5).
+
+	elt3 := BlElement new
+		                  size: 100 @ 80;
+		                  border: (BlBorder paint: Color blue width: 1);
+		                  background: (Color yellow alpha: 0.2);
+		                  constraintsDo: [ :c |
+			                  c margin: (BlInsets left: 5 right: 5).
+			                  c linear horizontal alignCenter ];
+		                  margin: (BlInsets all: 5).
+
+
+	aContainer := BlElement new
+		              layout: BlLinearLayout horizontal alignCenter;
+		              background: Color white;
+		              margin: (BlInsets all: 20);
+		              padding: (BlInsets all: 20);
+		              constraintsDo: [ :c |
+			              c vertical fitContent.
+			              c horizontal fitContent.
+			              c frame horizontal alignCenter.
+			              c frame vertical alignCenter ].
+	aContainer
+		addChild: elt1;
+		addChild: elt2;
+		addChild: elt3.
+	^ (BlElement new
+		  layout: BlFrameLayout new;
+		 background: (Color orange alpha: 0.2);
+		  constraintsDo: [ :c |
+			  c vertical matchParent.
+			  c horizontal matchParent ];
+		  addChild: aContainer) openInNewSpace 
+]
+
 { #category : #examples }
 LayoutExperiment class >> zoomLayoutExample [
 
