@@ -11,36 +11,43 @@ Class {
 
 { #category : #'drag and drop' }
 BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
-	"Cancel drag and animate previews"	
-	| aCancelAnimation |
+	"Cancel drag and animate previews"
 
+	| aCancelAnimation |
 	self items ifEmpty: [ ^ self ].
 
 	self items do: [ :eachItem |
 		| aPreviewElement |
-		aPreviewElement := eachItem previewElement.
+		aPreviewElement := eachItem sourceElement.
 		aPreviewElement removeFromParent.
-		aPreviewElement relocate: aPoint.
+		aPreviewElement position: aPoint.
 		aParentElement addChild: aPreviewElement ].
 
-	aCancelAnimation := BlParallelAnimation with: (self items collect: [ :aDragItem |
-		| aPreviewBounds aSourceBounds aPreviewElement |
-		aPreviewElement := aDragItem previewElement.
+	aCancelAnimation := BlParallelAnimation withAll:
+		                    (self items collect: [ :aDragItem |
+			                     | aPreviewBounds aSourceBounds aPreviewElement |
+			                     aPreviewElement := aDragItem sourceElement.
 
-		aPreviewBounds := aPreviewElement bounds inSpace.
-		aSourceBounds := aDragItem sourceElement bounds inSpace.
+			                     aPreviewBounds := aPreviewElement bounds
+				                                       inSpace.
+			                     aSourceBounds := aDragItem sourceElement
+				                                      bounds inSpace.
 
-		BlNumberTransition new
-			from: aPoint;
-			to: (aSourceBounds center - (aPreviewBounds extent / 2.0));
-			easing: (BlDecelerateInterpolator factor: 2);
-			duration: 350 milliSeconds;
-			onStepDo: [ :aPosition | aPreviewElement relocate: aPosition ];
-			onFinishedDo: [ aPreviewElement removeFromParent ] ]).
+			                     BlNumberTransition new
+				                     from: aPoint;
+				                     to:
+					                     aSourceBounds center
+					                     - (aPreviewBounds extent / 2.0);
+				                     easing: (BlDecelerateInterpolator factor: 2);
+				                     duration: 350 milliSeconds;
+				                     onStepDo: [ :aPosition |
+					                     aPreviewElement position: aPosition ];
+				                     onFinishedDo: [
+					                     aPreviewElement removeFromParent ] ]).
 
-	aParentElement addAnimation: aCancelAnimation.
+	aParentElement addAnimation: aCancelAnimation
 
-"didn't include element state in my code picking"
+	"didn't include element state in my code picking"
 	"self items do: [ :each |
 		each sourceElement states
 			removeState: BlElementDraggingState uniqueInstance ]"

@@ -8,50 +8,11 @@ Class {
 		'hourNeedle',
 		'minutesNeedle',
 		'secondNeedle',
-		'center'
+		'center',
+		'radius'
 	],
 	#category : #'BookletGraphics-Clock'
 }
-
-{ #category : #drawing }
-BlClock >> aeDrawOn: aeCanvas [
-	"draw clock tick on frame"
-
-	super aeDrawOn: aeCanvas.
-
-	aeCanvas setOutskirtsCentered.
-	
-	0 to: 11 do: [ :items |
-		| target |
-		target := (items * Float pi / 6) cos @ (items * Float pi / 6) sin.
-
-		items % 3 == 0
-			ifTrue: [
-				aeCanvas pathFactory: [ :cairoContext |
-					cairoContext
-						moveTo: center;
-						relativeMoveTo: target * 115;
-						relativeLineTo: target * 35;
-						closePath ].
-
-				aeCanvas setBorderBlock: [
-					aeCanvas
-						setSourceColor: Color black;
-						setBorderWidth: 8 ] ]
-			ifFalse: [
-				aeCanvas pathFactory: [ :cairoContext |
-					cairoContext
-						moveTo: center;
-						relativeMoveTo: target * 125;
-						relativeLineTo: target * 25;
-						closePath ].
-
-				aeCanvas setBorderBlock: [
-					aeCanvas
-						setSourceColor: Color black;
-						setBorderWidth: 6 ] ].
-		aeCanvas drawFigure ]
-]
 
 { #category : #'api - look' }
 BlClock >> background [
@@ -68,7 +29,7 @@ BlClock >> border [
 { #category : #'api - bounds' }
 BlClock >> extent [
 
-	^ 300 @ 300
+	^ radius * 2 @ (radius * 2)
 ]
 
 { #category : #'api - look' }
@@ -99,20 +60,41 @@ BlClock >> initAnimation [
 ]
 
 { #category : #initialization }
+BlClock >> initClockFrame [
+	"draw small lines around clock frame"
+
+	0 to: 11 do: [ :items |
+		| target |
+		target := (items * Float pi / 6) cos @ (items * Float pi / 6) sin.
+
+		items % 3 == 0
+			ifTrue: [
+				self addChild: (BlElement new
+						 geometry: (BlLineGeometry from: center + (target * 115) to: center + (target * 150));
+						 outskirts: BlOutskirts centered;
+						 border: (BlBorder paint: Color black width: 8)) ]
+			ifFalse: [
+				self addChild: (BlElement new
+						 geometry: (BlLineGeometry from: center + (target * 125) to: center + (target * 150));
+						 outskirts: BlOutskirts centered;
+						 border: (BlBorder paint: Color black width: 6)) ] ]
+]
+
+{ #category : #initialization }
 BlClock >> initElements [
 
 	hourNeedle := BlElement new
-		              geometry: (BlLineGeometry new from: 150 @ 150);
+		              geometry: (BlLineGeometry new from: center);
 		              outskirts: BlOutskirts centered;
 		              border: (BlBorder paint: Color black width: 5).
 
 	minutesNeedle := BlElement new
-		                 geometry: (BlLineGeometry new from: 150 @ 150);
+		                 geometry: (BlLineGeometry new from: center);
 		                 outskirts: BlOutskirts centered;
 		                 border: (BlBorder paint: Color black width: 5).
 
 	secondNeedle := BlElement new
-		                geometry: (BlLineGeometry new from: 150 @ 150);
+		                geometry: (BlLineGeometry new from: center);
 		                outskirts: BlOutskirts centered;
 		                border: (BlBorder paint: Color red width: 3).
 
@@ -126,7 +108,9 @@ BlClock >> initElements [
 BlClock >> initialize [
 
 	super initialize.
+	radius := 150.
 	center := self extent / 2.
+	self initClockFrame.
 	self initElements.
 	self initAnimation.
 

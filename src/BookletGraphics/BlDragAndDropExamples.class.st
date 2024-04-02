@@ -44,10 +44,10 @@ BlDragAndDropExamples class >> lettersSorter [
 	vowels := self
 		          lettersSorterRoundedContainerWithBorder.
 	vowels addEventHandler: (BlDropHandler new
-			 acceptItemsSuchThat: [ :aDragItem :aDropArea |
-				 aDragItem sourceElement parent ~~ aDropArea ];
-			 acceptDomainObjectsSuchThat: [ :anObject |
-				 anObject isCharacter and: [ anObject isVowel ] ];
+			 "acceptItemsSuchThat: [ :aDragItem :aDropArea |
+				 aDragItem sourceElement parent ~~ aDropArea ];"
+			 "acceptDomainObjectsSuchThat: [ :anObject |
+				 anObject isCharacter and: [ anObject isVowel ] ];"
 			 whenDroppedDo: [ :anItemsDroppedEvent |
 				 anItemsDroppedEvent currentTarget addChildren:
 						 (anItemsDroppedEvent items collect: [ :eachDragItem |
@@ -57,8 +57,8 @@ BlDragAndDropExamples class >> lettersSorter [
 	consonants := self
 		              lettersSorterRoundedContainerWithBorder.
 	consonants addEventHandler: (BlDropHandler new
-			 acceptItemsSuchThat: [ :aDragItem :aDropArea |
-				 aDragItem sourceElement parent ~~ aDropArea ];
+			 "acceptItemsSuchThat: [ :aDragItem :aDropArea |
+				 aDragItem sourceElement parent ~~ aDropArea ];"
 			 acceptDomainObjectsSuchThat: [ :anObject |
 				 anObject isCharacter and: [ anObject isVowel not ] ];
 			 whenDroppedDo: [ :anItemsDroppedEvent |
