@@ -76,65 +76,59 @@ BlClock >> geometry [
 	^ BlCircleGeometry new matchExtent: self extent
 ]
 
-{ #category : #accessing }
-BlClock >> hourNeedle [
-
-	^ hourNeedle
-]
-
 { #category : #initialization }
-BlClock >> initialize [
+BlClock >> initAnimation [
 
 	| animation |
-	super initialize.
-	hourNeedle := BlElement new
-		              geometry:
-			              (BlLineGeometry from: 150 @ 150 to: 150 @ 75);
-		              size: 75 @ 75;
-		              outskirts: BlOutskirts centered;
-		              border: (BlBorder paint: Color black width: 5).
-
-
-	minutesNeedle := BlElement new
-		                 geometry:
-			                 (BlLineGeometry from: 150 @ 150 to: 50 @ 150);
-		                 size: 100 @ 100;
-		                 outskirts: BlOutskirts centered;
-		                 border: (BlBorder paint: Color blue width: 3).
-
-	secondNeedle := BlElement new
-		                geometry:
-			                (BlLineGeometry from: 150 @ 150 to: 250 @ 150);
-		                size: 100 @ 100;
-		                outskirts: BlOutskirts centered;
-		                border: (BlBorder paint: Color red width: 3).
-
-
-	self addChildren: {
-			hourNeedle.
-			minutesNeedle.
-			secondNeedle }.
-
 	animation := BlAnimation new
 		             beInfinite;
 		             duration: 0.5 seconds.
 
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
-			 do: [ :anEvent | |target time|
-				time := DateAndTime current.
-				target := ((Float pi / 30 * time second) cos) @ ((Float pi / 30 * time second) sin).
-				secondNeedle geometry to: 150@150 + (target * 125).
-				self forceLayout .
-				]).
-	
-	self addAnimation: animation.
+			 do: [ :anEvent |
+				 | time |
+				 time := DateAndTime current.
+				 self updateHours: time hours.
+				 self updateMinutes: time minutes.
+				 self updateSeconds: time seconds.
+				 self requestLayout ]).
+
+	self addAnimation: animation
 ]
 
-{ #category : #accessing }
-BlClock >> minutesNeedle [
+{ #category : #initialization }
+BlClock >> initElements [
 
-	^ minutesNeedle
+	hourNeedle := BlElement new
+		              geometry: (BlLineGeometry new from: 150 @ 150);
+		              outskirts: BlOutskirts centered;
+		              border: (BlBorder paint: Color black width: 5).
+
+	minutesNeedle := BlElement new
+		                 geometry: (BlLineGeometry new from: 150 @ 150);
+		                 outskirts: BlOutskirts centered;
+		                 border: (BlBorder paint: Color blue width: 3).
+
+	secondNeedle := BlElement new
+		                geometry: (BlLineGeometry new from: 150 @ 150);
+		                outskirts: BlOutskirts centered;
+		                border: (BlBorder paint: Color red width: 3).
+
+	self addChildren: {
+			hourNeedle.
+			minutesNeedle.
+			secondNeedle }
+]
+
+{ #category : #initialization }
+BlClock >> initialize [
+
+	super initialize.
+	self initElements.
+	self initAnimation.
+
+
 ]
 
 { #category : #'instance creation' }
@@ -144,8 +138,28 @@ BlClock >> open [
 	
 ]
 
-{ #category : #accessing }
-BlClock >> secondNeedle [
+{ #category : #positioning }
+BlClock >> updateHours: hours [
 
-	^ secondNeedle
+	| target |
+	target := (Float pi / 6 * hours) cos @ (Float pi / 6 * hours) sin.
+	hourNeedle geometry to: 150 @ 150 + (target * 75)
+]
+
+{ #category : #positioning }
+BlClock >> updateMinutes: minutes [
+
+	| target |
+	target := (Float pi / 30 * minutes) cos
+	          @ (Float pi / 30 * minutes) sin.
+	minutesNeedle geometry to: 150 @ 150 + (target * 100)
+]
+
+{ #category : #positioning }
+BlClock >> updateSeconds: seconds [
+
+	| target |
+	target := (Float pi / 30 * seconds) cos
+	          @ (Float pi / 30 * seconds) sin.
+	secondNeedle geometry to: 150 @ 150 + (target * 125)
 ]
