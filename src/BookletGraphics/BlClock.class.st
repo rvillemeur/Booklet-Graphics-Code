@@ -70,12 +70,12 @@ BlClock >> initClockFrame [
 		items % 3 == 0
 			ifTrue: [
 				self addChild: (BlElement new
-						 geometry: (BlLineGeometry from: center + (target * 115) to: center + (target * 150));
+						 geometry: (BlLineGeometry from: center + (target * (radius - 35)) to: center + (target * radius));
 						 outskirts: BlOutskirts centered;
 						 border: (BlBorder paint: Color black width: 8)) ]
 			ifFalse: [
 				self addChild: (BlElement new
-						 geometry: (BlLineGeometry from: center + (target * 125) to: center + (target * 150));
+						 geometry: (BlLineGeometry from: center + (target * (radius - 25)) to: center + (target * radius));
 						 outskirts: BlOutskirts centered;
 						 border: (BlBorder paint: Color black width: 6)) ] ]
 ]
