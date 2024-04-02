@@ -1,10 +1,14 @@
+"
+a simple clock drawned using Bloc
+"
 Class {
 	#name : #BlClock,
 	#superclass : #BlElement,
 	#instVars : [
 		'hourNeedle',
 		'minutesNeedle',
-		'secondNeedle'
+		'secondNeedle',
+		'center'
 	],
 	#category : #'BookletGraphics-Clock'
 }
@@ -12,9 +16,6 @@ Class {
 { #category : #drawing }
 BlClock >> aeDrawOn: aeCanvas [
 	"draw clock tick on frame"
-
-	| center |
-	center := self extent / 2.
 
 	super aeDrawOn: aeCanvas.
 
@@ -88,8 +89,8 @@ BlClock >> initAnimation [
 			 on: BlAnimationLoopDoneEvent
 			 do: [ :anEvent |
 				 | time |
-				 time := DateAndTime current.
-				 self updateHours: time hours.
+				 time := Time now.
+				 self updateHours: time.
 				 self updateMinutes: time minutes.
 				 self updateSeconds: time seconds.
 				 self requestLayout ]).
@@ -108,7 +109,7 @@ BlClock >> initElements [
 	minutesNeedle := BlElement new
 		                 geometry: (BlLineGeometry new from: 150 @ 150);
 		                 outskirts: BlOutskirts centered;
-		                 border: (BlBorder paint: Color blue width: 3).
+		                 border: (BlBorder paint: Color black width: 5).
 
 	secondNeedle := BlElement new
 		                geometry: (BlLineGeometry new from: 150 @ 150);
@@ -125,6 +126,7 @@ BlClock >> initElements [
 BlClock >> initialize [
 
 	super initialize.
+	center := self extent / 2.
 	self initElements.
 	self initAnimation.
 
@@ -139,27 +141,31 @@ BlClock >> open [
 ]
 
 { #category : #positioning }
-BlClock >> updateHours: hours [
+BlClock >> updateHours: time [
 
 	| target |
-	target := (Float pi / 6 * hours) cos @ (Float pi / 6 * hours) sin.
-	hourNeedle geometry to: 150 @ 150 + (target * 75)
+	target := ((Float pi / 6 * time hours)  + (Float pi / 360 * time minutes)) sin * -1
+		@ ((Float pi / 6 * time hours) + (Float pi / 360 * time minutes)) cos * -1.
+
+	hourNeedle geometry to: center + (target * 75)
 ]
 
 { #category : #positioning }
 BlClock >> updateMinutes: minutes [
 
 	| target |
-	target := (Float pi / 30 * minutes) cos
-	          @ (Float pi / 30 * minutes) sin.
-	minutesNeedle geometry to: 150 @ 150 + (target * 100)
+	target := (Float pi / 30 * minutes) sin * -1
+	          @ (Float pi / 30 * minutes) cos * -1.
+
+	minutesNeedle geometry to: center + (target * 110)
 ]
 
 { #category : #positioning }
 BlClock >> updateSeconds: seconds [
 
 	| target |
-	target := (Float pi / 30 * seconds) cos
-	          @ (Float pi / 30 * seconds) sin.
-	secondNeedle geometry to: 150 @ 150 + (target * 125)
+	target := (Float pi / 30 * seconds) sin * -1
+	          @ (Float pi / 30 * seconds) cos * -1.
+
+	secondNeedle geometry to: center + (target * 125)
 ]
