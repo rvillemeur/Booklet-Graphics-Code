@@ -11,6 +11,30 @@ Class {
 }
 
 { #category : #examples }
+TransformExperiment class >> transformBlBasicLayout [
+
+	<sampleInstance>
+	| child parent |
+	child := BlElement new
+		         background: Color lightBlue;
+		         geometry: BlCircleGeometry new;
+		         yourself.
+
+	child position: 100 @ 100.
+
+	parent := BlElement new
+		          size: 200 asPoint;
+		          addChild: child;
+		          background: Color lightRed.
+
+	parent whenLayoutedDoOnce: [
+		child transformDo: [ :t | t translateBy: child size negated / 2 ] ].
+
+	parent openInSpace.
+	^parent.
+]
+
+{ #category : #examples }
 TransformExperiment class >> transformExample [
 
 	<sampleInstance>
