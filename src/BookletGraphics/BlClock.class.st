@@ -121,15 +121,6 @@ BlClock >> initElements [
 			secondNeedle }
 ]
 
-{ #category : #initialization }
-BlClock >> initialize [
-
-	super initialize.
-
-
-
-]
-
 { #category : #'instance creation' }
 BlClock >> open [
 
