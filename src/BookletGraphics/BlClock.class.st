@@ -66,6 +66,15 @@ BlClock >> initAnimation [
 ]
 
 { #category : #initialization }
+BlClock >> initClock [
+	self removeChildren.
+	center := self extent / 2.
+	self initClockFrame.
+	self initElements.
+	self initAnimation
+]
+
+{ #category : #initialization }
 BlClock >> initClockFrame [
 	"draw small lines around clock frame"
 
@@ -132,11 +141,7 @@ BlClock >> open [
 BlClock >> radius: aNumber [
 
 	radius := aNumber.
-	self removeChildren.
-	center := self extent / 2.
-	self initClockFrame.
-	self initElements.
-	self initAnimation
+	self initClock.
 ]
 
 { #category : #positioning }
