@@ -14,6 +14,12 @@ Class {
 	#category : #'BookletGraphics-Clock'
 }
 
+{ #category : #accessing }
+BlClock class >> radius: aNumber [
+
+	^ self new radius: aNumber.
+]
+
 { #category : #'api - look' }
 BlClock >> background [
 
@@ -63,21 +69,32 @@ BlClock >> initAnimation [
 BlClock >> initClockFrame [
 	"draw small lines around clock frame"
 
+	| quarterLength quarterWidth hourLength hourWidth |
+	quarterLength := radius * 4.8 /20.
+	quarterWidth := 8.
+	hourLength := radius * 3.2 /20.
+	hourWidth := 6.
+
 	0 to: 11 do: [ :items |
-		| target |
-		target := (items * Float pi / 6) cos @ (items * Float pi / 6) sin.
+		| target angle |
+		angle := items * Float pi / 6.
+		target := angle cos @ angle sin.
 
 		items % 3 == 0
-			ifTrue: [
+			ifTrue: [ "quarter mark"
 				self addChild: (BlElement new
-						 geometry: (BlLineGeometry from: center + (target * (radius - 35)) to: center + (target * radius));
+						 geometry: (BlLineGeometry
+								  from: center + (target * (radius - quarterLength))
+								  to: center + (target * radius));
 						 outskirts: BlOutskirts centered;
-						 border: (BlBorder paint: Color black width: 8)) ]
-			ifFalse: [
+						 border: (BlBorder paint: Color black width: quarterWidth)) ]
+			ifFalse: [ "other hour marks"
 				self addChild: (BlElement new
-						 geometry: (BlLineGeometry from: center + (target * (radius - 25)) to: center + (target * radius));
+						 geometry: (BlLineGeometry
+								  from: center + (target * (radius - hourLength))
+								  to: center + (target * radius));
 						 outskirts: BlOutskirts centered;
-						 border: (BlBorder paint: Color black width: 6)) ] ]
+						 border: (BlBorder paint: Color black width: hourWidth)) ] ]
 ]
 
 { #category : #initialization }
@@ -108,11 +125,7 @@ BlClock >> initElements [
 BlClock >> initialize [
 
 	super initialize.
-	radius := 150.
-	center := self extent / 2.
-	self initClockFrame.
-	self initElements.
-	self initAnimation.
+
 
 
 ]
@@ -120,36 +133,53 @@ BlClock >> initialize [
 { #category : #'instance creation' }
 BlClock >> open [
 
-	<script: 'self new openInSpace'>
+	<script: '(BlClock radius: 150) openInSpace '>
 	
+]
+
+{ #category : #accessing }
+BlClock >> radius: aNumber [
+
+	radius := aNumber.
+	self removeChildren.
+	center := self extent / 2.
+	self initClockFrame.
+	self initElements.
+	self initAnimation
 ]
 
 { #category : #positioning }
 BlClock >> updateHours: time [
 
-	| target |
-	target := ((Float pi / 6 * time hours)  + (Float pi / 360 * time minutes)) sin * -1
-		@ ((Float pi / 6 * time hours) + (Float pi / 360 * time minutes)) cos * -1.
+	| target angleHours angleMinutes angleTime needleSize |
+	needleSize := radius / 2.
+	angleHours := Float pi / 6 * time hours.
+	angleMinutes := Float pi / 360 * time minutes.
+	angleTime := angleHours + angleMinutes.
 
-	hourNeedle geometry to: center + (target * 75)
+	target := angleTime sin * -1 @ angleTime cos * -1.
+
+	hourNeedle geometry to: center + (target * needleSize)
 ]
 
 { #category : #positioning }
 BlClock >> updateMinutes: minutes [
 
-	| target |
-	target := (Float pi / 30 * minutes) sin * -1
-	          @ (Float pi / 30 * minutes) cos * -1.
+	| target angle needleSize |
+	needleSize := radius * 14.8 /20 .
+	angle := Float pi / 30 * minutes.
+	target := angle sin * -1 @ angle cos * -1.
 
-	minutesNeedle geometry to: center + (target * 110)
+	minutesNeedle geometry to: center + (target * needleSize)
 ]
 
 { #category : #positioning }
 BlClock >> updateSeconds: seconds [
 
-	| target |
-	target := (Float pi / 30 * seconds) sin * -1
-	          @ (Float pi / 30 * seconds) cos * -1.
+	| target angle needleSize |
+	needleSize := radius *  16.8 / 20.
+	angle := Float pi / 30 * seconds.
+	target := angle sin * -1 @ angle cos * -1.
 
-	secondNeedle geometry to: center + (target * 125)
+	secondNeedle geometry to: center + (target * needleSize)
 ]
