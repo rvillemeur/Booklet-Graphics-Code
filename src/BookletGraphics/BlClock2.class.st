@@ -14,6 +14,50 @@ Class {
 	#category : #'BookletGraphics-Clock'
 }
 
+{ #category : #example }
+BlClock2 class >> openInDynamicLayout [
+<sampleInstance>
+
+|clock space|
+
+space := BlSpace new.
+		        
+space root	border: (BlBorder paint: Color red width: 1);
+		        background: (Color yellow);
+				layout: BlFlowLayout horizontal.
+				 
+
+clock := self new 
+ constraintsDo: [ :c |
+			           c horizontal matchParent .
+			           c vertical matchParent  ].
+
+	space root addChild: clock.
+	space show.
+	^clock.
+]
+
+{ #category : #example }
+BlClock2 class >> openInFixedSize [
+
+	<sampleInstance>
+	| clock container |
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: Color yellow;
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	clock := self new size: 300 @ 300.
+
+	container addChild: clock.
+
+	container openInNewSpace.
+	^clock.
+]
+
 { #category : #'api - look' }
 BlClock2 >> background [
 
@@ -175,6 +219,14 @@ BlClock2 >> secondCoordinate: seconds [
 	x := angle sin.
 	y := angle cos * -1.
 	^ x @ y.
+]
+
+{ #category : #'api - bounds' }
+BlClock2 >> size: aPoint [
+	super size: aPoint.
+
+	radius := aPoint x / 2.
+	self initClock.
 ]
 
 { #category : #positioning }
