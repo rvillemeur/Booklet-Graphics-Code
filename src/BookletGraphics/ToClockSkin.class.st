@@ -1,11 +1,6 @@
 Class {
 	#name : #ToClockSkin,
 	#superclass : #ToRawSkin,
-	#instVars : [
-		'hourNeedleSize',
-		'minuteNeedleSize',
-		'secondNeedleSize'
-	],
 	#category : #'BookletGraphics-Clock'
 }
 
