@@ -16,25 +16,24 @@ Class {
 
 { #category : #example }
 BlClock2 class >> openInDynamicLayout [
-<sampleInstance>
 
-|clock space|
+	<sampleInstance>
+	| clock space |
+	space := BlSpace new.
 
-space := BlSpace new.
-		        
-space root	border: (BlBorder paint: Color red width: 1);
-		        background: (Color yellow);
-				layout: BlFlowLayout horizontal.
-				 
+	space root
+		border: (BlBorder paint: Color red width: 1);
+		background: Color yellow;
+		layout: BlFlowLayout horizontal.
 
-clock := self new 
- constraintsDo: [ :c |
-			           c horizontal matchParent .
-			           c vertical matchParent  ].
+
+	clock := self new constraintsDo: [ :c |
+		         c horizontal matchParent.
+		         c vertical matchParent ].
 
 	space root addChild: clock.
 	space show.
-	^clock.
+	^ clock
 ]
 
 { #category : #example }
@@ -55,7 +54,7 @@ BlClock2 class >> openInFixedSize [
 	container addChild: clock.
 
 	container openInNewSpace.
-	^clock.
+	^ clock
 ]
 
 { #category : #'api - look' }
@@ -100,9 +99,7 @@ BlClock2 >> initAnimation [
 
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
-			 do: [ :anEvent |
-				 self updateNeedlesPosition: Time now.
-				]).
+			 do: [ :anEvent | self updateNeedlesPosition: Time now ]).
 
 	self addAnimation: animation
 ]

@@ -14,16 +14,53 @@ Class {
 	#category : #'BookletGraphics-Clock'
 }
 
-{ #category : #accessing }
-ToClock class >> radius: aNumber [
+{ #category : #example }
+ToClock class >> openInDynamicLayout [
 
-	^ self new radius: aNumber.
+	<sampleInstance>
+	| clock space |
+	space := BlSpace new.
+
+	space root
+		border: (BlBorder paint: Color red width: 1);
+		background: Color yellow;
+		layout: BlFlowLayout horizontal.
+
+
+	clock := self new constraintsDo: [ :c |
+		         c horizontal matchParent.
+		         c vertical matchParent ].
+
+	space root addChild: clock.
+	space show.
+	^ clock
 ]
 
-{ #category : #'api - bounds' }
-ToClock >> extent [
+{ #category : #example }
+ToClock class >> openInFixedSize [
 
-	^ radius * 2 @ (radius * 2)
+	<sampleInstance>
+	| clock container |
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: Color yellow;
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	clock := self new size: 300 @ 300.
+
+	container addChild: clock.
+
+	container openInNewSpace.
+	^ clock
+]
+
+{ #category : #accessing }
+ToClock >> center [
+
+	^ center
 ]
 
 { #category : #model }
@@ -40,6 +77,12 @@ ToClock >> hourCoordinate: time [
 	^ 	x @ y.
 ]
 
+{ #category : #accessing }
+ToClock >> hourNeedle [
+
+	^ hourNeedle
+]
+
 { #category : #initialization }
 ToClock >> initAnimation [
 
@@ -50,86 +93,35 @@ ToClock >> initAnimation [
 
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
-			 do: [ :anEvent |
-				 self updateNeedlesPosition: Time now.
-				 self requestLayout ]).
+			 do: [ :anEvent | self updateNeedlesPosition: Time now .
+					self requestLayout .]).
 
 	self addAnimation: animation
 ]
 
 { #category : #initialization }
 ToClock >> initClock [
-	self removeChildren.
+	"self removeChildren."
 
-	self initConstant.
-	self initClockFrame.
-	self initElements.
 	self initAnimation
 ]
 
 { #category : #initialization }
-ToClock >> initClockFrame [
-	"draw small lines around clock frame"
+ToClock >> initialize [
 
-	| quarterLength quarterWidth hourLength hourWidth |
-	quarterLength := radius * 4.8 /20.
-	quarterWidth := 8.
-	hourLength := radius * 3.2 /20.
-	hourWidth := 6.
-
-	0 to: 11 do: [ :items |
-		| target angle |
-		angle := items * Float pi / 6.
-		target := angle cos @ angle sin.
-
-		items % 3 == 0
-			ifTrue: [ "quarter mark"
-				self addChild: (BlElement new
-						 geometry: (BlLineGeometry
-								  from: center + (target * (radius - quarterLength))
-								  to: center + (target * radius));
-						 outskirts: BlOutskirts centered;
-						 border: (BlBorder paint: Color black width: quarterWidth)) ]
-			ifFalse: [ "other hour marks"
-				self addChild: (BlElement new
-						 geometry: (BlLineGeometry
-								  from: center + (target * (radius - hourLength))
-								  to: center + (target * radius));
-						 outskirts: BlOutskirts centered;
-						 border: (BlBorder paint: Color black width: hourWidth)) ] ]
-]
-
-{ #category : #initialization }
-ToClock >> initConstant [
-
-	center := self extent / 2.
-	hourNeedleSize := radius / 2.
-	minuteNeedleSize := radius * 14.8 / 20.
-	secondNeedleSize := radius * 16.8 / 20
-]
-
-{ #category : #initialization }
-ToClock >> initElements [
-
-	hourNeedle := BlElement new
-		              geometry: (BlLineGeometry new from: center);
-		              outskirts: BlOutskirts centered;
-		              border: (BlBorder paint: Color black width: 5).
-
-	minutesNeedle := BlElement new
-		                 geometry: (BlLineGeometry new from: center);
-		                 outskirts: BlOutskirts centered;
-		                 border: (BlBorder paint: Color black width: 5).
-
-	secondNeedle := BlElement new
-		                geometry: (BlLineGeometry new from: center);
-		                outskirts: BlOutskirts centered;
-		                border: (BlBorder paint: Color red width: 3).
-
+	super initialize.
+	secondNeedle := BlElement new.
+	minutesNeedle := BlElement new.
+	hourNeedle :=BlElement new.
+		             
 	self addChildren: {
 			hourNeedle.
 			minutesNeedle.
-			secondNeedle }
+			secondNeedle }.
+			
+	self
+		addEventHandlerOn: BlElementExtentChangedEvent
+		do: [ :e | self resize ]
 ]
 
 { #category : #skin }
@@ -148,24 +140,23 @@ ToClock >> minuteCoordinate: minutes [
 	^ x @ y.
 ]
 
-{ #category : #skin }
+{ #category : #accessing }
+ToClock >> minutesNeedle [
+
+	^ minutesNeedle
+]
+
+{ #category : #'instance creation' }
 ToClock >> newRawSkin [
 
 	^ ToClockSkin  new
 ]
 
-{ #category : #'instance creation' }
-ToClock >> open [
+{ #category : #drawing }
+ToClock >> resize [
 
-	<script: '(ToClock radius: 150) openInSpace '>
-	
-]
-
-{ #category : #accessing }
-ToClock >> radius: aNumber [
-
-	radius := aNumber.
-	self initClock.
+	radius := self extent min / 2.0.
+	self initClock
 ]
 
 { #category : #model }
@@ -178,12 +169,36 @@ ToClock >> secondCoordinate: seconds [
 	^ x @ y.
 ]
 
+{ #category : #accessing }
+ToClock >> secondNeedle [
+
+	^ secondNeedle
+]
+
+{ #category : #'api - bounds' }
+ToClock >> size: aPoint [
+
+	super size: aPoint.
+
+	radius := aPoint x / 2.
+
+	center := radius @ radius.
+	hourNeedleSize := radius / 2.
+	minuteNeedleSize := radius * 14.8 / 20.
+	secondNeedleSize := radius * 16.8 / 20.
+
+	self initClock
+]
+
 { #category : #positioning }
 ToClock >> updateHourNeedlePosition: time [
 
 	| coordinate |
 	coordinate := self hourCoordinate: time.
-	hourNeedle geometry to: center + (coordinate * hourNeedleSize)
+	"hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize)."
+	hourNeedle geometry: (BlLineGeometry
+			 from: center
+			 to: center + (coordinate * hourNeedleSize))
 ]
 
 { #category : #positioning }
@@ -191,7 +206,7 @@ ToClock >> updateMinuteNeedlePosition: minutes [
 
 	| coordinate |
 	coordinate := self minuteCoordinate: minutes.
-	minutesNeedle geometry to: center + (coordinate * minuteNeedleSize)
+	minutesNeedle geometry from: center to: center + (coordinate * minuteNeedleSize)
 ]
 
 { #category : #positioning }
@@ -199,7 +214,7 @@ ToClock >> updateNeedlesPosition: time [
 
 	self updateHourNeedlePosition: time.
 	self updateMinuteNeedlePosition: time minutes.
-	self updateSecondNeedlePosition: time seconds
+	self updateSecondNeedlePosition: time seconds.
 ]
 
 { #category : #positioning }
@@ -207,5 +222,7 @@ ToClock >> updateSecondNeedlePosition: seconds [
 
 	| coordinate |
 	coordinate := self secondCoordinate: seconds.
-	secondNeedle geometry to: center + (coordinate * secondNeedleSize)
+	secondNeedle geometry
+		from: center
+		to: center + (coordinate * secondNeedleSize)
 ]
