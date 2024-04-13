@@ -99,7 +99,9 @@ BlClock2 >> initAnimation [
 
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
-			 do: [ :anEvent | self updateNeedlesPosition: Time now ]).
+			 do: [ :anEvent |
+				 self updateNeedlesPosition: Time now.
+				 self invalidate ]).
 
 	self addAnimation: animation
 ]
@@ -231,10 +233,8 @@ BlClock2 >> updateHourNeedlePosition: time [
 
 	| coordinate |
 	coordinate := self hourCoordinate: time.
-	"hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize)."
-	hourNeedle geometry: (BlLineGeometry
-			 from: center
-			 to: center + (coordinate * hourNeedleSize))
+	hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize).
+
 ]
 
 { #category : #positioning }
