@@ -15,5 +15,5 @@ BaselineOfBookletGraphics >> baseline: spec [
 
 		spec
 			baseline: 'Toplo'
-			with: [ spec repository: 'github://pharo-graphics/Toplo:main/src' ] ]
+			with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ] ]
 ]
