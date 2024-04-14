@@ -1,3 +1,6 @@
+"
+Skin description of the ToClock
+"
 Class {
 	#name : #ToClockSkin,
 	#superclass : #ToRawSkin,

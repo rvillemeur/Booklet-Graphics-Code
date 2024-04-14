@@ -1,3 +1,10 @@
+"
+A clock implementation using Bloc graphic framework and facilities with Toplo
+
+See class side for usage with 
+- fixed size
+- dynamic layout
+"
 Class {
 	#name : #ToClock,
 	#superclass : #ToElement,
@@ -94,7 +101,7 @@ ToClock >> initAnimation [
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
 			 do: [ :anEvent | self updateNeedlesPosition: Time now .
-					self requestLayout .]).
+					self invalidate .]).
 
 	self addAnimation: animation
 ]
@@ -194,10 +201,7 @@ ToClock >> updateHourNeedlePosition: time [
 
 	| coordinate |
 	coordinate := self hourCoordinate: time.
-	"hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize)."
-	hourNeedle geometry: (BlLineGeometry
-			 from: center
-			 to: center + (coordinate * hourNeedleSize))
+	hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize).
 ]
 
 { #category : #positioning }
