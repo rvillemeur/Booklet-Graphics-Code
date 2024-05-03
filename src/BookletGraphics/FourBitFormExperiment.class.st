@@ -6,15 +6,17 @@ size of the form"" ""color depth - 16 => 2 bits to define color value"" ""pixel 
 	""[ 0000 0000 0000 0000 0000 0000 0000 0000]"" ""8 colors"" ""8 colors""
 "
 Class {
-	#name : #FourBitFormExperiment,
-	#superclass : #Object,
+	#name : 'FourBitFormExperiment',
+	#superclass : 'Object',
 	#instVars : [
 		'sprite'
 	],
-	#category : #'BookletGraphics-Form'
+	#category : 'BookletGraphics-Form',
+	#package : 'BookletGraphics',
+	#tag : 'Form'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FourBitFormExperiment >> fourBitColorDepth [
 <bookExample>
 	^ (Form extent: 8 @ 2 depth: 4) initFromArray:
@@ -28,7 +30,7 @@ FourBitFormExperiment >> fourBitColorDepth [
 	"[ 0000 0000 0000 0000 0000 0000 0000 0000]" "8 colors" "8 colors"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FourBitFormExperiment >> fourBitColorDepthWithColorForm [
 <bookExample>
 |pict map|
@@ -57,7 +59,7 @@ pict initFromArray: #(2r01000010001100011011110111101111).
 ^pict magnifyBy: self magnifyFactor 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 FourBitFormExperiment >> magnifyFactor [
 	^ 15
 ]

@@ -2,12 +2,14 @@
 canvas API example as used by Bloc
 "
 Class {
-	#name : #AlexandrieCanvasExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'AlexandrieCanvasExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> PaintAndClip1 [
 
 	<sampleInstance>
@@ -40,7 +42,7 @@ AlexandrieCanvasExperiment class >> PaintAndClip1 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> backGround1 [
 
 	<sampleInstance>
@@ -67,7 +69,7 @@ AlexandrieCanvasExperiment class >> backGround1 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> backGround2 [
 
 	<sampleInstance>
@@ -89,7 +91,7 @@ AlexandrieCanvasExperiment class >> backGround2 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> backGround3 [
 
 	<sampleInstance>
@@ -124,7 +126,7 @@ AlexandrieCanvasExperiment class >> backGround3 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> backGround4 [
 
 	<sampleInstance>
@@ -161,7 +163,7 @@ AlexandrieCanvasExperiment class >> backGround4 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> borderPathPaint1 [
 
 	<sampleInstance>
@@ -201,7 +203,7 @@ AlexandrieCanvasExperiment class >> borderPathPaint1 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> borderPathPaint2 [
 
 	<sampleInstance>
@@ -241,7 +243,7 @@ AlexandrieCanvasExperiment class >> borderPathPaint2 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> clip1 [
 
 	<sampleInstance>
@@ -276,7 +278,7 @@ AlexandrieCanvasExperiment class >> clip1 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> clip2 [
 
 	<sampleInstance>
@@ -324,7 +326,7 @@ AlexandrieCanvasExperiment class >> clip2 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> clip3 [
 
 	<sampleInstance>
@@ -359,7 +361,7 @@ AlexandrieCanvasExperiment class >> clip3 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> example1 [
 
 	<sampleInstance>
@@ -435,7 +437,7 @@ AlexandrieCanvasExperiment class >> example1 [
 	^ aeCanvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> fillPaint2 [
 
 	<sampleInstance>
@@ -497,7 +499,7 @@ AlexandrieCanvasExperiment class >> fillPaint2 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> fillPaint3 [
 
 	<sampleInstance>
@@ -559,7 +561,7 @@ AlexandrieCanvasExperiment class >> fillPaint3 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> mask2 [
 
 	<sampleInstance>
@@ -587,7 +589,7 @@ AlexandrieCanvasExperiment class >> mask2 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> mask3 [
 
 	<sampleInstance>
@@ -631,7 +633,7 @@ AlexandrieCanvasExperiment class >> mask3 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> mask4 [
 
 	<sampleInstance>
@@ -652,7 +654,7 @@ AlexandrieCanvasExperiment class >> mask4 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> maskAndClip1 [
 
 	<sampleInstance>
@@ -685,7 +687,7 @@ AlexandrieCanvasExperiment class >> maskAndClip1 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> maskWithPrivateContext [
 
 	<sampleInstance>
@@ -717,7 +719,7 @@ AlexandrieCanvasExperiment class >> maskWithPrivateContext [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> pathPaint1 [
 
 	<sampleInstance>
@@ -750,7 +752,7 @@ AlexandrieCanvasExperiment class >> pathPaint1 [
 	^ canvas asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> textWithOrWithoutHarfbuzz [
 
 	<sampleInstance>
@@ -818,6 +820,6 @@ positions at which those glyphs should be drawn. "
 	^ aeCanvas asForm
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 AlexandrieCanvasExperiment >> seeClassSide [ 
 ]

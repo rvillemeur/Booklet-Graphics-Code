@@ -1,36 +1,38 @@
 Class {
-	#name : #PasswordDialogPresenter,
-	#superclass : #SpPresenter,
+	#name : 'PasswordDialogPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'nameText',
 		'passwordText',
 		'acceptButton',
 		'cancelButton'
 	],
-	#category : #'BookletGraphics-Spec'
+	#category : 'BookletGraphics-Spec',
+	#package : 'BookletGraphics',
+	#tag : 'Spec'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> acceptButton [
 	^ acceptButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> acceptButton: anObject [
 	acceptButton := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> cancelButton [
 	^ cancelButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> cancelButton: anObject [
 	cancelButton := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PasswordDialogPresenter >> initializePresenters [
 	nameText := self newTextInput.
 	passwordText := self newTextInput
@@ -43,7 +45,7 @@ PasswordDialogPresenter >> initializePresenters [
 		add: passwordText
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PasswordDialogPresenter >> initializeWindow: aWindowPresenter [
 "is it better to use this window, or method self withWindowDo: [ :window |
 		window
@@ -55,7 +57,7 @@ PasswordDialogPresenter >> initializeWindow: aWindowPresenter [
 		initialExtent: 300 @ 140"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> layout [
 
 	^ SpBoxLayout newTopToBottom
@@ -82,17 +84,17 @@ PasswordDialogPresenter >> layout [
 				   yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> nameText [
 	^ nameText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> nameText: anObject [
 	nameText := anObject
 ]
 
-{ #category : #showing }
+{ #category : 'showing' }
 PasswordDialogPresenter >> open [
 
 	super open.
@@ -102,17 +104,17 @@ PasswordDialogPresenter >> open [
 			initialExtent: 300 @ 140 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> passwordText [
 	^ passwordText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PasswordDialogPresenter >> passwordText: anObject [
 	passwordText := anObject
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PasswordDialogPresenter >> start [
 <script: 'self new open'>
 ]

@@ -1,25 +1,27 @@
 Class {
-	#name : #BlItemsLeftEvent,
-	#superclass : #BlEvent,
+	#name : 'BlItemsLeftEvent',
+	#superclass : 'BlEvent',
 	#instVars : [
 		'position'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlItemsLeftEvent >> position [
 
 	^ position
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlItemsLeftEvent >> position: anObject [
 
 	position := anObject
 ]
 
-{ #category : #sending }
+{ #category : 'sending' }
 BlItemsLeftEvent >> sendTo: anObject [
 	anObject itemsLeftEvent: self
 ]

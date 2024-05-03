@@ -13,20 +13,22 @@
 2r01111111111111111000000000000000 ""white -black""
 "
 Class {
-	#name : #SixteenBitFormExperiment,
-	#superclass : #Object,
+	#name : 'SixteenBitFormExperiment',
+	#superclass : 'Object',
 	#instVars : [
 		'sprite'
 	],
-	#category : #'BookletGraphics-Form'
+	#category : 'BookletGraphics-Form',
+	#package : 'BookletGraphics',
+	#tag : 'Form'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SixteenBitFormExperiment >> magnifyFactor [
 	^ 15
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SixteenBitFormExperiment >> sixteenColorDepth [
 <bookExample>
 ^(Form extent: 6@1 "size of the form"

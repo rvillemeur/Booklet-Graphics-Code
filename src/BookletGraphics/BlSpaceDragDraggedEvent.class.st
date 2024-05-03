@@ -1,51 +1,53 @@
 Class {
-	#name : #BlSpaceDragDraggedEvent,
-	#superclass : #BlSpaceEvent,
+	#name : 'BlSpaceDragDraggedEvent',
+	#superclass : 'BlSpaceEvent',
 	#instVars : [
 		'delegate',
 		'position',
 		'element'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlSpaceDragDraggedEvent >> delegate [
 
 	^ delegate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlSpaceDragDraggedEvent >> delegate: anObject [
 
 	delegate := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlSpaceDragDraggedEvent >> element [
 
 	^ element
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlSpaceDragDraggedEvent >> element: anObject [
 
 	element := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlSpaceDragDraggedEvent >> position [
 
 	^ position
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlSpaceDragDraggedEvent >> position: anObject [
 
 	position := anObject
 ]
 
-{ #category : #sending }
+{ #category : 'sending' }
 BlSpaceDragDraggedEvent >> sendTo: anObject [
 	anObject spaceDragDraggedEvent: self
 ]

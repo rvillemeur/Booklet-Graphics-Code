@@ -89,12 +89,14 @@ enum combination_rule_t taken From BitBltDispatch.h source code:
 
 "
 Class {
-	#name : #BitBltExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-bitblt'
+	#name : 'BitBltExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-bitblt',
+	#package : 'BookletGraphics',
+	#tag : 'bitblt'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 BitBltExperiment >> test1 [
 
 	<bookExample>
@@ -121,7 +123,7 @@ BitBltExperiment >> test1 [
 	^ destForm magnifyBy: 15
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BitBltExperiment >> test2 [
 <bookExample>
 
@@ -154,7 +156,7 @@ blt
 ^destForm magnifyBy: 15
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BitBltExperiment >> testCombinationRule0To15 [
 	<bookExample>
 	| initForm destForm blt |
@@ -194,7 +196,7 @@ BitBltExperiment >> testCombinationRule0To15 [
 	^ destForm magnifyBy: 15
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BitBltExperiment >> testCombinationRule0To15v2 [
 	<bookExample>
 	| initForm destForm halfForm blt |

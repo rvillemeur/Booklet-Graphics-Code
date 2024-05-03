@@ -1,19 +1,21 @@
 Class {
-	#name : #BlAboutToBeDroppedEvent,
-	#superclass : #BlEvent,
+	#name : 'BlAboutToBeDroppedEvent',
+	#superclass : 'BlEvent',
 	#instVars : [
 		'dropTarget'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlAboutToBeDroppedEvent >> dropTarget [
 
 	^ dropTarget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlAboutToBeDroppedEvent >> dropTarget: anObject [
 
 	dropTarget := anObject

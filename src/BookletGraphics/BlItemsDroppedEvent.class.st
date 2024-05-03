@@ -1,38 +1,40 @@
 Class {
-	#name : #BlItemsDroppedEvent,
-	#superclass : #BlEvent,
+	#name : 'BlItemsDroppedEvent',
+	#superclass : 'BlEvent',
 	#instVars : [
 		'items',
 		'position'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlItemsDroppedEvent >> items [
 
 	^ items
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlItemsDroppedEvent >> items: anObject [
 
 	items := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlItemsDroppedEvent >> position [
 
 	^ position
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlItemsDroppedEvent >> position: anObject [
 
 	position := anObject
 ]
 
-{ #category : #sending }
+{ #category : 'sending' }
 BlItemsDroppedEvent >> sendTo: anObject [
 	anObject itemsDroppedEvent: self
 ]

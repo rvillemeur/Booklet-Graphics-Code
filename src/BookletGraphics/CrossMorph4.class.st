@@ -1,28 +1,30 @@
 Class {
-	#name : #CrossMorph4,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'CrossMorph4',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #'geometry testing' }
+{ #category : 'geometry testing' }
 CrossMorph4 >> containsPoint: aPoint [
 
 	^ (self horizontalBar containsPoint: aPoint) or: [
 		  self verticalBar containsPoint: aPoint ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph4 >> defaultExtent [
 	^ 60@60
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph4 >> defaultLabel [
 
 	^ 'CrossMorph tutorial'
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 CrossMorph4 >> drawOn: aCanvas [
 
 	| topAndBottom |
@@ -32,7 +34,7 @@ CrossMorph4 >> drawOn: aCanvas [
 		aCanvas fillRectangle: each color: self color ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph4 >> horizontalBar [
 
 	| crossHeight |
@@ -40,7 +42,7 @@ CrossMorph4 >> horizontalBar [
 	^ self bounds insetBy: 0 @ crossHeight
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CrossMorph4 >> initialize [
 
 	super initialize.
@@ -58,12 +60,12 @@ CrossMorph4 >> initialize [
 		on: $a meta, $b meta do: [ self startStepping "does not work here"   ].
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CrossMorph4 >> open [
 	<script: 'self new openInWorld'>
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph4 >> processMouseDown: evt [
 
 	evt redButtonPressed ifTrue: [ self color: (Color blue alpha: 0.3) ]. "click"
@@ -71,21 +73,21 @@ CrossMorph4 >> processMouseDown: evt [
 	self changed
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph4 >> processMouseEnter: evt [
 
 	self color: (Color green alpha: 0.99).
 	evt hand newKeyboardFocus: self
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph4 >> processMouseLeave: evt [
 
 	self color: (Color purple alpha: 0.99).
 	evt hand releaseKeyboardFocus: self
 ]
 
-{ #category : #'stepping and presenter' }
+{ #category : 'stepping and presenter' }
 CrossMorph4 >> step [
 
 	(self color diff: Color black) < 0.1
@@ -93,13 +95,13 @@ CrossMorph4 >> step [
 		ifFalse: [ self color: self color darker ]
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 CrossMorph4 >> stepTime [
 
 	^ 100
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph4 >> verticalBar [
 
 	| crossWidth |

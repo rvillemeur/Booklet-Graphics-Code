@@ -1,10 +1,12 @@
 Class {
-	#name : #BlDragAndDropExamples,
-	#superclass : #Object,
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#name : 'BlDragAndDropExamples',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #letters }
+{ #category : 'letters' }
 BlDragAndDropExamples class >> labelContainer: anElement with: aText [
 
 	^ BlElement new
@@ -16,7 +18,7 @@ BlDragAndDropExamples class >> labelContainer: anElement with: aText [
 		  addChild: anElement
 ]
 
-{ #category : #letters }
+{ #category : 'letters' }
 BlDragAndDropExamples class >> letterFor: aCharacter [
 
 	^ BlElement new
@@ -35,7 +37,7 @@ BlDragAndDropExamples class >> letterFor: aCharacter [
 				   text: aCharacter asString asRopedText)
 ]
 
-{ #category : #letters }
+{ #category : 'letters' }
 BlDragAndDropExamples class >> lettersSorter [
 
 	<sampleInstance>
@@ -89,7 +91,7 @@ BlDragAndDropExamples class >> lettersSorter [
 					   with: 'Consonant letters') }; openInNewSpace .
 ]
 
-{ #category : #letters }
+{ #category : 'letters' }
 BlDragAndDropExamples class >> lettersSorterContainer [
 
 	^ BlElement new
@@ -100,7 +102,7 @@ BlDragAndDropExamples class >> lettersSorterContainer [
 		  padding: (BlInsets all: 10)
 ]
 
-{ #category : #letters }
+{ #category : 'letters' }
 BlDragAndDropExamples class >> lettersSorterDraggableLetterFor: aCharacter [
 
 	| element  |
@@ -119,7 +121,7 @@ BlDragAndDropExamples class >> lettersSorterDraggableLetterFor: aCharacter [
 	^ element
 ]
 
-{ #category : #letters }
+{ #category : 'letters' }
 BlDragAndDropExamples class >> lettersSorterRoundedContainerWithBorder [
 
 
@@ -132,7 +134,7 @@ BlDragAndDropExamples class >> lettersSorterRoundedContainerWithBorder [
 		  geometry: (BlRoundedRectangleGeometry cornerRadius: 5)
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 BlDragAndDropExamples class >> tagFor: aString [
 
 	^ BlElement new
@@ -154,7 +156,7 @@ BlDragAndDropExamples class >> tagFor: aString [
 				   text: aString asString asRopedText)
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 BlDragAndDropExamples class >> tagOrdererDraggableTagFor: aString [
 
 	| element  |
@@ -180,7 +182,7 @@ BlDragAndDropExamples class >> tagOrdererDraggableTagFor: aString [
 	^ element
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 BlDragAndDropExamples class >> tagOrdererSlidingTagFor: aString [
 
 	| element  |
@@ -207,7 +209,7 @@ BlDragAndDropExamples class >> tagOrdererSlidingTagFor: aString [
 	^ element
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 BlDragAndDropExamples class >> tagsOrderer [
 
 	<sampleInstance>
@@ -277,7 +279,7 @@ BlDragAndDropExamples class >> tagsOrderer [
 	^ aContainer openInNewSpace
 ]
 
-{ #category : #tags }
+{ #category : 'tags' }
 BlDragAndDropExamples class >> tagsSlidingOrderer [
 
 	<sampleInstance>
@@ -315,6 +317,6 @@ BlDragAndDropExamples class >> tagsSlidingOrderer [
 	^ aContainer openInNewSpace 
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 BlDragAndDropExamples >> seeClassSide [ 
 ]

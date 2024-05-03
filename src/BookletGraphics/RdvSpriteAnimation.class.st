@@ -4,18 +4,20 @@ Each sprite is a square of 32@32px, in a grid of 128@128px.
 
 "
 Class {
-	#name : #RdvSpriteAnimation,
-	#superclass : #Morph,
+	#name : 'RdvSpriteAnimation',
+	#superclass : 'Morph',
 	#instVars : [
 		'sprite',
 		'position',
 		'topLeft',
 		'bottomRight'
 	],
-	#category : #'BookletGraphics-Morph'
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvSpriteAnimation >> computeNewSpriteBounds [
 	"coordinate of next sprite, 32 pixels on the left"
 
@@ -31,7 +33,7 @@ RdvSpriteAnimation >> computeNewSpriteBounds [
 		ifTrue: [ self initSpritePosition ]
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvSpriteAnimation >> drawMagnifiedSpriteOn: aCanvas [
 
 	aCanvas
@@ -42,7 +44,7 @@ RdvSpriteAnimation >> drawMagnifiedSpriteOn: aCanvas [
 		at: self topLeft
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas [
 
 	self drawMiniSpriteOn: aCanvas at: (self topRight translateBy: -32 @ 0).
@@ -57,7 +59,7 @@ RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas [
 	
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas at: aPosition [
 
 	aCanvas
@@ -66,20 +68,20 @@ RdvSpriteAnimation >> drawMiniSpriteOn: aCanvas at: aPosition [
 		sourceRect: (Rectangle point: topLeft point: bottomRight).
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvSpriteAnimation >> drawOn: aCanvas [
  	aCanvas fillColor: Color green.
 	self drawMagnifiedSpriteOn: aCanvas.
 	self drawMiniSpriteOn: aCanvas 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvSpriteAnimation >> initSpritePosition [
 	topLeft := 0 @ 0.
 	bottomRight := 32 @ 32.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvSpriteAnimation >> initialize [
 	super initialize.
 	sprite := ZnEasy
@@ -89,24 +91,24 @@ RdvSpriteAnimation >> initialize [
 	self extent: (32 * self magnifyFactor) @ (32 * self magnifyFactor)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvSpriteAnimation >> magnifyFactor [
 	^ 5
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvSpriteAnimation >> open [
 	<script: 'self new openInWindow'>
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 RdvSpriteAnimation >> step [
 	self computeNewSpriteBounds.
 
 	self changed.
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 RdvSpriteAnimation >> stepTime [
 	^ 100
 ]

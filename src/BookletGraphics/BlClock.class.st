@@ -6,8 +6,8 @@ See class side for usage with
 - dynamic layout
 "
 Class {
-	#name : #BlClock,
-	#superclass : #BlElement,
+	#name : 'BlClock',
+	#superclass : 'BlElement',
 	#instVars : [
 		'hourNeedle',
 		'minutesNeedle',
@@ -18,10 +18,12 @@ Class {
 		'minuteNeedleSize',
 		'secondNeedleSize'
 	],
-	#category : #'BookletGraphics-Clock'
+	#category : 'BookletGraphics-Clock',
+	#package : 'BookletGraphics',
+	#tag : 'Clock'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 BlClock class >> openInDynamicLayout [
 
 	<sampleInstance>
@@ -43,7 +45,7 @@ BlClock class >> openInDynamicLayout [
 	^ clock
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 BlClock class >> openInFixedSize [
 
 	<sampleInstance>
@@ -64,25 +66,25 @@ BlClock class >> openInFixedSize [
 	^ clock
 ]
 
-{ #category : #'api - look' }
+{ #category : 'api - look' }
 BlClock >> background [
 
 	^ BlBackground  paint: Color lightGray
 ]
 
-{ #category : #'api - look' }
+{ #category : 'api - look' }
 BlClock >> border [
 
 	^ BlBorder paint: Color black width: 4
 ]
 
-{ #category : #'api - look' }
+{ #category : 'api - look' }
 BlClock >> geometry [
 
 	^ BlCircleGeometry new matchExtent: self extent.
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 BlClock >> hourCoordinate: time [
 
 	| angleHours y angleTime  angleMinutes x |
@@ -96,7 +98,7 @@ BlClock >> hourCoordinate: time [
 	^ 	x @ y.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlClock >> initAnimation [
 
 	| animation |
@@ -113,7 +115,7 @@ BlClock >> initAnimation [
 	self addAnimation: animation
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlClock >> initClock [
 	self removeChildren.
 
@@ -123,7 +125,7 @@ BlClock >> initClock [
 	self initAnimation
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlClock >> initClockFrame [
 	"draw small lines around clock frame"
 
@@ -155,7 +157,7 @@ BlClock >> initClockFrame [
 						 border: (BlBorder paint: Color black width: hourWidth)) ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlClock >> initConstant [
 
 	center := radius @ radius.
@@ -164,7 +166,7 @@ BlClock >> initConstant [
 	secondNeedleSize := radius * 16.8 / 20
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlClock >> initElements [
 
 	hourNeedle := BlElement new
@@ -191,7 +193,7 @@ BlClock >> initElements [
 			secondNeedle }
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlClock >> initialize [
 
 	super initialize.
@@ -200,7 +202,7 @@ BlClock >> initialize [
 		do: [ :e | self resize ]
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 BlClock >> minuteCoordinate: minutes [
 
 	| x y angle |
@@ -210,14 +212,14 @@ BlClock >> minuteCoordinate: minutes [
 	^ x @ y.
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 BlClock >> resize [
 
 	radius := self extent min / 2.0.
 	self initClock
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 BlClock >> secondCoordinate: seconds [
 
 	| x y angle  |
@@ -227,7 +229,7 @@ BlClock >> secondCoordinate: seconds [
 	^ x @ y.
 ]
 
-{ #category : #'api - bounds' }
+{ #category : 'api - bounds' }
 BlClock >> size: aPoint [
 	super size: aPoint.
 
@@ -235,7 +237,7 @@ BlClock >> size: aPoint [
 	self initClock.
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 BlClock >> updateHourNeedlePosition: time [
 
 	| coordinate |
@@ -244,7 +246,7 @@ BlClock >> updateHourNeedlePosition: time [
 
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 BlClock >> updateMinuteNeedlePosition: minutes [
 
 	| coordinate |
@@ -252,7 +254,7 @@ BlClock >> updateMinuteNeedlePosition: minutes [
 	minutesNeedle geometry from: center to: center + (coordinate * minuteNeedleSize)
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 BlClock >> updateNeedlesPosition: time [
 
 	self updateHourNeedlePosition: time.
@@ -260,7 +262,7 @@ BlClock >> updateNeedlesPosition: time [
 	self updateSecondNeedlePosition: time seconds.
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 BlClock >> updateSecondNeedlePosition: seconds [
 
 	| coordinate |

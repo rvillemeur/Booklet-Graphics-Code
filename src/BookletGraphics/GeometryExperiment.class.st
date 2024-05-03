@@ -2,12 +2,14 @@
 examples of geometry bonds and possibility within Bloc
 "
 Class {
-	#name : #GeometryExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'GeometryExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> allGeometryExample [
 
 	<sampleInstance>
@@ -46,7 +48,7 @@ GeometryExperiment class >> allGeometryExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> annulus [
 
 	<sampleInstance>
@@ -62,13 +64,13 @@ GeometryExperiment class >> annulus [
 		  border: self border
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 GeometryExperiment class >> background [
 
 	^ Color yellow
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> basicBorder [
 
 	<sampleInstance>
@@ -82,7 +84,7 @@ GeometryExperiment class >> basicBorder [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> bezier [
 
 	<sampleInstance>
@@ -99,13 +101,13 @@ GeometryExperiment class >> bezier [
 		  border: self border
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 GeometryExperiment class >> border [
 
 	^ BlBorder paint: Color red width: 5
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 GeometryExperiment class >> box: element text: aText [
 |container elt1 elt2 text|
 
@@ -148,7 +150,7 @@ container addChildren: { elt1 . elt2 }.
 ^ container.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> builderBorder [
 
 	<sampleInstance>
@@ -165,7 +167,7 @@ GeometryExperiment class >> builderBorder [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> builderCapButtBorder [
 
 	<sampleInstance>
@@ -187,7 +189,7 @@ GeometryExperiment class >> builderCapButtBorder [
 		  size: 200 @ 200
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> builderOpacityBorder [
 
 	<sampleInstance>
@@ -205,7 +207,7 @@ GeometryExperiment class >> builderOpacityBorder [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> circle [
 
 	<sampleInstance>
@@ -217,7 +219,7 @@ GeometryExperiment class >> circle [
 		  border: self border
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> donutAnnulusGeometry [
 
 	<sampleInstance>
@@ -267,7 +269,7 @@ GeometryExperiment class >> donutAnnulusGeometry [
 	^ elt
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> ellipse [
 
 	<sampleInstance>
@@ -279,7 +281,7 @@ GeometryExperiment class >> ellipse [
 		  border: self border
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> line [
 
 	<sampleInstance>
@@ -292,7 +294,7 @@ GeometryExperiment class >> line [
 		  border: self border
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> polygon [
 
 	<sampleInstance>
@@ -309,7 +311,7 @@ GeometryExperiment class >> polygon [
 		  border: self border
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> polyline [
 
 	<sampleInstance>
@@ -326,7 +328,7 @@ GeometryExperiment class >> polyline [
 		  border: self border
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> rectangle [
 
 	<sampleInstance>
@@ -338,7 +340,7 @@ GeometryExperiment class >> rectangle [
 		  size: 100 @ 70
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> roundedRectangle [
 
 	<sampleInstance>
@@ -350,7 +352,7 @@ GeometryExperiment class >> roundedRectangle [
 		  size: 100 @ 70
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> square [
 
 	<sampleInstance>
@@ -361,7 +363,7 @@ GeometryExperiment class >> square [
 		  border: self border
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GeometryExperiment class >> triangle [
 
 	<sampleInstance>
@@ -375,6 +377,6 @@ GeometryExperiment class >> triangle [
 		  size: 100 @ 100
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 GeometryExperiment >> seeClassSide [ 
 ]

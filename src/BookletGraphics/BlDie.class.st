@@ -2,23 +2,25 @@
 A die example ported from Morphic to pharo, and used in Pharo by example book
 "
 Class {
-	#name : #BlDie,
-	#superclass : #BlElement,
+	#name : 'BlDie',
+	#superclass : 'BlElement',
 	#instVars : [
 		'faces',
 		'dieValue',
 		'animation'
 	],
-	#category : #'BookletGraphics-Bloc'
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDie class >> faces: aNumber [
 
 	^ self new faces: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDie >> dieValue: aNumber [
 
 	((aNumber isInteger and: [ aNumber > 0 ]) and: [ aNumber <= faces ])
@@ -28,7 +30,7 @@ BlDie >> dieValue: aNumber [
 	self drawPoints
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 BlDie >> drawPointAt: aPoint [
 
 	| element  x y|
@@ -43,20 +45,20 @@ BlDie >> drawPointAt: aPoint [
 	self addChild: element.
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 BlDie >> drawPoints [
 
 	(self perform: ('face' , dieValue asString) asSymbol) do: [ :aPoint |
 		self drawPointAt: aPoint ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face1 [
 
 	^ { (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face2 [
 
 	^ {
@@ -64,7 +66,7 @@ BlDie >> face2 [
 		  (0.75 @ 0.75) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face3 [
 
 	^ {
@@ -73,7 +75,7 @@ BlDie >> face3 [
 		  (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face4 [
 
 	^ {
@@ -83,7 +85,7 @@ BlDie >> face4 [
 		  (0.25 @ 0.75) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face5 [
 
 	^ {
@@ -94,7 +96,7 @@ BlDie >> face5 [
 		(0.5) @ 0.5 }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face6 [
 
 	^ {
@@ -106,7 +108,7 @@ BlDie >> face6 [
 		  (0.75 @ 0.5) } 
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face7 [
 
 	^ {
@@ -119,7 +121,7 @@ BlDie >> face7 [
 		  (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face8 [
 
 	^ {
@@ -133,7 +135,7 @@ BlDie >> face8 [
 		0.5@0.25 }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 BlDie >> face9 [
 
 	^ {
@@ -148,7 +150,7 @@ BlDie >> face9 [
 		  (0.5 @ 0.75) }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDie >> faces: aNumber [
 	" Set the number of faces"
 
@@ -156,7 +158,7 @@ BlDie >> faces: aNumber [
 		ifTrue: [ faces := aNumber ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlDie >> initialize [
 
 	super initialize.
@@ -197,7 +199,7 @@ BlDie >> initialize [
 	self addAnimation: animation
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BlDie >> open [
 	<script: '(self new faces:9) openInNewSpace'>
 ]

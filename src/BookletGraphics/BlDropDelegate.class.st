@@ -1,28 +1,30 @@
 Class {
-	#name : #BlDropDelegate,
-	#superclass : #Object,
+	#name : 'BlDropDelegate',
+	#superclass : 'Object',
 	#instVars : [
 		'acceptConditions'
 	],
 	#classVars : [
 		'BlItemsEnteredEvent'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDropDelegate >> acceptConditions [
 
 	^ acceptConditions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDropDelegate >> acceptConditions: aCollectionOfBlockClosures [
 
 	acceptConditions := aCollectionOfBlockClosures
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 BlDropDelegate >> dragged: aDragContainerElement items: aCollectionOfDragItems at: aPosition offset: anOffset in: anElement [
 
 	| doesAccept |
@@ -36,7 +38,7 @@ BlDropDelegate >> dragged: aDragContainerElement items: aCollectionOfDragItems a
 			 offset: anOffset)
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 BlDropDelegate >> drop: aCollectionOfDragItems at: aPosition in: anElement [
 
 	| rejectedItems acceptedItems |
@@ -64,7 +66,7 @@ BlDropDelegate >> drop: aCollectionOfDragItems at: aPosition in: anElement [
 	^ rejectedItems asArray
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 BlDropDelegate >> enter: aCollectionOfDragItems at: aPosition in: anElement [
 "BlItemsEnteredEvent is not completed, checking how it's used"
 
@@ -78,7 +80,7 @@ BlDropDelegate >> enter: aCollectionOfDragItems at: aPosition in: anElement [
 			 mayAcceptItems: doesAccept)"
 ]
 
-{ #category : #asserting }
+{ #category : 'asserting' }
 BlDropDelegate >> shouldAccept: aDragItem in: anElement [
 
 	^ acceptConditions allSatisfy: [ :eachCondition |

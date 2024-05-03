@@ -2,23 +2,25 @@
 (DieMorph faces: 9) openInWorld
 "
 Class {
-	#name : #DieMorph,
-	#superclass : #Morph,
+	#name : 'DieMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'faces',
 		'dieValue',
 		'isStopped'
 	],
-	#category : #'BookletGraphics-Morph'
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 DieMorph class >> faces: aNumber [
 
 	^ self new faces: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DieMorph >> dieValue: aNumber [
 
 	((aNumber isInteger and: [ aNumber > 0 ]) and: [ aNumber <= faces ]) 
@@ -27,7 +29,7 @@ DieMorph >> dieValue: aNumber [
 	self changed
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 DieMorph >> drawDotOn: aCanvas at: aPoint [
 
 	aCanvas
@@ -37,7 +39,7 @@ DieMorph >> drawDotOn: aCanvas at: aPoint [
 		color: Color black
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 DieMorph >> drawOn: aCanvas [
 
 	| theCanvas |
@@ -47,13 +49,13 @@ DieMorph >> drawOn: aCanvas [
 		self drawDotOn: theCanvas at: aPoint ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face1 [
 
 	^ { (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face2 [
 
 	^ { 
@@ -61,7 +63,7 @@ DieMorph >> face2 [
 		  (0.75 @ 0.75) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face3 [
 
 	^ { 
@@ -70,7 +72,7 @@ DieMorph >> face3 [
 		  (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face4 [
 
 	^ { 
@@ -80,7 +82,7 @@ DieMorph >> face4 [
 		  (0.25 @ 0.75) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face5 [
 
 	^ { 
@@ -91,7 +93,7 @@ DieMorph >> face5 [
 		  (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face6 [
 
 	^ { 
@@ -103,7 +105,7 @@ DieMorph >> face6 [
 		  (0.75 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face7 [
 
 	^ { 
@@ -116,7 +118,7 @@ DieMorph >> face7 [
 		  (0.5 @ 0.5) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face8 [
 
 	^ { 
@@ -130,7 +132,7 @@ DieMorph >> face8 [
 		  (0.5 @ 0.25) }
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DieMorph >> face9 [
 
 	^ { 
@@ -145,7 +147,7 @@ DieMorph >> face9 [
 		  (0.5 @ 0.75) }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DieMorph >> faces: aNumber [
 
 	"Set the number of faces"
@@ -154,13 +156,13 @@ DieMorph >> faces: aNumber [
 		ifTrue: [ faces := aNumber ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 DieMorph >> handlesMouseDown: anEvent [
 
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DieMorph >> initialize [
 
 	super initialize.
@@ -177,24 +179,24 @@ DieMorph >> initialize [
 	isStopped := false
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 DieMorph >> mouseDown: anEvent [
 
 	anEvent redButtonPressed ifTrue: [ isStopped := isStopped not ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DieMorph >> open [
 	<script: '(self faces: 9) openInWorld'>
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 DieMorph >> step [
 
 	isStopped ifFalse: [ self dieValue: (1 to: faces) atRandom ]
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 DieMorph >> stepTime [
 
 	^ 1000

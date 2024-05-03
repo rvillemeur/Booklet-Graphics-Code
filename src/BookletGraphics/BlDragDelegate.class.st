@@ -1,15 +1,17 @@
 Class {
-	#name : #BlDragDelegate,
-	#superclass : #Object,
+	#name : 'BlDragDelegate',
+	#superclass : 'Object',
 	#instVars : [
 		'items',
 		'dragArea',
 		'offset'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 	"Cancel drag and animate previews"
 
@@ -53,50 +55,50 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 			removeState: BlElementDraggingState uniqueInstance ]"
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 BlDragDelegate >> drag: aDraggedContainer to: aPoint [
 	"Drag a container with all previews to a given point in the parent coordinate of the container"
 
 	aDraggedContainer position: aPoint - offset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragDelegate >> dragArea [
 
 	^ dragArea
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragDelegate >> dragArea: anObject [
 
 	dragArea := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BlDragDelegate >> hasDragArea [
 	^ dragArea notNil
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlDragDelegate >> initialize [
 	super initialize.
 
 	items := { }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragDelegate >> items [
 
 	^ items
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragDelegate >> items: aCollectionOfDragItems [
 
 	items := aCollectionOfDragItems
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 BlDragDelegate >> liftAt: aPoint [
 	"Lift previews at a given point in space coordinates"
 	<return: #BlElement>
@@ -121,13 +123,13 @@ BlDragDelegate >> liftAt: aPoint [
 	^ aContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragDelegate >> offset [
 
 	^ offset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragDelegate >> offset: anObject [
 
 	offset := anObject

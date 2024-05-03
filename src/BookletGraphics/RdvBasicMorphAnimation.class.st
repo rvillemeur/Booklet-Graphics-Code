@@ -1,14 +1,16 @@
 Class {
-	#name : #RdvBasicMorphAnimation,
-	#superclass : #Morph,
+	#name : 'RdvBasicMorphAnimation',
+	#superclass : 'Morph',
 	#instVars : [
 		'sprite',
 		'position'
 	],
-	#category : #'BookletGraphics-Morph'
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvBasicMorphAnimation >> drawOn: aCanvas [
 	aCanvas
 		drawImage: sprite
@@ -16,7 +18,7 @@ RdvBasicMorphAnimation >> drawOn: aCanvas [
 		sourceRect: (Rectangle origin: position @ 0 corner: (position + 100) @ 150)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvBasicMorphAnimation >> initialize [
 	super initialize.
 	sprite := (Form
@@ -28,20 +30,20 @@ RdvBasicMorphAnimation >> initialize [
 	self extent: 100 @ 150
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvBasicMorphAnimation >> open [
 	<script: 'self new openInWindow'>
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvBasicMorphAnimation >> step [
 	position := position + 100.
 	position > 700 ifTrue: [ position := 0 ].
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvBasicMorphAnimation >> stepTime [
 	^ 500
 ]

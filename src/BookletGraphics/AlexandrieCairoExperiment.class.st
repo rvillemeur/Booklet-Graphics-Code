@@ -12,12 +12,14 @@ CAIRO_LINE_JOIN_BEVEL: use a cut-off join, the join is cut off at half the line 
 [Operators:](https://cairographics.org/operators/)
 "
 Class {
-	#name : #AlexandrieCairoExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Alexandrie'
+	#name : 'AlexandrieCairoExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Alexandrie',
+	#package : 'BookletGraphics',
+	#tag : 'Alexandrie'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> clip1 [
 
 	<sampleInstance>
@@ -45,7 +47,7 @@ AlexandrieCairoExperiment class >> clip1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> clip2 [
 
 	<sampleInstance>
@@ -85,7 +87,7 @@ AlexandrieCairoExperiment class >> clip2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> fillPaint1 [
 
 	<sampleInstance>
@@ -154,7 +156,7 @@ AlexandrieCairoExperiment class >> fillPaint1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> fillPaint2 [
 
 	<sampleInstance>
@@ -230,7 +232,7 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> fillPaint3 [
 
 	<sampleInstance>
@@ -293,7 +295,7 @@ AlexandrieCairoExperiment class >> fillPaint3 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> lineCap [
 
 	<sampleInstance>
@@ -342,7 +344,7 @@ AlexandrieCairoExperiment class >> lineCap [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> lineColor [
 
 	<sampleInstance>
@@ -403,7 +405,7 @@ AlexandrieCairoExperiment class >> lineColor [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> lineDash [
 
 	<sampleInstance>
@@ -449,7 +451,7 @@ AlexandrieCairoExperiment class >> lineDash [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> linePath [
 
 	<sampleInstance>
@@ -480,7 +482,7 @@ AlexandrieCairoExperiment class >> linePath [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> linejoin [
 
 	<sampleInstance>
@@ -532,7 +534,7 @@ AlexandrieCairoExperiment class >> linejoin [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> linejoin2 [
 
 	<sampleInstance>
@@ -580,7 +582,7 @@ AlexandrieCairoExperiment class >> linejoin2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> mask1 [
 
 	<sampleInstance>
@@ -600,7 +602,7 @@ AlexandrieCairoExperiment class >> mask1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> mask2 [
 
 	<sampleInstance>
@@ -623,7 +625,7 @@ AlexandrieCairoExperiment class >> mask2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> mask3 [
 
 	<sampleInstance>
@@ -646,7 +648,7 @@ AlexandrieCairoExperiment class >> mask3 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> mask4 [
 
 	<sampleInstance>
@@ -666,7 +668,7 @@ AlexandrieCairoExperiment class >> mask4 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> mask5 [
 
 	<sampleInstance>
@@ -686,7 +688,7 @@ AlexandrieCairoExperiment class >> mask5 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> mask6 [
 
 	<sampleInstance>
@@ -709,7 +711,7 @@ AlexandrieCairoExperiment class >> mask6 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> maskAndClip1 [
 
 	<sampleInstance>
@@ -738,7 +740,7 @@ AlexandrieCairoExperiment class >> maskAndClip1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> maskAndClip2 [
 
 	<sampleInstance>
@@ -767,7 +769,7 @@ AlexandrieCairoExperiment class >> maskAndClip2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> maskAndClip3 [
 
 	<sampleInstance>
@@ -796,7 +798,7 @@ AlexandrieCairoExperiment class >> maskAndClip3 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> maskAndClip4 [
 
 	<sampleInstance>
@@ -824,7 +826,7 @@ AlexandrieCairoExperiment class >> maskAndClip4 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> maskAndClip5 [
 
 	<sampleInstance>
@@ -854,7 +856,7 @@ AlexandrieCairoExperiment class >> maskAndClip5 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> maskAndClip6 [
 
 	<sampleInstance>
@@ -884,7 +886,7 @@ AlexandrieCairoExperiment class >> maskAndClip6 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> meshPattern [
 
 	<sampleInstance>
@@ -922,7 +924,7 @@ AlexandrieCairoExperiment class >> meshPattern [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> radialGradientPattern1 [
 
 	<sampleInstance>
@@ -958,7 +960,7 @@ AlexandrieCairoExperiment class >> radialGradientPattern1 [
 	^ mainSurface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> strokeAndFill [
 
 	<sampleInstance>
@@ -995,7 +997,7 @@ AlexandrieCairoExperiment class >> strokeAndFill [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> strokeAndFill2 [
 
 	<sampleInstance>
@@ -1032,7 +1034,7 @@ AlexandrieCairoExperiment class >> strokeAndFill2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 
 	<sampleInstance>
@@ -1116,7 +1118,7 @@ AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> textWithoutHarfbuzzWithFontManager [
 
 	<sampleInstance>
@@ -1189,6 +1191,6 @@ AlexandrieCairoExperiment class >> textWithoutHarfbuzzWithFontManager [
 	^ surface asForm
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 AlexandrieCairoExperiment >> seeClassSide [ 
 ]

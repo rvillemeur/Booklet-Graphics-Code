@@ -8,20 +8,22 @@ Each pixel can have 2^1 = 2 different color
 [ 0000 0000 0000 0000 0000 0000 0000 0000] ""2 colors""
 "
 Class {
-	#name : #OneBitFormExperiment,
-	#superclass : #Object,
+	#name : 'OneBitFormExperiment',
+	#superclass : 'Object',
 	#instVars : [
 		'sprite'
 	],
-	#category : #'BookletGraphics-Form'
+	#category : 'BookletGraphics-Form',
+	#package : 'BookletGraphics',
+	#tag : 'Form'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OneBitFormExperiment >> magnifyFactor [
 	^ 15
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OneBitFormExperiment >> oneBitColorDepthWithBitmap [
 
 	<bookExample>
@@ -33,7 +35,7 @@ OneBitFormExperiment >> oneBitColorDepthWithBitmap [
 		  self magnifyFactor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OneBitFormExperiment >> oneBitColorDepthWithFormColor [
 <bookExample>
 	| pict map |
@@ -53,7 +55,7 @@ OneBitFormExperiment >> oneBitColorDepthWithFormColor [
 	^ pict magnifyBy: self magnifyFactor 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OneBitFormExperiment >> oneBitColorDepthWithoutBitmap [
 
 	<bookExample>

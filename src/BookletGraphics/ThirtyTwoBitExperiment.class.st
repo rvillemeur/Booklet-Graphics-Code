@@ -1,18 +1,20 @@
 Class {
-	#name : #ThirtyTwoBitExperiment,
-	#superclass : #Object,
+	#name : 'ThirtyTwoBitExperiment',
+	#superclass : 'Object',
 	#instVars : [
 		'sprite'
 	],
-	#category : #'BookletGraphics-Form'
+	#category : 'BookletGraphics-Form',
+	#package : 'BookletGraphics',
+	#tag : 'Form'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ThirtyTwoBitExperiment >> magnifyFactor [
 	^ 15
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThirtyTwoBitExperiment >> thirtyTwoBitColorDepth1 [
 <bookExample>
 ^(Form extent: 7@1 "size of the form"
@@ -31,7 +33,7 @@ ThirtyTwoBitExperiment >> thirtyTwoBitColorDepth1 [
 ); magnifyBy: self magnifyFactor 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThirtyTwoBitExperiment >> thirtyTwoBitColorDepth2 [
 <bookExample>
 ^(Form extent: 3@3 "size of the form"

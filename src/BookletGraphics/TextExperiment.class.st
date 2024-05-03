@@ -5,12 +5,14 @@ text experiment and example in bloc
 - etc.
 "
 Class {
-	#name : #TextExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'TextExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> exampleHelloWorld [
 
 	<simpleInstance>
@@ -20,7 +22,7 @@ TextExperiment class >> exampleHelloWorld [
 	^ elt
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> helloBloc [
 
 	<sampleInstance>
@@ -44,7 +46,7 @@ TextExperiment class >> helloBloc [
 	^ label
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> helloHarfbuzz [
 
 	<sampleInstance>
@@ -76,7 +78,7 @@ TextExperiment class >> helloHarfbuzz [
 
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> sampleEditorMeasure [
 
 	<sampleInstance>
@@ -96,7 +98,7 @@ TextExperiment class >> sampleEditorMeasure [
 	^ label
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> sampleLabelMeasure [
 
 	<sampleInstance>
@@ -117,7 +119,7 @@ TextExperiment class >> sampleLabelMeasure [
 	^ label
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> sampleMeasure [
 
 	<sampleInstance>
@@ -144,7 +146,7 @@ TextExperiment class >> sampleMeasure [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> sampletightMeasure [
 
 	<sampleInstance>
@@ -165,7 +167,7 @@ TextExperiment class >> sampletightMeasure [
 	^ label
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> textAlignment1 [
 
 	<sampleInstance>
@@ -190,7 +192,7 @@ TextExperiment class >> textAlignment1 [
 	^ p
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TextExperiment class >> textAlignment2 [
 
 	<sampleInstance>
@@ -215,6 +217,6 @@ TextExperiment class >> textAlignment2 [
 	^ p
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 TextExperiment >> seeClassSide [ 
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #RdvTransformMorph,
-	#superclass : #Object,
+	#name : 'RdvTransformMorph',
+	#superclass : 'Object',
 	#instVars : [
 		'window',
 		'pane',
@@ -8,15 +8,17 @@ Class {
 		'background',
 		'scaler'
 	],
-	#category : #'BookletGraphics-Morph'
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RdvTransformMorph >> open [
 	<script: 'self new transformMorph'>
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RdvTransformMorph >> transformMorph [
 
 background := AlphaImageMorph withForm: (ZnEasy getJpeg: 'http://i.imgur.com/K1QR9vA.jpg').

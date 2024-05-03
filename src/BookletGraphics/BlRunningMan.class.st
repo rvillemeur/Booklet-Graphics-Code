@@ -2,15 +2,17 @@
 Sprite animation in bloc, click in the open method to look at it.
 "
 Class {
-	#name : #BlRunningMan,
-	#superclass : #BlElement,
+	#name : 'BlRunningMan',
+	#superclass : 'BlElement',
 	#instVars : [
 		'spriteGrid'
 	],
-	#category : #'BookletGraphics-Bloc'
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlRunningMan >> initSpritePosition [
 
 	| sprite |
@@ -30,7 +32,7 @@ BlRunningMan >> initSpritePosition [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlRunningMan >> initialize [
 
 	super initialize.
@@ -44,17 +46,17 @@ BlRunningMan >> initialize [
 		addChild: self runningMan
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlRunningMan >> magnifyFactor [
 	^ 10
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BlRunningMan >> open [
 	<script: 'self new openInNewSpace'>
 ]
 
-{ #category : #'execution - private' }
+{ #category : 'execution - private' }
 BlRunningMan >> runningMan [
 
 	| animation |

@@ -2,12 +2,14 @@
 animation experiment and example in Bloc
 "
 Class {
-	#name : #AnimationExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'AnimationExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> GaussianEffectAnimation [
 
 	<sampleInstance>
@@ -30,7 +32,7 @@ AnimationExperiment class >> GaussianEffectAnimation [
 	^ element
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> animatedBackground [
 
 	<sampleInstance>
@@ -53,7 +55,7 @@ AnimationExperiment class >> animatedBackground [
 	^ element
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> animatedBackground2 [
 
 	<sampleInstance>
@@ -77,7 +79,7 @@ AnimationExperiment class >> animatedBackground2 [
 	^ element
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> crossElement [
 
 	<sampleInstance>
@@ -156,7 +158,7 @@ AnimationExperiment class >> crossElement [
 	^ cross
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> opacityAnimation [
 
 	<sampleInstance>
@@ -176,7 +178,7 @@ AnimationExperiment class >> opacityAnimation [
 	^ element
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialBounceIn [
 
 	<sampleInstance>
@@ -205,7 +207,7 @@ AnimationExperiment class >> sequentialBounceIn [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialBounceInOut [
 
 	<sampleInstance>
@@ -234,7 +236,7 @@ AnimationExperiment class >> sequentialBounceInOut [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialBounceOut [
 
 	<sampleInstance>
@@ -263,7 +265,7 @@ AnimationExperiment class >> sequentialBounceOut [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialElastic [
 
 	<sampleInstance>
@@ -292,7 +294,7 @@ AnimationExperiment class >> sequentialElastic [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialQuad [
 
 	<sampleInstance>
@@ -321,7 +323,7 @@ AnimationExperiment class >> sequentialQuad [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialQuintic [
 
 	<sampleInstance>
@@ -350,7 +352,7 @@ AnimationExperiment class >> sequentialQuintic [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialSine [
 
 	<sampleInstance>
@@ -379,7 +381,7 @@ AnimationExperiment class >> sequentialSine [
 	^space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AnimationExperiment class >> sequentialViscousFluid [
 
 	<sampleInstance>
@@ -408,6 +410,6 @@ AnimationExperiment class >> sequentialViscousFluid [
 	^space
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 AnimationExperiment >> seeClassSide [ 
 ]

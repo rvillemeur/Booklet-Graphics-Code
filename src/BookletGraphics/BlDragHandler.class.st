@@ -1,14 +1,16 @@
 Class {
-	#name : #BlDragHandler,
-	#superclass : #BlCustomEventHandler,
+	#name : 'BlDragHandler',
+	#superclass : 'BlCustomEventHandler',
 	#instVars : [
 		'liftItemBlock',
 		'dragAreaBlock'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDragHandler >> createDragItemFor: aSourceElement [
 	<return: #BlDragItem>
 
@@ -20,12 +22,12 @@ BlDragHandler >> createDragItemFor: aSourceElement [
 		ifNotNil: [ :aBlock | aBlock cull: aSourceElement ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragHandler >> dragArea: aBlock [
 	dragAreaBlock := aBlock
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDragHandler >> dragStartEvent: anEvent [
 	| aDragDelegate |
 
@@ -45,12 +47,12 @@ BlDragHandler >> dragStartEvent: anEvent [
 			position: anEvent position)
 ]
 
-{ #category : #'api - accessing' }
+{ #category : 'api - accessing' }
 BlDragHandler >> eventsToHandle [
 	^ { BlDragStartEvent }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BlDragHandler >> liftItem: aBlock [
 	liftItemBlock := aBlock
 ]

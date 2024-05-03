@@ -8,12 +8,14 @@ en cliquant sur inspect morph ) : évaluez self color: Color blue. Les morphs bl
 étant acceptés par le ReceiverMorph : essayez à nouveau le glisser-déposer
 "
 Class {
-	#name : #ReceiverMorph,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'ReceiverMorph',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ReceiverMorph >> initialize [
 
 	super initialize.
@@ -21,17 +23,17 @@ ReceiverMorph >> initialize [
 	bounds := 0 @ 0 extent: 200 @ 200
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ReceiverMorph >> open [
 	<script: 'self new openInWorld'>
 ]
 
-{ #category : #'dropping/grabbing' }
+{ #category : 'dropping/grabbing' }
 ReceiverMorph >> repelsMorph: aMorph event: anEvent [
 ^ (self wantsDroppedMorph: aMorph event: anEvent) not
 ]
 
-{ #category : #'drag and drop' }
+{ #category : 'drag and drop' }
 ReceiverMorph >> wantsDroppedMorph: aMorph event: anEvent [
 
 	^ aMorph color = Color blue

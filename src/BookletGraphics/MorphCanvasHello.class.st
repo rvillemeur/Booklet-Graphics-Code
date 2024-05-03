@@ -1,16 +1,18 @@
 Class {
-	#name : #MorphCanvasHello,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'MorphCanvasHello',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MorphCanvasHello class >> open [
 	<example>
 	self new openInWindow
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 MorphCanvasHello >> addStringMorph [
 	| label transformationMorph|
 	
@@ -28,17 +30,17 @@ MorphCanvasHello >> addStringMorph [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MorphCanvasHello >> defaultExtent [
 	^ 600@400
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MorphCanvasHello >> defaultLabel [
 	^ 'Morph Canvas Hello'
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 MorphCanvasHello >> drawAxesOn: aCanvas [
 	aCanvas
 		line: self topCenter
@@ -52,7 +54,7 @@ MorphCanvasHello >> drawAxesOn: aCanvas [
 		color: Color black.
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 MorphCanvasHello >> drawCarretOn: aCanvas [
 	0 to: self width by: 10 do: [ :position | 
 		self
@@ -64,7 +66,7 @@ MorphCanvasHello >> drawCarretOn: aCanvas [
 			at: (self topCenter translateBy: 0 @ position) ]
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 MorphCanvasHello >> drawHorizontalCarretOn: aCanvas at: aPosition [
 	aCanvas
 		line: (aPosition translateBy: -5 @ 0)
@@ -73,7 +75,7 @@ MorphCanvasHello >> drawHorizontalCarretOn: aCanvas at: aPosition [
 		color: Color black
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 MorphCanvasHello >> drawOn: aCanvas [
 
 	self renderMorph: aCanvas.
@@ -83,7 +85,7 @@ MorphCanvasHello >> drawOn: aCanvas [
 
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 MorphCanvasHello >> drawVerticalCarretOn: aCanvas at: aPosition [
 	aCanvas
 		line: (aPosition translateBy: 0 @ -5)
@@ -92,20 +94,20 @@ MorphCanvasHello >> drawVerticalCarretOn: aCanvas at: aPosition [
 		color: Color black
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MorphCanvasHello >> initialize [
 	super initialize.
 	self extent: self defaultExtent.
 	self addStringMorph.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 MorphCanvasHello >> open [
 	<script: 'self new openInWindow'>
 	
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 MorphCanvasHello >> renderMorph: aCanvas [
 |fill rectangle|
 

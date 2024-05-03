@@ -1,6 +1,6 @@
-Extension { #name : #BlSpaceEventListener }
+Extension { #name : 'BlSpaceEventListener' }
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlSpaceEventListener >> spaceDragCancelEvent: anEvent [
 	| aDragDelegate |
 	self space removeEventHandler: mouseDragListener.
@@ -18,7 +18,7 @@ BlSpaceEventListener >> spaceDragCancelEvent: anEvent [
 	dragContainerElement := nil.
 ]
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlSpaceEventListener >> spaceDragDraggedEvent: anEvent [
 	| aDropDelegate aDragDelegate aPosition |
 
@@ -36,7 +36,7 @@ BlSpaceEventListener >> spaceDragDraggedEvent: anEvent [
 		in: anEvent element
 ]
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlSpaceEventListener >> spaceDragDropEnterEvent: anEvent [
 	| aDropDelegate aDragDelegate aPosition |
 	
@@ -54,7 +54,7 @@ BlSpaceEventListener >> spaceDragDropEnterEvent: anEvent [
 		in: anEvent element
 ]
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlSpaceEventListener >> spaceDragDropEvent: anEvent [
 	| aDropDelegate aDragDelegate aPosition theRejectedItems|
 
@@ -72,7 +72,7 @@ BlSpaceEventListener >> spaceDragDropEvent: anEvent [
 	aDragDelegate items: theRejectedItems
 ]
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlSpaceEventListener >> spaceDragLiftEvent: anEvent [
 	| aDragDelegate aPosition aDragArea |
 

@@ -15,17 +15,19 @@ Mortgage principal: 330000 duration: 12 ""month"" * 3 ""year""rate: 4.5 percent.
 
 "
 Class {
-	#name : #Mortgage,
-	#superclass : #Object,
+	#name : 'Mortgage',
+	#superclass : 'Object',
 	#instVars : [
 		'duration',
 		'rate',
 		'amount'
 	],
-	#category : #'BookletGraphics-inspector'
+	#category : 'BookletGraphics-inspector',
+	#package : 'BookletGraphics',
+	#tag : 'inspector'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Mortgage class >> principal: anAmount duration: aDuration rate: aRate [
 
 	^ self new
@@ -35,7 +37,7 @@ Mortgage class >> principal: anAmount duration: aDuration rate: aRate [
 		  yourself
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 Mortgage >> amortizationTable [
 
 	| beginningPrincipal remainingPrincipal payment elements |
@@ -56,31 +58,31 @@ Mortgage >> amortizationTable [
 	^ elements
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Mortgage >> amount [
 
 	^ amount
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Mortgage >> amount: anObject [
 
 	amount := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Mortgage >> duration [
 
 	^ duration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Mortgage >> duration: anObject [
 
 	duration := anObject
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 Mortgage >> formatAmount: anAmount [
 
 	| displayAmount principal decimal index |
@@ -105,7 +107,7 @@ Mortgage >> formatAmount: anAmount [
 	^ displayAmount , decimal
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 Mortgage >> inspectAmortization: aBuilder [
 
 	<inspectorPresentationOrder: 2 title: 'amortization table'>
@@ -133,7 +135,7 @@ Mortgage >> inspectAmortization: aBuilder [
 	^ table
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 Mortgage >> inspectAmortizationChart [
 
 	<inspectorPresentationOrder: 3 title: 'amortization'>
@@ -174,19 +176,19 @@ Mortgage >> inspectAmortizationChart [
 		  yourself
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 Mortgage >> inspectAmortizationChartContext: aContext [
 
 	^ aContext active: rate > 0
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 Mortgage >> inspectAmortizationContext: aContext [
 
 	^ aContext active: rate > 0
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 Mortgage >> inspectLoan: aBuilder [
 
 	<inspectorPresentationOrder: 1 title: 'detail'>
@@ -205,33 +207,33 @@ Mortgage >> inspectLoan: aBuilder [
 	^ builder table
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 Mortgage >> monthlyRate [
 
 	^ rate / 12
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 Mortgage >> payment [
 
 	^ amount * self monthlyRate
 	  / (1 - (1 + self monthlyRate raisedTo: duration negated)) round: 2
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 Mortgage >> principalRemainingAtPeriod: anInteger [
 
 	^ 1 - (1 / (1 + self monthlyRate) raisedTo: duration - anInteger)
 	  / self monthlyRate * self payment round: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Mortgage >> rate [
 
 	^ rate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Mortgage >> rate: anObject [
 
 	rate := anObject

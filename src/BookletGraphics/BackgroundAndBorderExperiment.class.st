@@ -2,12 +2,14 @@
 various example on background and border settings in Bloc
 "
 Class {
-	#name : #BackgroundAndBorderExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'BackgroundAndBorderExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> TriangleColorDashedMulti [
 
 	<sampleInstance>
@@ -26,7 +28,7 @@ BackgroundAndBorderExperiment class >> TriangleColorDashedMulti [
 		  size: 200 @ 200
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> box: element text: aText [
 
 	| container elt1 elt2 text |
@@ -71,7 +73,7 @@ BackgroundAndBorderExperiment class >> box: element text: aText [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleElementOutskirts [
 
 	<sampleInstance>
@@ -105,7 +107,7 @@ BackgroundAndBorderExperiment class >> multipleElementOutskirts [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleElementWithOpacity [
 
 	<sampleInstance>
@@ -217,7 +219,7 @@ BackgroundAndBorderExperiment class >> multipleElementWithOpacity [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleTriangle [
 
 	<sampleInstance>
@@ -298,7 +300,7 @@ BackgroundAndBorderExperiment class >> multipleTriangle [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleTriangleBackground [
 
 	<sampleInstance>
@@ -334,7 +336,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleBackground [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleTriangleBorderColor [
 
 	<sampleInstance>
@@ -367,7 +369,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleBorderColor [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleTriangleDashed [
 
 	<sampleInstance>
@@ -399,7 +401,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleDashed [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleTriangleWithCapAndJoin [
 
 	<sampleInstance>
@@ -431,7 +433,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleWithCapAndJoin [
 	^ space
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> outskirtsCentered [
 
 	| box element |
@@ -464,7 +466,7 @@ BackgroundAndBorderExperiment class >> outskirtsCentered [
 	^ box
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> outskirtsInside [
 |box element|
 box := BlElement new
@@ -497,7 +499,7 @@ box := BlElement new
 	^box
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> outskirtsOutside [
 
 	| box element |
@@ -530,7 +532,7 @@ BackgroundAndBorderExperiment class >> outskirtsOutside [
 	^ box
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBackgroundImage [
 "not working currently"
 	<sampleInstance>
@@ -543,7 +545,7 @@ BackgroundAndBorderExperiment class >> triangleBackgroundImage [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBackgroundLinearColor [
 	"not working currently"
 
@@ -559,7 +561,7 @@ BackgroundAndBorderExperiment class >> triangleBackgroundLinearColor [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBackgroundRadialColor [
 	"not working currently"
 
@@ -579,7 +581,7 @@ BackgroundAndBorderExperiment class >> triangleBackgroundRadialColor [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBackgroundSolidColor [
 	"not working currently"
 
@@ -597,7 +599,7 @@ BackgroundAndBorderExperiment class >> triangleBackgroundSolidColor [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBorderImage [
 "not working currently"
 	<sampleInstance>
@@ -612,7 +614,7 @@ BackgroundAndBorderExperiment class >> triangleBorderImage [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBorderLinearGradient [
 
 	<sampleInstance>
@@ -629,7 +631,7 @@ BackgroundAndBorderExperiment class >> triangleBorderLinearGradient [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBorderRadialGradient [
 
 	<sampleInstance>
@@ -650,7 +652,7 @@ BackgroundAndBorderExperiment class >> triangleBorderRadialGradient [
 		  size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBorderSolidColor [
 
 	<sampleInstance>
@@ -663,7 +665,7 @@ BackgroundAndBorderExperiment class >> triangleBorderSolidColor [
 		size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleColorDashed [
 
 	<sampleInstance>
@@ -682,7 +684,7 @@ BackgroundAndBorderExperiment class >> triangleColorDashed [
 		  size: 200 @ 200
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> triangleDashedArray [
 
 	| box element |
@@ -711,7 +713,7 @@ BackgroundAndBorderExperiment class >> triangleDashedArray [
 	^ box
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleDashedColorWithBuilder [
 
 	<sampleInstance>
@@ -728,7 +730,7 @@ BackgroundAndBorderExperiment class >> triangleDashedColorWithBuilder [
 		  size: 100 @ 100
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> triangleDashedNormal [
 
 	| box element |
@@ -756,7 +758,7 @@ BackgroundAndBorderExperiment class >> triangleDashedNormal [
 	^ box
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> triangleDashedSmall [
 
 	| box element |
@@ -784,7 +786,7 @@ BackgroundAndBorderExperiment class >> triangleDashedSmall [
 	^ box
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> triangleJoinBevel [
 
 	| box element |
@@ -812,7 +814,7 @@ BackgroundAndBorderExperiment class >> triangleJoinBevel [
 	^ box
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> triangleJoinMiter [
 
 	| box element |
@@ -840,7 +842,7 @@ BackgroundAndBorderExperiment class >> triangleJoinMiter [
 	^ box
 ]
 
-{ #category : #'examples - helpers' }
+{ #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> triangleJoinRound [
 
 	| box element |
@@ -868,7 +870,7 @@ BackgroundAndBorderExperiment class >> triangleJoinRound [
 	^ box
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleSolidColor [
 
 	<sampleInstance>
@@ -881,7 +883,7 @@ BackgroundAndBorderExperiment class >> triangleSolidColor [
 		size: 100 @ 100
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleSolidColorWithBuilder [
 
 	<sampleInstance>
@@ -897,6 +899,6 @@ BackgroundAndBorderExperiment class >> triangleSolidColorWithBuilder [
 		  size: 100 @ 100
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 BackgroundAndBorderExperiment >> seeClassSide [ 
 ]

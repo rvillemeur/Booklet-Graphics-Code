@@ -1,1 +1,1 @@
-Package { #name : #BookletGraphics }
+Package { #name : 'BookletGraphics' }

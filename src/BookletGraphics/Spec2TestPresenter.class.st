@@ -1,16 +1,18 @@
 Class {
-	#name : #Spec2TestPresenter,
-	#superclass : #SpPresenter,
+	#name : 'Spec2TestPresenter',
+	#superclass : 'SpPresenter',
 	#instVars : [
 		'nameText',
 		'passwordText',
 		'acceptButton',
 		'cancelButton'
 	],
-	#category : #'BookletGraphics-Spec'
+	#category : 'BookletGraphics-Spec',
+	#package : 'BookletGraphics',
+	#tag : 'Spec'
 }
 
-{ #category : #layout }
+{ #category : 'layout' }
 Spec2TestPresenter class >> defaultLayout [
 	^ SpGridLayout new
 				borderWidth: 0;
@@ -29,33 +31,33 @@ Spec2TestPresenter class >> defaultLayout [
 				yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 Spec2TestPresenter class >> open [
 <example>
 self new openWithSpec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> acceptButton [
 	^ acceptButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> acceptButton: anObject [
 	acceptButton := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> cancelButton [
 	^ cancelButton
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> cancelButton: anObject [
 	cancelButton := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Spec2TestPresenter >> initializePresenters [
 <script: 'self new open'>
 	nameText := self newTextInput.
@@ -69,7 +71,7 @@ Spec2TestPresenter >> initializePresenters [
 		add: passwordText
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Spec2TestPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
@@ -77,22 +79,22 @@ Spec2TestPresenter >> initializeWindow: aWindowPresenter [
 		";initialExtent: 300@400"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> nameText [
 	^ nameText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> nameText: anObject [
 	nameText := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> passwordText [
 	^ passwordText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Spec2TestPresenter >> passwordText: anObject [
 	passwordText := anObject
 ]

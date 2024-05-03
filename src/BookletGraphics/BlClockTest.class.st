@@ -1,10 +1,12 @@
 Class {
-	#name : #BlClockTest,
-	#superclass : #TestCase,
-	#category : #'BookletGraphics-Clock'
+	#name : 'BlClockTest',
+	#superclass : 'TestCase',
+	#category : 'BookletGraphics-Clock',
+	#package : 'BookletGraphics',
+	#tag : 'Clock'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 BlClockTest >> testHourCoordinate [
 
 	| time clock |
@@ -25,7 +27,7 @@ BlClockTest >> testHourCoordinate [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BlClockTest >> testMinuteCoordinate [
 
 	| time clock |
@@ -44,7 +46,7 @@ BlClockTest >> testMinuteCoordinate [
 	self assert: (clock minuteCoordinate: time minute) closeTo: -1 @ 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 BlClockTest >> testSecondCoordinate [
 
 	| time clock |

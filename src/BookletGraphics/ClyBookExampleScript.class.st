@@ -1,27 +1,29 @@
 Class {
-	#name : #ClyBookExampleScript,
-	#superclass : #ClyClassScript,
-	#category : #'BookletGraphics-Calypso'
+	#name : 'ClyBookExampleScript',
+	#superclass : 'ClyClassScript',
+	#category : 'BookletGraphics-Calypso',
+	#package : 'BookletGraphics',
+	#tag : 'Calypso'
 }
 
-{ #category : #'script detection' }
+{ #category : 'script detection' }
 ClyBookExampleScript class >> canBeProvidedByMethod: aMethod [
 	"This method just checks that method in general can be used for this kind of script"
 
 	^  aMethod numArgs = 0
 ]
 
-{ #category : #'script detection' }
+{ #category : 'script detection' }
 ClyBookExampleScript class >> isImplementedByMethod: aMethod [
 	^ ((aMethod hasPragmaNamed: #bookExample) or: [ (aMethod hasPragmaNamed: #sampleInstance) ]) and: [ (aMethod isTestMethod) not ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyBookExampleScript >> description [
 	^ 'Run the book example'
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
 ClyBookExampleScript >> executeOn: aClass [
 
 	| exampleResult |
@@ -35,7 +37,7 @@ ClyBookExampleScript >> executeOn: aClass [
 	^ exampleResult
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ClyBookExampleScript >> iconName [
 	^#smallLanguage
 ]

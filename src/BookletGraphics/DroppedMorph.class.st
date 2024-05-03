@@ -7,12 +7,14 @@ Le morph vert (Color green) est rejeté et reste ainsi attaché au pointeur de l
 souris
 "
 Class {
-	#name : #DroppedMorph,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'DroppedMorph',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DroppedMorph >> initialize [
 
 	super initialize.
@@ -20,7 +22,7 @@ DroppedMorph >> initialize [
 	self position: 250 @ 100
 ]
 
-{ #category : #'dropping/grabbing' }
+{ #category : 'dropping/grabbing' }
 DroppedMorph >> rejectDropMorphEvent: anEvent [
 
 	| h |

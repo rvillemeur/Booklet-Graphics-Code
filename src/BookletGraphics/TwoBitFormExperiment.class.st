@@ -6,20 +6,22 @@
 	""[ 0000 0000 0000 0000 0000 0000 0000 0000]"" ""4 colors""
 "
 Class {
-	#name : #TwoBitFormExperiment,
-	#superclass : #Object,
+	#name : 'TwoBitFormExperiment',
+	#superclass : 'Object',
 	#instVars : [
 		'sprite'
 	],
-	#category : #'BookletGraphics-Form'
+	#category : 'BookletGraphics-Form',
+	#package : 'BookletGraphics',
+	#tag : 'Form'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TwoBitFormExperiment >> magnifyFactor [
 	^ 15
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TwoBitFormExperiment >> twoBitColorDepth [
 <bookExample>
 ^ (Form extent: 16@1 "size of the form"
@@ -34,7 +36,7 @@ TwoBitFormExperiment >> twoBitColorDepth [
 		  self magnifyFactor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TwoBitFormExperiment >> twoBitColorDepthWithColorForm [
 
 	<bookExample>

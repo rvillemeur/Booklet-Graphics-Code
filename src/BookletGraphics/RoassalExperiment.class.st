@@ -1,10 +1,12 @@
 Class {
-	#name : #RoassalExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-roassal'
+	#name : 'RoassalExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-roassal',
+	#package : 'BookletGraphics',
+	#tag : 'roassal'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> barAndLineChartExample [
 
 	<bookExample>
@@ -29,7 +31,7 @@ RoassalExperiment >> barAndLineChartExample [
 	^c canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> barChartExample1 [
 	<bookExample>
 | c p p2 p3 p4 x y size |
@@ -79,7 +81,7 @@ RoassalExperiment >> barChartExample1 [
 	^ c canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> barChartExample2 [
 
 	<bookExample>
@@ -135,7 +137,7 @@ RoassalExperiment >> barChartExample2 [
 	^ c canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> barChartWithLegendExample [
 
 	<bookExample>
@@ -203,7 +205,7 @@ RoassalExperiment >> barChartWithLegendExample [
 	^ c canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> lineChartExample1 [
 	<bookExample>
 | c p p2 p3 p4 x y size |
@@ -245,7 +247,7 @@ RoassalExperiment >> lineChartExample1 [
 	^ c canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> stackedBar [
 
 	<bookExample>

@@ -2,12 +2,14 @@
 Some example on applying effect on a bloc element
 "
 Class {
-	#name : #EffectExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'EffectExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 EffectExperiment class >> effectComposite [
 
 	<sampleInstance>
@@ -27,7 +29,7 @@ EffectExperiment class >> effectComposite [
 		
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EffectExperiment class >> effectGaussianShadow [
 
 	<sampleInstance>
@@ -40,7 +42,7 @@ EffectExperiment class >> effectGaussianShadow [
 		
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EffectExperiment class >> effectSimpleShadow [
 
 	<sampleInstance>
@@ -53,7 +55,7 @@ EffectExperiment class >> effectSimpleShadow [
 		
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EffectExperiment class >> effectSimpleShadow2 [
 
 	<sampleInstance>
@@ -68,6 +70,6 @@ EffectExperiment class >> effectSimpleShadow2 [
 			  (BlSimpleShadowEffect color: Color orange offset: -10 @ -20)
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 EffectExperiment >> seeClassSide [ 
 ]

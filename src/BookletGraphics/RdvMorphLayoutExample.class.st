@@ -1,10 +1,12 @@
 Class {
-	#name : #RdvMorphLayoutExample,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Morph'
+	#name : 'RdvMorphLayoutExample',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> centeredMorph1 [
 	<script: 'self new centeredMorph1'>
 	
@@ -27,7 +29,7 @@ RdvMorphLayoutExample >> centeredMorph1 [
 	myLayoutMorph openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> centeredMorph2 [
 	<script: 'self new centeredMorph2'>
 	| myLayoutMorph m |
@@ -49,7 +51,7 @@ RdvMorphLayoutExample >> centeredMorph2 [
 	myLayoutMorph openInHand
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> largeLayoutMorph1 [
 	"Parameters"
 
@@ -143,7 +145,7 @@ In this case 'slide'."	"DEFINITION OF THE BLOCK"
 	slide openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> tableLayoutMorph [
 	<script: 'self new tableLayoutMorph'>
 	|  m |
@@ -159,7 +161,7 @@ RdvMorphLayoutExample >> tableLayoutMorph [
 	m openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> tableLayoutMorph1 [
 	"Parameters"
 
@@ -233,7 +235,7 @@ RdvMorphLayoutExample >> tableLayoutMorph1 [
 	slide openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> tableLayoutMorph2 [
 	<script: 'self new tableLayoutMorph2'>
 	|  m |
@@ -249,7 +251,7 @@ RdvMorphLayoutExample >> tableLayoutMorph2 [
 	m openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> tableLayoutMorph3 [
 	<script: 'self new tableLayoutMorph3'>
 	| m |
@@ -265,7 +267,7 @@ RdvMorphLayoutExample >> tableLayoutMorph3 [
 	m openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> tableLayoutMorph4 [
 	<script: 'self new tableLayoutMorph4'>
 	| m |
@@ -294,7 +296,7 @@ RdvMorphLayoutExample >> tableLayoutMorph4 [
 	m openInWorld
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RdvMorphLayoutExample >> textLayoutMorph1 [
 	<script: 'self new textLayoutMorph1'>
 	| r e s b |

@@ -5,12 +5,14 @@ A couple of example on the transform possibility in bloc
 - scaling.
 "
 Class {
-	#name : #TransformExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'TransformExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 TransformExperiment class >> transformBlBasicLayout [
 
 	<sampleInstance>
@@ -34,7 +36,7 @@ TransformExperiment class >> transformBlBasicLayout [
 	^parent.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 TransformExperiment class >> transformExample [
 
 	<sampleInstance>
@@ -68,6 +70,6 @@ TransformExperiment class >> transformExample [
 	^ container
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 TransformExperiment >> seeClassSide [ 
 ]

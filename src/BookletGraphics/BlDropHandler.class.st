@@ -1,6 +1,6 @@
 Class {
-	#name : #BlDropHandler,
-	#superclass : #BlCustomEventHandler,
+	#name : 'BlDropHandler',
+	#superclass : 'BlCustomEventHandler',
 	#instVars : [
 		'itemsDroppedAction',
 		'acceptConditions',
@@ -10,36 +10,38 @@ Class {
 	#classVars : [
 		'BlSpaceDragDropEnterEvent'
 	],
-	#category : #'BookletGraphics-BlocDragNDrop'
+	#category : 'BookletGraphics-BlocDragNDrop',
+	#package : 'BookletGraphics',
+	#tag : 'BlocDragNDrop'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 BlDropHandler >> acceptDomainObjectsSuchThat: aBlock [
 
 	self acceptItemsSuchThat: [ :aDragItem :aDropArea |
 		aBlock value: aDragItem domainObject ]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 BlDropHandler >> acceptItemsSuchThat: aBlock [
 
 	acceptConditions add: aBlock
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 BlDropHandler >> acceptOnlyFromThisElement [
 
 	self acceptItemsSuchThat: [ :aDragItem :aDropArea |
 		aDragItem sourceElement parent == aDropArea ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlDropHandler >> createDropDelegate [
 
 	^ BlDropDelegate new acceptConditions: acceptConditions
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> dragEnterEvent: aDropEnterEvent [
 
 	"| aSpaceDropEnterEvent |
@@ -52,7 +54,7 @@ BlDropHandler >> dragEnterEvent: aDropEnterEvent [
 		aSpaceDropEnterEvent"
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> dragEvent: aDragEvent [
 
 	(aDragEvent currentTarget bounds inLocal asRectangle containsPoint:
@@ -67,14 +69,14 @@ BlDropHandler >> dragEvent: aDragEvent [
 			 position: aDragEvent position)
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> dragLeaveEvent: aDropLeaveEvent [
 
 	aDropLeaveEvent currentTarget dispatchEvent:
 		(BlItemsLeftEvent new position: aDropLeaveEvent localPosition)
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> dropEvent: aDropEvent [
 
 	aDropEvent consumed: true.
@@ -89,7 +91,7 @@ BlDropHandler >> dropEvent: aDropEvent [
 			 position: aDropEvent position)
 ]
 
-{ #category : #'api - accessing' }
+{ #category : 'api - accessing' }
 BlDropHandler >> eventsToHandle [
 
 	^ {
@@ -102,7 +104,7 @@ BlDropHandler >> eventsToHandle [
 		  BlItemsLeftEvent }
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BlDropHandler >> initialize [
 
 	super initialize.
@@ -113,43 +115,43 @@ BlDropHandler >> initialize [
 	itemsDragLeftAction := [ :aBlItemsDragLeftEvent |  ]
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> itemsDraggedEvent: anItemsDraggedEvent [
 
 	itemsDraggedAction cull: anItemsDraggedEvent
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> itemsDroppedEvent: anItemsDroppedEvent [
 
 	itemsDroppedAction cull: anItemsDroppedEvent
 ]
 
-{ #category : #'dnd handlers' }
+{ #category : 'dnd handlers' }
 BlDropHandler >> itemsLeftEvent: anItemsLeftEvent [
 
 	itemsDragLeftAction cull: anItemsLeftEvent
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 BlDropHandler >> whenDragLeftDo: aBlock [
 
 	itemsDragLeftAction := aBlock
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 BlDropHandler >> whenDragOverDo: aBlock [
 
 	itemsDraggedAction := aBlock
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 BlDropHandler >> whenDroppedDo: aBlock [
 
 	itemsDroppedAction := aBlock
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 BlDropHandler >> whenHorizontalSlideOverDo: aBlock [
 
 	self whenDragOverDo: [ :anItemsDraggedEvent |

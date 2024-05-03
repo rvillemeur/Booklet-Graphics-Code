@@ -2,12 +2,14 @@
 various demo of layout capabilities of Bloc
 "
 Class {
-	#name : #LayoutExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'LayoutExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> basicLayoutExample [
 
 	<sampleInstance>
@@ -45,7 +47,7 @@ LayoutExperiment class >> basicLayoutExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> centerAndSize [
 
 	<sampleInstance>
@@ -69,7 +71,7 @@ LayoutExperiment class >> centerAndSize [
 	^container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> flowLayoutExample [
 
 	<sampleInstance>
@@ -100,7 +102,7 @@ LayoutExperiment class >> flowLayoutExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> frameLayoutExample [
 
 	<sampleInstance>
@@ -132,7 +134,7 @@ LayoutExperiment class >> frameLayoutExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> frameLayoutExample2 [
 
 	<sampleInstance>
@@ -265,7 +267,7 @@ LayoutExperiment class >> frameLayoutExample2 [
 	^ root
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> frameLayoutExample3 [
 
 	<sampleInstance>
@@ -389,7 +391,7 @@ LayoutExperiment class >> frameLayoutExample3 [
 	^ root
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> gridLayoutExample [
 
 	<sampleInstance>
@@ -454,7 +456,7 @@ LayoutExperiment class >> gridLayoutExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> layout1 [
 	"This is a new method"
 
@@ -472,7 +474,7 @@ LayoutExperiment class >> layout1 [
 					   background: (Color blue alpha: 0.2)) }
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> layout2 [
 	"This is a new method"
 
@@ -490,7 +492,7 @@ LayoutExperiment class >> layout2 [
 					   background: (Color blue alpha: 0.2)) }
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> layout3 [
 	"This is a new method"
 
@@ -514,7 +516,7 @@ LayoutExperiment class >> layout3 [
 						   c ignored vertical alignBottom ]) } "alignCenter"
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> layout4 [
 	"This is a new method"
 
@@ -539,7 +541,7 @@ LayoutExperiment class >> layout4 [
 						   c ignored vertical alignBottom ]) } "alignCenter"
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> layout5 [
 	"This is a new method"
 
@@ -558,7 +560,7 @@ LayoutExperiment class >> layout5 [
 					   constraintsDo: [ :c | c margin: (BlInsets all: 10) ]) }
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> linearLayoutExample [
 
 	<sampleInstance>
@@ -592,7 +594,7 @@ LayoutExperiment class >> linearLayoutExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> multipleElement [
 
 	<sampleInstance>
@@ -700,7 +702,7 @@ LayoutExperiment class >> multipleElement [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> multipleElement2 [
 
 	<sampleInstance>
@@ -812,7 +814,7 @@ LayoutExperiment class >> multipleElement2 [
 	^ container 
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> multipleElementAlignments [
 
 	<sampleInstance>
@@ -923,7 +925,7 @@ LayoutExperiment class >> multipleElementAlignments [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> multipleElementFitParameter [
 
 	<sampleInstance>
@@ -1031,7 +1033,7 @@ LayoutExperiment class >> multipleElementFitParameter [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> multipleElementFitParameter2 [
 
 	<sampleInstance>
@@ -1140,7 +1142,7 @@ LayoutExperiment class >> multipleElementFitParameter2 [
 	^ container
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> spacingAndPaddindExampleWithTriangleGeometry [
 
 	<sampleInstance>
@@ -1181,7 +1183,7 @@ LayoutExperiment class >> spacingAndPaddindExampleWithTriangleGeometry [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> spacingAndPaddingdExample [
 
 	<sampleInstance>
@@ -1222,7 +1224,7 @@ LayoutExperiment class >> spacingAndPaddingdExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> squareSurroundedByNumbers [
 
 	<sampleInstance>
@@ -1252,7 +1254,7 @@ LayoutExperiment class >> squareSurroundedByNumbers [
 	"top row"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 LayoutExperiment class >> testLayout [
 
 	<sampleInstance>
@@ -1306,7 +1308,7 @@ LayoutExperiment class >> testLayout [
 		  addChild: aContainer) openInNewSpace 
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> zoomLayoutExample [
 
 	<sampleInstance>
@@ -1343,7 +1345,7 @@ LayoutExperiment class >> zoomLayoutExample [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 LayoutExperiment class >> zoomLayoutExample2 [
 
 	<sampleInstance>
@@ -1380,6 +1382,6 @@ LayoutExperiment class >> zoomLayoutExample2 [
 	^ space
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 LayoutExperiment >> seeClassSide [ 
 ]

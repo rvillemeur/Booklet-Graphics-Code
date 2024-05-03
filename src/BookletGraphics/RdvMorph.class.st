@@ -7,18 +7,20 @@ Every 500ms, the canvas is redisplayed, and a new section of the Form is display
 
 "
 Class {
-	#name : #RdvMorph,
-	#superclass : #Morph,
+	#name : 'RdvMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'sprite',
 		'position',
 		'topLeft',
 		'bottomRight'
 	],
-	#category : #'BookletGraphics-Morph'
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvMorph >> computeNewSpriteBounds [
 	| topLeftX topLeftY bottomRightX bottomRightY |
 	topLeftX := topLeft x + 32.
@@ -42,7 +44,7 @@ RdvMorph >> computeNewSpriteBounds [
 	topLeft := topLeftX @ topLeftY
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RdvMorph >> drawOn: aCanvas [
  	aCanvas fillColor: Color green.
 	aCanvas
@@ -50,7 +52,7 @@ RdvMorph >> drawOn: aCanvas [
 		at: self topLeft
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvMorph >> initialize [
 	super initialize.
 	sprite := ZnEasy
@@ -61,24 +63,24 @@ RdvMorph >> initialize [
 	self extent: (32 * self magnifyFactor) @ (32 * self magnifyFactor)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvMorph >> magnifyFactor [
 	^ 5
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RdvMorph >> open [
 	<script: 'self new openInWindow'>
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 RdvMorph >> step [
 	self computeNewSpriteBounds.
 
 	self changed.
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 RdvMorph >> stepTime [
 	^ 500
 ]

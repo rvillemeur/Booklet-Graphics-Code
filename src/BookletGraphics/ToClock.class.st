@@ -6,8 +6,8 @@ See class side for usage with
 - dynamic layout
 "
 Class {
-	#name : #ToClock,
-	#superclass : #ToElement,
+	#name : 'ToClock',
+	#superclass : 'ToElement',
 	#instVars : [
 		'hourNeedle',
 		'minutesNeedle',
@@ -18,10 +18,12 @@ Class {
 		'minuteNeedleSize',
 		'secondNeedleSize'
 	],
-	#category : #'BookletGraphics-Clock'
+	#category : 'BookletGraphics-Clock',
+	#package : 'BookletGraphics',
+	#tag : 'Clock'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 ToClock class >> openInDynamicLayout [
 
 	<sampleInstance>
@@ -43,7 +45,7 @@ ToClock class >> openInDynamicLayout [
 	^ clock
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 ToClock class >> openInFixedSize [
 
 	<sampleInstance>
@@ -64,13 +66,13 @@ ToClock class >> openInFixedSize [
 	^ clock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ToClock >> center [
 
 	^ center
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 ToClock >> hourCoordinate: time [
 
 	| angleHours y angleTime  angleMinutes x |
@@ -84,13 +86,13 @@ ToClock >> hourCoordinate: time [
 	^ 	x @ y.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ToClock >> hourNeedle [
 
 	^ hourNeedle
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ToClock >> initAnimation [
 
 	| animation |
@@ -106,31 +108,32 @@ ToClock >> initAnimation [
 	self addAnimation: animation
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ToClock >> initialize [
 
 	super initialize.
-	secondNeedle := BlElement new.
-	minutesNeedle := BlElement new.
-	hourNeedle := BlElement new.
+	secondNeedle := ToElement new.
+	minutesNeedle := ToElement new.
+	hourNeedle := ToElement new.
 
 	self addChildren: {
 			hourNeedle.
 			minutesNeedle.
 			secondNeedle }.
 
+	self resize.
 	self
 		addEventHandlerOn: BlElementExtentChangedEvent
 		do: [ :e | self resize ]
 ]
 
-{ #category : #skin }
+{ #category : 'skin' }
 ToClock >> installRawStyle [
 
 	super installRawStyle.
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 ToClock >> minuteCoordinate: minutes [
 
 	| x y angle |
@@ -140,19 +143,19 @@ ToClock >> minuteCoordinate: minutes [
 	^ x @ y.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ToClock >> minutesNeedle [
 
 	^ minutesNeedle
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ToClock >> newRawSkin [
 
 	^ ToClockSkin  new
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 ToClock >> resize [
 
 	radius := self extent min / 2.0.
@@ -161,11 +164,25 @@ ToClock >> resize [
 	hourNeedleSize := radius / 2.
 	minuteNeedleSize := radius * 14.8 / 20.
 	secondNeedleSize := radius * 16.8 / 20.
+	
+	self removeChildren.
+	
+	secondNeedle := ToElement new.
+	minutesNeedle := ToElement new.
+	hourNeedle := ToElement new.
 
-	self initAnimation 
+	self addChildren: {
+			hourNeedle.
+			minutesNeedle.
+			secondNeedle }.
+			
+	self requestNewSkin.
+
+	self whenLayoutedDoOnce:  [ self initAnimation ].
+	
 ]
 
-{ #category : #model }
+{ #category : 'model' }
 ToClock >> secondCoordinate: seconds [
 
 	| x y angle  |
@@ -175,13 +192,13 @@ ToClock >> secondCoordinate: seconds [
 	^ x @ y.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ToClock >> secondNeedle [
 
 	^ secondNeedle
 ]
 
-{ #category : #'api - bounds' }
+{ #category : 'api - bounds' }
 ToClock >> size: aPoint [
 
 	super size: aPoint.
@@ -196,7 +213,7 @@ ToClock >> size: aPoint [
 	self initAnimation 
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ToClock >> updateHourNeedlePosition: time [
 
 	| coordinate |
@@ -204,7 +221,7 @@ ToClock >> updateHourNeedlePosition: time [
 	hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize).
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ToClock >> updateMinuteNeedlePosition: minutes [
 
 	| coordinate |
@@ -212,7 +229,7 @@ ToClock >> updateMinuteNeedlePosition: minutes [
 	minutesNeedle geometry from: center to: center + (coordinate * minuteNeedleSize)
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ToClock >> updateNeedlesPosition: time [
 
 	self updateHourNeedlePosition: time.
@@ -220,7 +237,7 @@ ToClock >> updateNeedlesPosition: time [
 	self updateSecondNeedlePosition: time seconds.
 ]
 
-{ #category : #positioning }
+{ #category : 'positioning' }
 ToClock >> updateSecondNeedlePosition: seconds [
 
 	| coordinate |

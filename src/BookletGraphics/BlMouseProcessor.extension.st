@@ -1,6 +1,6 @@
-Extension { #name : #BlMouseProcessor }
+Extension { #name : 'BlMouseProcessor' }
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlMouseProcessor >> fireAsDragEndEvent: anEvent [
 	| aDragEvent |
 	
@@ -20,7 +20,7 @@ BlMouseProcessor >> fireAsDragEndEvent: anEvent [
 		ifFalse: [ self space dispatchEvent: (BlSpaceDragCancelEvent new position: aDragEvent position) ]
 ]
 
-{ #category : #'*BookletGraphics' }
+{ #category : '*BookletGraphics' }
 BlMouseProcessor >> fireAsDropEvent: anEvent [
 	| aDropEvent |
 

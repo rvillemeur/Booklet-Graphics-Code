@@ -1,10 +1,12 @@
 Class {
-	#name : #AthensExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Athens'
+	#name : 'AthensExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Athens',
+	#package : 'BookletGraphics',
+	#tag : 'Athens'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> example1 [
 <bookExample>
 	| surface |
@@ -46,7 +48,7 @@ AthensExperiment >> example1 [
 	^surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> example2 [
 
 	<bookExample>
@@ -89,7 +91,7 @@ AthensExperiment >> example2 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> fillPaint1 [
 
 	<bookExample>
@@ -129,7 +131,7 @@ AthensExperiment >> fillPaint1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> maskPaint1 [
 
 	<bookExample>
@@ -154,7 +156,7 @@ AthensExperiment >> maskPaint1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> pathPaint1 [
 
 	<bookExample>
@@ -180,7 +182,7 @@ AthensExperiment >> pathPaint1 [
 	^ surface asForm
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> strokePaint1 [
 <bookExample>
 
@@ -196,7 +198,7 @@ surface drawDuring: [ :canvas  |
 ^ surface asForm  
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensExperiment >> strokePaint2 [
 
 	<bookExample>

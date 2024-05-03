@@ -2,12 +2,14 @@
 some example on managing events and keyboard handling with bloc
 "
 Class {
-	#name : #EventExperiment,
-	#superclass : #Object,
-	#category : #'BookletGraphics-Bloc'
+	#name : 'EventExperiment',
+	#superclass : 'Object',
+	#category : 'BookletGraphics-Bloc',
+	#package : 'BookletGraphics',
+	#tag : 'Bloc'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> blAnnulusExample [
 
 	<sampleInstance>
@@ -63,7 +65,7 @@ EventExperiment class >> blAnnulusExample [
 	^ chart
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> blAnnulusExample2 [
 	"you can click on part of the circle to put some action"
 
@@ -118,7 +120,7 @@ EventExperiment class >> blAnnulusExample2 [
 	^ elt
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> blocSpaceIntoMorphicExample [
 
 	<sampleInstance>
@@ -145,7 +147,7 @@ EventExperiment class >> blocSpaceIntoMorphicExample [
 	^ spacePresenter
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> eventExample [
 	"This is a new method"
 
@@ -188,7 +190,7 @@ EventExperiment class >> eventExample [
 	^ elt
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> eventExampleMouseMove [
 
 	<sampleInstance>
@@ -233,7 +235,7 @@ EventExperiment class >> eventExampleMouseMove [
 	^ surface
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> exampleDragAndRainbow [
 
 	<sampleInstance>
@@ -281,7 +283,7 @@ EventExperiment class >> exampleDragAndRainbow [
 	^ root
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> exampleMouseOver [
 
 	<sampleInstance>
@@ -314,7 +316,7 @@ EventExperiment class >> exampleMouseOver [
 	^ elt
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> exampleWithDragAndDropEvent [
 
 	<sampleInstance>
@@ -387,7 +389,7 @@ EventExperiment class >> exampleWithDragAndDropEvent [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> exampleWithDragAndDropEvent2 [
 
 	<sampleInstance>
@@ -464,7 +466,7 @@ target addEventHandlerOn: BlDragEnterEvent do: [ :event |
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> exampleWithDragEvent [
 
 	<sampleInstance>
@@ -493,7 +495,7 @@ EventExperiment class >> exampleWithDragEvent [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> exampleWithEvent [
 
 	<sampleInstance>
@@ -535,7 +537,7 @@ EventExperiment class >> exampleWithEvent [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 EventExperiment class >> keyboardKeyAndSimulationExample [
 
 	<sampleInstance>
@@ -620,6 +622,6 @@ EventExperiment class >> keyboardKeyAndSimulationExample [
 			                     yourself) ] fork
 ]
 
-{ #category : #'see class side' }
+{ #category : 'see class side' }
 EventExperiment >> seeClassSide [ 
 ]

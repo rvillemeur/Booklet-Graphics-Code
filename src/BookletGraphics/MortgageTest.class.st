@@ -1,10 +1,12 @@
 Class {
-	#name : #MortgageTest,
-	#superclass : #TestCase,
-	#category : #'BookletGraphics-inspector'
+	#name : 'MortgageTest',
+	#superclass : 'TestCase',
+	#category : 'BookletGraphics-inspector',
+	#package : 'BookletGraphics',
+	#tag : 'inspector'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 MortgageTest >> testFormatAmount [
 
 	| mortgage |
@@ -14,7 +16,7 @@ MortgageTest >> testFormatAmount [
 	self assert: (mortgage formatAmount: 9816.49) equals: '9 816.49'.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MortgageTest >> testMortgagePayement [
 
 	| mortgage |
@@ -23,7 +25,7 @@ MortgageTest >> testMortgagePayement [
 	self assert: mortgage payment equals: 9816.49
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MortgageTest >> testPrincipalRemaining [
 
 	| mortgage |

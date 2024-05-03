@@ -1,19 +1,21 @@
 Class {
-	#name : #AthensHello,
-	#superclass : #Morph,
+	#name : 'AthensHello',
+	#superclass : 'Morph',
 	#instVars : [
 		'surface'
 	],
-	#category : #'BookletGraphics-Morph'
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 AthensHello class >> open [
 	<example>
 	self new openInWindow
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 AthensHello >> addStringMorph [
 	| label transformationMorph|
 	
@@ -31,17 +33,17 @@ AthensHello >> addStringMorph [
 
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 AthensHello >> defaultExtent [
 	^ 600@400
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AthensHello >> defaultLabel [
 	^ 'Athens Hello'
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 AthensHello >> drawOn: aCanvas [
 self renderAthens .
 surface displayOnMorphicCanvas: aCanvas at: bounds origin.
@@ -49,7 +51,7 @@ self renderMorph: aCanvas.
 
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 AthensHello >> extent: aPoint [
 	| newExtent |
 	newExtent := aPoint rounded.
@@ -62,20 +64,20 @@ AthensHello >> extent: aPoint [
 	self changed
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 AthensHello >> initialize [
 	super initialize.
 	self extent: self defaultExtent.
 	surface := AthensCairoSurface extent: self extent.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 AthensHello >> open [
 	<script: 'self new openInWindow'>
 	
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 AthensHello >> render [
 |font|
 font := LogicalFont familyName: 'Arial' pointSize: 10.
@@ -94,7 +96,7 @@ font := LogicalFont familyName: 'Arial' pointSize: 10.
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 AthensHello >> renderAthens [
 	| font |
 	font := LogicalFont familyName: 'Consolas' pointSize: 10.
@@ -138,7 +140,7 @@ AthensHello >> renderAthens [
 			]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 AthensHello >> renderMorph: aCanvas [
 |fill rectangle|
 

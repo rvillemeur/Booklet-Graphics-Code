@@ -1,10 +1,12 @@
 Class {
-	#name : #CrossMorph3,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'CrossMorph3',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #keymapping }
+{ #category : 'keymapping' }
 CrossMorph3 class >> buildShortCutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #moveUp)
@@ -38,30 +40,30 @@ CrossMorph3 class >> buildShortCutsOn: aBuilder [
 		description: 'move morph down'
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 CrossMorph3 class >> initialize [ 
 	self buildShortCutsOn: KMBuilder keymap  
 ]
 
-{ #category : #'geometry testing' }
+{ #category : 'geometry testing' }
 CrossMorph3 >> containsPoint: aPoint [
 
 	^ (self horizontalBar containsPoint: aPoint) or: [
 		  self verticalBar containsPoint: aPoint ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph3 >> defaultExtent [
 	^ 60@60
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph3 >> defaultLabel [
 
 	^ 'CrossMorph tutorial'
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 CrossMorph3 >> drawOn: aCanvas [
 
 	| topAndBottom |
@@ -71,7 +73,7 @@ CrossMorph3 >> drawOn: aCanvas [
 		aCanvas fillRectangle: each color: self color ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph3 >> horizontalBar [
 
 	| crossHeight |
@@ -79,7 +81,7 @@ CrossMorph3 >> horizontalBar [
 	^ self bounds insetBy: 0 @ crossHeight
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CrossMorph3 >> initialize [
 
 	super initialize.
@@ -91,19 +93,19 @@ CrossMorph3 >> initialize [
 		on: #keyStroke send: #processKeyStroke: to: self
 ]
 
-{ #category : #keymapping }
+{ #category : 'keymapping' }
 CrossMorph3 >> initializeShortcuts: aKMDispatcher [
 	"Where we may attach keymaps or even on:do: local shortcuts if needed."
 	super initializeShortcuts: aKMDispatcher.
 	aKMDispatcher attachCategory: #CrossMorphShortcuts
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CrossMorph3 >> open [
 	<script: 'self new openInWorld'>
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph3 >> processKeyStroke: anEvent [
 
 	| keyValue |
@@ -112,7 +114,7 @@ CrossMorph3 >> processKeyStroke: anEvent [
 	keyValue == $- ifTrue: [ self stopStepping ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph3 >> processMouseDown: evt [
 
 	evt redButtonPressed ifTrue: [ self color: (Color blue alpha: 0.3) ]. "click"
@@ -120,21 +122,21 @@ CrossMorph3 >> processMouseDown: evt [
 	self changed
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph3 >> processMouseEnter: evt [
 
 	self color: (Color green alpha: 0.99).
 	evt hand newKeyboardFocus: self
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph3 >> processMouseLeave: evt [
 
 	self color: (Color purple alpha: 0.99).
 	evt hand releaseKeyboardFocus: self
 ]
 
-{ #category : #'stepping and presenter' }
+{ #category : 'stepping and presenter' }
 CrossMorph3 >> step [
 
 	(self color diff: Color black) < 0.1
@@ -142,13 +144,13 @@ CrossMorph3 >> step [
 		ifFalse: [ self color: self color darker ]
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 CrossMorph3 >> stepTime [
 
 	^ 100
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph3 >> verticalBar [
 
 	| crossWidth |

@@ -2,12 +2,14 @@
 Skin description of the ToClock
 "
 Class {
-	#name : #ToClockSkin,
-	#superclass : #ToRawSkin,
-	#category : #'BookletGraphics-Clock'
+	#name : 'ToClockSkin',
+	#superclass : 'ToRawSkin',
+	#category : 'BookletGraphics-Clock',
+	#package : 'BookletGraphics',
+	#tag : 'Clock'
 }
 
-{ #category : #'private - drawing' }
+{ #category : 'private - drawing' }
 ToClockSkin >> drawClockFrame: e [
 	"draw small lines around clock frame"
 
@@ -40,7 +42,7 @@ ToClockSkin >> drawClockFrame: e [
 						 border: (BlBorder paint: Color black width: hourWidth)) ] ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 ToClockSkin >> installLookEvent: anEvent [
 
 	super installLookEvent: anEvent.

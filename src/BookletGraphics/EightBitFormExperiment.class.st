@@ -1,13 +1,15 @@
 Class {
-	#name : #EightBitFormExperiment,
-	#superclass : #Object,
+	#name : 'EightBitFormExperiment',
+	#superclass : 'Object',
 	#instVars : [
 		'sprite'
 	],
-	#category : #'BookletGraphics-Form'
+	#category : 'BookletGraphics-Form',
+	#package : 'BookletGraphics',
+	#tag : 'Form'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EightBitFormExperiment >> eightBitColorWithBitmap [
 <bookExample>
 	| bitmap array |
@@ -25,7 +27,7 @@ EightBitFormExperiment >> eightBitColorWithBitmap [
 	^ (Form extent: 16 @ 16 depth: 8 bits: bitmap) magnifyBy: self magnifyFactor 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EightBitFormExperiment >> eightBitColorWithoutBitmap [
 <bookExample>
 	| array |
@@ -38,7 +40,7 @@ EightBitFormExperiment >> eightBitColorWithoutBitmap [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EightBitFormExperiment >> helloWorldInBitmap [
 <bookExample>
 	^ (Form extent: 4 @ 3 depth: 8) initFromArray:
@@ -46,7 +48,7 @@ EightBitFormExperiment >> helloWorldInBitmap [
 			   each asInteger ]); magnifyBy: self magnifyFactor 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 EightBitFormExperiment >> magnifyFactor [
 	^ 15
 ]

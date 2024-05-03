@@ -2,60 +2,62 @@
 A placeholder, to contain loan repayment values
 "
 Class {
-	#name : #MortgageDetail,
-	#superclass : #Object,
+	#name : 'MortgageDetail',
+	#superclass : 'Object',
 	#instVars : [
 		'beginningPrincipal',
 		'principalPayment',
 		'remainingPrincipal',
 		'interestPayment'
 	],
-	#category : #'BookletGraphics-inspector'
+	#category : 'BookletGraphics-inspector',
+	#package : 'BookletGraphics',
+	#tag : 'inspector'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> beginningPrincipal [
 
 	^ beginningPrincipal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> beginningPrincipal: anObject [
 
 	beginningPrincipal := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> interestPayment [
 
 	^ interestPayment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> interestPayment: anObject [
 
 	interestPayment := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> principalPayment [
 
 	^ principalPayment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> principalPayment: anObject [
 
 	principalPayment := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> remainingPrincipal [
 
 	^ remainingPrincipal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MortgageDetail >> remainingPrincipal: anObject [
 
 	remainingPrincipal := anObject

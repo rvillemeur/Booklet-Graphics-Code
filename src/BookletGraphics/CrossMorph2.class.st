@@ -2,30 +2,32 @@
 CrossMorph example taken from Pharo by example book, with event handled through pattern *CrossMorph example taken from Pharo by example book*
 "
 Class {
-	#name : #CrossMorph2,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'CrossMorph2',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #'geometry testing' }
+{ #category : 'geometry testing' }
 CrossMorph2 >> containsPoint: aPoint [
 
 	^ (self horizontalBar containsPoint: aPoint) or: [
 		  self verticalBar containsPoint: aPoint ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph2 >> defaultExtent [
 	^ 60@60
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph2 >> defaultLabel [
 
 	^ 'CrossMorph tutorial'
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 CrossMorph2 >> drawOn: aCanvas [
 
 	| topAndBottom |
@@ -35,7 +37,7 @@ CrossMorph2 >> drawOn: aCanvas [
 		aCanvas fillRectangle: each color: self color ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph2 >> horizontalBar [
 
 	| crossHeight |
@@ -43,7 +45,7 @@ CrossMorph2 >> horizontalBar [
 	^ self bounds insetBy: 0 @ crossHeight
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CrossMorph2 >> initialize [
 
 	super initialize.
@@ -56,12 +58,12 @@ CrossMorph2 >> initialize [
 		on: #keyStroke send: #processKeyStroke: to: self
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CrossMorph2 >> open [
 	<script: 'self new openInWorld'>
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph2 >> processKeyDown: anEvent [
 
 	| key |
@@ -80,7 +82,7 @@ CrossMorph2 >> processKeyDown: anEvent [
 			self position: self position + (0 @ 10) ] ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph2 >> processKeyStroke: anEvent [
 
 	| keyValue |
@@ -89,7 +91,7 @@ CrossMorph2 >> processKeyStroke: anEvent [
 	keyValue == $- ifTrue: [ self stopStepping ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph2 >> processMouseDown: evt [
 
 	evt redButtonPressed ifTrue: [ self color: (Color blue alpha: 0.3) ]. "click"
@@ -97,21 +99,21 @@ CrossMorph2 >> processMouseDown: evt [
 	self changed
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph2 >> processMouseEnter: evt [
 
 	self color: (Color green alpha: 0.99).
 	evt hand newKeyboardFocus: self
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph2 >> processMouseLeave: evt [
 
 	self color: (Color purple alpha: 0.99).
 	evt hand releaseKeyboardFocus: self
 ]
 
-{ #category : #'stepping and presenter' }
+{ #category : 'stepping and presenter' }
 CrossMorph2 >> step [
 
 	(self color diff: Color black) < 0.1
@@ -119,13 +121,13 @@ CrossMorph2 >> step [
 		ifFalse: [ self color: self color darker ]
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 CrossMorph2 >> stepTime [
 
 	^ 100
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph2 >> verticalBar [
 
 	| crossWidth |

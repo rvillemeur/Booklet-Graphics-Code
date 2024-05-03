@@ -2,30 +2,32 @@
 CrossMorph example taken from Pharo by example book
 "
 Class {
-	#name : #CrossMorph,
-	#superclass : #Morph,
-	#category : #'BookletGraphics-Morph'
+	#name : 'CrossMorph',
+	#superclass : 'Morph',
+	#category : 'BookletGraphics-Morph',
+	#package : 'BookletGraphics',
+	#tag : 'Morph'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 CrossMorph >> containsPoint: aPoint [
 
 	^ (self horizontalBar containsPoint: aPoint) or: [ 
 		  self verticalBar containsPoint: aPoint ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph >> defaultExtent [
 	^ 60@60
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CrossMorph >> defaultLabel [
 
 	^ 'CrossMorph tutorial'
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 CrossMorph >> drawOn: aCanvas [
 
 	| topAndBottom |
@@ -35,31 +37,31 @@ CrossMorph >> drawOn: aCanvas [
 		aCanvas fillRectangle: each color: self color ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> handlesKeyDown:  evt [
 
 	^ true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> handlesKeyStroke:  evt [
 
 	^ true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> handlesMouseDown: evt [
 
 	^ true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> handlesMouseOver: evt [
 
 	^ true
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph >> horizontalBar [
 
 	| crossHeight |
@@ -67,13 +69,13 @@ CrossMorph >> horizontalBar [
 	^ self bounds insetBy: 0 @ crossHeight
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CrossMorph >> initialize [
 	super initialize.
 	self extent: self defaultExtent.
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> keyDown: anEvent [
 
 	| key |
@@ -92,7 +94,7 @@ CrossMorph >> keyDown: anEvent [
 			self position: self position + (0 @ 10) ] ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> keyStroke: anEvent [
 
 	| keyValue |
@@ -101,7 +103,7 @@ CrossMorph >> keyStroke: anEvent [
 	keyValue == $- ifTrue: [ self stopStepping ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> mouseDown: evt [
 
 	evt redButtonPressed ifTrue: [ self color: (Color blue alpha: 0.3) ]. "click"
@@ -109,26 +111,26 @@ CrossMorph >> mouseDown: evt [
 	self changed
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> mouseEnter: evt [
 
 	self color: (Color green alpha: 0.99).
 	evt hand newKeyboardFocus: self
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 CrossMorph >> mouseLeave: evt [
 
 	self color: (Color purple alpha: 0.99).
 	evt hand releaseKeyboardFocus: self
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CrossMorph >> open [
 	<script: 'self new openInWorld'>
 ]
 
-{ #category : #'stepping and presenter' }
+{ #category : 'stepping and presenter' }
 CrossMorph >> step [
 
 	(self color diff: Color black) < 0.1
@@ -136,13 +138,13 @@ CrossMorph >> step [
 		ifFalse: [ self color: self color darker ]
 ]
 
-{ #category : #stepping }
+{ #category : 'stepping' }
 CrossMorph >> stepTime [
 
 	^ 100
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 CrossMorph >> verticalBar [
 
 	| crossWidth |
