@@ -109,9 +109,28 @@ ToClock >> initAnimation [
 ]
 
 { #category : 'initialization' }
-ToClock >> initialize [
+ToClock >> initClock [
+	self removeChildren.
 
-	super initialize.
+	self initConstant.
+	self initElements.
+	self requestNewSkin.
+	self initAnimation
+	"self whenLayoutedDoOnce:  [ self initAnimation ]."
+]
+
+{ #category : 'initialization' }
+ToClock >> initConstant [
+
+	center := radius @ radius.
+	hourNeedleSize := radius / 2.
+	minuteNeedleSize := radius * 14.8 / 20.
+	secondNeedleSize := radius * 16.8 / 20
+]
+
+{ #category : 'initialization' }
+ToClock >> initElements [
+
 	secondNeedle := ToElement new.
 	minutesNeedle := ToElement new.
 	hourNeedle := ToElement new.
@@ -119,9 +138,13 @@ ToClock >> initialize [
 	self addChildren: {
 			hourNeedle.
 			minutesNeedle.
-			secondNeedle }.
+			secondNeedle }
+]
 
-	self resize.
+{ #category : 'initialization' }
+ToClock >> initialize [
+
+	super initialize.
 	self
 		addEventHandlerOn: BlElementExtentChangedEvent
 		do: [ :e | self resize ]
@@ -159,26 +182,9 @@ ToClock >> newRawSkin [
 ToClock >> resize [
 
 	radius := self extent min / 2.0.
-
-	center := radius @ radius.
-	hourNeedleSize := radius / 2.
-	minuteNeedleSize := radius * 14.8 / 20.
-	secondNeedleSize := radius * 16.8 / 20.
+	self initClock.
 	
-	self removeChildren.
-	
-	secondNeedle := ToElement new.
-	minutesNeedle := ToElement new.
-	hourNeedle := ToElement new.
 
-	self addChildren: {
-			hourNeedle.
-			minutesNeedle.
-			secondNeedle }.
-			
-	self requestNewSkin.
-
-	self whenLayoutedDoOnce:  [ self initAnimation ].
 	
 ]
 
@@ -202,15 +208,8 @@ ToClock >> secondNeedle [
 ToClock >> size: aPoint [
 
 	super size: aPoint.
-
 	radius := aPoint x / 2.
-
-	center := radius @ radius.
-	hourNeedleSize := radius / 2.
-	minuteNeedleSize := radius * 14.8 / 20.
-	secondNeedleSize := radius * 16.8 / 20.
-
-	self initAnimation 
+	self initClock
 ]
 
 { #category : 'positioning' }
