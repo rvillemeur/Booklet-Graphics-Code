@@ -33,7 +33,7 @@ ToClock class >> openInDynamicLayout [
 
 	space root
 		border: (BlBorder paint: Color red width: 1);
-		background: Color yellow;
+		background: Color white;
 		layout: BlFlowLayout horizontal.
 
 
@@ -56,7 +56,7 @@ ToClock class >> openInFixedSize [
 	
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
-		             background: Color yellow;
+		             background: Color white ;
 		             layout: BlFrameLayout new;
 		             constraintsDo: [ :c |
 			             c horizontal fitContent.

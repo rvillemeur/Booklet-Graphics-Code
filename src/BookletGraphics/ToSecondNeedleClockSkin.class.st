@@ -18,5 +18,7 @@ ToSecondNeedleClockSkin >> installLookEvent: anEvent [
 			id: #secondNeedle;
 			geometry: BlLineGeometry new;
 			outskirts: BlOutskirts centered;
-			border: (BlBorder paint: Color red width: 3) ]
+			border:(BlBorder
+					 paint: (e valueOfTokenNamed: #'clock-second-needle-color')
+					 width: (e valueOfTokenNamed: #'clock-second-needle-width')) ]
 ]

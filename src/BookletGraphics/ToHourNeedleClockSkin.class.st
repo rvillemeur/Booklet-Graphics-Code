@@ -18,5 +18,7 @@ ToHourNeedleClockSkin >> installLookEvent: anEvent [
 			id: #hourNeedle;
 			geometry: BlLineGeometry new;
 			outskirts: BlOutskirts centered;
-			border: (BlBorder paint: Color black width: 5) ]
+			border: (BlBorder
+					 paint: (e valueOfTokenNamed: #'clock-hour-needle-color')
+					 width: (e valueOfTokenNamed: #'clock-hour-needle-width')) ]
 ]
