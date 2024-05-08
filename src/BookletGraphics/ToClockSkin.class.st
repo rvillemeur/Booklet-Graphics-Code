@@ -53,21 +53,7 @@ ToClockSkin >> installLookEvent: anEvent [
 			(BlBackground paint: (e valueOfTokenNamed: #'background-color')).
 
 		self drawClockFrame: e.
-		e hourNeedle
-			id: #hourNeedle;
-			geometry: BlLineGeometry new;
-			outskirts: BlOutskirts centered;
-			border: (BlBorder paint: Color black width: 5).
-
-		e minutesNeedle
-			id: #minuteNeedle;
-			geometry: BlLineGeometry new;
-			outskirts: BlOutskirts centered;
-			border: (BlBorder paint: Color black width: 5).
-
-		e secondNeedle
-			id: #secondNeedle;
-			geometry: BlLineGeometry new;
-			outskirts: BlOutskirts centered;
-			border: (BlBorder paint: Color red width: 3) ]
+		e hourNeedle defaultRawSkin: ToHourNeedleClockSkin new.
+		e minutesNeedle defaultRawSkin: ToMinuteNeedleClockSkin new.
+		e secondNeedle defaultRawSkin: ToSecondNeedleClockSkin new ]
 ]

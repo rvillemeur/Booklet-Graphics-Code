@@ -16,6 +16,6 @@ ToRawClockTheme class >> defaultTokenProperties [
 	^ super defaultTokenProperties , {
 		  (ToTokenProperty
 			   name: #'background-color'
-			   value: (Color fromHexString: '#313339')).
+			   value: (Color green)).
 	}
 ]

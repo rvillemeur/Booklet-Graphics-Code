@@ -1,0 +1,22 @@
+"
+Skin description of the Minute needle for ToClock
+"
+Class {
+	#name : 'ToMinuteNeedleClockSkin',
+	#superclass : 'ToRawSkin',
+	#category : 'BookletGraphics-Clock',
+	#package : 'BookletGraphics',
+	#tag : 'Clock'
+}
+
+{ #category : 'event handling' }
+ToMinuteNeedleClockSkin >> installLookEvent: anEvent [
+
+	super installLookEvent: anEvent.
+	anEvent elementDo: [ :e |
+		e
+			id: #minuteNeedle;
+			geometry: BlLineGeometry new;
+			outskirts: BlOutskirts centered;
+			border: (BlBorder paint: Color black width: 5) ]
+]

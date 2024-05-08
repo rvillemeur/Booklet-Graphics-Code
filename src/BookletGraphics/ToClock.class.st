@@ -29,6 +29,7 @@ ToClock class >> openInDynamicLayout [
 	<sampleInstance>
 	| clock space |
 	space := BlSpace new.
+	space toTheme: ToRawClockTheme new.
 
 	space root
 		border: (BlBorder paint: Color red width: 1);
@@ -49,7 +50,10 @@ ToClock class >> openInDynamicLayout [
 ToClock class >> openInFixedSize [
 
 	<sampleInstance>
-	| clock container |
+	| clock container space |
+	space := BlSpace new.
+	space toTheme: ToRawClockTheme new.
+	
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
 		             background: Color yellow;
@@ -62,8 +66,9 @@ ToClock class >> openInFixedSize [
 
 	container addChild: clock.
 
-	container openInNewSpace.
-	^ clock
+	space root addChild: container.
+	space show.
+	^ container.
 ]
 
 { #category : 'accessing' }
