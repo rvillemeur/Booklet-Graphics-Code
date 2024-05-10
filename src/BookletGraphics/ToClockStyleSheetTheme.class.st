@@ -65,20 +65,7 @@ ToClockStyleSheetTheme >> declareClockFrameRules [
 		self write: (self property: #border) with: [ :e |
 			BlBorder
 				paint: (e valueOfTokenNamed: #'clock-border-color')
-				width: (e valueOfTokenNamed: #'clock-border-width') ].
-
-		self
-			when: ToLeavedLookEvent
-			write: (self property: #background)
-			with: [ :e |
-			BlBackground paint: (e valueOfTokenNamed: #'clock-background-color') ].
-
-		self
-			when: ToHoveredLookEvent
-			write: (self property: #background)
-			with: [ :e |
-				BlBackground paint:
-					(e valueOfTokenNamed: #'clock-background-color-hover') ] ]
+				width: (e valueOfTokenNamed: #'clock-border-width') ] ]
 ]
 
 { #category : 'initialization' }
@@ -137,6 +124,7 @@ ToClockStyleSheetTheme >> drawClockFrame: e [
 		items % 3 == 0
 			ifTrue: [ "quarter mark"
 				e addChild: (BlElement new
+						 addStamp: #quaterMark;
 						 geometry: (BlLineGeometry
 								  from: e center + (coordinate * (radius - quarterLength))
 								  to: e center + (coordinate * radius));
@@ -146,6 +134,7 @@ ToClockStyleSheetTheme >> drawClockFrame: e [
 								  width: (e valueOfTokenNamed: #'clock-border-quarterWidth'))) ]
 			ifFalse: [ "other hour marks"
 				e addChild: (BlElement new
+						 addStamp: #hourMark;
 						 geometry: (BlLineGeometry
 								  from: e center + (coordinate * (radius - hourLength))
 								  to: e center + (coordinate * radius));
