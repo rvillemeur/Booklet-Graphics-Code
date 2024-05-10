@@ -47,6 +47,29 @@ ToClock class >> openInDynamicLayout [
 ]
 
 { #category : 'example' }
+ToClock class >> openInDynamicLayoutWithStyleSheet [
+
+	<sampleInstance>
+	| clock space |
+	space := BlSpace new.
+	space toTheme: ToClockStyleSheetTheme new.
+
+	space root
+		border: (BlBorder paint: Color red width: 1);
+		background: Color white;
+		layout: BlFlowLayout horizontal.
+
+
+	clock := self new constraintsDo: [ :c |
+		         c horizontal matchParent.
+		         c vertical matchParent ].
+
+	space root addChild: clock.
+	space show.
+	^ clock
+]
+
+{ #category : 'example' }
 ToClock class >> openInFixedSize [
 
 	<sampleInstance>

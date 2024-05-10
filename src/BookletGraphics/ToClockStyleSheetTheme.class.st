@@ -164,9 +164,3 @@ ToClockStyleSheetTheme >> initializeStyleRules [
 	self declareClockFrameRules.
 	self declareClockNeedlesRules.
 ]
-
-{ #category : 'styling' }
-ToClockStyleSheetTheme >> skinClassFor: anElement [
-
-	^ ToClockStyleSkin
-]
