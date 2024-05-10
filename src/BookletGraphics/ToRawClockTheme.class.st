@@ -16,9 +16,9 @@ ToRawClockTheme class >> defaultTokenProperties [
 	^ super defaultTokenProperties , {
 		  (ToTokenProperty
 			   name: #'clock-background-color'
-			   value: Color green).
+			   value: Color lightYellow ).
 		  (ToTokenProperty name: #'clock-border-width' value: 4).
-		  (ToTokenProperty name: #'clock-border-color' value: Color purple).
+		  (ToTokenProperty name: #'clock-border-color' value: Color lightMagenta ).
 		  (ToTokenProperty name: #'clock-border-quarterWidth' value: 8).
 		  (ToTokenProperty name: #'clock-border-hourWidth' value: 6).
 		  (ToTokenProperty

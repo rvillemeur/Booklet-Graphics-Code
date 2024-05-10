@@ -1,3 +1,6 @@
+"
+Sample stylesheet for ToClock
+"
 Class {
 	#name : 'ToClockStyleSheetTheme',
 	#superclass : 'ToBeeTheme',
@@ -12,9 +15,9 @@ ToClockStyleSheetTheme class >> defaultTokenProperties [
 	^ super defaultTokenProperties , {
 		  (ToTokenProperty
 			   name: #'clock-background-color'
-			   value: Color green).
+			   value: Color lightOrange ).
 		  (ToTokenProperty name: #'clock-border-width' value: 4).
-		  (ToTokenProperty name: #'clock-border-color' value: Color purple).
+		  (ToTokenProperty name: #'clock-border-color' value: Color lightRed ).
 		  (ToTokenProperty name: #'clock-border-quarterWidth' value: 8).
 		  (ToTokenProperty name: #'clock-border-hourWidth' value: 6).
 		  (ToTokenProperty
@@ -31,7 +34,7 @@ ToClockStyleSheetTheme class >> defaultTokenProperties [
 		  (ToTokenProperty name: #'clock-minute-needle-width' value: 5).
 		  (ToTokenProperty
 			   name: #'clock-second-needle-color'
-			   value: Color red).
+			   value: Color blue).
 		  (ToTokenProperty name: #'clock-second-needle-width' value: 3).
 
 		  (ToTokenProperty
