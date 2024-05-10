@@ -52,7 +52,8 @@ ToClockStyleSheetTheme class >> label [
 ToClockStyleSheetTheme >> declareClockFrameRules [
 
 	self select: ToClock asTypeSelector style: [
-		self do: [ :e | self drawClockFrame:e ].
+		self do: [ :e | self drawClockFrame: e ].
+
 		self
 			write: (self property: #geometry)
 			with: [ :e | BlCircleGeometry new matchExtent: e extent ].
@@ -60,12 +61,24 @@ ToClockStyleSheetTheme >> declareClockFrameRules [
 		self write: (self property: #background) with: [ :e |
 			BlBackground paint:
 				(e valueOfTokenNamed: #'clock-background-color') ].
-			
+
 		self write: (self property: #border) with: [ :e |
 			BlBorder
 				paint: (e valueOfTokenNamed: #'clock-border-color')
 				width: (e valueOfTokenNamed: #'clock-border-width') ].
-		]
+
+		self
+			when: ToLeavedLookEvent
+			write: (self property: #background)
+			with: [ :e |
+			BlBackground paint: (e valueOfTokenNamed: #'clock-background-color') ].
+
+		self
+			when: ToHoveredLookEvent
+			write: (self property: #background)
+			with: [ :e |
+				BlBackground paint:
+					(e valueOfTokenNamed: #'clock-background-color-hover') ] ]
 ]
 
 { #category : 'initialization' }

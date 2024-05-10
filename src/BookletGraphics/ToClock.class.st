@@ -122,6 +122,7 @@ ToClock class >> openInFixedSizeWithStyleSheet [
 { #category : 'accessing' }
 ToClock >> center [
 
+	center ifNil: [ center := 100 ].
 	^ center
 ]
 
