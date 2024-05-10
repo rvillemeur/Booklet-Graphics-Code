@@ -15,7 +15,6 @@ ToMinuteNeedleClockSkin >> installLookEvent: anEvent [
 	super installLookEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e
-			id: #minuteNeedle;
 			geometry: BlLineGeometry new;
 			outskirts: BlOutskirts centered;
 			border: (BlBorder

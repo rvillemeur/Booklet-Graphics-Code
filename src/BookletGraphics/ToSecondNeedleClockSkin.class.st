@@ -15,7 +15,6 @@ ToSecondNeedleClockSkin >> installLookEvent: anEvent [
 	super installLookEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e
-			id: #secondNeedle;
 			geometry: BlLineGeometry new;
 			outskirts: BlOutskirts centered;
 			border:(BlBorder

@@ -1,6 +1,6 @@
 Class {
 	#name : 'ToClockStyleSheetTheme',
-	#superclass : 'ToStyleSheetTheme',
+	#superclass : 'ToBeeTheme',
 	#category : 'BookletGraphics-Clock',
 	#package : 'BookletGraphics',
 	#tag : 'Clock'
@@ -11,57 +11,32 @@ ToClockStyleSheetTheme class >> defaultTokenProperties [
 
 	^ super defaultTokenProperties , {
 		  (ToTokenProperty
-			   name: #'background-color'
-			   value: (Color fromHexString: '#313339')).
+			   name: #'clock-background-color'
+			   value: Color green).
+		  (ToTokenProperty name: #'clock-border-width' value: 4).
+		  (ToTokenProperty name: #'clock-border-color' value: Color purple).
+		  (ToTokenProperty name: #'clock-border-quarterWidth' value: 8).
+		  (ToTokenProperty name: #'clock-border-hourWidth' value: 6).
 		  (ToTokenProperty
-			   name: #'color-bg-container'
-			   value: (Color fromHexString: '#313339')).
-		  (ToTokenProperty name: #'color-bg-tooltip' value: Color black).
+			   name: #'clock-hour-needle-color'
+			   value: Color black).
+		  (ToTokenProperty name: #'clock-hour-needle-width' value: 5).
+		  (ToTokenProperty
+			   name: #'clock-minute-needle-color'
+			   value: Color black).
+		  (ToTokenProperty name: #'clock-minute-needle-width' value: 5).
+		  (ToTokenProperty
+			   name: #'clock-minute-needle-color'
+			   value: Color black).
+		  (ToTokenProperty name: #'clock-minute-needle-width' value: 5).
+		  (ToTokenProperty
+			   name: #'clock-second-needle-color'
+			   value: Color red).
+		  (ToTokenProperty name: #'clock-second-needle-width' value: 3).
 
 		  (ToTokenProperty
-			   name: #'color-bg-container-disabled'
-			   value: (Color white alpha: 0.15)).
-		  (ToTokenProperty
-			   name: #'color-bg-text-active'
-			   value: (Color black alpha: 0.15)).
-		  (ToTokenProperty
-			   name: #'color-bg-text-hover'
-			   value: (Color white alpha: 0.30)).
-		  (ToTokenProperty
-			   name: #'color-border'
-			   value: (Color fromHexString: '#a6a6a6')).
-		  (ToTokenProperty name: #'color-border-disabled' value: (Color
-				    r: 0.7
-				    g: 0.7
-				    b: 0.7
-				    alpha: 0.5)).
-		  (ToTokenProperty
-			   name: #'color-error-bg'
-			   value: (Color fromHexString: '#2a1215')).
-		  (ToTokenProperty name: #'color-image-disabled' value: (Color
-				    r: 0.7
-				    g: 0.7
-				    b: 0.7
-				    alpha: 1.0)).
-		  (ToTokenProperty
-			   name: #'color-text'
-			   value: (Color r: 255 g: 255 b: 255)).
-		  (ToTokenProperty name: #'color-text-disabled' value: (Color
-				    r: 0.7
-				    g: 0.7
-				    b: 0.7
-				    alpha: 0.5)).
-		  (ToTokenProperty name: #'color-text-heading' value: (Color
-				    r: 255
-				    g: 255
-				    b: 255
-				    alpha: 0.88)).
-		  (ToTokenProperty
-			   name: #'color-text-secondary'
-			   value: (Color white alpha: 0.45)).
-		  (ToTokenProperty
-			   name: #'text-foreground-in-tooltip'
-			   value: Color white) }
+			   name: #'clock-background-color-hover'
+			   value: Color blue) }
 ]
 
 { #category : 'accessing' }
@@ -70,31 +45,128 @@ ToClockStyleSheetTheme class >> label [
 	^ 'Clock'
 ]
 
-{ #category : 'as yet unclassified' }
-ToClockStyleSheetTheme >> clockSelector [
+{ #category : 'initialization' }
+ToClockStyleSheetTheme >> declareClockFrameRules [
 
-	^ ToClock asTypeSelector
+	self select: ToClock asTypeSelector style: [
+		self do: [ :e | self drawClockFrame:e ].
+		self
+			write: (self property: #geometry)
+			with: [ :e | BlCircleGeometry new matchExtent: e extent ].
+
+		self write: (self property: #background) with: [ :e |
+			BlBackground paint:
+				(e valueOfTokenNamed: #'clock-background-color') ].
+			
+		self write: (self property: #border) with: [ :e |
+			BlBorder
+				paint: (e valueOfTokenNamed: #'clock-border-color')
+				width: (e valueOfTokenNamed: #'clock-border-width') ].
+		]
+]
+
+{ #category : 'initialization' }
+ToClockStyleSheetTheme >> declareClockNeedlesRules [
+
+	self select: #secondNeedle asIdSelector style: [
+		self do: [ :e | e outskirts: BlOutskirts centered ].
+		self
+			write: (self property: #geometry)
+			with: [ :e | BlLineGeometry new ].
+
+		self write: (self property: #border) with: [ :e |
+			BlBorder
+				paint: (e valueOfTokenNamed: #'clock-second-needle-color')
+				width: (e valueOfTokenNamed: #'clock-second-needle-width') ] ].
+
+	self select: #minuteNeedle asIdSelector style: [
+		self
+			write: (self property: #geometry)
+			with: [ :e | BlLineGeometry new ].
+		self do: [ :e | e outskirts: BlOutskirts centered ].
+
+		self write: (self property: #border) with: [ :e |
+			BlBorder
+				paint: (e valueOfTokenNamed: #'clock-minute-needle-color')
+				width: (e valueOfTokenNamed: #'clock-minute-needle-width') ] ].
+
+	self select: #hourNeedle asIdSelector style: [
+		self
+			write: (self property: #geometry)
+			with: [ :e | BlLineGeometry new ].
+		self do: [ :e | e outskirts: BlOutskirts centered ].
+
+		self write: (self property: #border) with: [ :e |
+			BlBorder
+				paint: (e valueOfTokenNamed: #'clock-hour-needle-color')
+				width: (e valueOfTokenNamed: #'clock-hour-needle-width') ] ]
 ]
 
 { #category : 'initialization' }
 ToClockStyleSheetTheme >> defaultElementStampsFor: anElement [ 
 
-	super defaultElementStampsFor: anElement.
-	"^ anElement defaultBeeStyleStamps"
+	^ anElement defaultBeeStyleStamps
+]
+
+{ #category : 'private - drawing' }
+ToClockStyleSheetTheme >> drawClockFrame: e [
+	"draw small lines around clock frame"
+
+	| quarterLength quarterWidth hourLength hourWidth radius |
+	radius := e extent min / 2.0.
+	quarterLength := radius * 4.8 / 20.
+	quarterWidth := 8.
+	hourLength := radius * 3.2 / 20.
+	hourWidth := 6.
+
+	0 to: 11 do: [ :items |
+		| coordinate angle |
+		angle := items * Float pi / 6.
+		coordinate := angle cos @ angle sin.
+
+		items % 3 == 0
+			ifTrue: [ "quarter mark"
+				e addChild: (BlElement new
+						 geometry: (BlLineGeometry
+								  from: e center + (coordinate * (radius - quarterLength))
+								  to: e center + (coordinate * radius));
+						 outskirts: BlOutskirts centered;
+						 border: (BlBorder
+								  paint: (e valueOfTokenNamed: #'clock-border-color')
+								  width: (e valueOfTokenNamed: #'clock-border-quarterWidth'))) ]
+			ifFalse: [ "other hour marks"
+				e addChild: (BlElement new
+						 geometry: (BlLineGeometry
+								  from: e center + (coordinate * (radius - hourLength))
+								  to: e center + (coordinate * radius));
+						 outskirts: BlOutskirts centered;
+						 border: (BlBorder
+								  paint: (e valueOfTokenNamed: #'clock-border-color')
+								  width: (e valueOfTokenNamed: #'clock-border-hourWidth'))) ] ]
+]
+
+{ #category : 'helper methods' }
+ToClockStyleSheetTheme >> dummyMethod [ 
+"from ToThemeExamples class >> example_WithLateBoundPropertyWriter"
+|parent|
+	parent
+		addEventHandlerOn: ToThemePreInstallEvent 
+		do: [ :event |
+			event currentTarget lookupTheme addTokenProperty:
+				(ToTokenProperty name: #'my-red-color' value: Color red) ].
+	parent localTheme: ToBeeTheme new.
 ]
 
 { #category : 'initialization' }
 ToClockStyleSheetTheme >> initializeStyleRules [ 
 
 	super initializeStyleRules.
-"	self declareRootPaneRules.
-	self declareLabelRules.
-	self declareButtonRules.
-	self declareTextPaneRules "
+	self declareClockFrameRules.
+	self declareClockNeedlesRules.
 ]
 
 { #category : 'styling' }
 ToClockStyleSheetTheme >> skinClassFor: anElement [
 
-	^ ToClockSkin 
+	^ ToClockStyleSkin
 ]

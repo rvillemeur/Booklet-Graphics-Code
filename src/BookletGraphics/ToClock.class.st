@@ -71,10 +71,41 @@ ToClock class >> openInFixedSize [
 	^ container.
 ]
 
+{ #category : 'example' }
+ToClock class >> openInFixedSizeWithStyleSheet [
+
+	<sampleInstance>
+	| clock container space |
+	space := BlSpace new.
+	space toTheme: ToClockStyleSheetTheme new.
+	
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: Color white ;
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	clock := self new size: 300 @ 300.
+
+	container addChild: clock.
+
+	space root addChild: container.
+	space show.
+	^ container.
+]
+
 { #category : 'accessing' }
 ToClock >> center [
 
 	^ center
+]
+
+{ #category : 'theme' }
+ToClock >> defaultBeeStyleStamps [ 
+
+	^ #( #clock )
 ]
 
 { #category : 'model' }
@@ -136,9 +167,9 @@ ToClock >> initConstant [
 { #category : 'initialization' }
 ToClock >> initElements [
 
-	secondNeedle := ToElement new.
-	minutesNeedle := ToElement new.
-	hourNeedle := ToElement new.
+	secondNeedle := ToElement new id: #secondNeedle.
+	minutesNeedle := ToElement new id: #minuteNeedle.
+	hourNeedle := ToElement new id: #hourNeedle.
 
 	self addChildren: {
 			hourNeedle.
