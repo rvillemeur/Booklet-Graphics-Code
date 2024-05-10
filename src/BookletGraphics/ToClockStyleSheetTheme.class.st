@@ -105,12 +105,6 @@ ToClockStyleSheetTheme >> declareClockNeedlesRules [
 				width: (e valueOfTokenNamed: #'clock-hour-needle-width') ] ]
 ]
 
-{ #category : 'initialization' }
-ToClockStyleSheetTheme >> defaultElementStampsFor: anElement [ 
-
-	^ anElement defaultBeeStyleStamps
-]
-
 { #category : 'private - drawing' }
 ToClockStyleSheetTheme >> drawClockFrame: e [
 	"draw small lines around clock frame"
