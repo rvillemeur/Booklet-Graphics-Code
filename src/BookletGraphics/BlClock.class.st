@@ -16,7 +16,8 @@ Class {
 		'radius',
 		'hourNeedleSize',
 		'minuteNeedleSize',
-		'secondNeedleSize'
+		'secondNeedleSize',
+		'model'
 	],
 	#category : 'BookletGraphics-Clock',
 	#package : 'BookletGraphics',
@@ -84,20 +85,6 @@ BlClock >> geometry [
 	^ BlCircleGeometry new matchExtent: self extent.
 ]
 
-{ #category : 'model' }
-BlClock >> hourCoordinate: time [
-
-	| angleHours y angleTime  angleMinutes x |
-	angleHours := Float pi / 6 * time hours.
-	angleMinutes := Float pi / 360 * time minutes.
-	angleTime := angleHours + angleMinutes.
-
-	x := angleTime sin.
-	y := angleTime cos * -1.
-
-	^ 	x @ y.
-]
-
 { #category : 'initialization' }
 BlClock >> initAnimation [
 
@@ -109,7 +96,8 @@ BlClock >> initAnimation [
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
 			 do: [ :anEvent |
-				 self updateNeedlesPosition: Time now.
+				 model time: Time now.
+				self updateNeedlesPosition.
 				 self invalidate ]).
 
 	self addAnimation: animation
@@ -197,36 +185,17 @@ BlClock >> initElements [
 BlClock >> initialize [
 
 	super initialize.
+	model := BlClockModel new.
 	self
 		addEventHandlerOn: BlElementExtentChangedEvent
 		do: [ :e | self resize ]
 ]
 
-{ #category : 'model' }
-BlClock >> minuteCoordinate: minutes [
-
-	| x y angle |
-	angle := Float pi / 30 * minutes.
-	x := angle sin.
-	y := angle cos * -1.
-	^ x @ y.
-]
-
-{ #category : 'drawing' }
+{ #category : 'as yet unclassified' }
 BlClock >> resize [
 
 	radius := self extent min / 2.0.
 	self initClock
-]
-
-{ #category : 'model' }
-BlClock >> secondCoordinate: seconds [
-
-	| x y angle  |
-	angle := Float pi / 30 * seconds.
-	x := angle sin.
-	y := angle cos * -1.
-	^ x @ y.
 ]
 
 { #category : 'api - bounds' }
@@ -238,35 +207,35 @@ BlClock >> size: aPoint [
 ]
 
 { #category : 'positioning' }
-BlClock >> updateHourNeedlePosition: time [
+BlClock >> updateHourNeedlePosition [
 
 	| coordinate |
-	coordinate := self hourCoordinate: time.
+	coordinate := model  hourCoordinate.
 	hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize).
 
 ]
 
 { #category : 'positioning' }
-BlClock >> updateMinuteNeedlePosition: minutes [
+BlClock >> updateMinuteNeedlePosition [
 
 	| coordinate |
-	coordinate := self minuteCoordinate: minutes.
+	coordinate := model  minuteCoordinate.
 	minutesNeedle geometry from: center to: center + (coordinate * minuteNeedleSize)
 ]
 
 { #category : 'positioning' }
-BlClock >> updateNeedlesPosition: time [
+BlClock >> updateNeedlesPosition [
 
-	self updateHourNeedlePosition: time.
-	self updateMinuteNeedlePosition: time minutes.
-	self updateSecondNeedlePosition: time seconds.
+	self updateHourNeedlePosition.
+	self updateMinuteNeedlePosition.
+	self updateSecondNeedlePosition.
 ]
 
 { #category : 'positioning' }
-BlClock >> updateSecondNeedlePosition: seconds [
+BlClock >> updateSecondNeedlePosition [
 
 	| coordinate |
-	coordinate := self secondCoordinate: seconds.
+	coordinate :=  model secondCoordinate.
 	secondNeedle geometry
 		from: center
 		to: center + (coordinate * secondNeedleSize)

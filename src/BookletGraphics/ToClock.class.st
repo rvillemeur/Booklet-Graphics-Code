@@ -207,7 +207,8 @@ ToClock >> initialize [
 	super initialize.
 	self
 		addEventHandlerOn: BlElementExtentChangedEvent
-		do: [ :e | self resize ]
+		do: [ :e | self resize ].
+	self resize.
 ]
 
 { #category : 'skin' }
