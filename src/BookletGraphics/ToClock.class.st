@@ -16,7 +16,8 @@ Class {
 		'radius',
 		'hourNeedleSize',
 		'minuteNeedleSize',
-		'secondNeedleSize'
+		'secondNeedleSize',
+		'model'
 	],
 	#category : 'BookletGraphics-Clock',
 	#package : 'BookletGraphics',
@@ -122,7 +123,6 @@ ToClock class >> openInFixedSizeWithStyleSheet [
 { #category : 'accessing' }
 ToClock >> center [
 
-	center ifNil: [ center := 100 ].
 	^ center
 ]
 
@@ -130,20 +130,6 @@ ToClock >> center [
 ToClock >> defaultBeeStyleStamps [ 
 
 	^ #( #clock )
-]
-
-{ #category : 'model' }
-ToClock >> hourCoordinate: time [
-
-	| angleHours y angleTime  angleMinutes x |
-	angleHours := Float pi / 6 * time hours.
-	angleMinutes := Float pi / 360 * time minutes.
-	angleTime := angleHours + angleMinutes.
-
-	x := angleTime sin.
-	y := angleTime cos * -1.
-
-	^ 	x @ y.
 ]
 
 { #category : 'accessing' }
@@ -162,7 +148,9 @@ ToClock >> initAnimation [
 
 	animation addEventHandler: (BlEventHandler
 			 on: BlAnimationLoopDoneEvent
-			 do: [ :anEvent | self updateNeedlesPosition: Time now .
+			 do: [ :anEvent | 
+					model time: Time now.
+					self updateNeedlesPosition.
 					self invalidate .]).
 
 	self addAnimation: animation
@@ -205,6 +193,7 @@ ToClock >> initElements [
 ToClock >> initialize [
 
 	super initialize.
+	model := BlClockModel new.
 	self
 		addEventHandlerOn: BlElementExtentChangedEvent
 		do: [ :e | self resize ].
@@ -217,29 +206,19 @@ ToClock >> installRawStyle [
 	super installRawStyle.
 ]
 
-{ #category : 'model' }
-ToClock >> minuteCoordinate: minutes [
-
-	| x y angle |
-	angle := Float pi / 30 * minutes.
-	x := angle sin.
-	y := angle cos * -1.
-	^ x @ y.
-]
-
 { #category : 'accessing' }
 ToClock >> minutesNeedle [
 
 	^ minutesNeedle
 ]
 
-{ #category : 'instance creation' }
+{ #category : 'skin' }
 ToClock >> newRawSkin [
 
-	^ ToClockSkin  new
+	^ ToClockSkin new
 ]
 
-{ #category : 'drawing' }
+{ #category : 'api - bounds' }
 ToClock >> resize [
 
 	radius := self extent min / 2.0.
@@ -247,16 +226,6 @@ ToClock >> resize [
 	
 
 	
-]
-
-{ #category : 'model' }
-ToClock >> secondCoordinate: seconds [
-
-	| x y angle  |
-	angle := Float pi / 30 * seconds.
-	x := angle sin.
-	y := angle cos * -1.
-	^ x @ y.
 ]
 
 { #category : 'accessing' }
@@ -274,34 +243,38 @@ ToClock >> size: aPoint [
 ]
 
 { #category : 'positioning' }
-ToClock >> updateHourNeedlePosition: time [
+ToClock >> updateHourNeedlePosition [
 
 	| coordinate |
-	coordinate := self hourCoordinate: time.
-	hourNeedle geometry from: center to: center + (coordinate * hourNeedleSize).
+	coordinate := model hourCoordinate.
+	hourNeedle geometry
+		from: center
+		to: center + (coordinate * hourNeedleSize)
 ]
 
 { #category : 'positioning' }
-ToClock >> updateMinuteNeedlePosition: minutes [
+ToClock >> updateMinuteNeedlePosition [
 
 	| coordinate |
-	coordinate := self minuteCoordinate: minutes.
-	minutesNeedle geometry from: center to: center + (coordinate * minuteNeedleSize)
+	coordinate := model minuteCoordinate.
+	minutesNeedle geometry
+		from: center
+		to: center + (coordinate * minuteNeedleSize)
 ]
 
 { #category : 'positioning' }
-ToClock >> updateNeedlesPosition: time [
+ToClock >> updateNeedlesPosition [
 
-	self updateHourNeedlePosition: time.
-	self updateMinuteNeedlePosition: time minutes.
-	self updateSecondNeedlePosition: time seconds.
+	self updateHourNeedlePosition.
+	self updateMinuteNeedlePosition.
+	self updateSecondNeedlePosition.
 ]
 
 { #category : 'positioning' }
-ToClock >> updateSecondNeedlePosition: seconds [
+ToClock >> updateSecondNeedlePosition [
 
 	| coordinate |
-	coordinate := self secondCoordinate: seconds.
+	coordinate := model  secondCoordinate.
 	secondNeedle geometry
 		from: center
 		to: center + (coordinate * secondNeedleSize)

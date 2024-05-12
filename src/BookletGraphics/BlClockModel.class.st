@@ -59,7 +59,7 @@ BlClockModel class >> openInFixedSize [
 	^ clock
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'positioning' }
 BlClockModel >> hourCoordinate [
 
 	| angleHours y angleTime  angleMinutes x |
@@ -73,7 +73,7 @@ BlClockModel >> hourCoordinate [
 	^ 	x @ y.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'positioning' }
 BlClockModel >> minuteCoordinate [
 
 	| x y angle |
@@ -83,7 +83,7 @@ BlClockModel >> minuteCoordinate [
 	^ x @ y.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'positioning' }
 BlClockModel >> secondCoordinate [
 
 	| x y angle  |
