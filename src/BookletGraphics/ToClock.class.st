@@ -126,12 +126,6 @@ ToClock >> center [
 	^ center
 ]
 
-{ #category : 'theme' }
-ToClock >> defaultBeeStyleStamps [ 
-
-	^ #( #clock )
-]
-
 { #category : 'accessing' }
 ToClock >> hourNeedle [
 
