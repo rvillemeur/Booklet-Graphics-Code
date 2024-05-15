@@ -145,17 +145,17 @@ Mortgage >> inspectAmortizationChart [
 	principalPaid := self amortizationTable collect: [ :each | each principalPayment ].
 	size := 4.
 	
-	chart := RSChart new.
+	chart := RSCompositeChart new.
 	chart title: 'Payment'.
 	chart extent: 300 @ 200.
 	
 	principalPlot := RSBarPlot new color: Color orange; barSize: size; barOffset: size* -0.5.
 	principalPlot y: principalPaid.
-	chart addPlot: principalPlot.
+	chart add: principalPlot.
 	
 	interestPlot  := RSBarPlot new color: Color blue; barSize: size; barOffset: size* 0.5.
 	interestPlot y: interestPaid .
-	chart addPlot: interestPlot.
+	chart add: interestPlot.
 
 	chart addDecoration: RSVerticalTick new .
 	chart build.
