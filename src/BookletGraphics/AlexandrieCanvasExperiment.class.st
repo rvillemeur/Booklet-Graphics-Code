@@ -430,7 +430,7 @@ AlexandrieCanvasExperiment class >> example1 [
 		start: 0 @ 0
 		end: 100 @ 150.
 	aeCanvas
-		drawText:
+		drawGlyphs:
 		(cairoScaledFont glyphArrayForString: 'Hello Alexandrie in Pharo')
 		font: cairoScaledFont.
 
@@ -800,14 +800,14 @@ positions at which those glyphs should be drawn. "
 	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
 	aeCanvas setSourceColor: Color red muchDarker.
 	aeCanvas
-		drawText: (cairoScaledFont glyphArrayForString: string)
+		drawGlyphs: (cairoScaledFont glyphArrayForString: string)
 		font: cairoScaledFont.
 
 	"Draw text with Harfbuzz:"
 	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
 	aeCanvas setSourceColor: Color green muchDarker.
 	aeCanvas
-		drawText: (AeHbBuffer new
+		drawGlyphs: (AeHbBuffer new
 				 direction: AeHbDirection leftToRight;
 				 script: AeHbScript latin;
 				 language: AeHbLanguage en;
