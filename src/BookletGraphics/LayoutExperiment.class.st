@@ -1143,6 +1143,85 @@ LayoutExperiment class >> multipleElementFitParameter2 [
 ]
 
 { #category : 'examples' }
+LayoutExperiment class >> proportionalLayout [
+
+	<sampleInstance>
+	| aContainer childA childB |
+	childA := BlElement new
+		          id: #childA;
+		          background: Color red;
+		          constraintsDo: [ :c |
+			          c proportional horizontal left: 0.2; right: 0.4.
+						c proportional vertical top: 0.1; bottom: 0.5 ];
+		          yourself.
+
+	childB := BlElement new
+		          id: #childB;
+		          background: Color green;
+		          constraintsDo: [ :c | c proportional horizontal left: 0.5 ];
+		          yourself.
+
+	aContainer := BlElement new
+		              id: #container;
+		              background: Color blue;
+		              layout: BlProportionalLayout new;
+		              size: 100 @ 100;
+		              addChild: childA;
+		              addChild: childB;
+		              constraintsDo: [ :c |
+			              c horizontal matchParent.
+			              c vertical matchParent ];
+		              padding: (BlInsets all: 5);
+		              yourself.
+
+	"aContainer openInNewSpace."
+	^ aContainer
+]
+
+{ #category : 'examples' }
+LayoutExperiment class >> proportionalLayout2 [
+
+
+	<sampleInstance>
+	| aContainer childA childB childC |
+	childA := BlElement new
+		          id: #childA;
+		          background: Color red;
+		          constraintsDo: [ :c |
+			          c proportional horizontal right: 0.33. ];
+		          yourself.
+
+	childB := BlElement new
+		          id: #childB;
+		          background: Color green;
+		          constraintsDo: [ :c | c proportional horizontal left: 0.33; right: 0.66 ];
+		          yourself.
+
+	childC := BlElement new
+		          id: #child;
+		          background: Color yellow;
+		          constraintsDo: [ :c | c proportional horizontal left: 0.66 ];
+		          yourself.
+		
+	aContainer := BlElement new
+		              id: #container;
+		              background: Color blue;
+		              layout: BlProportionalLayout new;
+		              size: 100 @ 100;
+		              addChild: childA;
+		              addChild: childB;
+							addChild: childC;
+		              constraintsDo: [ :c |
+			              c horizontal matchParent.
+			              c vertical matchParent ];
+		              padding: (BlInsets all: 5);
+		              yourself.
+
+	"aContainer openInNewSpace."
+	^ aContainer
+]
+
+{ #category : 'examples' }
 LayoutExperiment class >> spacingAndPaddindExampleWithTriangleGeometry [
 
 	<sampleInstance>
