@@ -4,9 +4,9 @@ Sample stylesheet for ToClock
 Class {
 	#name : 'ToClockStyleSheetTheme',
 	#superclass : 'ToBeeTheme',
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-ToploClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'ToploClock'
 }
 
 { #category : 'accessing' }

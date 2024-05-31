@@ -4,9 +4,9 @@ Skin description of the hour needle for ToClock
 Class {
 	#name : 'ToHourNeedleClockSkin',
 	#superclass : 'ToRawSkin',
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-ToploClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'ToploClock'
 }
 
 { #category : 'event handling' }

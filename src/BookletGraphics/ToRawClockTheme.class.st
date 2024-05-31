@@ -5,9 +5,9 @@ Extension of Raw Theme to include clock element that can be customized.
 Class {
 	#name : 'ToRawClockTheme',
 	#superclass : 'ToRawTheme',
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-ToploClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'ToploClock'
 }
 
 { #category : 'accessing' }

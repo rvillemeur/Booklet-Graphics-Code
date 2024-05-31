@@ -4,9 +4,9 @@ Skin description of the ToClock
 Class {
 	#name : 'ToClockSkin',
 	#superclass : 'ToRawSkin',
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-ToploClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'ToploClock'
 }
 
 { #category : 'private - drawing' }

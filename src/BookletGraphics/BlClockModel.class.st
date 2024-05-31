@@ -11,9 +11,9 @@ Class {
 	#instVars : [
 		'time'
 	],
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-BlocClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'BlocClock'
 }
 
 { #category : 'example' }

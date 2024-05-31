@@ -1,9 +1,9 @@
 Class {
 	#name : 'BlClockModelTest',
 	#superclass : 'TestCase',
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-BlocClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'BlocClock'
 }
 
 { #category : 'tests' }

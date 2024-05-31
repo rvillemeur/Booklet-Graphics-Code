@@ -19,9 +19,9 @@ Class {
 		'secondNeedleSize',
 		'model'
 	],
-	#category : 'BookletGraphics-Clock',
+	#category : 'BookletGraphics-ToploClock',
 	#package : 'BookletGraphics',
-	#tag : 'Clock'
+	#tag : 'ToploClock'
 }
 
 { #category : 'example' }
