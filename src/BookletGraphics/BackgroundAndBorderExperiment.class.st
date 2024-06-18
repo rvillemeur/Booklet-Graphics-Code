@@ -77,8 +77,7 @@ BackgroundAndBorderExperiment class >> box: element text: aText [
 BackgroundAndBorderExperiment class >> multipleElementOutskirts [
 
 	<sampleInstance>
-	| container space aBackgroundAndBorderExperiment |
-	aBackgroundAndBorderExperiment := self new.
+	| container space |
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -92,16 +91,12 @@ BackgroundAndBorderExperiment class >> multipleElementOutskirts [
 			             c vertical fitContent ].
 	"size: 450 @ 150;"
 
-
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment outskirtsOutside
-			 text: 'outskirts outside').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment outskirtsCentered
-			 text: 'outskirts centered').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment outskirtsInside
-			 text: 'outskirts inside').
+	container addChild:
+		(self box: self outskirtsOutside text: 'outskirts outside').
+	container addChild:
+		(self box: self outskirtsCentered text: 'outskirts centered').
+	container addChild:
+		(self box: self outskirtsInside text: 'outskirts inside').
 	space root addChild: container.
 	space show.
 	^ space
@@ -304,8 +299,7 @@ BackgroundAndBorderExperiment class >> multipleTriangle [
 BackgroundAndBorderExperiment class >> multipleTriangleBackground [
 
 	<sampleInstance>
-	| container space aBackgroundAndBorderExperiment |
-	aBackgroundAndBorderExperiment := self new.
+	| container space |
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -318,18 +312,14 @@ BackgroundAndBorderExperiment class >> multipleTriangleBackground [
 			             c horizontal fitContent.
 			             c vertical fitContent ].
 
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBackgroundImage
-			 text: 'image').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBackgroundSolidColor
-			 text: 'solid color').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBackgroundLinearColor
-			 text: 'linear color').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBackgroundRadialColor
-			 text: 'radial color').
+	container addChild:
+		(self box: self triangleBackgroundImage text: 'image').
+	container addChild:
+		(self box: self triangleBackgroundSolidColor text: 'solid color').
+	container addChild:
+		(self box: self triangleBackgroundLinearColor text: 'linear color').
+	container addChild:
+		(self box: self triangleBackgroundRadialColor text: 'radial color').
 
 	space root addChild: container.
 	space show.
@@ -340,8 +330,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleBackground [
 BackgroundAndBorderExperiment class >> multipleTriangleBorderColor [
 
 	<sampleInstance>
-	| container space aBackgroundAndBorderExperiment |
-	aBackgroundAndBorderExperiment := self new.
+	| container space |
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -354,15 +343,12 @@ BackgroundAndBorderExperiment class >> multipleTriangleBorderColor [
 			             c horizontal fitContent.
 			             c vertical fitContent ].
 
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBorderSolidColor
-			 text: 'solid color').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBorderLinearGradient
-			 text: 'linear color').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleBorderRadialGradient
-			 text: 'radial color').
+	container addChild:
+		(self box: self triangleBorderSolidColor text: 'solid color').
+	container addChild:
+		(self box: self triangleBorderLinearGradient text: 'linear color').
+	container addChild:
+		(self box: self triangleBorderRadialGradient text: 'radial color').
 
 	space root addChild: container.
 	space show.
@@ -373,8 +359,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleBorderColor [
 BackgroundAndBorderExperiment class >> multipleTriangleDashed [
 
 	<sampleInstance>
-	| container space aBackgroundAndBorderExperiment |
-	aBackgroundAndBorderExperiment := self new.
+	| container space |
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -387,15 +372,13 @@ BackgroundAndBorderExperiment class >> multipleTriangleDashed [
 			             c horizontal fitContent.
 			             c vertical fitContent ].
 
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleDashedSmall
-			 text: 'dashedSmall').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleDashedArray
+	container addChild:
+		(self box: self triangleDashedSmall text: 'dashedSmall').
+	container addChild: (self
+			 box: self triangleDashedArray
 			 text: 'dashOffset: 0; dashArray: #( 6 4 2 )').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleDashedNormal
-			 text: 'dashed').
+	container addChild:
+		(self box: self triangleDashedNormal text: 'dashed').
 	space root addChild: container.
 	space show.
 	^ space
@@ -405,8 +388,7 @@ BackgroundAndBorderExperiment class >> multipleTriangleDashed [
 BackgroundAndBorderExperiment class >> multipleTriangleWithCapAndJoin [
 
 	<sampleInstance>
-	| container space aBackgroundAndBorderExperiment |
-	aBackgroundAndBorderExperiment := self new.
+	| container space |
 	space := BlSpace new.
 	container := BlElement new
 		             geometry: BlRectangleGeometry new;
@@ -419,15 +401,12 @@ BackgroundAndBorderExperiment class >> multipleTriangleWithCapAndJoin [
 			             c horizontal fitContent.
 			             c vertical fitContent ].
 
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleJoinRound
-			 text: 'round join').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleJoinBevel
-			 text: 'bevel join').
-	container addChild: (aBackgroundAndBorderExperiment
-			 box: aBackgroundAndBorderExperiment triangleJoinMiter
-			 text: 'miter join').
+	container addChild:
+		(self box: self triangleJoinRound text: 'round join').
+	container addChild:
+		(self box: self triangleJoinBevel text: 'bevel join').
+	container addChild:
+		(self box: self triangleJoinMiter text: 'miter join').
 	space root addChild: container.
 	space show.
 	^ space

@@ -756,9 +756,8 @@ AlexandrieCanvasExperiment class >> pathPaint1 [
 AlexandrieCanvasExperiment class >> textWithOrWithoutHarfbuzz [
 
 	<sampleInstance>
-	| aManager aFace aeCanvas cairoScaledFont fontHeight string anAlexandrieCanvasExperiment |
+	| aManager aFace aeCanvas cairoScaledFont fontHeight string  |
 	"font definition"
-	anAlexandrieCanvasExperiment := self new.
 	AeFontManager resetGlobalInstance.
 	aManager := AeFontManager globalInstance.
 	aManager
@@ -771,7 +770,7 @@ AlexandrieCanvasExperiment class >> textWithOrWithoutHarfbuzz [
 		         weight: AeFontWeight normal
 		         stretch: AeFontStretch normal
 		         ifNone: [
-		         anAlexandrieCanvasExperiment inform: 'missing font' ].
+		         self inform: 'missing font' ].
 
 
 
