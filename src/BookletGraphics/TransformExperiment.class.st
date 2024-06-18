@@ -13,6 +13,94 @@ Class {
 }
 
 { #category : 'examples' }
+TransformExperiment class >> absoluteTransformationExample [
+
+	<sampleInstance>
+	| elt frame container |
+	elt := BlElement new
+		       background: (Color red alpha: 0.5);
+		       position: 100 asPoint;
+		       size: 100 asPoint.
+	frame := BlElement new
+		         background: Color yellow;
+		         position: 100 asPoint;
+		         size: 100 asPoint.
+	container := BlElement new
+		             background: Color lightGreen;
+		             size: 500 asPoint;
+		             addChildren: {
+				             frame.
+				             elt }.
+
+	elt transformation:
+		(BlElementAbsoluteTransformation matrix: (BlMatrix2D new
+				  x: 50;
+				  y: 0;
+				  shx: 45 degreesToRadians sin * -1;
+				  shy: 45 degreesToRadians sin;
+				  sx: 45 degreesToRadians cos;
+				  sy: 45 degreesToRadians cos)).
+	container openInSpace.
+	^ container
+]
+
+{ #category : 'examples' }
+TransformExperiment class >> shearExample [
+
+	<sampleInstance>
+	| elt frame container |
+	elt := BlElement new
+		       background: (Color red alpha: 0.5);
+		       position: 100 asPoint;
+		       size: 100 asPoint.
+	frame := BlElement new
+		         background: Color yellow;
+		         position: 100 asPoint;
+		         size: 100 asPoint.
+	container := BlElement new
+		             background: Color lightGreen;
+		             size: 500 asPoint;
+		             addChildren: {
+				             frame.
+				             elt }.
+
+	elt transformation:
+		(BlElementAbsoluteTransformation matrix: (BlShearTransformation new
+				  angleX: 0;
+				  angleY: 20) asMatrix).
+	container openInSpace.
+	^ container
+]
+
+{ #category : 'examples' }
+TransformExperiment class >> topLeftOriginExample [
+
+	<sampleInstance>
+	| elt frame container |
+	elt := BlElement new
+		       background: (Color red alpha: 0.5);
+		       position: 100 asPoint;
+		       size: 100 asPoint.
+	frame := BlElement new
+		         background: Color yellow;
+		         position: 100 asPoint;
+		         size: 100 asPoint.
+	container := BlElement new
+		             background: Color lightGreen;
+		             size: 500 asPoint;
+		             addChildren: {
+				             frame.
+				             elt }.
+
+	elt transformation: (BlElementLocalTransformation newWith:
+			 ((BlMatrixTransformation matrix:
+				   (BlMatrix2D rotation: 45 degreesToRadians)) origin:
+				  BlAffineTransformationTopLeftOrigin new)).
+	container openInSpace.
+	^ container
+]
+
+{ #category : 'examples' }
 TransformExperiment class >> transformBlBasicLayout [
 
 	<sampleInstance>
@@ -67,6 +155,33 @@ TransformExperiment class >> transformExample [
 	container whenLayoutedDoOnce:  [ container addChild: node.].
 
 	container openInNewSpace. 
+	^ container
+]
+
+{ #category : 'examples' }
+TransformExperiment class >> usingAnimationPropertyExample [
+
+	<sampleInstance>
+	| elt frame container |
+	elt := BlElement new
+		       background: (Color red alpha: 0.5);
+		       position: 100 asPoint;
+		       size: 100 asPoint.
+	frame := BlElement new
+		         background: Color yellow;
+		         position: 100 asPoint;
+		         size: 100 asPoint.
+	container := BlElement new
+		             background: Color lightGreen;
+		             size: 500 asPoint;
+		             addChildren: {
+				             frame.
+				             elt }.
+
+	elt transformation: (BlElementLocalTransformation newWith:
+			 ((BlRotationTransformation new angle: 45) origin:
+				  BlAffineTransformationCenterOrigin defaultInstance)).
+	container openInSpace.
 	^ container
 ]
 
