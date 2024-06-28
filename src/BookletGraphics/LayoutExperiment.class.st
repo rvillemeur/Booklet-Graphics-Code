@@ -1443,6 +1443,47 @@ LayoutExperiment class >> testLayout [
 ]
 
 { #category : 'examples' }
+LayoutExperiment class >> zIndexExample [
+
+	<sampleInstance>
+	| container elt1 elt2 elt3 space |
+	space := BlSpace new.
+
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             size: 150 @ 150;
+		             background: Color lightGray.
+
+	elt1 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 100 asPoint;
+		        zIndex: 1;
+		        background: Color black.
+	elt2 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 100 asPoint;
+		        zIndex: 2;
+		        position: 10 @ 10;
+		        background: Color blue.
+	elt3 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 100 asPoint;
+		        zIndex: -1;
+		        position: 20 @ 20;
+		        background: Color red.
+
+	container addChildren: {
+			elt1.
+			elt2.
+			elt3 }.
+
+
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : 'examples' }
 LayoutExperiment class >> zoomLayoutExample [
 
 	<sampleInstance>
@@ -1486,7 +1527,7 @@ LayoutExperiment class >> zoomLayoutExample2 [
 	| elt zoom space |
 	space := BlSpace new.
 
-	elt := BlSvgIcons settingsIcon.
+	elt := BlSvgIconExamples new settingsIcon.
 	elt
 		border: (BlBorder paint: Color red width: 2);
 		background: Color yellow;
