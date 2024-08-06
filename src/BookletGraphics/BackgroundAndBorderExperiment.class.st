@@ -415,17 +415,17 @@ BackgroundAndBorderExperiment class >> multipleTriangleWithCapAndJoin [
 { #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> outskirtsCentered [
 
-	| box element |
+	| box element1 element2|
 	box := BlElement new
 		       size: 150 @ 150;
 		       geometry: BlRectangleGeometry new;
 		       margin: (BlInsets all: 3);
 		       padding: (BlInsets all: 3);
-		       layout: BlLinearLayout horizontal alignCenter;
 		       background: Color lightYellow;
 		       border: (BlBorder paint: Color yellow width: 5).
-	element := BlElement new
+	element1 := BlElement new
 		           size: 100 @ 100;
+					position: 25@25;
 		           geometry: (BlPolygonGeometry vertices: {
 						            (50 @ 0).
 						            (65 @ 40).
@@ -437,28 +437,49 @@ BackgroundAndBorderExperiment class >> outskirtsCentered [
 						            (25 @ 60).
 						            (0 @ 40).
 						            (35 @ 40) });
-		           border: (BlBorder paint: Color green width: 10);
+		           border: (BlBorder paint: Color green width: 15);
 		           background: Color lightGreen;
 		           outskirts: BlOutskirts centered.
+element2 := BlElement new
+		           size: 100 @ 100;
+		position: 25@25;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+		           border: (BlBorder builder
+				            paint: Color black;
+				            width: 2;
+				            dashOffset: 0;
+				            dashArray: #( 6 4 2 );
+				            capButt;
+				            build);
+		           background: Color transparent.
 
-	box addChild: element.
+	box addChildren: { element1. element2}.
 	^ box
 ]
 
 { #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> outskirtsInside [
-|box element|
+|box element1 element2|
 box := BlElement new
 		        size: 150 @ 150;
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter;
-
 		         background: Color lightBlue;
 		        border: (BlBorder paint: Color blue width: 5).
-	element := BlElement new
+	element1 := BlElement new
 		            size: 100 @ 100;
+		position: 25@25;
 		            geometry: (BlPolygonGeometry vertices: {
 						              (50 @ 0).
 						              (65 @ 40).
@@ -474,24 +495,46 @@ box := BlElement new
 		            background: Color lightCyan;
 		            outskirts: BlOutskirts inside.
 
-	box addChild: element.
+element2 := BlElement new
+		           size: 100 @ 100;
+				position: 25@25;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+		           border: (BlBorder builder
+				            paint: Color black;
+				            width: 2;
+				            dashOffset: 0;
+				            dashArray: #( 6 4 2 );
+				            capButt;
+				            build);
+		           background: Color transparent.
+	box addChildren: { element1. element2}.
 	^box
 ]
 
 { #category : 'examples - helpers' }
 BackgroundAndBorderExperiment class >> outskirtsOutside [
 
-	| box element |
+	| box element1 element2 |
 	box := BlElement new
 		       size: 150 @ 150;
 		       geometry: BlRectangleGeometry new;
 		       margin: (BlInsets all: 3);
 		       padding: (BlInsets all: 3);
-		       layout: BlLinearLayout horizontal alignCenter;
 		       background: Color lightRed;
 		       border: (BlBorder paint: Color red width: 5).
-	element := BlElement new
+	element1 := BlElement new
 		           size: 100 @ 100;
+		position: 25@25;
 		           geometry: (BlPolygonGeometry vertices: {
 						            (50 @ 0).
 						            (65 @ 40).
@@ -507,7 +550,29 @@ BackgroundAndBorderExperiment class >> outskirtsOutside [
 		           background: Color lightOrange;
 		           outskirts: BlOutskirts outside.
 
-	box addChild: element.
+element2 := BlElement new
+		           size: 100 @ 100;
+		position: 25@25;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+ border: (BlBorder builder
+				            paint: Color black;
+				            width: 2;
+				            dashOffset: 0;
+				            dashArray: #( 6 4 2 );
+				            capButt;
+				            build);
+		           background: Color transparent.
+	box addChildren: { element1. element2}.
 	^ box
 ]
 
