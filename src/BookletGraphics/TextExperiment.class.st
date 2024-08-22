@@ -217,6 +217,87 @@ TextExperiment class >> textAlignment2 [
 	^ p
 ]
 
+{ #category : 'examples' }
+TextExperiment class >> textAttributesStyle [
+
+	<sampleInstance>
+	| text attributes label element |
+	text := 'Hi John' asRopedText.
+
+	element := BlAttributedTextElement new.
+	attributes := element attributesBuilder
+		              foreground: Color green;
+		              monospace;
+		              bold;
+		              italic;
+		              fontSize: 30;
+		              fontName: 'Roboto';
+		              monospace.
+
+	label := (element text: text)
+		         position: 50 @ 10;
+		         background: Color yellow;
+		         margin: (BlInsets all: 2);
+		         padding: (BlInsets all: 2);
+		         outskirts: BlOutskirts centered;
+		         border: (BlBorder paint: Color red width: 2).
+
+	element text: 'hello world' asRopedText.
+	label openInNewSpace.
+	^ label
+]
+
+{ #category : 'examples' }
+TextExperiment class >> textStyler [
+
+	<sampleInstance>
+	| text styler label |
+	text := 'Hi John' asRopedText.
+
+	styler := BlTextAttributesStyler on: (text from: 3 to: 7).
+	styler
+		bold;
+		italic;
+		fontSize: 30;
+		fontName: 'Roboto';
+		monospace;
+		foreground: Color green.
+	styler style.
+
+	label := (BlTextElement text: text)
+		         position: 50 @ 10;
+		         background: Color yellow;
+		         margin: (BlInsets all: 2);
+		         padding: (BlInsets all: 2);
+		         outskirts: BlOutskirts centered;
+		         border: (BlBorder paint: Color red width: 2).
+
+	label openInNewSpace.
+	^ label
+]
+
+{ #category : 'examples' }
+TextExperiment class >> textStylerWithFluentAPI [
+
+	<sampleInstance>
+	| text label |
+	text := 'Hi John' asRopedText.
+
+	(text from: 3 to: 7) stylerDo: [ :aStyler |
+		aStyler bold italic foreground: Color red ].
+
+	label := (BlTextElement text: text)
+		         position: 50 @ 10;
+		         background: Color yellow;
+		         margin: (BlInsets all: 2);
+		         padding: (BlInsets all: 2);
+		         outskirts: BlOutskirts centered;
+		         border: (BlBorder paint: Color red width: 2).
+
+	label openInNewSpace.
+	^ label
+]
+
 { #category : 'see class side' }
 TextExperiment >> seeClassSide [ 
 ]

@@ -708,7 +708,7 @@ AlexandrieCanvasExperiment class >> maskWithPrivateContext [
 
 	canvas paintGroupWith: [
 		canvas privateAeCairoContext
-			sourceColorRGBA: (Color purple alpha: 0.5);
+			sourceColor: (Color purple alpha: 0.5);
 			mask:
 				(AeCairoSurfacePattern surface:
 						 (AeCairoImageSurface fromForm: form));
