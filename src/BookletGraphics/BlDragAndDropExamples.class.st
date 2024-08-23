@@ -159,18 +159,15 @@ BlDragAndDropExamples class >> tagFor: aString [
 { #category : 'tags' }
 BlDragAndDropExamples class >> tagOrdererDraggableTagFor: aString [
 
-	| element  |
-	element := self tagFor: aString.
-	element
-		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
-					 BlDragItem new
-						 sourceElement: aSourceElement;
-						 domainObject: aString";
-						 stencil: [ :aDragItem |
-							 self tagFor: aDragItem domainObject ]" ]);
-		addEventHandlerOn: BlAboutToBeDroppedEvent
-		do: [ :anEvent | anEvent currentTarget removeFromParent ].
-	"withStylesDo: [ :theStyles |
+	^ (self tagFor: aString)
+		  addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
+					   BlDragItem new
+						   sourceElement: aSourceElement;
+						   domainObject: aString;
+						   stencil: [ :aDragItem | self tagFor: aDragItem domainObject ] ]);
+		  addEventHandlerOn: BlAboutToBeDroppedEvent
+		  do: [ :anEvent | anEvent currentTarget removeFromParent ]; yourself.
+	"	withStylesDo: [ :theStyles |
 			theStyles
 				addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance;
@@ -178,26 +175,22 @@ BlDragAndDropExamples class >> tagOrdererDraggableTagFor: aString [
 			 	addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance not;
 					background: Color veryVeryLightGray)  ];"
-
-	^ element
 ]
 
 { #category : 'tags' }
 BlDragAndDropExamples class >> tagOrdererSlidingTagFor: aString [
 
-	| element  |
-	element := self tagFor: aString.
-	element
-		addEventHandler: (BlDragHandler new
-				 dragArea: [ :aSourceElement | aSourceElement parent ];
-				 liftItem: [ :aSourceElement |
-					 BlDragItem new
-						 sourceElement: aSourceElement;
-						 domainObject: aString";
-						 stencil: [ :aDragItem |
-							 self tagFor: aDragItem domainObject ]" ]);
-		addEventHandlerOn: BlAboutToBeDroppedEvent
-		do: [ :anEvent | anEvent currentTarget removeFromParent ].
+	^ (self tagFor: aString)
+		  addEventHandler: (BlDragHandler new
+				   dragArea: [ :aSourceElement | aSourceElement parent ];
+				   liftItem: [ :aSourceElement |
+					   BlDragItem new
+						   sourceElement: aSourceElement;
+						   domainObject: aString;
+						   stencil: [ :aDragItem | self tagFor: aDragItem domainObject ] ]);
+		  addEventHandlerOn: BlAboutToBeDroppedEvent
+		  do: [ :anEvent | anEvent currentTarget removeFromParent ];
+		  yourself
 	"withStylesDo: [ :theStyles |
 			theStyles
 				addStyle: (BlElementStyle new
@@ -206,7 +199,6 @@ BlDragAndDropExamples class >> tagOrdererSlidingTagFor: aString [
 			 	addStyle: (BlElementStyle new
 					state: BlElementDraggingState uniqueInstance not;
 					visibility: BlVisibility visible)  ];"
-	^ element
 ]
 
 { #category : 'tags' }
