@@ -7,9 +7,6 @@ Class {
 		'itemsDraggedAction',
 		'itemsDragLeftAction'
 	],
-	#classVars : [
-		'BlSpaceDragDropEnterEvent'
-	],
 	#category : 'BookletGraphics-BlocDragNDrop',
 	#package : 'BookletGraphics',
 	#tag : 'BlocDragNDrop'

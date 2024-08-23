@@ -4,9 +4,6 @@ Class {
 	#instVars : [
 		'acceptConditions'
 	],
-	#classVars : [
-		'BlItemsEnteredEvent'
-	],
 	#category : 'BookletGraphics-BlocDragNDrop',
 	#package : 'BookletGraphics',
 	#tag : 'BlocDragNDrop'
