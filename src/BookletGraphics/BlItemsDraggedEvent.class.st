@@ -24,7 +24,7 @@ BlItemsDraggedEvent >> dragContainer: anObject [
 	dragContainer := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 BlItemsDraggedEvent >> dragContainerCenter [
 	"Return a location of the center of the dragging container"
 	<return: #Point>
@@ -68,7 +68,7 @@ BlItemsDraggedEvent >> position: anObject [
 	position := anObject
 ]
 
-{ #category : 'sending' }
+{ #category : 'accessing' }
 BlItemsDraggedEvent >> sendTo: anObject [
 	anObject itemsDraggedEvent: self
 ]

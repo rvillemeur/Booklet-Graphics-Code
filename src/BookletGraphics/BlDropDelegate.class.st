@@ -71,13 +71,13 @@ BlDropDelegate >> enter: aCollectionOfDragItems at: aPosition in: anElement [
 "BlItemsEnteredEvent is not completed, checking how it's used"
 
 
-	"| doesAccept |
+	| doesAccept |
 	doesAccept := aCollectionOfDragItems anySatisfy: [ :eachDragItem |
 		              self shouldAccept: eachDragItem in: anElement ].
 	anElement dispatchEvent: (BlItemsEnteredEvent new
 			 items: aCollectionOfDragItems;
 			 position: (anElement globalPointToLocal: aPosition);
-			 mayAcceptItems: doesAccept)"
+			 mayAcceptItems: doesAccept)
 ]
 
 { #category : 'asserting' }
