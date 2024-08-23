@@ -59,8 +59,7 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 BlDragDelegate >> drag: aDraggedContainer to: aPoint [
 	"Drag a container with all previews to a given point in the parent coordinate of the container"
 
-	aDraggedContainer position:
-		(aPoint - offset) x @ aDraggedContainer measuredBounds position y
+	aDraggedContainer position: aPoint - offset
 ]
 
 { #category : 'accessing' }
