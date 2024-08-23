@@ -178,32 +178,42 @@ BlSpaceEventListener >> spaceDragDropEvent: anEvent [
 
 { #category : 'as yet unclassified' }
 BlSpaceEventListener >> spaceDragLiftEvent: anEvent [
-	| aDragDelegate aPosition aDragArea |
 
+	| aDragDelegate aPosition aDragArea |
 	aDragDelegate := anEvent delegate.
 	aPosition := anEvent position.
-	
-	dragContainerElement ifNotNil: [ :anElement | anElement removeFromParent ].
+self halt.
+	dragContainerElement ifNotNil: [ :anElement |
+		anElement removeFromParent ].
 	dragContainerElement := aDragDelegate liftAt: aPosition.
 	dragContainerElement userData at: #dragDelegate put: aDragDelegate.
 	dragContainerElement preventMeAndChildrenMouseEvents.
-	
+
+	aDragArea := aDragDelegate hasDragArea
+		             ifTrue: [ aDragDelegate dragArea ]
+		             ifFalse: [ self space root ].
+
+	aDragArea addChild: dragContainerElement.
+
+	aDragDelegate items size > 0 ifTrue: [
+		| sourcePositionInSpace |
+		sourcePositionInSpace := aDragDelegate items first sourceElement
+			                         bounds inSpace position.
+		dragContainerElement position:
+			(dragContainerElement globalPointToParent: sourcePositionInSpace) ].
+
 	aDragDelegate
 		drag: dragContainerElement
 		to: (dragContainerElement globalPointToParent: aPosition).
 
-	aDragArea := aDragDelegate hasDragArea
-		ifTrue: [ aDragDelegate dragArea ]
-		ifFalse: [ self space root ].
-
-	aDragArea addChild: dragContainerElement.
-
 	mouseDragListener := BlEventHandler
-		on: BlMouseMoveEvent
-		do: [ :aMouseMoveEvent |
-			aDragDelegate
-				drag: dragContainerElement
-				to: (dragContainerElement globalPointToParent: aMouseMoveEvent position) ].
+		                     on: BlMouseMoveEvent
+		                     do: [ :aMouseMoveEvent |
+			                     aDragDelegate
+				                     drag: dragContainerElement
+				                     to:
+				                     (dragContainerElement globalPointToParent:
+					                      aMouseMoveEvent position) ].
 
 	self space addEventHandler: mouseDragListener
 ]

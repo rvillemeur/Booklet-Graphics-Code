@@ -175,16 +175,16 @@ BlDropHandler >> whenHorizontalDroppedDo: aBlock [
 
 { #category : 'enumerating' }
 BlDropHandler >> whenHorizontalSlideOverDo: aBlock [
+
 	self whenDragOverDo: [ :anItemsDraggedEvent |
 		| draggedElement container position insertIndexAt currentIndex elementToSwap |
-
 		self
 			assert: anItemsDraggedEvent items size = 1
 			description: [ 'Only works with one item' ].
 
 		draggedElement := anItemsDraggedEvent items first sourceElement.
 		container := anItemsDraggedEvent currentTarget.
-		
+
 		self
 			assert: draggedElement parent == container
 			description: [ 'Dragged element must be a child of the container' ].
@@ -192,20 +192,17 @@ BlDropHandler >> whenHorizontalSlideOverDo: aBlock [
 		position := anItemsDraggedEvent dragContainerCenter x.
 
 		elementToSwap := container children accountedByLayout
-			detect: [ :eachChild |
-				| eachChildBounds |
-				
-				eachChildBounds := eachChild bounds inParent.
-				position between: eachChildBounds left and: eachChildBounds right ]
-			ifFound: [ :eachChild | eachChild ]
-			ifNone: [ nil ].
+			                 detect: [ :eachChild |
+				                 | eachChildBounds |
+				                 eachChildBounds := eachChild bounds inParent.
+				                 position
+					                 between: eachChildBounds left
+					                 and: eachChildBounds right ]
+			                 ifFound: [ :eachChild | eachChild ]
+			                 ifNone: [ nil ].
+		elementToSwap ifNotNil: [
+			insertIndexAt := container childIndexOf: elementToSwap.
+			currentIndex := container childIndexOf: draggedElement.
 
-		(elementToSwap notNil)
-			ifTrue: [
-				insertIndexAt := container childIndexOf: elementToSwap.
-				currentIndex := container childIndexOf: draggedElement.
-
-				container
-					swapChildAt: currentIndex
-					with: insertIndexAt ] ]
+			container swapChildAt: currentIndex with: insertIndexAt ] ]
 ]
