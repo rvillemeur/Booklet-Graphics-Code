@@ -71,10 +71,6 @@ BlDropDelegate >> enter: aCollectionOfDragItems at: aPosition in: anElement [
 	| doesAccept |
 	doesAccept := aCollectionOfDragItems anySatisfy: [ :eachDragItem |
 		              self shouldAccept: eachDragItem in: anElement ].
-	anElement dispatchEvent: (BlItemsEnteredEvent new
-			 items: aCollectionOfDragItems;
-			 position: (anElement globalPointToLocal: aPosition);
-			 mayAcceptItems: doesAccept)
 ]
 
 { #category : 'asserting' }
