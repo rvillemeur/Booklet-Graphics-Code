@@ -182,7 +182,7 @@ BlSpaceEventListener >> spaceDragLiftEvent: anEvent [
 	| aDragDelegate aPosition aDragArea |
 	aDragDelegate := anEvent delegate.
 	aPosition := anEvent position.
-self halt.
+
 	dragContainerElement ifNotNil: [ :anElement |
 		anElement removeFromParent ].
 	dragContainerElement := aDragDelegate liftAt: aPosition.

@@ -43,36 +43,26 @@ BlDragAndDropExamples class >> lettersSorter [
 	<sampleInstance>
 	| letters vowels consonants  |
 	letters := self lettersSorterContainer.
-	vowels := self
-		          lettersSorterRoundedContainerWithBorder.
-	vowels addEventHandler: (BlDropHandler new
-			 acceptItemsSuchThat: [ :aDragItem :aDropArea |
-				 aDragItem sourceElement parent ~~ aDropArea ];
-			 acceptDomainObjectsSuchThat: [ :anObject |
-				 anObject isCharacter and: [ anObject isVowel ] ];
-			 whenDroppedDo: [ :anItemsDroppedEvent |
-				 anItemsDroppedEvent currentTarget addChildren:
-						 (anItemsDroppedEvent items collect: [ :eachDragItem |
-								  self
-									  lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
+	
+	vowels := self lettersSorterRoundedContainerWithBorder.
+	vowels addEventHandler: (BlDropHandler new acceptItemsSuchThat: [ :aDragItem :aDropArea | aDragItem sourceElement parent ~~ aDropArea ];
+			 acceptDomainObjectsSuchThat: [ :anObject | anObject isCharacter and: [ anObject isVowel ] ];
+			 whenDroppedDo: 
+				[ :anItemsDroppedEvent | anItemsDroppedEvent currentTarget addChildren:
+						 (anItemsDroppedEvent items collect: 
+						[ :eachDragItem | self lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
 
-	consonants := self
-		              lettersSorterRoundedContainerWithBorder.
+	consonants := self lettersSorterRoundedContainerWithBorder.
 	consonants addEventHandler: (BlDropHandler new
-			 acceptItemsSuchThat: [ :aDragItem :aDropArea |
-				 aDragItem sourceElement parent ~~ aDropArea ];
-			 acceptDomainObjectsSuchThat: [ :anObject |
-				 anObject isCharacter and: [ anObject isVowel not ] ];
-			 whenDroppedDo: [ :anItemsDroppedEvent |
-				 anItemsDroppedEvent currentTarget addChildren:
-						 (anItemsDroppedEvent items collect: [ :eachDragItem |
-								  self
-									  lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
+			 acceptItemsSuchThat: [ :aDragItem :aDropArea | aDragItem sourceElement parent ~~ aDropArea ];
+			 acceptDomainObjectsSuchThat: [ :anObject | anObject isCharacter and: [ anObject isVowel not ] ];
+			 whenDroppedDo: 
+					[ :anItemsDroppedEvent | anItemsDroppedEvent currentTarget addChildren:
+						 (anItemsDroppedEvent items collect: 
+								[ :eachDragItem | self lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
 
 	letters addChildren:
-		({ $a. $c. $Q. $o. $j. $E. $y. $Z. $U. $B. $p. $i } collect: [ :each |
-			 self lettersSorterDraggableLetterFor:
-				 each ]).
+		({ $a. $c. $Q. $o. $j. $E. $y. $Z. $U. $B. $p. $i } collect: [ :each | self lettersSorterDraggableLetterFor: each ]).
 
 	^ BlElement new
 		  layout: (BlLinearLayout horizontal cellSpacing: 30);
@@ -111,10 +101,10 @@ BlDragAndDropExamples class >> lettersSorterDraggableLetterFor: aCharacter [
 		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
 					 BlDragItem new
 						 sourceElement: aSourceElement;
-						 domainObject: aCharacter";
+						 domainObject: aCharacter;
 						 stencil: [ :aDragItem |
 							 self letterFor:
-									 aDragItem domainObject ]" ]);
+									 aDragItem domainObject ] ]);
 		addEventHandlerOn: BlAboutToBeDroppedEvent
 		do: [ :anEvent | anEvent currentTarget removeFromParent ].
 

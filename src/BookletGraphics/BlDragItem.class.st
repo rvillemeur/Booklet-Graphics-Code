@@ -67,4 +67,5 @@ BlDragItem >> stencil [
 { #category : 'accessing' }
 BlDragItem >> stencil: aBlDragItemStencil [
 	"draggedElementStencil := aBlDragItemStencil asStencilBuilder: BlDragItemStencil"
+	draggedElementStencil := aBlDragItemStencil
 ]
