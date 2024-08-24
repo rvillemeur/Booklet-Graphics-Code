@@ -15,7 +15,7 @@ BaselineOfBookletGraphics >> baseline: spec [
 			with: [ spec requires: #( 'Toplo' ) ].
 
 		spec
-			baseline: 'Toplo'
+			baseline: 'Bloc'
 			"with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ] ]"
 			with: [ spec repository: 'github://rvillemeur/Bloc:dev/src' ] ]
 ]
