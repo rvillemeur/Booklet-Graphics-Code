@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfBookletGraphics,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfBookletGraphics
+	#name : 'BaselineOfBookletGraphics',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfBookletGraphics',
+	#package : 'BaselineOfBookletGraphics'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfBookletGraphics >> baseline: spec [
 
 	<baseline>
@@ -15,5 +16,6 @@ BaselineOfBookletGraphics >> baseline: spec [
 
 		spec
 			baseline: 'Toplo'
-			with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ] ]
+			"with: [ spec repository: 'github://pharo-graphics/Toplo:dev/src' ] ]"
+			with: [ spec repository: 'github://rvillemeur/Bloc:dev/src' ] ]
 ]
