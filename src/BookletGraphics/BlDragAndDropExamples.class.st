@@ -45,7 +45,9 @@ BlDragAndDropExamples class >> lettersSorter [
 	letters := self lettersSorterContainer.
 	
 	vowels := self lettersSorterRoundedContainerWithBorder.
-	vowels addEventHandler: (BlDropHandler new acceptItemsSuchThat: [ :aDragItem :aDropArea | aDragItem sourceElement parent ~~ aDropArea ];
+	vowels background: Color lightRed.
+	vowels addEventHandler: (BlDropHandler new 
+			 acceptItemsSuchThat: [ :aDragItem :aDropArea | aDragItem sourceElement parent ~~ aDropArea ];
 			 acceptDomainObjectsSuchThat: [ :anObject | anObject isCharacter and: [ anObject isVowel ] ];
 			 whenDroppedDo: 
 				[ :anItemsDroppedEvent | anItemsDroppedEvent currentTarget addChildren:
@@ -53,6 +55,7 @@ BlDragAndDropExamples class >> lettersSorter [
 						[ :eachDragItem | self lettersSorterDraggableLetterFor: eachDragItem domainObject ]) ]).
 
 	consonants := self lettersSorterRoundedContainerWithBorder.
+	consonants background: Color lightBlue.
 	consonants addEventHandler: (BlDropHandler new
 			 acceptItemsSuchThat: [ :aDragItem :aDropArea | aDragItem sourceElement parent ~~ aDropArea ];
 			 acceptDomainObjectsSuchThat: [ :anObject | anObject isCharacter and: [ anObject isVowel not ] ];

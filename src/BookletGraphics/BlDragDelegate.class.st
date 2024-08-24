@@ -30,10 +30,8 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 			                     | aPreviewBounds aSourceBounds aPreviewElement |
 			                     aPreviewElement := aDragItem sourceElement.
 
-			                     aPreviewBounds := aPreviewElement bounds
-				                                       inSpace.
-			                     aSourceBounds := aDragItem sourceElement
-				                                      bounds inSpace.
+			                     aPreviewBounds := aPreviewElement bounds inSpace.
+			                     aSourceBounds := aDragItem sourceElement bounds inSpace.
 
 			                     BlNumberTransition new
 				                     from: aPoint;
