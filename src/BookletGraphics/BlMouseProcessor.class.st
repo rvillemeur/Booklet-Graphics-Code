@@ -518,8 +518,8 @@ BlMouseProcessor >> processDragEnd: aMouseUpEvent [
 		description: [ 'When we drag something it can not be nil' ].
 
 	aMouseUpEvent primaryButtonPressed ifFalse: [ ^ self ].
-	self fireAsDragEndEvent: aMouseUpEvent.
 	self fireAsDropEvent: aMouseUpEvent.
+	self fireAsDragEndEvent: aMouseUpEvent.
 	currentDragTarget := nil.
 	dndInProgress := false.
 	lastOverTarget := nil.
