@@ -118,7 +118,9 @@ BlSpaceEventListener >> spaceDragCancelEvent: anEvent [
 		at: anEvent position
 		in: self space root.
 
-	dragContainerElement ifNotNil: [ :anElement | anElement removeFromParent ].
+"TODO
+NEED TO BETTER WORK ON Element handling when drang&drop is cancelec"
+	"dragContainerElement ifNotNil: [ :anElement | anElement removeFromParent ]."
 	dragContainerElement := nil.
 ]
 
@@ -173,6 +175,9 @@ BlSpaceEventListener >> spaceDragDropEvent: anEvent [
 		drop: aDragDelegate items
 		at: aPosition
 		in: anEvent element.
+"		theRejectedItems first sourceElement remove.
+	theRejectedItems first sourceElement parent addChild: theRejectedItems first sourceElement."
+
 	aDragDelegate items: theRejectedItems
 ]
 

@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'items',
 		'dragArea',
-		'offset'
+		'offset',
+		'parent'
 	],
 	#category : 'BookletGraphics-BlocDragNDrop',
 	#package : 'BookletGraphics',
@@ -18,12 +19,13 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 	| aCancelAnimation |
 	self items ifEmpty: [ ^ self ].
 
+"self halt."
 	self items do: [ :eachItem |
 		| aPreviewElement |
 		aPreviewElement := eachItem sourceElement.
 		aPreviewElement removeFromParent.
 		aPreviewElement position: aPoint.
-		aParentElement addChild: aPreviewElement ].
+		parent addChild: aPreviewElement ].
 
 	aCancelAnimation := BlParallelAnimation withAll:
 		                    (self items collect: [ :aDragItem |
@@ -41,11 +43,11 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 				                     easing: (BlDecelerateInterpolator factor: 2);
 				                     duration: 350 milliSeconds;
 				                     onStepDo: [ :aPosition |
-					                     aPreviewElement position: aPosition ];
-				                     onFinishedDo: [
-					                     aPreviewElement removeFromParent ] ]).
+					                     aPreviewElement position: aPosition ]";"
+				                     "onFinishedDo: [
+					                     aPreviewElement removeFromParent ]" ]).
 
-	aParentElement addAnimation: aCancelAnimation
+	parent addAnimation: aCancelAnimation
 
 	"didn't include element state in my code picking"
 	"self items do: [ :each |
@@ -56,6 +58,11 @@ BlDragDelegate >> cancel: aDraggedContainer at: aPoint in: aParentElement [
 { #category : 'drag and drop' }
 BlDragDelegate >> drag: aDraggedContainer to: aPoint [
 	"Drag a container with all previews to a given point in the parent coordinate of the container"
+
+	"horizontal drag&drop, used by GToolkit to reorder tabs on top of its interface"
+
+	"aDraggedContainer position:
+		(aPoint - offset) x @ aDraggedContainer measuredBounds position y"
 
 	aDraggedContainer position: aPoint - offset
 ]
@@ -131,4 +138,16 @@ BlDragDelegate >> offset [
 BlDragDelegate >> offset: anObject [
 
 	offset := anObject
+]
+
+{ #category : 'accessing' }
+BlDragDelegate >> parent [
+
+	^ parent
+]
+
+{ #category : 'accessing' }
+BlDragDelegate >> parent: anObject [
+
+	parent := anObject
 ]
