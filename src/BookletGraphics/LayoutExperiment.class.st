@@ -1484,6 +1484,56 @@ LayoutExperiment class >> zIndexExample [
 ]
 
 { #category : 'examples' }
+LayoutExperiment class >> zIndexExampleWithSubElement [
+
+	<sampleInstance>
+	| container elt1 elt2 elt3 elt4 space |
+	space := BlSpace new.
+
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             size: 150 @ 150;
+		             background: Color lightGray.
+
+	elt1 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 100 asPoint;
+		        zIndex: 1;
+		        background: Color black.
+	elt2 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 100 asPoint;
+		        zIndex: 2;
+		        position: 10 @ 10;
+		        background: Color blue.
+	elt3 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 100 asPoint;
+		        zIndex: -1;
+		        position: 20 @ 20;
+		        background: Color red.
+
+"this won't show up, it'll be hidden by the blue element"
+	elt4 := BlElement new
+		        geometry: BlCircleGeometry new;
+		        size: 20 asPoint;
+		        zIndex: 3;
+		        position: 20 @ 20;
+		        background: Color yellow.
+
+	elt3 addChild: elt4.
+	container addChildren: {
+			elt1.
+			elt2.
+			elt3 }.
+
+
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : 'examples' }
 LayoutExperiment class >> zoomLayoutExample [
 
 	<sampleInstance>

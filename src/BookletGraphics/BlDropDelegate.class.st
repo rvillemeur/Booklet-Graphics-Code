@@ -4,9 +4,6 @@ Class {
 	#instVars : [
 		'acceptConditions'
 	],
-	#classVars : [
-		'BlItemsEnteredEvent'
-	],
 	#category : 'BookletGraphics-BlocDragNDrop',
 	#package : 'BookletGraphics',
 	#tag : 'BlocDragNDrop'
@@ -28,9 +25,9 @@ BlDropDelegate >> acceptConditions: aCollectionOfBlockClosures [
 BlDropDelegate >> dragged: aDragContainerElement items: aCollectionOfDragItems at: aPosition offset: anOffset in: anElement [
 
 	| doesAccept |
-	doesAccept := aCollectionOfDragItems anySatisfy: [ :eachDragItem |
-		              self shouldAccept: eachDragItem in: anElement ].
+	doesAccept := aCollectionOfDragItems anySatisfy: [ :eachDragItem |self shouldAccept: eachDragItem in: anElement ].
 	doesAccept ifFalse: [ ^ self ].
+	
 	anElement dispatchEvent: (BlItemsDraggedEvent new
 			 dragContainer: aDragContainerElement;
 			 items: aCollectionOfDragItems;
@@ -68,21 +65,13 @@ BlDropDelegate >> drop: aCollectionOfDragItems at: aPosition in: anElement [
 
 { #category : 'drag and drop' }
 BlDropDelegate >> enter: aCollectionOfDragItems at: aPosition in: anElement [
-"BlItemsEnteredEvent is not completed, checking how it's used"
 
-
-	"| doesAccept |
-	doesAccept := aCollectionOfDragItems anySatisfy: [ :eachDragItem |
-		              self shouldAccept: eachDragItem in: anElement ].
-	anElement dispatchEvent: (BlItemsEnteredEvent new
-			 items: aCollectionOfDragItems;
-			 position: (anElement globalPointToLocal: aPosition);
-			 mayAcceptItems: doesAccept)"
+	| doesAccept |
+	doesAccept := aCollectionOfDragItems anySatisfy: [ :eachDragItem | self shouldAccept: eachDragItem in: anElement ]
 ]
 
 { #category : 'asserting' }
 BlDropDelegate >> shouldAccept: aDragItem in: anElement [
 
-	^ acceptConditions allSatisfy: [ :eachCondition |
-		  eachCondition cull: aDragItem cull: anElement ]
+	^ acceptConditions allSatisfy: [ :eachCondition | eachCondition cull: aDragItem cull: anElement ]
 ]

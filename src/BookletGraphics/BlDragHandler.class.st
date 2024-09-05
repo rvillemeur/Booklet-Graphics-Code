@@ -36,6 +36,7 @@ BlDragHandler >> dragStartEvent: anEvent [
 	aDragDelegate := BlDragDelegate new.
 	aDragDelegate items: { self createDragItemFor: anEvent currentTarget }.
 	aDragDelegate offset: anEvent localPosition.
+	aDragDelegate parent: anEvent currentTarget parent.
 
 	dragAreaBlock
 		ifNotNil: [ :aBlock |

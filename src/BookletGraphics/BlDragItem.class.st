@@ -16,9 +16,10 @@ Class {
 BlDragItem >> createDraggedElement [
 	<return: #BlElement>
 
-	^ draggedElementStencil
+"	^ draggedElementStencil
 		dragItem: self;
-		build
+		build"
+		^self
 ]
 
 { #category : 'accessing' }
@@ -66,4 +67,5 @@ BlDragItem >> stencil [
 { #category : 'accessing' }
 BlDragItem >> stencil: aBlDragItemStencil [
 	"draggedElementStencil := aBlDragItemStencil asStencilBuilder: BlDragItemStencil"
+	draggedElementStencil := aBlDragItemStencil
 ]

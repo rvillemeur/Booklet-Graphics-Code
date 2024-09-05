@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfBookletGraphics }
+Package { #name : 'BaselineOfBookletGraphics' }
