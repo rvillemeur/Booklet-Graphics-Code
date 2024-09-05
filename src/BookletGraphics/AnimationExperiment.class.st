@@ -159,6 +159,34 @@ AnimationExperiment class >> crossElement [
 ]
 
 { #category : 'examples' }
+AnimationExperiment class >> minimalAnimation [
+
+	<sampleInstance>
+	| element animation |
+	element := BlElement new
+		           size: 150 @ 150;
+		           background: Color red.
+
+	animation := BlAnimation new
+		             beInfinite;
+		             delay: 10 seconds;
+		             duration: 5 seconds.
+
+	element addAnimation: animation.
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationLoopDoneEvent
+			 do: [ :anEvent | element opacity: 0.0 ]).
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent | element opacity: anEvent progress ]).
+
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
 AnimationExperiment class >> opacityAnimation [
 
 	<sampleInstance>
