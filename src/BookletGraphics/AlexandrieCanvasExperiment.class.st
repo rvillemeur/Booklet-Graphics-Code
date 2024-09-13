@@ -164,7 +164,47 @@ AlexandrieCanvasExperiment class >> backGround4 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> borderPathPaint1 [
+AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsCentered [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 25 @ 25;
+			lineTo: 75 @ 25;
+			lineTo: 75 @ 75;
+			lineTo: 25 @ 75;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.5) ].
+
+	canvas borderPathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 25;
+			lineTo: 75 @ 50;
+			lineTo: 50 @ 75;
+			lineTo: 25 @ 50;
+			closePath ].
+	canvas setOutskirtsCentered   .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 4 6 ) offset: 2;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 4 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsInside [
 
 	<sampleInstance>
 	| canvas |
@@ -204,7 +244,7 @@ AlexandrieCanvasExperiment class >> borderPathPaint1 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> borderPathPaint2 [
+AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsOutside [
 
 	<sampleInstance>
 	| canvas |
@@ -720,7 +760,7 @@ AlexandrieCanvasExperiment class >> maskWithPrivateContext [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> pathPaint1 [
+AlexandrieCanvasExperiment class >> pathPaintOutskirtsCentered [
 
 	<sampleInstance>
 	| canvas |
@@ -738,11 +778,77 @@ AlexandrieCanvasExperiment class >> pathPaint1 [
 	canvas setBackgroundWith: [
 		canvas setSourceColor: (Color yellow alpha: 0.9) ].
 
-	canvas setOutskirtsCentered.
+	canvas setOutskirtsCentered .
 	canvas setBorderBlock: [
 		canvas
 			setSourceColor: Color red;
-			setDashes: #( 4 6 ) offset: 2;
+			setDashes: #( 20 10 10 10  ) offset: 0;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 4 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> pathPaintOutskirtsInside [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 25 @ 25;
+			lineTo: 75 @ 25;
+			lineTo: 75 @ 75;
+			lineTo: 25 @ 75;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsInside .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 20 10 10 10  ) offset: 0;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 4 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> pathPaintOutskirtsOutside [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 100 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 25 @ 25;
+			lineTo: 75 @ 25;
+			lineTo: 75 @ 75;
+			lineTo: 25 @ 75;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsOutside .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 20 10 10 10  ) offset: 0;
 			setJoinRound;
 			setCapSquare;
 			setBorderWidth: 4 ].
