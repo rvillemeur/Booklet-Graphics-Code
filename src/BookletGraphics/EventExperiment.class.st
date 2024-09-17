@@ -538,6 +538,46 @@ EventExperiment class >> exampleWithEvent [
 ]
 
 { #category : 'examples' }
+EventExperiment class >> exampleWithFullDragFullAndDropEvent [
+
+	<sampleInstance>
+| source1 source2 target space offset |
+space := BlSpace new.
+source1 := BlElement new size: 100 @ 100; background: Color red; border: (BlBorder paint: Color gray width: 2); position: 0@0.
+source2 := BlElement new size: 100 @ 100; background: Color purple; border: (BlBorder paint: Color gray width: 2); position: 150@0.
+target := BlElement new size: 100 @ 100; background: Color blue; border: (BlBorder paint: Color gray width: 2); position: 500 @ 500.
+
+space root addChildren: { source1. source2. target. }.
+
+source1 addEventHandlerOn: BlDragStartEvent do: [ :event | event consumed: true. self inform: 'source1 BlStartDragEvent'. 
+	offset := event position - source1 position. 
+	source1 removeFromParent.].
+source1 addEventHandlerOn: BlDragEndEvent do: [ :event | event consumed: true. self inform: 'source1 BlDragEndEvent'. 	 ].
+source1 addEventHandlerOn: BlDragEvent do: [ :event | event consumed: true. "self inform:  'source1 BlDragEvent'."
+	source1 position: event position - offset.
+	source1 hasParent ifFalse: [space root addChild: source1].
+	source1 preventMeAndChildrenMouseEvents ].
+
+source2 addEventHandlerOn: BlDragStartEvent do: [ :event | event consumed: true. self inform: 'source2 BlStartDragEvent'. 
+	offset := event position - source2 position.
+	source2  removeFromParent.].
+source2 addEventHandlerOn: BlDragEndEvent do: [ :event | event consumed: true. self inform: 'source2 BlDragEndEvent'. ].
+source2 addEventHandlerOn: BlDragEvent do: [ :event | event consumed: true. "self inform:  'source BlDragEvent'."
+	source2 position: event position - offset.
+	source2 hasParent ifFalse: [space root addChild: source2].
+	source2 preventMeAndChildrenMouseEvents ].
+
+target addEventHandlerOn: BlDropEvent do: [ :event | event consumed: true. self inform: 'target BlDropEvent'.
+	event gestureSource background paint color = (Color red)
+			ifTrue: [ self inform: 'drop accepted' ]
+			ifFalse: [ self inform: 'drop rejected'. event gestureSource position: 100 @ 400; allowMeAndChildrenMouseEvents] ].
+target addEventHandlerOn: BlDragEnterEvent do: [ :event | event consumed: true. self inform: 'target BlDragEnterEvent' ].
+target addEventHandlerOn: BlDragLeaveEvent do: [ :event | event consumed: true. self inform: 'target BlDragLeaveEvent' ].
+
+space show
+]
+
+{ #category : 'examples' }
 EventExperiment class >> keyboardKeyAndSimulationExample [
 
 	<sampleInstance>
