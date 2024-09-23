@@ -478,6 +478,256 @@ AlexandrieCanvasExperiment class >> example1 [
 ]
 
 { #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineCapButt [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 4 16 ) offset: 2;
+			setJoinRound;
+			setCapButt ;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineCapRound [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 4 16 ) offset: 2;
+			setJoinRound;
+			setCapRound ;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineCapSquare [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			closePath ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 4 16 ) offset: 2;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineCapSquareWithOutskirtsInside [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 100.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			closePath ].
+
+	canvas borderPathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			closePath ].
+		
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsInside .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setDashes: #( 4 16 ) offset: 2;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineJoinBevel [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 200.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			lineTo: 150@150 ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered.
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setJoinBevel ;
+			setCapSquare;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineJoinMiterLimit0 [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 200.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			lineTo: 150@150 ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered.
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setJoinMiter: 0 ;
+			setCapSquare;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineJoinMiterLimit10 [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 200.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			lineTo: 150@150 ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsInside .
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setJoinMiter: 10 ;
+			setCapSquare;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCanvasExperiment class >> exampleLineJoinRound [
+
+	<sampleInstance>
+	| canvas |
+	canvas := AeCanvas extent: 200 @ 200.
+	canvas clear: Color white.
+
+	canvas pathFactory: [ :cairoContext |
+		cairoContext
+			moveTo: 50 @ 50;
+			lineTo: 150 @ 50;
+			lineTo: 150@150 ].
+
+	canvas setBackgroundWith: [
+		canvas setSourceColor: (Color yellow alpha: 0.9) ].
+
+	canvas setOutskirtsCentered.
+	canvas setBorderBlock: [
+		canvas
+			setSourceColor: Color red;
+			setJoinRound;
+			setCapSquare;
+			setBorderWidth: 10 ].
+
+	canvas drawFigure.
+
+	^ canvas asForm
+]
+
+{ #category : 'examples' }
 AlexandrieCanvasExperiment class >> fillPaint2 [
 
 	<sampleInstance>

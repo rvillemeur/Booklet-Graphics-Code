@@ -78,8 +78,7 @@ BackgroundAndBorderExperiment class >> exampleLineCapButt [
 
 	<sampleInstance>
 	| container vertices referenceLine capLine |
-	container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2);
-	background: Color white.
+	container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2); background: Color white.
 	vertices := {
 		            (50 @ 50).
 		            (150 @ 50) }.
