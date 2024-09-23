@@ -74,6 +74,224 @@ BackgroundAndBorderExperiment class >> box: element text: aText [
 ]
 
 { #category : 'examples' }
+BackgroundAndBorderExperiment class >> exampleLineCapButt [
+
+	<sampleInstance>
+	| container vertices referenceLine capLine |
+	container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2);
+	background: Color white.
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50) }.
+
+	referenceLine := (BlPolylineGeometry vertices: vertices) asElement.
+	referenceLine border: (BlBorder paint: Color black width: 5).
+
+	capLine := (BlPolylineGeometry vertices: vertices) asElement.
+	capLine border: (BlBorder builder
+			 paint: (Color pink alpha: 0.5);
+			 width: 50;
+			 lineCap: BlStrokeLineCap butt;
+			 build).
+
+	container addChildren: {
+			referenceLine.
+			capLine }.
+	^ container 
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> exampleLineCapRound [
+
+	<sampleInstance>
+	| container vertices referenceLine capLine |
+		container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2); background: Color white.
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50) }.
+
+	referenceLine := (BlPolylineGeometry vertices: vertices) asElement.
+	referenceLine border: (BlBorder paint: Color black width: 5).
+
+	capLine := (BlPolylineGeometry vertices: vertices) asElement.
+	capLine border: (BlBorder builder
+			 paint: (Color pink alpha: 0.5);
+			 width: 50;
+			 lineCap: BlStrokeLineCap round;
+			 build).
+
+	container addChildren: {
+			referenceLine.
+			capLine }.
+	^ container
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> exampleLineCapSquare [
+
+	<sampleInstance>
+	| container vertices referenceLine capLine |
+		container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2); background: Color white.
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50) }.
+
+	referenceLine := (BlPolylineGeometry vertices: vertices) asElement.
+	referenceLine border: (BlBorder paint: Color black width: 5).
+
+	capLine := (BlPolylineGeometry vertices: vertices) asElement.
+	capLine border: (BlBorder builder
+			 paint: (Color pink alpha: 0.5);
+			 width: 50;
+			 lineCap: BlStrokeLineCap square;
+			 build).
+
+	container addChildren: {
+			referenceLine.
+			capLine }.
+	^ container
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> exampleLineJoinBevel [
+
+	<sampleInstance>
+	| container vertices referenceLine capLine |
+		container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2); background: Color white.
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50).
+		            (150 @ 150) }.
+
+	referenceLine := (BlPolylineGeometry vertices: vertices) asElement.
+	referenceLine border: (BlBorder paint: Color black width: 5).
+
+	capLine := (BlPolylineGeometry vertices: vertices) asElement.
+	capLine border: (BlBorder builder
+			 paint: (Color pink alpha: 0.5);
+			 width: 15;
+			lineJoin: BlStrokeLineJoin bevel;
+			 lineCap: BlStrokeLineCap square;
+			 build).
+
+	container addChildren: {
+			referenceLine.
+			capLine }.
+	^ container
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> exampleLineJoinMiter [
+
+	<sampleInstance>
+	| container vertices referenceLine capLine |
+		container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2); background: Color white.
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50).
+		            (150 @ 150) }.
+
+	referenceLine := (BlPolylineGeometry vertices: vertices) asElement.
+	referenceLine border: (BlBorder paint: Color black width: 5).
+
+	capLine := (BlPolylineGeometry vertices: vertices) asElement.
+	capLine border: (BlBorder builder
+			 paint: (Color pink alpha: 0.5);
+			 width: 25;
+			lineJoin: BlStrokeLineJoin miter;
+			 lineCap: BlStrokeLineCap square;
+			 build).
+
+	container addChildren: {
+			referenceLine.
+			capLine }.
+	^ container
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> exampleLineJoinRound [
+
+	<sampleInstance>
+	| container vertices referenceLine capLine |
+		container := BlElement new size: 200@200; border: (BlBorder paint: Color black width: 2); background: Color white.
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50).
+		            (150 @ 150) }.
+
+	referenceLine := (BlPolylineGeometry vertices: vertices) asElement.
+	referenceLine border: (BlBorder paint: Color black width: 5).
+
+	capLine := (BlPolylineGeometry vertices: vertices) asElement.
+	capLine border: (BlBorder builder
+			 paint: (Color pink alpha: 0.5);
+			 width: 15;
+				lineJoin: BlStrokeLineJoin round;
+			 lineCap: BlStrokeLineCap square;
+			 build).
+
+	container addChildren: {
+			referenceLine.
+			capLine }.
+	^ container
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> multipleElementCapExample [
+
+	<sampleInstance>
+	| container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+	container addChild:
+		(self box: self exampleLineCapButt text: 'cap butt').
+	container addChild:
+		(self box: self exampleLineCapRound text: 'cap round').
+	container addChild:
+		(self box: self exampleLineCapSquare text: 'cap square').
+
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : 'examples' }
+BackgroundAndBorderExperiment class >> multipleElementJoinExample [
+
+	<sampleInstance>
+	| container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 3);
+		             padding: (BlInsets all: 3);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 3);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+	container addChild:
+		(self box: self exampleLineJoinBevel text: 'join bevel').
+	container addChild:
+		(self box: self exampleLineJoinRound text: 'join round').
+	container addChild:
+		(self box: self exampleLineJoinMiter text: 'join miter').
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleElementOutskirts [
 
 	<sampleInstance>
