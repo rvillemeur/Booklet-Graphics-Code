@@ -236,6 +236,22 @@ BackgroundAndBorderExperiment class >> exampleLineJoinRound [
 ]
 
 { #category : 'examples' }
+BackgroundAndBorderExperiment class >> externalBackgroundImage [
+	"not working currently"
+
+	<sampleInstance>
+	| image element |
+	image := ImageReadWriter formFromStream:
+		         'C:\devzone\EventPropagation.png' asFileReference
+			         binaryReadStream.
+	element := BlElement new
+		           background: (BlImageBackground image: image);
+		           border: (BlBorder paint: Color lightGray width: 5);
+		           size: 500 @ 500.
+	^ element
+]
+
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> multipleElementCapExample [
 
 	<sampleInstance>
