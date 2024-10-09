@@ -171,7 +171,7 @@ Mortgage >> inspectAmortizationChart [
 	legend build.
 
 
-	^ SpRoassal3InspectorPresenter new
+	^ SpRoassalInspectorPresenter new
 		  canvas: chart canvas;
 		  yourself
 ]
