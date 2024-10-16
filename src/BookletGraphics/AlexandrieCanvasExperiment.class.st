@@ -9,6 +9,95 @@ Class {
 	#tag : 'Bloc'
 }
 
+{ #category : 'as yet unclassified' }
+AlexandrieCanvasExperiment class >> AllBackgroundExample [
+
+	<sampleInstance>
+	| container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 5);
+		             padding: (BlInsets all: 5);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 5);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+	"size: 450 @ 150;"
+
+	container addChild:
+		(self box: self backGround1 text: 'Solid Color').
+	container addChild:
+		(self box: self backGround2 text: 'Form picture').
+	container addChild:
+		(self box: self backGround3 text: 'linear gradient').
+		container addChild:
+		(self box: self backGround4 text: 'radial gradient').
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : 'as yet unclassified' }
+AlexandrieCanvasExperiment class >> AllLineCapExample [
+
+	<sampleInstance>
+	| container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 5);
+		             padding: (BlInsets all: 5);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 5);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+	"size: 450 @ 150;"
+
+	container addChild:
+		(self box: self exampleLineCapRound text: 'line cap round').
+	container addChild:
+		(self box: self exampleLineCapSquare text: 'line cap square').
+	container addChild:
+		(self box: self exampleLineCapButt text: 'line cap butt').
+	space root addChild: container.
+	space show.
+	^ space
+]
+
+{ #category : 'as yet unclassified' }
+AlexandrieCanvasExperiment class >> AllLineJoinExample [
+
+	<sampleInstance>
+	| container space |
+	space := BlSpace new.
+	container := BlElement new
+		             geometry: BlRectangleGeometry new;
+		             margin: (BlInsets all: 5);
+		             padding: (BlInsets all: 5);
+		             layout: BlLinearLayout horizontal;
+		             background: Color lightGray;
+		             border: (BlBorder paint: Color black width: 5);
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+	"size: 450 @ 150;"
+
+	container addChild:
+		(self box: self exampleLineJoinRound text: 'line cap round').
+	container addChild:
+		(self box: self exampleLineJoinBevel text: 'line cap square').
+	container addChild:
+		(self box: self exampleLineJoinMiterLimit0 text: 'line cap butt').
+	space root addChild: container.
+	space show.
+	^ space
+]
+
 { #category : 'examples' }
 AlexandrieCanvasExperiment class >> PaintAndClip1 [
 
@@ -47,17 +136,17 @@ AlexandrieCanvasExperiment class >> backGround1 [
 
 	<sampleInstance>
 	| canvas |
-	canvas := AeCanvas extent: 100 @ 100.
+	canvas := AeCanvas extent: 500 @ 500.
 	canvas clear: Color white.
 
 
 "keep a buffer of 4, so we can still see outskirts outside"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext
-			moveTo: 4 @ 4;
-			lineTo: 96 @ 4;
-			lineTo: 96 @ 96;
-			lineTo: 4 @ 96;
+			moveTo: 20 @ 20;
+			lineTo: 480 @ 20;
+			lineTo: 480 @ 480;
+			lineTo: 20 @ 480;
 			closePath ].
 
 
@@ -74,7 +163,7 @@ AlexandrieCanvasExperiment class >> backGround2 [
 
 	<sampleInstance>
 	| canvas form |
-	canvas := AeCanvas extent: 100 @ 100.
+	canvas := AeCanvas extent: 500 @ 500.
 	canvas clear: Color white.
 	canvas setBorderOff.
 
@@ -96,17 +185,17 @@ AlexandrieCanvasExperiment class >> backGround3 [
 
 	<sampleInstance>
 	| canvas |
-	canvas := AeCanvas extent: 100 @ 100.
+	canvas := AeCanvas extent: 500 @ 500.
 	canvas clear: Color white.
 	canvas setBorderOff.
 
 	"keep a buffer of 4, so we can still see outskirts outside"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext
-			moveTo: 4 @ 4;
-			lineTo: 96 @ 4;
-			lineTo: 96 @ 96;
-			lineTo: 4 @ 96;
+			moveTo: 20 @ 20;
+			lineTo: 480 @ 20;
+			lineTo: 480@ 480;
+			lineTo: 20 @ 480;
 			closePath ].
 
 
@@ -117,7 +206,7 @@ AlexandrieCanvasExperiment class >> backGround3 [
 						(0 -> Color red).
 						(1 -> Color black) }
 				start: 0 @ 0
-				end: 100 @ 100 ]
+				end: 500 @ 500 ]
 		alpha: 0.5.
 
 
@@ -131,17 +220,17 @@ AlexandrieCanvasExperiment class >> backGround4 [
 
 	<sampleInstance>
 	| canvas |
-	canvas := AeCanvas extent: 100 @ 100.
+	canvas := AeCanvas extent: 500 @ 500.
 	canvas clear: Color white.
 	canvas setBorderOff.
 
 	"keep a buffer of 4, so we can still see outskirts outside"
 	canvas pathFactory: [ :cairoContext |
 		cairoContext
-			moveTo: 4 @ 4;
-			lineTo: 96 @ 4;
-			lineTo: 96 @ 96;
-			lineTo: 4 @ 96;
+			moveTo: 20 @ 20;
+			lineTo: 480 @ 20;
+			lineTo: 480@ 480;
+			lineTo: 20 @ 480;
 			closePath ].
 
 
@@ -152,9 +241,9 @@ AlexandrieCanvasExperiment class >> backGround4 [
 						(0 -> Color red).
 						(1 -> Color black) }
 				innerCenter: 50 @ 50
-				innerRadius: 50
-				outerCenter: 80 @ 80
-				outerRadius:  0 ]
+				innerRadius: 500
+				outerCenter: 480 @ 480
+				outerRadius:  30 ]
 		alpha: 0.95.
 
 
@@ -281,6 +370,52 @@ AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsOutside [
 	canvas drawFigure.
 
 	^ canvas asForm
+]
+
+{ #category : 'examples - helpers' }
+AlexandrieCanvasExperiment class >> box: element text: aText [
+
+	| container img elt1 elt2 text |
+	container := BlElement new
+		             layout: BlLinearLayout vertical;
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	elt1 := BlElement new
+		        layout: BlFrameLayout new;
+		        constraintsDo: [ :c |
+			        c horizontal fitContent.
+			        c vertical fitContent ].
+
+	img := BlElement new background: (BlImageBackground image: element); size: element extent.
+	img constraintsDo: [ :c |
+		c frame horizontal alignCenter.
+		c frame vertical alignCenter ].
+
+	elt1 addChild: img.
+
+
+	elt2 := BlElement new
+		        layout: BlFrameLayout new;
+		        padding: (BlInsets all: 3);
+		        constraintsDo: [ :c |
+			        c horizontal matchParent.
+			        c vertical matchParent ].
+
+	text := BlTextElement new
+		        position: 5 @ 5;
+		        text: (aText asRopedText attributes:
+					         { (BlTextForegroundAttribute paint: Color black) . (BlFontSizeAttribute size: 18)});
+		        constraintsDo: [ :c |
+			        c frame horizontal alignCenter.
+			        c frame vertical alignCenter ].
+	elt2 addChild: text.
+
+	container addChildren: {
+			elt1.
+			elt2 }.
+	^ container
 ]
 
 { #category : 'examples' }
@@ -443,7 +578,7 @@ AlexandrieCanvasExperiment class >> example1 [
 		scanDirectory: AeFilesystemResources fontsDirectory;
 		scanEmbeddedFonts.
 
-	fontHeight := 25.
+	fontHeight := 23.
 	aFace := aManager
 		         detectFamilyName: 'Inria Serif'
 		         slant: AeFontSlant normal
@@ -465,13 +600,13 @@ AlexandrieCanvasExperiment class >> example1 [
 	aeCanvas pathTranslate: 0 @ (fontHeight * 1.1).
 	aeCanvas
 		setSourceLinearPatternStops: {
-				(0 -> (Color white alpha: 0.9)).
+				(0 -> (Color red alpha: 0.9)).
 				(1 -> (Color black alpha: 0.9)) }
 		start: 0 @ 0
 		end: 100 @ 150.
 	aeCanvas
 		drawGlyphs:
-		(cairoScaledFont glyphArrayForString: 'Hello Alexandrie in Pharo')
+		(cairoScaledFont glyphArrayForString: 'Hello AeCanvas in Pharo Bloc')
 		font: cairoScaledFont.
 
 	^ aeCanvas asForm
@@ -499,7 +634,7 @@ AlexandrieCanvasExperiment class >> exampleLineCapButt [
 		canvas
 			setSourceColor: Color red;
 			setDashes: #( 4 16 ) offset: 2;
-			setJoinRound;
+			setJoinBevel ;
 			setCapButt ;
 			setBorderWidth: 10 ].
 
@@ -561,7 +696,7 @@ AlexandrieCanvasExperiment class >> exampleLineCapSquare [
 		canvas
 			setSourceColor: Color red;
 			setDashes: #( 4 16 ) offset: 2;
-			setJoinRound;
+			setJoinBevel ;
 			setCapSquare;
 			setBorderWidth: 10 ].
 
@@ -884,7 +1019,7 @@ AlexandrieCanvasExperiment class >> mask3 [
 
 	<sampleInstance>
 	| canvas |
-	canvas := AeCanvas extent: 250 @ 250.
+	canvas := AeCanvas extent: 150 @ 150.
 
 	canvas maskGroupWith: [
 		canvas pathTranslate: 10 @ 20.
@@ -1143,7 +1278,7 @@ positions at which those glyphs should be drawn. "
 	string := 'a := A->B->>C <= c|=>d~~>e.'.
 	fontHeight := 22.
 
-	aeCanvas := AeCanvas extent: 1000 @ (fontHeight * 4).
+	aeCanvas := AeCanvas extent: 400 @ (fontHeight * 3).
 	aeCanvas clear: Color white.
 
 	cairoScaledFont := aeCanvas scaledFontForFace: aFace size: fontHeight.
