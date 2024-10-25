@@ -236,6 +236,49 @@ EventExperiment class >> eventExampleMouseMove [
 ]
 
 { #category : 'examples' }
+EventExperiment class >> eventExampleMouseScroll [
+
+	<sampleInstance>
+	| surface elt counter|
+	counter :=1.
+	elt := BlElement new
+		       size: 20 @ 20;
+		       geometry: (BlPolygonGeometry vertices: {
+						        (10 @ 5).
+						        (11.5 @ 9).
+						        (15 @ 9).
+						        (12.5 @ 11).
+						        (13.5 @ 15).
+						        (10 @ 13).
+						        (6.5 @ 15).
+						        (7.5 @ 11).
+						        (5 @ 9).
+						        (8.5 @ 9) });
+		       background: (Color red alpha: 0.5);
+		       border: (BlBorder paint: Color blue width: 1).
+
+	surface := BlElement new
+		           size: 400 @ 400;
+		           geometry: BlSquareGeometry new;
+		           background: (Color pink alpha: 0.2);
+		           border: (BlBorder paint: Color orange width: 4).
+
+	surface addChild: elt.
+	elt position: 200 @200.
+
+	surface addEventHandler: (BlEventHandler
+			 on: BlMouseWheelEvent
+			 do: [ :anEvent |
+				 anEvent consumed: true.
+				 anEvent isScrollDown ifTrue:  [ counter := counter- 0.5 ].
+				anEvent isScrollUp ifTrue:  [ counter := counter + 0.5 ].
+				elt transformDo: [ :t | t scaleBy: counter].]).
+
+	surface openInNewSpace.
+	^ surface
+]
+
+{ #category : 'examples' }
 EventExperiment class >> exampleDragAndRainbow [
 
 	<sampleInstance>
