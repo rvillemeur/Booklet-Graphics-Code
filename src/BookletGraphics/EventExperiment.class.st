@@ -530,7 +530,7 @@ EventExperiment class >> exampleWithDragEvent [
 
 	elt
 		addEventHandlerOn: BlDragEvent
-		do: [ :event | elt position: event position - offset ].
+		do: [ :event | elt position: event position - offset.  event modifiers isAlt ifTrue: [self inform: 'alt']].
 
 
 	space root addChild: elt.
@@ -618,6 +618,21 @@ target addEventHandlerOn: BlDragEnterEvent do: [ :event | event consumed: true. 
 target addEventHandlerOn: BlDragLeaveEvent do: [ :event | event consumed: true. self inform: 'target BlDragLeaveEvent' ].
 
 space show
+]
+
+{ #category : 'examples' }
+EventExperiment class >> exampleWithkeyDownEvent [
+
+	<sampleInstance>
+  BlElement new
+		  size: 200 @ 200;
+		  background: Color red;
+		  addEventHandler: (BlEventHandler
+				   on: BlKeyDownEvent
+				   do: [ :anEvent |
+					   self inform: 'Key down: ' , anEvent key asString ]);
+		  requestFocus;
+		  openInNewSpace
 ]
 
 { #category : 'examples' }
