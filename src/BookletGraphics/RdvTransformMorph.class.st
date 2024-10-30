@@ -44,3 +44,30 @@ pane scroller addMorph: scaler.
 window := pane openInWindow.
 window position: 20@20; extent: 420@420.
 ]
+
+{ #category : 'instance creation' }
+RdvTransformMorph >> transformMorph2 [
+
+
+	scaler := TransformMorph new.
+	scaler extent: 750@750.
+	"scaler scale: 0.1 @ 0.1."
+	scaler addMorph: (CircleMorph new
+				 color: Color cyan;
+				 position: 500 @ 500;
+				 yourself);
+				addMorph: (Morph new
+				 color: Color orange;
+				 position: 50 @ 70;
+				 yourself).
+	scaler scale: 0.5 @ 0.5.
+	scaler angle: 30 degrees.
+
+	pane := ScrollPane new.
+	pane scroller addMorph: scaler.
+
+	window := pane openInWindow.
+	window
+		position: 20 @ 20;
+		extent: 420 @ 420
+]
