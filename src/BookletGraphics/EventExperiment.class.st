@@ -236,6 +236,49 @@ EventExperiment class >> eventExampleMouseMove [
 ]
 
 { #category : 'examples' }
+EventExperiment class >> eventExampleMouseScroll [
+
+	<sampleInstance>
+	| surface elt counter|
+	counter :=1.
+	elt := BlElement new
+		       size: 20 @ 20;
+		       geometry: (BlPolygonGeometry vertices: {
+						        (10 @ 5).
+						        (11.5 @ 9).
+						        (15 @ 9).
+						        (12.5 @ 11).
+						        (13.5 @ 15).
+						        (10 @ 13).
+						        (6.5 @ 15).
+						        (7.5 @ 11).
+						        (5 @ 9).
+						        (8.5 @ 9) });
+		       background: (Color red alpha: 0.5);
+		       border: (BlBorder paint: Color blue width: 1).
+
+	surface := BlElement new
+		           size: 400 @ 400;
+		           geometry: BlSquareGeometry new;
+		           background: (Color pink alpha: 0.2);
+		           border: (BlBorder paint: Color orange width: 4).
+
+	surface addChild: elt.
+	elt position: 200 @200.
+
+	surface addEventHandler: (BlEventHandler
+			 on: BlMouseWheelEvent
+			 do: [ :anEvent |
+				 anEvent consumed: true.
+				 anEvent isScrollDown ifTrue:  [ counter := counter- 0.5 ].
+				anEvent isScrollUp ifTrue:  [ counter := counter + 0.5 ].
+				elt transformDo: [ :t | t scaleBy: counter].]).
+
+	surface openInNewSpace.
+	^ surface
+]
+
+{ #category : 'examples' }
 EventExperiment class >> exampleDragAndRainbow [
 
 	<sampleInstance>
@@ -487,7 +530,7 @@ EventExperiment class >> exampleWithDragEvent [
 
 	elt
 		addEventHandlerOn: BlDragEvent
-		do: [ :event | elt position: event position - offset ].
+		do: [ :event | elt position: event position - offset.  event modifiers isAlt ifTrue: [self inform: 'alt']].
 
 
 	space root addChild: elt.
@@ -575,6 +618,21 @@ target addEventHandlerOn: BlDragEnterEvent do: [ :event | event consumed: true. 
 target addEventHandlerOn: BlDragLeaveEvent do: [ :event | event consumed: true. self inform: 'target BlDragLeaveEvent' ].
 
 space show
+]
+
+{ #category : 'examples' }
+EventExperiment class >> exampleWithkeyDownEvent [
+
+	<sampleInstance>
+  BlElement new
+		  size: 200 @ 200;
+		  background: Color red;
+		  addEventHandler: (BlEventHandler
+				   on: BlKeyDownEvent
+				   do: [ :anEvent |
+					   self inform: 'Key down: ' , anEvent key asString ]);
+		  requestFocus;
+		  openInNewSpace
 ]
 
 { #category : 'examples' }
