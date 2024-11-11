@@ -10,9 +10,9 @@ Class {
 }
 
 { #category : 'event handling' }
-ToMinuteNeedleClockSkin >> installLookEvent: anEvent [
+ToMinuteNeedleClockSkin >> installSkinEvent: anEvent [
 
-	super installLookEvent: anEvent.
+	super installSkinEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e
 			geometry: BlLineGeometry new;

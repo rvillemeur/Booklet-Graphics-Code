@@ -47,17 +47,17 @@ ToClockSkin >> drawClockFrame: e [
 ]
 
 { #category : 'event handling' }
-ToClockSkin >> hoveredLookEvent: anEvent [
+ToClockSkin >> hoveredSkinEvent: anEvent [
 
-	super hoveredLookEvent: anEvent.
+	super hoveredSkinEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e background: (e valueOfTokenNamed: #'clock-background-color-hover')]
 ]
 
 { #category : 'event handling' }
-ToClockSkin >> installLookEvent: anEvent [
+ToClockSkin >> installSkinEvent: anEvent [
 
-	super installLookEvent: anEvent.
+	super installSkinEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e geometry: (BlCircleGeometry new matchExtent: e extent).
 		e border: (BlBorder paint: (e valueOfTokenNamed: #'clock-border-color') width: (e valueOfTokenNamed: #'clock-border-width')).
@@ -71,9 +71,9 @@ ToClockSkin >> installLookEvent: anEvent [
 ]
 
 { #category : 'event handling' }
-ToClockSkin >> leavedLookEvent: anEvent [
+ToClockSkin >> leavedSkinEvent: anEvent [
 
-	super leavedLookEvent: anEvent.
+	super leavedSkinEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e background:
 			(BlBackground paint: (e valueOfTokenNamed: #'clock-background-color')) ]

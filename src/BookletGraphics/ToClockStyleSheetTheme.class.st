@@ -68,14 +68,14 @@ ToClockStyleSheetTheme >> declareClockFrameRules [
 				width: (e valueOfTokenNamed: #'clock-border-width') ].
 
 		self
-			when: ToLeavedLookEvent
+			when: ToLeavedSkinEvent 
 			write: (self property: #background)
 			with: [ :e |
 				BlBackground paint:
 					(e valueOfTokenNamed: #'clock-background-color') ].
 
 		self
-			when: ToHoveredLookEvent
+			when: ToHoveredSkinEvent 
 			write: (self property: #background)
 			with: [ :e |
 				BlBackground paint:
