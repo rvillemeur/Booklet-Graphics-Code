@@ -178,8 +178,8 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 		fillPreserve;
 		sourceColor: Color yellow;
 		lineWidth: 4;
-		antialias: AeCairoAntialias CAIRO_ANTIALIAS_NONE;
-		operator: AeCairoOperator CAIRO_OPERATOR_DARKEN;
+		"antialias: AeCairoAntialias none;"
+		operator: AeCairoOperator darken ;
 		dash: (AeFFIDoubleArray newFrom: #( 8 4 2 )) count: 3 offset: 0;
 		useLineCapRound;
 		stroke.
