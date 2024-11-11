@@ -755,13 +755,12 @@ AlexandrieCairoExperiment class >> maskAndClip2 [
 
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
 		arcCenterX: 180
 		centerY: 60
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
-		sourceColorRGBA: (Color white alpha: 0.7);
+		sourceColor: (Color white alpha: 0.7);
 		clip;
 		mask: pattern;
 		fill.
@@ -784,13 +783,13 @@ AlexandrieCairoExperiment class >> maskAndClip3 [
 
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		arcCenterX: 180
 		centerY: 60
 		radius: 50
 		startAngle: 0
 		endAngle: Float twoPi;
-		sourceColorRGBA: (Color white alpha: 0.7);
+		sourceColor: (Color white alpha: 0.7);
 		clip;
 		mask: pattern;
 		paint.
@@ -813,7 +812,7 @@ AlexandrieCairoExperiment class >> maskAndClip4 [
 
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		arcCenterX: 180
 		centerY: 60
 		radius: 50
@@ -920,6 +919,529 @@ AlexandrieCairoExperiment class >> meshPattern [
 	context
 		source: meshPattern;
 		paint.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorAdd [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator add .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorAtop [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator atop .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorClear [
+"https://www.cairographics.org/operators/ and https://en.wikipedia.org/wiki/Alpha_compositing"
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator clear.
+	"or context setOperatorClear"
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorColorBurn [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator colorBurn .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorColorDodge [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator colorDodge .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDarken [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator darken .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDest [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator dest .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDestAtop [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator destAtop .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDestIn [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator destIn .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDestOut [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator destOut .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDestOver [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator destOver .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorDifference [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator difference .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorExclusion [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator exclusion .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorHSLColor [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator hslColor .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorHSLHue [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator hslHue .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorHSLLuminosity [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator hslLuminosity .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorHSLSaturation [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator hslSaturation .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorHardLight [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator hardLight .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorIn [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator in .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorLighten [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator lighten .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorMultiply [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator multiply .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorOut [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator out .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorOver [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent:  150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator over .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorOverlay [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator overlay .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorSaturate [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator saturate .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorScreen [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator screen .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorSoftLight [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator softLight .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorSource [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent:  150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator source .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> operatorXor [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 120 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color transparent; paint.
+
+	context sourceColorR: 0.7 g: 0 b: 0 a: 0.8; rectangle: (0 @ 0 extent: 120 @ 90); fill.
+
+	context operator: AeCairoOperator xor .
+
+	context sourceColorR: 0 g: 0 b: 0.9 a: 0.4;	rectangle: (40 @ 30 extent: 120 @ 90); fill.
 
 	^ surface asForm
 ]
@@ -1188,6 +1710,44 @@ AlexandrieCairoExperiment class >> textWithoutHarfbuzzWithFontManager [
 						 (1 -> Color darkGray) });
 		fill.
 
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> transformationShear [
+"source of inspiration: https://zetcode.com/gfx/cairo/transformations/ "
+	<sampleInstance>
+	| surface context matrix|
+	surface := AeCairoImageSurface extent: 300 @ 300 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color white ; paint.
+
+	context sourceColorR: 0.6 g: 0.6 b: 0.6 ; rectangle: (20 @ 30 extent: 80 @ 50); fill.
+	matrix := AeCairoMatrix  newX: 0 y:0 sx: 1 sy: 1 shx: 0 shy: 0.5.
+	context matrix: matrix; rectangle: (130 @ 30 extent: 80 @ 50); fill.
+	
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> transformationTranslation [
+"source of inspiration: https://zetcode.com/gfx/cairo/transformations/
+Transformation operations are additive. To isolate one operation from the other one, we can use the cairo_save and cairo_restore functions. The cairo_save function makes a copy of the current state of the drawing context and saves it on an internal stack of saved states. "
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface extent: 150 @ 150 format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	context sourceColor: Color lightGray ; paint.
+
+	context sourceColorR: 0.2 g: 0.3 b: 0.8 ; rectangle: (10 @ 10 extent: 30 @ 30); fill.
+	"The translateBy: function modifies the current transormation matrix by translating the user space origin. "
+	context translateBy: 20@20.
+	context sourceColorR: 0.8 g: 0.3 b: 0.2 ; rectangle: (0 @ 0 extent: 30 @ 30); fill.
+	context translateBy: 30@30.
+	context sourceColorR: 0.8 g: 0.8 b: 0.2 ; rectangle: (0 @ 0 extent: 30 @ 30); fill.
+	context translateBy: 40@40.
+	context sourceColorR: 0.3g: 0.8 b: 0.8 ; rectangle: (0 @ 0 extent: 30 @ 30); fill.
+	
 	^ surface asForm
 ]
 
