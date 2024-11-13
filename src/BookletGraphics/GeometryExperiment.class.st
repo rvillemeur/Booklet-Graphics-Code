@@ -10,45 +10,6 @@ Class {
 }
 
 { #category : 'examples' }
-GeometryExperiment class >> allGeometryExample [
-
-	<sampleInstance>
-	| space root elements  |
-	space := BlSpace new.
-
-	root := BlElement new
-		        border: (BlBorder paint: Color red width: 1);
-		        background: (Color red alpha: 0.2);
-		        layout: BlFlowLayout horizontal;
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical fitContent ].
-
-
-	elements := Dictionary new.
-	elements at: 'annulul' put: self annulus.
-	elements at: 'bezier' put: self bezier.
-	elements at: 'circle' put: self circle.
-	elements at: 'ellipse' put: self ellipse.
-	elements at: 'line' put: self line.
-	elements at: 'polygon' put: self polygon.
-	elements at: 'polyline' put: self polyline.
-	elements at: 'rectangle' put: self rectangle.
-	elements
-		at: 'rounded rectangle'
-		put: self roundedRectangle.
-	elements at: 'square' put: self square.
-	elements at: 'triangle' put: self triangle.
-	elements keysAndValuesDo: [ :key :value |
-		root addChild: (self box: value text: key) ].
-
-	space root addChild: root.
-
-	space show.
-	^ space
-]
-
-{ #category : 'examples' }
 GeometryExperiment class >> annulus [
 
 	<sampleInstance>
@@ -60,14 +21,8 @@ GeometryExperiment class >> annulus [
 				   innerRadius: 0.3;
 				   outerRadius: 0.9);
 		  size: 100 @ 100;
-		  background: self background;
-		  border: self border
-]
-
-{ #category : 'examples - helpers' }
-GeometryExperiment class >> background [
-
-	^ Color yellow
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -79,7 +34,7 @@ GeometryExperiment class >> basicBorder [
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
 				   beLeft);
-		  background: self background;
+		  background: BlocPresentationHelper background;
 		  border: (BlBorder paint: Color red width: 5);
 		  size: 100 @ 100
 ]
@@ -96,58 +51,9 @@ GeometryExperiment class >> bezier [
 						   (75 @ 30).
 						   (95 @ 100) });
 		  size: 100 @ 100;
-		  background: self background;
+		  background: BlocPresentationHelper background;
 		  outskirts: BlOutskirts centered;
-		  border: self border
-]
-
-{ #category : 'examples - helpers' }
-GeometryExperiment class >> border [
-
-	^ BlBorder paint: Color red width: 5
-]
-
-{ #category : 'examples - helpers' }
-GeometryExperiment class >> box: element text: aText [
-|container elt1 elt2 text|
-
-container := BlElement new
-				border: (BlBorder paint: Color blue width: 1);
-		        background: (Color blue alpha: 0.2);
-		        layout: BlLinearLayout vertical ;
-				  constraintsDo: [ :c |
-			           c horizontal fitContent.
-			           c vertical fitContent  ].
-		
-		elt1 := BlElement new
- 					size: 110 @ 110;
-			       background: (Color orange alpha: 0.2);
-			       border: (BlBorder paint: Color orange width: 1);
-			       layout: BlFrameLayout new.
-			
-		element  constraintsDo: [ :c |
-			c frame horizontal alignCenter.
-			c frame vertical alignCenter. ].
-
-		elt1 addChild: element.
-		
-		
-		elt2 := BlElement new
- 					size: 110 @ 25;
-			       background: (Color orange alpha: 0.2);
-			       border: (BlBorder paint: Color orange width: 1);
-			       layout: BlFrameLayout new.
-			
-		text := BlTextElement new
-				      position: 5 @ 5;
-				      text: (aText asRopedText attributes: { (BlTextForegroundAttribute paint: Color black)});
-				constraintsDo: [ :c |
-			c frame horizontal alignCenter.
-			c frame vertical alignCenter. ].
-		elt2 addChild: text.
-
-container addChildren: { elt1 . elt2 }.
-^ container.
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -159,7 +65,7 @@ GeometryExperiment class >> builderBorder [
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
 				   beLeft);
-		  background: self background;
+		  background: BlocPresentationHelper background;
 		  border: (BlBorder builder
 				   paint: Color red;
 				   width: 5;
@@ -176,7 +82,7 @@ GeometryExperiment class >> builderCapButtBorder [
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 100 @ 200;
 				   beLeft);
-		  background: self background;
+		  background: BlocPresentationHelper background;
 		  border: (BlBorder builder
 				   paint: Color red;
 				   width: 5;
@@ -198,7 +104,7 @@ GeometryExperiment class >> builderOpacityBorder [
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
 				   beLeft);
-		  background: self background;
+		  background: BlocPresentationHelper background;
 		  border: (BlBorder builder
 				   paint: Color red;
 				   width: 5;
@@ -215,8 +121,8 @@ GeometryExperiment class >> circle [
 	^ BlElement new
 		  geometry: (BlCircleGeometry new matchExtent: 100 @ 50);
 		  size: 100 @ 100;
-		  background: self background;
-		  border: self border
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -277,8 +183,8 @@ GeometryExperiment class >> ellipse [
 	^ BlElement new
 		  geometry: (BlEllipseGeometry new matchExtent: 100 @ 50);
 		  size: 100 @ 50;
-		  background: self background;
-		  border: self border
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -289,9 +195,9 @@ GeometryExperiment class >> line [
 	^ BlElement new
 		  geometry: (BlLineGeometry from: 10 @ 10 to: 90 @ 90);
 		  size: 100 @ 100;
-		  background: self background;
+		  background: BlocPresentationHelper background;
 		  outskirts: BlOutskirts centered;
-		  border: self border
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -307,8 +213,8 @@ GeometryExperiment class >> polygon [
 						   (90 @ 90).
 						   (90 @ 10) });
 		  size: 100 @ 100;
-		  background: self background;
-		  border: self border
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -324,8 +230,8 @@ GeometryExperiment class >> polyline [
 						   (90 @ 90).
 						   (90 @ 10) });
 		  size: 100 @ 100;
-		  background: self background;
-		  border: self border
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -335,8 +241,8 @@ GeometryExperiment class >> rectangle [
 
 	^ BlElement new
 		  geometry: BlRectangleGeometry new;
-		  background: self background;
-		  border: self border;
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border;
 		  size: 100 @ 70
 ]
 
@@ -347,8 +253,8 @@ GeometryExperiment class >> roundedRectangle [
 
 	^ BlElement new
 		  geometry: (BlRoundedRectangleGeometry cornerRadius: 20);
-		  background: self background;
-		  border: self border;
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border;
 		  size: 100 @ 70
 ]
 
@@ -359,8 +265,8 @@ GeometryExperiment class >> square [
 	^ BlElement new
 		  geometry: (BlSquareGeometry new matchExtent: 70 @ 70);
 		  size: 100 @ 100;
-		  background: self background;
-		  border: self border
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border
 ]
 
 { #category : 'examples' }
@@ -372,8 +278,8 @@ GeometryExperiment class >> triangle [
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
 				   beLeft);
-		  background: self background;
-		  border: self border;
+		  background: BlocPresentationHelper background;
+		  border: BlocPresentationHelper border;
 		  size: 100 @ 100
 ]
 

@@ -2,104 +2,15 @@
 canvas API example as used by Bloc
 "
 Class {
-	#name : 'AlexandrieCanvasExperiment',
+	#name : 'AeCanvasExperiment',
 	#superclass : 'Object',
 	#category : 'BookletGraphics-Bloc',
 	#package : 'BookletGraphics',
 	#tag : 'Bloc'
 }
 
-{ #category : 'as yet unclassified' }
-AlexandrieCanvasExperiment class >> AllBackgroundExample [
-
-	<sampleInstance>
-	| container space |
-	space := BlSpace new.
-	container := BlElement new
-		             geometry: BlRectangleGeometry new;
-		             margin: (BlInsets all: 5);
-		             padding: (BlInsets all: 5);
-		             layout: BlLinearLayout horizontal;
-		             background: Color lightGray;
-		             border: (BlBorder paint: Color black width: 5);
-		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
-	"size: 450 @ 150;"
-
-	container addChild:
-		(self box: self backGround1 text: 'Solid Color').
-	container addChild:
-		(self box: self backGround2 text: 'Form picture').
-	container addChild:
-		(self box: self backGround3 text: 'linear gradient').
-		container addChild:
-		(self box: self backGround4 text: 'radial gradient').
-	space root addChild: container.
-	space show.
-	^ space
-]
-
-{ #category : 'as yet unclassified' }
-AlexandrieCanvasExperiment class >> AllLineCapExample [
-
-	<sampleInstance>
-	| container space |
-	space := BlSpace new.
-	container := BlElement new
-		             geometry: BlRectangleGeometry new;
-		             margin: (BlInsets all: 5);
-		             padding: (BlInsets all: 5);
-		             layout: BlLinearLayout horizontal;
-		             background: Color lightGray;
-		             border: (BlBorder paint: Color black width: 5);
-		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
-	"size: 450 @ 150;"
-
-	container addChild:
-		(self box: self exampleLineCapRound text: 'line cap round').
-	container addChild:
-		(self box: self exampleLineCapSquare text: 'line cap square').
-	container addChild:
-		(self box: self exampleLineCapButt text: 'line cap butt').
-	space root addChild: container.
-	space show.
-	^ space
-]
-
-{ #category : 'as yet unclassified' }
-AlexandrieCanvasExperiment class >> AllLineJoinExample [
-
-	<sampleInstance>
-	| container space |
-	space := BlSpace new.
-	container := BlElement new
-		             geometry: BlRectangleGeometry new;
-		             margin: (BlInsets all: 5);
-		             padding: (BlInsets all: 5);
-		             layout: BlLinearLayout horizontal;
-		             background: Color lightGray;
-		             border: (BlBorder paint: Color black width: 5);
-		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
-	"size: 450 @ 150;"
-
-	container addChild:
-		(self box: self exampleLineJoinRound text: 'line cap round').
-	container addChild:
-		(self box: self exampleLineJoinBevel text: 'line cap square').
-	container addChild:
-		(self box: self exampleLineJoinMiterLimit0 text: 'line cap butt').
-	space root addChild: container.
-	space show.
-	^ space
-]
-
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> PaintAndClip1 [
+AeCanvasExperiment class >> PaintAndClip1 [
 
 	<sampleInstance>
 	| canvas form |
@@ -132,7 +43,7 @@ AlexandrieCanvasExperiment class >> PaintAndClip1 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> backGround1 [
+AeCanvasExperiment class >> backGround1 [
 
 	<sampleInstance>
 	| canvas |
@@ -159,7 +70,7 @@ AlexandrieCanvasExperiment class >> backGround1 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> backGround2 [
+AeCanvasExperiment class >> backGround2 [
 
 	<sampleInstance>
 	| canvas form |
@@ -181,7 +92,7 @@ AlexandrieCanvasExperiment class >> backGround2 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> backGround3 [
+AeCanvasExperiment class >> backGround3 [
 
 	<sampleInstance>
 	| canvas |
@@ -216,7 +127,7 @@ AlexandrieCanvasExperiment class >> backGround3 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> backGround4 [
+AeCanvasExperiment class >> backGround4 [
 
 	<sampleInstance>
 	| canvas |
@@ -253,7 +164,7 @@ AlexandrieCanvasExperiment class >> backGround4 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsCentered [
+AeCanvasExperiment class >> borderPathPaintOutskirtsCentered [
 
 	<sampleInstance>
 	| canvas |
@@ -293,7 +204,7 @@ AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsCentered [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsInside [
+AeCanvasExperiment class >> borderPathPaintOutskirtsInside [
 
 	<sampleInstance>
 	| canvas |
@@ -333,7 +244,7 @@ AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsInside [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsOutside [
+AeCanvasExperiment class >> borderPathPaintOutskirtsOutside [
 
 	<sampleInstance>
 	| canvas |
@@ -372,54 +283,8 @@ AlexandrieCanvasExperiment class >> borderPathPaintOutskirtsOutside [
 	^ canvas asForm
 ]
 
-{ #category : 'examples - helpers' }
-AlexandrieCanvasExperiment class >> box: element text: aText [
-
-	| container img elt1 elt2 text |
-	container := BlElement new
-		             layout: BlLinearLayout vertical;
-		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
-
-	elt1 := BlElement new
-		        layout: BlFrameLayout new;
-		        constraintsDo: [ :c |
-			        c horizontal fitContent.
-			        c vertical fitContent ].
-
-	img := BlElement new background: (BlImageBackground image: element); size: element extent.
-	img constraintsDo: [ :c |
-		c frame horizontal alignCenter.
-		c frame vertical alignCenter ].
-
-	elt1 addChild: img.
-
-
-	elt2 := BlElement new
-		        layout: BlFrameLayout new;
-		        padding: (BlInsets all: 3);
-		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ].
-
-	text := BlTextElement new
-		        position: 5 @ 5;
-		        text: (aText asRopedText attributes:
-					         { (BlTextForegroundAttribute paint: Color black) . (BlFontSizeAttribute size: 18)});
-		        constraintsDo: [ :c |
-			        c frame horizontal alignCenter.
-			        c frame vertical alignCenter ].
-	elt2 addChild: text.
-
-	container addChildren: {
-			elt1.
-			elt2 }.
-	^ container
-]
-
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> clip1 [
+AeCanvasExperiment class >> clip1 [
 
 	<sampleInstance>
 	| canvas form |
@@ -454,7 +319,7 @@ AlexandrieCanvasExperiment class >> clip1 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> clip2 [
+AeCanvasExperiment class >> clip2 [
 
 	<sampleInstance>
 	| canvas form |
@@ -502,7 +367,7 @@ AlexandrieCanvasExperiment class >> clip2 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> clip3 [
+AeCanvasExperiment class >> clip3 [
 
 	<sampleInstance>
 	| canvas form |
@@ -537,7 +402,7 @@ AlexandrieCanvasExperiment class >> clip3 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> example1 [
+AeCanvasExperiment class >> example1 [
 
 	<sampleInstance>
 	| aManager aFace aeCanvas cairoScaledFont fontHeight paint anAlexandrieCanvasExperiment |
@@ -613,7 +478,7 @@ AlexandrieCanvasExperiment class >> example1 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineCapButt [
+AeCanvasExperiment class >> exampleLineCapButt [
 
 	<sampleInstance>
 	| canvas |
@@ -644,7 +509,7 @@ AlexandrieCanvasExperiment class >> exampleLineCapButt [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineCapRound [
+AeCanvasExperiment class >> exampleLineCapRound [
 
 	<sampleInstance>
 	| canvas |
@@ -675,7 +540,7 @@ AlexandrieCanvasExperiment class >> exampleLineCapRound [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineCapSquare [
+AeCanvasExperiment class >> exampleLineCapSquare [
 
 	<sampleInstance>
 	| canvas |
@@ -706,7 +571,7 @@ AlexandrieCanvasExperiment class >> exampleLineCapSquare [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineCapSquareWithOutskirtsInside [
+AeCanvasExperiment class >> exampleLineCapSquareWithOutskirtsInside [
 
 	<sampleInstance>
 	| canvas |
@@ -743,7 +608,7 @@ AlexandrieCanvasExperiment class >> exampleLineCapSquareWithOutskirtsInside [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineJoinBevel [
+AeCanvasExperiment class >> exampleLineJoinBevel [
 
 	<sampleInstance>
 	| canvas |
@@ -773,7 +638,7 @@ AlexandrieCanvasExperiment class >> exampleLineJoinBevel [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineJoinMiterLimit0 [
+AeCanvasExperiment class >> exampleLineJoinMiterLimit0 [
 
 	<sampleInstance>
 	| canvas |
@@ -803,7 +668,7 @@ AlexandrieCanvasExperiment class >> exampleLineJoinMiterLimit0 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineJoinMiterLimit10 [
+AeCanvasExperiment class >> exampleLineJoinMiterLimit10 [
 
 	<sampleInstance>
 	| canvas |
@@ -833,7 +698,7 @@ AlexandrieCanvasExperiment class >> exampleLineJoinMiterLimit10 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> exampleLineJoinRound [
+AeCanvasExperiment class >> exampleLineJoinRound [
 
 	<sampleInstance>
 	| canvas |
@@ -863,7 +728,7 @@ AlexandrieCanvasExperiment class >> exampleLineJoinRound [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> fillPaint2 [
+AeCanvasExperiment class >> fillPaint2 [
 
 	<sampleInstance>
 	| canvas form transform|
@@ -925,7 +790,7 @@ AlexandrieCanvasExperiment class >> fillPaint2 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> fillPaint3 [
+AeCanvasExperiment class >> fillPaint3 [
 
 	<sampleInstance>
 	| canvas form |
@@ -987,7 +852,7 @@ AlexandrieCanvasExperiment class >> fillPaint3 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> mask2 [
+AeCanvasExperiment class >> mask2 [
 
 	<sampleInstance>
 	| canvas form |
@@ -1015,7 +880,7 @@ AlexandrieCanvasExperiment class >> mask2 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> mask3 [
+AeCanvasExperiment class >> mask3 [
 
 	<sampleInstance>
 	| canvas |
@@ -1059,7 +924,7 @@ AlexandrieCanvasExperiment class >> mask3 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> mask4 [
+AeCanvasExperiment class >> mask4 [
 
 	<sampleInstance>
 	| canvas form |
@@ -1080,7 +945,7 @@ AlexandrieCanvasExperiment class >> mask4 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> maskAndClip1 [
+AeCanvasExperiment class >> maskAndClip1 [
 
 	<sampleInstance>
 	| canvas form |
@@ -1113,7 +978,7 @@ AlexandrieCanvasExperiment class >> maskAndClip1 [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> maskWithPrivateContext [
+AeCanvasExperiment class >> maskWithPrivateContext [
 
 	<sampleInstance>
 	| canvas form |
@@ -1145,7 +1010,7 @@ AlexandrieCanvasExperiment class >> maskWithPrivateContext [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> pathPaintOutskirtsCentered [
+AeCanvasExperiment class >> pathPaintOutskirtsCentered [
 
 	<sampleInstance>
 	| canvas |
@@ -1178,7 +1043,7 @@ AlexandrieCanvasExperiment class >> pathPaintOutskirtsCentered [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> pathPaintOutskirtsInside [
+AeCanvasExperiment class >> pathPaintOutskirtsInside [
 
 	<sampleInstance>
 	| canvas |
@@ -1211,7 +1076,7 @@ AlexandrieCanvasExperiment class >> pathPaintOutskirtsInside [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> pathPaintOutskirtsOutside [
+AeCanvasExperiment class >> pathPaintOutskirtsOutside [
 
 	<sampleInstance>
 	| canvas |
@@ -1244,7 +1109,7 @@ AlexandrieCanvasExperiment class >> pathPaintOutskirtsOutside [
 ]
 
 { #category : 'examples' }
-AlexandrieCanvasExperiment class >> textWithOrWithoutHarfbuzz [
+AeCanvasExperiment class >> textWithOrWithoutHarfbuzz [
 
 	<sampleInstance>
 	| aManager aFace aeCanvas cairoScaledFont fontHeight string  |
@@ -1311,5 +1176,5 @@ positions at which those glyphs should be drawn. "
 ]
 
 { #category : 'see class side' }
-AlexandrieCanvasExperiment >> seeClassSide [ 
+AeCanvasExperiment >> seeClassSide [ 
 ]
