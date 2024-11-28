@@ -20,7 +20,10 @@ DieExamplePresenter >> defaultLayout [
 { #category : 'initialization' }
 DieExamplePresenter >> initializePresenters [
 
-	diePresenter := self instantiate: SpDiePresenter .
+	diePresenter := self instantiate: SpDiePresenter.
+	diePresenter faces: 2.
+
+	diePresenter action: [ self inform: 'die clicked' ]
 ]
 
 { #category : 'initialization' }
@@ -28,7 +31,7 @@ DieExamplePresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: 'Die morph within spec';
-		initialExtent: 60 @ 80
+		initialExtent: 120 @ 120
 ]
 
 { #category : 'accessing' }

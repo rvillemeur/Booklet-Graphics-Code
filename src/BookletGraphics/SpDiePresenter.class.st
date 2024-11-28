@@ -4,8 +4,8 @@ Class {
 	#traits : 'SpTContextMenu',
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
-		'#drawBlock => ObservableSlot',
-		'#surfaceExtent => ObservableSlot'
+		'#faces => ObservableSlot',
+		'#action => ObservableSlot'
 	],
 	#category : 'BookletGraphics-SpecAdapter',
 	#package : 'BookletGraphics',
@@ -17,8 +17,42 @@ SpDiePresenter class >> adapterName [
 	^ #DieAdapter
 ]
 
-{ #category : 'documentation' }
-SpDiePresenter class >> documentFactoryMethodSelector [
+{ #category : 'accessing' }
+SpDiePresenter >> action [
 
-	^ #newDie
+	^ action
+]
+
+{ #category : 'accessing' }
+SpDiePresenter >> action: anObject [
+
+	action := anObject
+]
+
+{ #category : 'public' }
+SpDiePresenter >> click [
+
+	"I emulate the click from the presenter point of view.
+	Of course if the button is disabled, I do nothing, like in real life!!
+	If you want to emulate other stuff use performAction"
+	
+	^ self performAction
+]
+
+{ #category : 'accessing' }
+SpDiePresenter >> faces [
+
+	^ faces
+]
+
+{ #category : 'accessing' }
+SpDiePresenter >> faces: anObject [
+
+	faces := anObject
+]
+
+{ #category : 'private' }
+SpDiePresenter >> performAction [
+
+	self action value.
 ]

@@ -19,19 +19,29 @@ SpMorphicDieAdapter class >> initialize [
 	SpNullApplication reset
 ]
 
+{ #category : 'accessing' }
+SpMorphicDieAdapter >> action [
+	self model performAction
+]
+
 { #category : 'factory' }
 SpMorphicDieAdapter >> buildWidget [
 
 	| instance |
-	instance := DieMorph new.
-	"self presenter whenDrawBlockChangedDo: [ :newBlock | 
-		instance drawBlock: newBlock ].
-	self presenter whenExtentChangedDo: [ :newExtent | 
-		instance extent: newExtent ].
-	instance extent: self presenter surfaceExtent.
-	instance drawBlock: self presenter drawBlock.
-	instance setBalloonText: self model help.
-	self presenter whenHelpChangedDo: [ 
-		instance setBalloonText: self model help ]."
+	instance := DieMorph on: self faces: self presenter faces.
 	^ instance
+]
+
+{ #category : 'emulating' }
+SpMorphicDieAdapter >> clicked [
+
+	| evt |
+	evt := MouseButtonEvent new
+		       setType: #mouseDown
+		       position: 0@0
+		       which: MouseButtonEvent redButton
+		       buttons: MouseButtonEvent redButton
+		       hand: nil
+		       stamp: nil.
+
 ]

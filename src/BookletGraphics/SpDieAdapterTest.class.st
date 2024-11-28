@@ -11,8 +11,13 @@ SpDieAdapterTest >> classToTest [
 	^ SpDiePresenter 
 ]
 
-{ #category : 'initialization' }
-SpDieAdapterTest >> initializeTestedInstance [
-	"presenter drawBlock: [ " "nothing to do""  ].
-	presenter surfaceExtent: 800@600"
+{ #category : 'tests' }
+SpDieAdapterTest >> testClickExecuteAction [
+	| actionExecuted |	
+
+	actionExecuted := false.
+	presenter action: [  actionExecuted := true].
+
+	self emulateLeftClick.
+	self assert: actionExecuted
 ]
