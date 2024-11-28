@@ -42,7 +42,7 @@ DieExamplePresenterWithMorphPresenter >> initializeWindow: aWindowPresenter [
 DieExamplePresenterWithMorphPresenter >> processMouseDown: evt [
 	"dieMorph does not expose dieValue. If it would, we could expose its value"
 
-	evt redButtonPressed ifTrue: [ self inform: 'dice clicked.' ]
+	evt redButtonPressed ifTrue: [ self inform: 'dice clicked. value: ', evt handler dieValue asString  ]
 ]
 
 { #category : 'accessing' }

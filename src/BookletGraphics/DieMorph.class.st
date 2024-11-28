@@ -21,6 +21,12 @@ DieMorph class >> faces: aNumber [
 ]
 
 { #category : 'accessing' }
+DieMorph >> dieValue [
+
+	^ dieValue
+]
+
+{ #category : 'accessing' }
 DieMorph >> dieValue: aNumber [
 
 	((aNumber isInteger and: [ aNumber > 0 ]) and: [ aNumber <= faces ]) 

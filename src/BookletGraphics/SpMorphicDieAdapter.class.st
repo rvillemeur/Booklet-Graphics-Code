@@ -22,16 +22,16 @@ SpMorphicDieAdapter class >> initialize [
 	SpNullApplication reset
 ]
 
-{ #category : 'accessing' }
-SpMorphicDieAdapter >> action [
-	self presenter performAction
-]
-
 { #category : 'factory' }
 SpMorphicDieAdapter >> buildWidget [
 
 	| instance |
-	instance := SpDieMorph on: self faces: self presenter faces.
+	instance := DieMorph faces: self presenter faces.
+	
+	instance eventHandler: (MorphicEventHandler new 
+			on: #mouseDown 
+			send: #processMouseDown: 
+			to: self).
 	^ instance
 ]
 
@@ -55,8 +55,10 @@ SpMorphicDieAdapter >> dieValue [
 	^ dieValue
 ]
 
-{ #category : 'accessing' }
-SpMorphicDieAdapter >> dieValue: anObject [
+{ #category : 'event handling' }
+SpMorphicDieAdapter >> processMouseDown: evt [
 
-	dieValue := anObject.
+	evt redButtonPressed ifFalse: [ ^ self ].
+	dieValue := evt handler dieValue.
+	self presenter performAction
 ]
