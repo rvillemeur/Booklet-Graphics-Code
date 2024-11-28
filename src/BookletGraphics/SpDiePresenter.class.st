@@ -5,6 +5,7 @@ Class {
 	#classTraits : 'SpTContextMenu classTrait',
 	#instVars : [
 		'#faces => ObservableSlot',
+		'#dieValue => ObservableSlot',
 		'#action => ObservableSlot'
 	],
 	#category : 'BookletGraphics-SpecAdapter',
@@ -37,6 +38,12 @@ SpDiePresenter >> click [
 	If you want to emulate other stuff use performAction"
 	
 	^ self performAction
+]
+
+{ #category : 'accessing' }
+SpDiePresenter >> dieValue [
+
+	^ self adapter dieValue 
 ]
 
 { #category : 'accessing' }

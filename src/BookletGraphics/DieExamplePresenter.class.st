@@ -21,9 +21,9 @@ DieExamplePresenter >> defaultLayout [
 DieExamplePresenter >> initializePresenters [
 
 	diePresenter := self instantiate: SpDiePresenter.
-	diePresenter faces: 2.
+	diePresenter faces: 8.
 
-	diePresenter action: [ self inform: 'die clicked' ]
+	diePresenter action: [ self inform: 'die clicked. Value: ', diePresenter dieValue asString]
 ]
 
 { #category : 'initialization' }

@@ -6,6 +6,9 @@ Add adapter to the list in the system with
 Class {
 	#name : 'SpMorphicDieAdapter',
 	#superclass : 'SpAbstractMorphicAdapter',
+	#instVars : [
+		'dieValue'
+	],
 	#category : 'BookletGraphics-SpecAdapter',
 	#package : 'BookletGraphics',
 	#tag : 'SpecAdapter'
@@ -21,7 +24,7 @@ SpMorphicDieAdapter class >> initialize [
 
 { #category : 'accessing' }
 SpMorphicDieAdapter >> action [
-	self model performAction
+	self presenter performAction
 ]
 
 { #category : 'factory' }
@@ -34,7 +37,7 @@ SpMorphicDieAdapter >> buildWidget [
 
 { #category : 'emulating' }
 SpMorphicDieAdapter >> clicked [
-
+"used for test, but incomplete if you still see this."
 	| evt |
 	evt := MouseButtonEvent new
 		       setType: #mouseDown
@@ -44,4 +47,16 @@ SpMorphicDieAdapter >> clicked [
 		       hand: nil
 		       stamp: nil.
 
+]
+
+{ #category : 'accessing' }
+SpMorphicDieAdapter >> dieValue [
+
+	^ dieValue
+]
+
+{ #category : 'accessing' }
+SpMorphicDieAdapter >> dieValue: anObject [
+
+	dieValue := anObject.
 ]

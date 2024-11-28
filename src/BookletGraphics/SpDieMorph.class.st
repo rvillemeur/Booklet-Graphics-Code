@@ -1,3 +1,6 @@
+"
+This class could be avoided if we add accessor dieValue to DieMorph. Everything else can be through messages
+"
 Class {
 	#name : 'SpDieMorph',
 	#superclass : 'DieMorph',
@@ -15,9 +18,10 @@ SpDieMorph class >> on: anObject faces: aNumber [
 	^ self new model: anObject;faces: aNumber
 ]
 
-{ #category : 'initialization' }
-SpDieMorph >> initialize [
-	super initialize.
+{ #category : 'accessing' }
+SpDieMorph >> dieValue [
+
+	^ dieValue
 ]
 
 { #category : 'accessing' }
@@ -36,5 +40,6 @@ SpDieMorph >> model: anObject [
 SpDieMorph >> mouseDown: anEvent [
 
 	super mouseDown: anEvent.
+	model dieValue: self dieValue.
 	model action
 ]
