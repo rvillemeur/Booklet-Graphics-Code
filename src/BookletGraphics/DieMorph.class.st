@@ -7,8 +7,7 @@ Class {
 	#instVars : [
 		'faces',
 		'dieValue',
-		'isStopped',
-		'model'
+		'isStopped'
 	],
 	#category : 'BookletGraphics-Morph',
 	#package : 'BookletGraphics',
@@ -19,12 +18,6 @@ Class {
 DieMorph class >> faces: aNumber [
 
 	^ self new faces: aNumber
-]
-
-{ #category : 'as yet unclassified' }
-DieMorph class >> on: anObject faces: aNumber [
-
-	^ self new model: anObject;faces: aNumber
 ]
 
 { #category : 'accessing' }
@@ -186,23 +179,10 @@ DieMorph >> initialize [
 	isStopped := false
 ]
 
-{ #category : 'accessing' }
-DieMorph >> model [
-
-	^ model
-]
-
-{ #category : 'accessing' }
-DieMorph >> model: anObject [
-
-	model := anObject
-]
-
 { #category : 'event handling' }
 DieMorph >> mouseDown: anEvent [
 
 	anEvent redButtonPressed ifTrue: [ isStopped := isStopped not ].
-	model action
 ]
 
 { #category : 'instance creation' }

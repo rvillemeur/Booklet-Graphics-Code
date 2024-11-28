@@ -28,7 +28,7 @@ SpMorphicDieAdapter >> action [
 SpMorphicDieAdapter >> buildWidget [
 
 	| instance |
-	instance := DieMorph on: self faces: self presenter faces.
+	instance := SpDieMorph on: self faces: self presenter faces.
 	^ instance
 ]
 
