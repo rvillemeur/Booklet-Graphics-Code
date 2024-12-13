@@ -1640,6 +1640,81 @@ AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 	^ surface asForm
 ]
 
+{ #category : 'as yet unclassified' }
+AlexandrieCairoExperiment class >> textAllGlyphsInFontFace [
+	<sampleInstance>
+| surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs anAlexandrieCairoExperiment |
+
+fontHeight := 22.
+
+surface := AeCairoImageSurface
+	           extent: 10000 @ (fontHeight * 4)
+	           format: AeCairoSurfaceFormat argb32.
+context := surface newContext.
+
+context
+	sourceColor: Color white;
+	paint.
+
+"Margin"
+context translateBy: fontHeight / 2 @ 0.
+
+"font definition"
+AeFontManager resetGlobalInstance.
+aManager := AeFontManager globalInstance.
+aManager
+	scanDirectory: AeFilesystemResources fontsDirectory;
+	scanEmbeddedFonts.
+
+aFace := aManager
+	         detectFamilyName: 'Cascadia Code'
+	         slant: AeFontSlant normal
+	         weight: AeFontWeight normal
+	         stretch: AeFontStretch normal
+	         ifNone: [
+	         anAlexandrieCairoExperiment inform: 'missing font' ].
+
+text := String new writeStream.
+33 to: aFace numberOfGlyphs do: [ :asciiValue |
+	| character |
+	character := Character value: asciiValue.
+	text nextPut: character].
+
+
+fontOptions := AeCairoFontOptions new
+	               antialias: AeCairoAntialias fast;
+	               hintMetrics: AeCairoHintMetrics on;
+	               hintStyle: AeCairoHintStyle slight;
+	               subpixelOrder: AeCairoSubpixelOrder default.
+
+scaledFont := AeCairoScaledFont
+	              fontFace: (AeCairoFreetypeFontFace newForFace: aFace)
+	              fontMatrix:
+	              (AeCairoMatrix newScalingByX: fontHeight y: fontHeight)
+	              userToDeviceMatrix: AeCairoMatrix newIdentity
+	              options: fontOptions.
+context scaledFont: scaledFont.
+
+
+"Draw text with Harfbuzz:"
+buffer := AeHbBuffer new
+	          direction: AeHbDirection leftToRight;
+	          script: AeHbScript latin;
+	          language: AeHbLanguage en;
+	          clusterLevel: AeHbBufferClusterLevel recommended;
+	          flags: AeHbBufferFlags beginningOrEndingOfText;
+	          addString: text contents.
+
+glyphs := buffer cairoGlyphArrayForFace: aFace size: fontHeight.
+"full stroke and fill paint"
+context
+	translateBy: 0 @ (fontHeight * 1.1);
+	sourceColor: Color red muchDarker;
+	showGlyphs: glyphs.
+
+^ surface asForm
+]
+
 { #category : 'examples' }
 AlexandrieCairoExperiment class >> textWithoutHarfbuzzWithFontManager [
 

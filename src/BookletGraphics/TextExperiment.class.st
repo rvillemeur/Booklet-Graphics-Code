@@ -99,6 +99,35 @@ TextExperiment class >> sampleEditorMeasure [
 ]
 
 { #category : 'examples' }
+TextExperiment class >> sampleGlyphGrid [
+
+	<sampleInstance>
+	| container |
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: (Color red alpha: 0.2);
+		             layout: BlFlowLayout horizontal;
+		             constraintsDo: [ :c |
+			             c horizontal matchParent.
+			             c vertical fitContent ].
+
+	"3199 is the number of glyphs reported by AeFontManager on Cascadia Code"
+	1 to: 3199 do: [ :i |
+		| elt |
+		elt := BlTextElement text: ((Unicode value: i) asRopedText
+				        fontSize: 25;
+				        fontName: 'Cascadia Code').
+		elt
+			"margin: (BlInsets all: 5);"
+			padding: (BlInsets all: 5);
+			border: (BlBorder paint: Color black width: 1).
+
+		container addChild: elt ].
+	container openInNewSpace.
+	^ container
+]
+
+{ #category : 'examples' }
 TextExperiment class >> sampleLabelMeasure [
 
 	<sampleInstance>
