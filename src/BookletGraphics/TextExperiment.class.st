@@ -99,6 +99,37 @@ TextExperiment class >> sampleEditorMeasure [
 ]
 
 { #category : 'examples' }
+TextExperiment class >> sampleEmojiGrid [
+
+	<sampleInstance>
+	| container aWideString elt |
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: (Color red alpha: 0.2);
+		             layout: BlFlowLayout horizontal;
+		             constraintsDo: [ :c |
+			             c horizontal matchParent.
+			             c vertical fitContent ].
+
+	aWideString := WideString streamContents: [ :stream |
+		               #( 16r1F468 16r1F469 16r1F467 16r1F466 )
+			               do: [ :each | stream nextPut: (Unicode value: each) ]
+			               separatedBy: [
+			               stream nextPut: Unicode zeroWidthJoiner ] ].
+	
+	elt := BlTextElement text: (aWideString asRopedText
+			        fontSize: 40;
+			        fontName: 'Noto Color Emoji').
+	elt
+		padding: (BlInsets all: 5);
+		border: (BlBorder paint: Color black width: 1).
+
+	container addChild: elt.
+	container openInNewSpace.
+	^ container
+]
+
+{ #category : 'examples' }
 TextExperiment class >> sampleGlyphGrid [
 
 	<sampleInstance>

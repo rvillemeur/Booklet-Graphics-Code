@@ -295,6 +295,27 @@ AlexandrieCairoExperiment class >> fillPaint3 [
 	^ surface asForm
 ]
 
+{ #category : 'as yet unclassified' }
+AlexandrieCairoExperiment class >> getNumberOfGlyph [
+<sampleInstance>
+	|   aManager aFace  |
+
+	"font definition"
+	AeFontManager resetGlobalInstance.
+	aManager := AeFontManager globalInstance.
+	aManager
+		scanDirectory: AeFilesystemResources fontsDirectory;
+		scanEmbeddedFonts.
+
+	aFace := aManager
+		         detectFamilyName: 'Noto Color Emoji'
+		         slant: AeFontSlant normal
+		         weight: AeFontWeight normal
+		         stretch: AeFontStretch normal
+		         ifNone: [ self inform: 'missing font' ].
+	^aFace numberOfGlyphs 
+]
+
 { #category : 'examples' }
 AlexandrieCairoExperiment class >> lineCap [
 
