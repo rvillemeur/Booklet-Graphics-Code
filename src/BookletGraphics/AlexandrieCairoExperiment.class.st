@@ -1664,7 +1664,7 @@ AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 { #category : 'as yet unclassified' }
 AlexandrieCairoExperiment class >> textAllGlyphsInFontFace [
 	<sampleInstance>
-| surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs anAlexandrieCairoExperiment |
+| surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs  |
 
 fontHeight := 22.
 
@@ -1693,7 +1693,7 @@ aFace := aManager
 	         weight: AeFontWeight normal
 	         stretch: AeFontStretch normal
 	         ifNone: [
-	         anAlexandrieCairoExperiment inform: 'missing font' ].
+	         self inform: 'missing font' ].
 
 text := String new writeStream.
 33 to: aFace numberOfGlyphs do: [ :asciiValue |

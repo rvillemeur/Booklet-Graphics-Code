@@ -130,6 +130,36 @@ TextExperiment class >> sampleEmojiGrid [
 ]
 
 { #category : 'examples' }
+TextExperiment class >> sampleEmojiGrid2 [
+
+	<sampleInstance>
+	| container |
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: (Color white);
+		             layout: BlFlowLayout horizontal;
+		             constraintsDo: [ :c |
+			             c horizontal matchParent.
+			             c vertical fitContent ].
+
+	"Noto Color Emoji has 2668 different glyph"
+	
+	16r1F600 to: 16r1F64F do: [ :each |
+		| elt |
+		elt := BlTextElement text: ((Unicode value: each) asRopedText
+				        fontSize: 40;
+				        fontName: 'Noto Color Emoji').
+		elt
+			padding: (BlInsets all: 5);
+			border: (BlBorder paint: Color black width: 1).
+
+		container addChild: elt ].
+
+	"container openInNewSpace."
+	^ container
+]
+
+{ #category : 'examples' }
 TextExperiment class >> sampleGlyphGrid [
 
 	<sampleInstance>
