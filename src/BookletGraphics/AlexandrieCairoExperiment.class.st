@@ -295,7 +295,7 @@ AlexandrieCairoExperiment class >> fillPaint3 [
 	^ surface asForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> getNumberOfGlyph [
 <sampleInstance>
 	|   aManager aFace  |
@@ -1661,7 +1661,7 @@ AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 	^ surface asForm
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> textAllGlyphsInFontFace [
 	<sampleInstance>
 | surface context scaledFont fontHeight fontOptions text aManager aFace buffer glyphs  |
