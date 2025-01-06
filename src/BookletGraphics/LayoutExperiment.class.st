@@ -1277,6 +1277,37 @@ LayoutExperiment class >> proportionalLayout3 [
 ]
 
 { #category : 'examples' }
+LayoutExperiment class >> sampleButton [
+
+	<sampleInstance>
+	| button inputLabel widgetSize |
+	widgetSize := 100.
+
+	button := BlElement new
+		          geometry: (BlRoundedRectangleGeometry cornerRadius: 8);
+		          background: (Color red alpha: 0.2);
+		          size: widgetSize - 25 asPoint;
+		          border: (BlBorder paint: Color darkGray width: 4);
+		          layout: BlFrameLayout new;
+		          padding: (BlInsets all: 10);
+		          constraintsDo: [ :c |
+			          c horizontal fitContent.
+			          c vertical fitContent ];
+		          effect: (BlGaussianShadowEffect
+				           color: (Color gray alpha: 1.0)
+				           offset: 0 @ 0
+				           width: 4).
+	inputLabel := BlTextElement new.
+	inputLabel text: 'MyInputText' asRopedText.
+	inputLabel constraintsDo: [ :c |
+		c frame horizontal alignCenter.
+		c frame vertical alignCenter ].
+	"inputLabel zIndex: 200."
+	button addChild: inputLabel.
+	^ button
+]
+
+{ #category : 'examples' }
 LayoutExperiment class >> spacingAndPaddindExampleWithTriangleGeometry [
 
 	<sampleInstance>
