@@ -1308,6 +1308,25 @@ LayoutExperiment class >> sampleButton [
 ]
 
 { #category : 'examples' }
+LayoutExperiment class >> spaceSizeOfChildButton [
+
+	<sampleInstance>
+	| button space |
+	space := BlSpace new.
+	button := self sampleButton.
+	button
+		addEventHandlerOn: BlElementExtentChangedEvent
+		do: [ :evt | space extent: evt target extent ].
+
+	space root addChild: button.
+	space root background: (Color lightBlue alpha: 0.9).
+
+	space show.
+
+	^ space
+]
+
+{ #category : 'examples' }
 LayoutExperiment class >> spacingAndPaddindExampleWithTriangleGeometry [
 
 	<sampleInstance>
