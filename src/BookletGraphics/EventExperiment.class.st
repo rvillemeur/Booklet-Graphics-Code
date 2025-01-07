@@ -360,6 +360,25 @@ EventExperiment class >> exampleMouseOver [
 ]
 
 { #category : 'examples' }
+EventExperiment class >> exampleWithAddAndRemoveEventHandler [
+
+	<sampleInstance>
+	|handler|
+	
+	handler := (BlEventHandler
+				   on: BlKeyDownEvent
+				   do: [ :anEvent |
+					   self inform: 'Key down: ' , anEvent key asString.
+						anEvent currentTarget removeEventHandler:handler. ]).
+  BlElement new
+		  size: 200 @ 200;
+		  background: Color red;
+		  addEventHandler: handler;
+		  requestFocus;
+		  openInNewSpace
+]
+
+{ #category : 'examples' }
 EventExperiment class >> exampleWithDragAndDropEvent [
 
 	<sampleInstance>
@@ -618,6 +637,58 @@ target addEventHandlerOn: BlDragEnterEvent do: [ :event | event consumed: true. 
 target addEventHandlerOn: BlDragLeaveEvent do: [ :event | event consumed: true. self inform: 'target BlDragLeaveEvent' ].
 
 space show
+]
+
+{ #category : 'examples' }
+EventExperiment class >> exampleWithKeyboardShortcutEvent [
+
+	<sampleInstance>
+	BlElement new
+		size: 200 @ 200;
+		background: Color red;
+		addShortcut: (BlShortcutWithAction new
+				 combination: (BlKeyCombination builder
+						  control;
+						  key: KeyboardKey A;
+						  build);
+				 action: [ :anEvent :aShortcut |
+					 self inform: 'Triggered ' , aShortcut combination asString ]);
+		requestFocus;
+		openInNewSpace
+]
+
+{ #category : 'examples' }
+EventExperiment class >> exampleWithKeyboardShortcutEvent2 [
+
+	<sampleInstance>
+	BlElement new
+		size: 200 @ 200;
+		background: Color red;
+		addShortcut: (BlShortcutWithAction new
+				 combination: (BlKeyCombination builder
+						  control;
+						  alt;
+						  key: KeyboardKey A;
+						  build);
+				 action: [ :anEvent :aShortcut |
+					 self inform: 'Triggered ' , aShortcut combination asString ]);
+		requestFocus;
+		openInNewSpace
+]
+
+{ #category : 'examples' }
+EventExperiment class >> exampleWithKeyboardShortcutEventSingleKey [
+
+	<sampleInstance>
+	BlElement new
+		size: 200 @ 200;
+		background: Color red;
+		addShortcut: (BlShortcutWithAction new
+				 combination: (BlSingleKeyCombination new key: KeyboardKey left);
+				 action: [ :anEvent :aShortcut |
+					 self inform: 'Triggered ' , aShortcut combination asString ]);
+		requestFocus;
+		openInNewSpace
 ]
 
 { #category : 'examples' }
