@@ -1,10 +1,3 @@
-"
-A clock implementation using Bloc graphic framework and facilities with Toplo
-
-See class side for usage with 
-- fixed size
-- dynamic layout
-"
 Class {
 	#name : 'ToClock',
 	#superclass : 'ToElement',
