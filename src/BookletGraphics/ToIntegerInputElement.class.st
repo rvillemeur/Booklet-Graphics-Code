@@ -13,6 +13,56 @@ Class {
 	#tag : 'ToploInput'
 }
 
+{ #category : 'example' }
+ToIntegerInputElement class >> openInFixedSize [
+
+	<sampleInstance>
+	| input container space |
+	space := BlSpace new.
+	space toTheme: ToRawTheme new.
+	
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: Color yellow ;
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	input := self new.
+
+	container addChild: input.
+
+	space root addChild: container.
+	space show.
+	^ container.
+]
+
+{ #category : 'example' }
+ToIntegerInputElement class >> openInFixedSizeWithStyleSheet [
+
+	<sampleInstance>
+	| input container space |
+	space := BlSpace new.
+	space toTheme: ToInputElementStyleSheet new.
+	
+	container := BlElement new
+		             border: (BlBorder paint: Color red width: 1);
+		             background: Color purple ;
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+			             c horizontal fitContent.
+			             c vertical fitContent ].
+
+	input := self new.
+
+	container addChild: input.
+
+	space root addChild: container.
+	space show.
+	^ container.
+]
+
 { #category : 'helper methods' }
 ToIntegerInputElement >> changeValueTo: aValue [
 
@@ -57,6 +107,7 @@ ToIntegerInputElement >> initialize [
 
 	super initialize.
 	self layout: BlFrameLayout new.
+	self id: #coreInput.
 	self initializePlusButton.
 	self initializeMinusButton.
 	self initializeInputValue: 20.
@@ -67,6 +118,7 @@ ToIntegerInputElement >> initialize [
 ToIntegerInputElement >> initializeInputValue: aValue [
 
 	inputValue := BlTextElement new.
+	inputValue id: #input.
 	inputValue constraintsDo: [ :c |
 		c frame horizontal alignCenter.
 		c frame vertical alignCenter ].
@@ -79,6 +131,7 @@ ToIntegerInputElement >> initializeMinusButton [
 
 	| textElt |
 	minus := self createCircle.
+	minus id: #minus.
 	minus constraintsDo: [ :c |
 		c frame horizontal alignLeft.
 		c frame vertical alignCenter.
@@ -100,6 +153,7 @@ ToIntegerInputElement >> initializePlusButton [
 
 	| textElt |
 	plus := self createCircle.
+	plus id: #plus.
 	plus constraintsDo: [ :c |
 		c frame horizontal alignRight.
 		c frame vertical alignCenter ].
