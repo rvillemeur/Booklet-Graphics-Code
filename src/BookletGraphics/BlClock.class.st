@@ -191,7 +191,7 @@ BlClock >> initialize [
 		do: [ :e | self resize ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'api - bounds' }
 BlClock >> resize [
 
 	radius := self extent min / 2.0.

@@ -16,49 +16,6 @@ Class {
 	#tag : 'BlocClock'
 }
 
-{ #category : 'example' }
-BlClockModel class >> openInDynamicLayout [
-
-	<sampleInstance>
-	| clock space |
-	space := BlSpace new.
-
-	space root
-		border: (BlBorder paint: Color red width: 1);
-		background: Color yellow;
-		layout: BlFlowLayout horizontal.
-
-
-	clock := self new constraintsDo: [ :c |
-		         c horizontal matchParent.
-		         c vertical matchParent ].
-
-	space root addChild: clock.
-	space show.
-	^ clock
-]
-
-{ #category : 'example' }
-BlClockModel class >> openInFixedSize [
-
-	<sampleInstance>
-	| clock container |
-	container := BlElement new
-		             border: (BlBorder paint: Color red width: 1);
-		             background: Color yellow;
-		             layout: BlFrameLayout new;
-		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
-
-	clock := self new size: 300 @ 300.
-
-	container addChild: clock.
-
-	container openInNewSpace.
-	^ clock
-]
-
 { #category : 'positioning' }
 BlClockModel >> hourCoordinate [
 
