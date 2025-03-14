@@ -63,6 +63,19 @@ ToIntegerInputElement class >> openInFixedSizeWithStyleSheet [
 	^ container.
 ]
 
+{ #category : 'example' }
+ToIntegerInputElement class >> openInFixedSizeWithStyleSheet2 [
+
+	<sampleInstance>
+	| input space |
+	space := BlSpace new.
+	space toTheme: ToInputElementStyleSheet new.
+	input := self new.
+	space root addChild: input.
+	space show.
+	^ input.
+]
+
 { #category : 'helper methods' }
 ToIntegerInputElement >> changeValueTo: aValue [
 
@@ -82,7 +95,7 @@ ToIntegerInputElement >> configuredString: aString [
 ToIntegerInputElement >> createCircle [
 
 	| circle |
-	circle := BlElement new
+	circle := ToElement new
 		          background: Color black;
 		          border: (BlBorder paint: Color pink width: 2);
 		          layout: BlFrameLayout new;
