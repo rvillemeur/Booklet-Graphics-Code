@@ -215,6 +215,47 @@ c@RSCanvasController.
 ]
 
 { #category : 'as yet unclassified' }
+RoassalExperiment >> highLightBoxes [
+
+	<bookExample>
+	| canvas box label interactionForLines interactionForNodes |
+	canvas := RSCanvas new.
+
+	($A to: $Z) do: [ :each |
+		box := RSBox new.
+		label := RSLabel new text: each.
+		box position: label position.
+		box extent: label extent + 5.
+		box borderColor: 'black'.
+		box cornerRadius: 2.
+		canvas add: ({
+				 box.
+				 label } asShapeFor: each) ].
+	RSLineBuilder arrowedLine
+		withBorderAttachPoint;
+		canvas: canvas;
+		useAssociations: {
+				($M -> $I).
+				($I -> $L).
+				($L -> $T).
+				($T -> $O).
+				($O -> $N) }.
+	interactionForLines := RSHighlightable red.
+	interactionForLines highlightShapes: [ :composite |
+		composite connectedLines ].
+
+	interactionForNodes := RSHighlightable red.
+	interactionForNodes highlightShapes: [ :composite |
+		Array with: composite children first "box" ].
+
+	canvas nodes @ interactionForLines @ interactionForNodes.
+
+	canvas @ RSForceLayoutSteppingInteraction.
+	canvas @ RSCanvasController.
+	^ canvas
+]
+
+{ #category : 'as yet unclassified' }
 RoassalExperiment >> lineChartExample1 [
 	<bookExample>
 	| c p p2 p3 p4 x y |
