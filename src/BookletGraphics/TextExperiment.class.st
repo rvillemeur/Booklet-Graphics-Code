@@ -360,6 +360,33 @@ TextExperiment class >> textHighlight [
 ]
 
 { #category : 'examples' }
+TextExperiment class >> textHighlightWithCustomCategory [
+
+	<sampleInstance>
+	| text highlight paint element |
+	element := BlElement new
+		           layout: (AlbLineFlowLayout new lineSpacing: 10);
+		           constraintsDo: [ :c |
+			           c horizontal matchParent.
+			           c vertical fitContent ].
+	paint := Color lightBlue. "BlColorPaint new color:"
+	highlight := BlTextParagraphHighlight new.
+	highlight paint: paint from: 1 to: 5.
+
+	text := BlTextElement new text: 'hello world' asRopedText.
+	text highlightWith: highlight.
+	text
+		highlightCategory: #test
+		with:
+		(BlTextParagraphHighlight new paint: Color yellow from: 6 to: 8).
+	text highlightsOfCategory: #test.
+
+	element addChild: text.
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
 TextExperiment class >> textStyler [
 
 	<sampleInstance>
