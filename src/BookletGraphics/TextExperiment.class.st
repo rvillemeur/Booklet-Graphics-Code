@@ -338,6 +338,28 @@ TextExperiment class >> textAttributesStyle [
 ]
 
 { #category : 'examples' }
+TextExperiment class >> textHighlight [
+
+	<sampleInstance>
+	| text highlight paint element |
+	element := BlElement new
+		           layout: (AlbLineFlowLayout new lineSpacing: 10);
+		           constraintsDo: [ :c |
+			           c horizontal matchParent.
+			           c vertical fitContent ].
+	paint := Color lightRed. "BlColorPaint new color:"
+	highlight := BlTextParagraphHighlight new.
+	highlight paint: paint from: 1 to: 5.
+
+	text := BlTextElement new text: 'hello world' asRopedText.
+	text highlightWith: highlight.
+
+	element addChild: text.
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
 TextExperiment class >> textStyler [
 
 	<sampleInstance>
