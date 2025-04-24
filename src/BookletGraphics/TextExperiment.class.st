@@ -416,6 +416,72 @@ TextExperiment class >> textStyler [
 ]
 
 { #category : 'examples' }
+TextExperiment class >> textStyler2 [
+
+	<sampleInstance>
+	| text styler label |
+	text := 'Hi John' asRopedText.
+
+	text attribute: (BlTextBackgroundAttribute paint: (Color red alpha: 0.3)) from: 1 to: 2.
+	styler := BlTextAttributesStyler on: (text from: 3 to: 7).
+	styler
+		bold;
+		italic;
+		fontSize: 30;
+		fontName: 'Roboto';
+		monospace;
+		foreground: Color green.
+	styler style.
+
+	label := (BlTextElement text: text)
+		         position: 50 @ 10;
+		         background: Color yellow;
+		         margin: (BlInsets all: 2);
+		         padding: (BlInsets all: 2);
+		         outskirts: BlOutskirts centered;
+		         border: (BlBorder paint: Color red width: 2).
+
+	label openInNewSpace.
+	^ label
+]
+
+{ #category : 'examples' }
+TextExperiment class >> textStyler3 [
+
+	<sampleInstance>
+	| text styler label |
+	text := 'Hi John' asRopedText.
+
+	"Setting attribute directly"
+	text attribute: (BlTextBackgroundAttribute paint: (Color black)) from: 1 to: 2.
+
+	"fluid syntax"
+	(text from: 1 to: 2) stylerDo: [ :aStyler | aStyler bold italic foreground: Color red ].
+
+	"using styler helper class "
+	styler := BlTextAttributesStyler on: (text from: 3 to: 7).
+	styler
+		bold;
+		italic;
+		fontSize: 30;
+		fontName: 'Roboto';
+		monospace;
+		foreground: Color green.
+	styler style.
+
+	label := (BlTextElement text: text)
+		         position: 50 @ 10;
+		         background: Color yellow;
+		         margin: (BlInsets all: 2);
+		         padding: (BlInsets all: 2);
+		         outskirts: BlOutskirts centered;
+		         border: (BlBorder paint: Color red width: 2).
+
+	label openInNewSpace.
+	^ label
+]
+
+{ #category : 'examples' }
 TextExperiment class >> textStylerWithFluentAPI [
 
 	<sampleInstance>
