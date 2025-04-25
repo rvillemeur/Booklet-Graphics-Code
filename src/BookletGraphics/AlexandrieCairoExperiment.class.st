@@ -324,6 +324,52 @@ AlexandrieCairoExperiment class >> clip2 [
 ]
 
 { #category : 'examples' }
+AlexandrieCairoExperiment class >> fillLinearGradientExperiment [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 100 @ 100
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	"linear gradient fill without using AeCairoLinearGradientPattern, only color interpolation
+	equivalent to AeCairoLinearGradientPattern from: 0 @ 0 to: 100 @ 100
+		            addStopsFrom: { (0 -> Color white). (1 -> Color black) }. "
+
+	0 to: 100 by: 0.5 do: [ :point | 
+		context
+		sourceColor: ((Color white) interpolateTo: Color black at: point / 100);
+		"rectangle: (point @ 0 extent: point @ 100);" "horizontal"
+		rectangle: (0 @ point extent: 100 @ point); "vertical"
+		fill.
+		].
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> fillLinearGradientExperimentDiagonal [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 100 @ 100
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+	"linear gradient fill without using AeCairoLinearGradientPattern, only color interpolation
+	equivalent to AeCairoLinearGradientPattern from: 0 @ 0 to: 100 @ 100
+		            addStopsFrom: { (0 -> Color white). (1 -> Color black) }. "
+
+	0 to: 100 by: 0.5 do: [ :point |
+		context sourceColor: (Color white interpolateTo: Color black at: point / 100).
+		point < 50 ifTrue: [context rectangle: (((point * 2) @ 0) extent: (point @ (point * 2))).]
+					  ifFalse: [ context rectangle: (point @ 100 extent: 100 @ point) ] .
+		context fill ].
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> fillPaint1 [
 
 	<sampleInstance>
@@ -367,7 +413,7 @@ AlexandrieCairoExperiment class >> fillPaint1 [
 
 	"Thick magenta line"
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 300 @ 350;
 		relativeLineTo: 100 @ 0;
 		sourceColor: Color magenta;
@@ -416,7 +462,7 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 		strokeSize: 4;
 		"antialias: AeCairoAntialias none;"operator: AeCairoOperator darken;
 		dash: (AeFFIDoubleArray newFrom: #( 8 4 2 )) count: 3 offset: 0;
-		useLineCapRound;
+		useStrokeCapRound;
 		stroke.
 
 	"draw a blue triangle"
@@ -488,7 +534,7 @@ AlexandrieCairoExperiment class >> fillPaint3 [
 				            (0 -> Color white).
 				            (1 -> Color black) }.
 	context
-		source: gradient;
+		sourcePattern: gradient;
 		rectangleTo: 100 @ 100;
 		fill.
 
