@@ -20,6 +20,242 @@ Class {
 }
 
 { #category : 'examples' }
+AlexandrieCairoExperiment class >> CanonicalGradientAllQuadrantPattern [
+
+	<sampleInstance>
+	| surface context mesh |
+	surface := AeCairoImageSurface
+		           extent: 450 asPoint
+		           format: AeCairoSurfaceFormat argb32.
+
+	context := surface newContext.
+
+	"https://blogs.igalia.com/dpino/2020/06/11/renderization-of-conic-gradients/"
+
+	"black circle"
+	context
+		arcCenterX: 200
+		centerY: 200
+		radius: 200
+		startAngle: 0
+		endAngle: Float twoPi;
+		sourceColor: Color black;
+		stroke.
+		
+	"first quadrant"
+	mesh := AeCairoMeshPattern new.
+	mesh beginPatch.
+	mesh
+		moveToX: 200 y: 200; lineToX: 200 y: 0;
+		curveViaX: 333 y: 0 viaX: 400 y: 133 toX: 400 y: 200;
+		lineToX: 200 y: 200 .
+
+	mesh
+		cornerAt: 0 putColorRGB: Color red;
+		cornerAt: 1 putColorRGB: Color red;
+		cornerAt: 2 putColorRGB: Color yellow;
+		cornerAt: 3 putColorRGB: Color yellow.
+
+	mesh endPatch.
+
+	context
+		sourcePattern: mesh ;
+		paint.
+
+	"second quadrant"
+	mesh := AeCairoMeshPattern new.
+	mesh beginPatch.
+	mesh
+		moveToX: 200 y: 200; lineToX: 400 y: 200;
+		curveViaX: 400 y: 333 viaX: 267 y: 400 toX: 200 y: 400;
+		lineToX: 200 y: 200 .
+
+	mesh 
+		cornerAt: 0 putColorRGB: Color yellow;
+		cornerAt: 1 putColorRGB: Color yellow;
+		cornerAt: 2 putColorRGB: Color green;
+		cornerAt: 3 putColorRGB: Color green.
+
+	mesh endPatch.
+
+	context
+		sourcePattern: mesh ;
+		paint.
+		
+	"third quadrant"
+	mesh := AeCairoMeshPattern new.
+	mesh beginPatch.
+	mesh
+		moveToX: 200 y: 200; lineToX: 200 y: 400;
+		curveViaX: 67 y: 400 viaX: 0 y: 267 toX: 0 y: 200;
+		lineToX: 200 y: 200 .
+
+	mesh 
+		cornerAt: 0 putColorRGB: Color green;
+		cornerAt: 1 putColorRGB: Color green;
+		cornerAt: 2 putColorRGB: Color blue;
+		cornerAt: 3 putColorRGB: Color blue.
+
+	mesh endPatch.
+
+	context
+		sourcePattern: mesh ;
+		paint.
+		
+	"fourth quadrant"
+	mesh := AeCairoMeshPattern new.
+	mesh beginPatch.
+	mesh
+		moveToX: 200 y: 200; lineToX: 0 y: 200;
+		curveViaX: 0 y: 130 viaX: 66 y: 0 toX: 200 y: 0;
+		lineToX: 200 y: 200 .
+
+	mesh 
+		cornerAt: 0 putColorRGB: Color blue;
+		cornerAt: 1 putColorRGB: Color blue;
+		cornerAt: 2 putColorRGB: Color red;
+		cornerAt: 3 putColorRGB: Color red.
+
+	mesh endPatch.
+
+	context
+		sourcePattern: mesh ;
+		paint.
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> CanonicalGradientFirstQuadrantPattern [
+
+	<sampleInstance>
+	| surface context meshPattern |
+	surface := AeCairoImageSurface
+		           extent: 200 asPoint
+		           format: AeCairoSurfaceFormat argb32.
+
+	context := surface newContext.
+
+	"https://blogs.igalia.com/dpino/2020/06/11/renderization-of-conic-gradients/
+	For Bezier point calculation, refer to: https://pomax.github.io/bezierinfo/#circles"
+
+	meshPattern := AeCairoMeshPattern new.
+	meshPattern beginPatch.
+
+	meshPattern
+		moveToX: 0 y: 200;
+		lineToX: 0 y: 0;
+		curveViaX: 133 	y: 0 viaX: 200 	y: 133 toX: 200 y: 200;
+		lineToX: 0 y: 200 .
+
+	meshPattern
+		cornerAt: 0 putColorRGB: Color red;
+		cornerAt: 1 putColorRGB: Color blue;
+		cornerAt: 2 putColorRGB: Color yellow;
+		cornerAt: 3 putColorRGB: Color green.
+
+	meshPattern endPatch.
+
+	context
+		sourcePattern: meshPattern;
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> CoonsPatchMeshPattern [
+
+	<sampleInstance>
+	| surface context meshPattern |
+	surface := AeCairoImageSurface
+		           extent: 200 asPoint
+		           format: AeCairoSurfaceFormat argb32.
+
+	context := surface newContext.
+
+	"https://blogs.igalia.com/dpino/2020/06/11/renderization-of-conic-gradients/"
+
+	meshPattern := AeCairoMeshPattern new.
+	meshPattern beginPatch.
+
+	meshPattern
+		moveToX: 45 y: 12;
+		curveViaX: 69
+		y: 24
+		viaX: 173
+		y: -15
+		toX: 115
+		y: 50;
+		curveViaX: 127
+		y: 66
+		viaX: 174
+		y: 47
+		toX: 148
+		y: 104;
+		curveViaX: 65
+		y: 58
+		viaX: 70
+		y: 69
+		toX: 18
+		y: 103;
+		curveViaX: 42
+		y: 43
+		viaX: 63
+		y: 45
+		toX: 45
+		y: 12.
+
+	meshPattern
+		cornerAt: 0 putColorRGB: Color red;
+		cornerAt: 1 putColorRGB: Color green;
+		cornerAt: 2 putColorRGB: Color blue;
+		cornerAt: 3 putColorRGB: Color yellow.
+
+	meshPattern endPatch.
+
+	context
+		sourcePattern: meshPattern;
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> GouraudShadingTriangleMesh [
+
+	<sampleInstance>
+	| surface context meshPattern |
+	surface := AeCairoImageSurface
+		           extent: 130 asPoint
+		           format: AeCairoSurfaceFormat argb32.
+
+	context := surface newContext.
+
+	"https://blogs.igalia.com/dpino/2020/06/11/renderization-of-conic-gradients/"
+
+	meshPattern := AeCairoMeshPattern new.
+	meshPattern beginPatch.
+
+	meshPattern
+		moveToX: 50 y: 50;
+		lineToX: 130 y: 130;
+		lineToX: 50 y: 130.
+
+	meshPattern
+		cornerAt: 0 putColorRGB: Color red;
+		cornerAt: 1 putColorRGB: Color green;
+		cornerAt: 2 putColorRGB: Color blue.
+
+	meshPattern endPatch.
+
+	context
+		sourcePattern: meshPattern;
+		paint.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> clip1 [
 
 	<sampleInstance>
@@ -177,9 +413,8 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 		rectangle: (100 @ 100 extent: 100 @ 100);
 		fillPreserve;
 		sourceColor: Color yellow;
-		lineWidth: 4;
-		"antialias: AeCairoAntialias none;"
-		operator: AeCairoOperator darken ;
+		strokeSize: 4;
+		"antialias: AeCairoAntialias none;"operator: AeCairoOperator darken;
 		dash: (AeFFIDoubleArray newFrom: #( 8 4 2 )) count: 3 offset: 0;
 		useLineCapRound;
 		stroke.
@@ -332,7 +567,7 @@ AlexandrieCairoExperiment class >> lineCap [
 
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 30;
 		lineTo: 100 @ 30;
 		sourceColor: Color red;
@@ -910,35 +1145,55 @@ AlexandrieCairoExperiment class >> maskAndClip6 [
 AlexandrieCairoExperiment class >> meshPattern [
 
 	<sampleInstance>
-	| surface context    meshPattern  |
+	| surface context meshPattern |
 	surface := AeCairoImageSurface
-		           extent: 130 asPoint 
+		           extent: 130 asPoint
 		           format: AeCairoSurfaceFormat argb32.
 
 	context := surface newContext.
 
 	"https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-mesh"
-	
+
 	meshPattern := AeCairoMeshPattern new.
 	meshPattern beginPatch.
-	
+
 	meshPattern
 		moveToX: 0 y: 0;
-		curveViaX:  30 y: -30 viaX: 60 y:  30 toX: 100 y: 0;
-		curveViaX: 130 y: 140 viaX: 60 y: -40 toX: 100 y: 100;
-		curveViaX:  60 y:  70 viaX: 30 y: 130 toX:   0 y: 100;
-		curveViaX: -30 y: -40 viaX: 30 y: 140 toX:   0 y: 0.
+		curveViaX: 30
+		y: -30
+		viaX: 60
+		y: 30
+		toX: 100
+		y: 0;
+		curveViaX: 130
+		y: 140
+		viaX: 60
+		y: -40
+		toX: 100
+		y: 100;
+		curveViaX: 60
+		y: 70
+		viaX: 30
+		y: 130
+		toX: 0
+		y: 100;
+		curveViaX: -30
+		y: -40
+		viaX: 30
+		y: 140
+		toX: 0
+		y: 0.
 
 	meshPattern
 		cornerAt: 0 putColorRGB: Color red;
 		cornerAt: 1 putColorRGB: Color green;
 		cornerAt: 2 putColorRGB: Color blue;
 		cornerAt: 3 putColorRGB: Color yellow.
-		
+
 	meshPattern endPatch.
 
 	context
-		source: meshPattern;
+		sourcePattern: meshPattern;
 		paint.
 
 	^ surface asForm
@@ -1496,7 +1751,7 @@ AlexandrieCairoExperiment class >> radialGradientPattern1 [
 		             addStopAt: 1.0 color: Color red;
 		             yourself.
 	mainContext
-		source: aGradient;
+		sourcePattern: aGradient;
 		circleRadius: radius;
 		fill.
 	"mainSurface inspect"
