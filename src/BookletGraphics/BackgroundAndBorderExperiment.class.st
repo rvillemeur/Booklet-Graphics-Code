@@ -609,6 +609,27 @@ element2 := BlElement new
 ]
 
 { #category : 'examples' }
+BackgroundAndBorderExperiment class >> polygonLinearGradient [
+	"not working currently"
+
+	<sampleInstance>
+	| aGeometry |
+	aGeometry := BlPolygonGeometry vertices: {
+			             (100 @ 0).
+			             (200 @ 0).
+			             (300 @ 100).
+			             (0 @ 100) }.
+
+	^ BlElement new
+		  geometry: aGeometry;
+		  size: aGeometry geometryBounds extent;
+		  background:
+			  (BlLinearGradientPaint vertical from: Color black to: Color white);
+		  border: (BlBorder paint: Color red width: 3);
+		  yourself
+]
+
+{ #category : 'examples' }
 BackgroundAndBorderExperiment class >> triangleBackgroundImage [
 "not working currently"
 	<sampleInstance>

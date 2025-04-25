@@ -1723,6 +1723,35 @@ AlexandrieCairoExperiment class >> operatorXor [
 ]
 
 { #category : 'examples' }
+AlexandrieCairoExperiment class >> polygonLinearGradient [
+
+	<sampleInstance>
+	| surface context gradient |
+	surface := AeCairoImageSurface
+		           extent: 300 @ 100
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext. "linear gradient fill"
+	gradient := AeCairoLinearGradientPattern
+		            from: 150 @ 0
+		            to: 150 @ 100
+		            addStopsFrom: {
+				            (0 -> Color black).
+				            (1 -> Color white) }.
+	context
+		sourcePattern: gradient;
+		moveTo: 100 @ 0;
+		lineTo: 200 @ 0;
+		lineTo: 300 @ 100;
+		lineTo: 0 @ 100;
+		closePath;
+		fillPreserve;
+		lineWidth: 3;
+		sourceColor: Color red;
+		stroke.
+	^ surface asForm
+]
+
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> radialGradientPattern1 [
 
 	<sampleInstance>
