@@ -336,13 +336,14 @@ AlexandrieCairoExperiment class >> fillLinearGradientExperiment [
 	equivalent to AeCairoLinearGradientPattern from: 0 @ 0 to: 100 @ 100
 		            addStopsFrom: { (0 -> Color white). (1 -> Color black) }. "
 
-	0 to: 100 by: 0.5 do: [ :point | 
+	context strokeSize: 0.5.
+	0 to: 100 by: 0.5 do: [ :point |
 		context
-		sourceColor: ((Color white) interpolateTo: Color black at: point / 100);
-		"rectangle: (point @ 0 extent: point @ 100);" "horizontal"
-		rectangle: (0 @ point extent: 100 @ point); "vertical"
-		fill.
-		].
+			sourceColor:
+				(Color white interpolateTo: Color black at: point / 100);
+			"moveTo: point @ 0 ; lineTo: point @ 100;" "horizontal"
+			moveTo: 0 @ point; lineTo: 100 @ point; "vertical"
+			stroke ].
 
 	^ surface asForm
 ]
@@ -359,12 +360,13 @@ AlexandrieCairoExperiment class >> fillLinearGradientExperimentDiagonal [
 	"linear gradient fill without using AeCairoLinearGradientPattern, only color interpolation
 	equivalent to AeCairoLinearGradientPattern from: 0 @ 0 to: 100 @ 100
 		            addStopsFrom: { (0 -> Color white). (1 -> Color black) }. "
+	context strokeSize: 0.5.
 
-	0 to: 100 by: 0.5 do: [ :point |
+	0 to: 100 by: 0.1 do: [ :point |
 		context sourceColor: (Color white interpolateTo: Color black at: point / 100).
-		point < 50 ifTrue: [context rectangle: (((point * 2) @ 0) extent: (point @ (point * 2))).]
-					  ifFalse: [ context rectangle: (point @ 100 extent: 100 @ point) ] .
-		context fill ].
+		point < 50 ifTrue: [ context moveTo: point * 2 @ 0; lineTo: 0 @ (point * 2) ]
+					  ifFalse: [ context moveTo: point * 2 - 100 @ 100; lineTo: 100 @ (point * 2 - 100) ].
+		context stroke ].
 
 	^ surface asForm
 ]
@@ -569,7 +571,7 @@ AlexandrieCairoExperiment class >> fillPaint3 [
 		scaleByX: 4 y: 4;
 		translateByX: 100 y: -35;
 		rectangleTo: 100 @ 100;
-		source: gradient.
+		sourcePattern: gradient.
 
 	context fill.
 
