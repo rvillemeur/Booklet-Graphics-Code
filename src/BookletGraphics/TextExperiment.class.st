@@ -17,7 +17,7 @@ TextExperiment class >> exampleHelloWorld [
 
 	<simpleInstance>
 	| elt |
-	elt := BlTextElement new text: 'Hello world!' asRopedText.
+	elt := BlTextElement text: 'Hello world!' asRopedText.
 	elt openInNewSpace.
 	^ elt
 ]
@@ -103,6 +103,8 @@ TextExperiment class >> sampleEmojiGrid [
 
 	<sampleInstance>
 	| container aWideString elt |
+	"AeFontManager resetGlobalInstance.
+AeFontManager globalInstance scanDirectory: AeFilesystemResources fontsDirectory"
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
 		             background: (Color red alpha: 0.2);
@@ -134,6 +136,8 @@ TextExperiment class >> sampleEmojiGrid2 [
 
 	<sampleInstance>
 	| container |
+		"AeFontManager resetGlobalInstance.
+AeFontManager globalInstance scanDirectory: AeFilesystemResources fontsDirectory"
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
 		             background: (Color white);
@@ -164,6 +168,8 @@ TextExperiment class >> sampleGlyphGrid [
 
 	<sampleInstance>
 	| container |
+		"AeFontManager resetGlobalInstance.
+AeFontManager globalInstance scanDirectory: AeFilesystemResources fontsDirectory"
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
 		             background: (Color red alpha: 0.2);
