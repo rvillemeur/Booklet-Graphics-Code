@@ -73,12 +73,16 @@ SSHRegexSyntaxStyler >> regexToTextAttribute: anObject [
 
 { #category : 'accessing' }
 SSHRegexSyntaxStyler >> styleTable [
-"note: only for compatility reason"
-	^ #()
+	"note: only for compatility reason
+When we add a styler to ToAlbum, it will add stamp e hasStamp: #'sh-styled'
+This refer to the styleTable of the styler, which could be an array, a dictionnary, 
+whatever fit your style representation..."
+
+	^ Dictionary new
 ]
 
 { #category : 'accessing' }
 SSHRegexSyntaxStyler >> styleTable: aStyle [
-"note: only for compatility reason"
+
 	styleTable := aStyle
 ]

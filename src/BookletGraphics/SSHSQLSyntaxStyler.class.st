@@ -10,13 +10,14 @@ Class {
 SSHSQLSyntaxStyler >> initialize [
 
 	super initialize.
+	styleTable := self styleTable.
 	self
 		addKeywords: self keywords
-		withAttribute: BlFontWeightAttribute bold.
+		withAttribute: (styleTable at: #keyword).
 	self
 		addRegex:
 		'\d+|\d+\.\d*(e(\+|-)?\d+)?|\d*\.\d+(e(\+|-)?\d+)?|\d+e(\+|-)?\d'
-		withAttribute: (BlTextForegroundAttribute paint: Color green darker)
+		withAttribute: (styleTable at: #numeric)
 ]
 
 { #category : 'accessing' }
@@ -53,4 +54,16 @@ SSHSQLSyntaxStyler >> keywords [
 	     UNKNOWN UNNEST UNTIL UPDATE USER USING VALUE VALUES VARCHAR
 	     VARYING WHEN WHENEVER WHERE WHILE WINDOW WITH WITHIN WITHOUT
 	     YEAR )
+]
+
+{ #category : 'accessing' }
+SSHSQLSyntaxStyler >> styleTable [
+	"note: only for compatility reason
+When we add a styler to ToAlbum, it will add stamp e hasStamp: #'sh-styled'
+This refer to the styleTable of the styler"
+
+	^ Dictionary new
+		  at: #keyword put: (BlFontWeightAttribute bold);
+		  at: #numeric put: (BlTextForegroundAttribute paint: Color green darker);
+		yourself.
 ]
