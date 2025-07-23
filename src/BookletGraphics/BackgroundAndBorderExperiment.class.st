@@ -9,6 +9,101 @@ Class {
 	#tag : 'Bloc'
 }
 
+{ #category : 'examples - helpers' }
+BackgroundAndBorderExperiment class >> CircleCapButtDashArray [
+
+	<sampleInstance>
+	| element |
+	element := BlElement new
+		           extent: 400 @ 400;
+		           geometry: (BlCircleGeometry new matchExtent: 400 @ 400);
+		           border: (BlBorder builder
+				            paint: (Color r:0.9  g: 0.2 b:179) ;  
+				            width: 12;
+				            dashArray: #(3 12 );
+				            capButt ;
+				            build);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+	^ element
+]
+
+{ #category : 'examples - helpers' }
+BackgroundAndBorderExperiment class >> CircleCapButtDashArray2 [
+
+	<sampleInstance>
+	| element |
+	element := BlElement new
+		           extent: 400 @ 400;
+		           geometry: (BlCircleGeometry new matchExtent: 400 @ 400);
+		           border: (BlBorder builder
+				            paint: (Color r:0.9  g: 0.2 b:179) ;  
+				            width: 6;
+				            dashArray: #(20 14 );
+				            capButt ;
+				            build);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+	^ element
+]
+
+{ #category : 'examples - helpers' }
+BackgroundAndBorderExperiment class >> CircleCapRoundDashArray [
+
+	<sampleInstance>
+	| element |
+	element := BlElement new
+		           extent: 200 @ 200;
+		           geometry: (BlCircleGeometry new matchExtent: 200 @ 200);
+		           border: (BlBorder builder
+				            paint: (Color r:0.7  g: 0.2 b:348) ;  
+				            width: 16;
+				            dashArray: #(0 15 );
+				            capRound ;
+				            build);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+	^ element
+]
+
+{ #category : 'examples - helpers' }
+BackgroundAndBorderExperiment class >> CircleCapRoundDashArray2 [
+
+	<sampleInstance>
+	| element |
+	element := BlElement new
+		           extent: 200 @ 200;
+		           geometry: (BlCircleGeometry new matchExtent: 200 @ 200);
+		           border: (BlBorder builder
+				            paint: (Color r:0.7  g: 0.2 b:348) ;  
+				            width: 10;
+				            dashArray: #(0  20 26 60 );
+				            capRound ;
+				            build);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+	^ element
+]
+
+{ #category : 'examples - helpers' }
+BackgroundAndBorderExperiment class >> CircleCapSquareDashArray [
+
+	<sampleInstance>
+	| element |
+	element := BlElement new
+		           extent: 400 @ 400;
+		           geometry: (BlCircleGeometry new matchExtent: 400 @ 400);
+		           border: (BlBorder builder
+				            paint: (Color r:0.9  g: 0.2 b:179) ;  
+				            width: 10;
+				            dashArray: #(0 20 45 20 );
+				            capSquare ;
+				            build);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+	^ element
+]
+
 { #category : 'examples' }
 BackgroundAndBorderExperiment class >> TriangleColorDashedMulti [
 

@@ -619,7 +619,7 @@ AlexandrieCairoExperiment class >> lineCap [
 		moveTo: 0 @ 30;
 		lineTo: 100 @ 30;
 		sourceColor: Color red;
-		useLineCapButt;
+		useStrokeCapButt;
 		moveTo: 115 @ 33;
 		showText: 'butt';
 		stroke.
@@ -728,7 +728,7 @@ AlexandrieCairoExperiment class >> lineDash [
 	The offset specifies an offset into the pattern at which the stroke begins."
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 30;
 		lineTo: 200 @ 30;
 		sourceColor: Color red;
