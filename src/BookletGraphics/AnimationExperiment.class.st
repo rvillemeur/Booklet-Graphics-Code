@@ -159,6 +159,38 @@ AnimationExperiment class >> crossElement [
 ]
 
 { #category : 'examples' }
+AnimationExperiment class >> dashOffsetAnimation [
+
+	<sampleInstance>
+	| element animation |
+	element := BlElement new
+		           extent: 400 @ 400;
+		           geometry: (BlCircleGeometry new matchExtent: 400 @ 400);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new
+		             beInfinite;
+		             delay: 0.5 seconds.
+
+	element addAnimation: animation.
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.9 g: 0.2 b: 179);
+							  width: 10;
+							  dashOffset: anEvent progress * 30;
+							  dashArray: #( 0 20 45 20 );
+							  capSquare;
+							  build) ]).
+
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
 AnimationExperiment class >> minimalAnimation [
 
 	<sampleInstance>
