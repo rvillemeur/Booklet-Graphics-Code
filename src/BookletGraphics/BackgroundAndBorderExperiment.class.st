@@ -58,7 +58,7 @@ BackgroundAndBorderExperiment class >> CircleCapRoundDashArray [
 		           border: (BlBorder builder
 				            paint: (Color r:0.7  g: 0.2 b:348) ;  
 				            width: 16;
-				            dashArray: #(0 15 );
+				            dashArray: #(0 15 0 15);
 				            capRound ;
 				            build);
 		           background: Color lightOrange;
@@ -110,17 +110,17 @@ BackgroundAndBorderExperiment class >> TriangleColorDashedMulti [
 	<sampleInstance>
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
-				 matchExtent: 50 @ 100;
-				 beLeft);
+				   matchExtent: 50 @ 100;
+				   beLeft);
 		  background: Color yellow;
 		  border: (BlBorder builder
 				   width: 5;
 				   paint: (Color red alpha: 1);
-					dashOffset: 0;
-				dashArray: #(6 4 2);
-				   joinBevel  ;
+				   dashOffset: 0;
+				   dashArray: #( 6 4 2 );
+				   joinBevel;
 				   build);
-		  size: 200 @ 200
+		  extent: 200 @ 200
 ]
 
 { #category : 'examples - helpers' }
