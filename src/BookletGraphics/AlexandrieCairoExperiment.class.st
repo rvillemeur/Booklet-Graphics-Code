@@ -163,6 +163,356 @@ AlexandrieCairoExperiment class >> CanonicalGradientFirstQuadrantPattern [
 ]
 
 { #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCircle [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		beginSubPath;
+		circleCenter: 80@80 radius: 60;
+		sourceColor: Color red;
+		moveTo: 20@20; 
+		lineTo: 140@20;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCurve [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		beginSubPath ;
+		arcCenter: 80@80 radius: 60 startAngle: 0 endAngle: 90 degreesToRadians cw: false;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCurveCW [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		beginSubPath ;
+		arcCenter: 80@80 radius: 60 startAngle: 0 endAngle: 90 degreesToRadians cw: true;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCurveExampleDraw [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@80;
+		lineTo: 40@80;
+		"beginSubPath ;"
+		arcCenter: 78@65 radius: 40 startAngle: 155 degreesToRadians endAngle: 20 degreesToRadians cw: false;
+		lineTo: 140@80;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCurveExampleDrawClockWise [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@80;
+		lineTo: 40@80;
+		"beginSubPath ;"
+		arcCenter: 78@65 radius: 40 startAngle: 160 degreesToRadians endAngle: 20 degreesToRadians cw: true;
+		lineTo: 140@80;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCurveExampleDrawCounterClockWise [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@80;
+		lineTo: 40@80;
+		"beginSubPath ;"
+		arcCenter: 78@65 radius: 40 startAngle: 155 degreesToRadians endAngle: 20 degreesToRadians cw: false;
+		lineTo: 140@80;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcCurveWithoutSubPath [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@20;
+		arcCenter: 80@80 radius: 60 startAngle: 0 endAngle: 90 degreesToRadians cw: false;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithArcSweep [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		beginSubPath;
+		arcCenter: 80@80 radius: 60 startAngle: 45 degreesToRadians sweep: 300 degreesToRadians ;
+		sourceColor: Color red;
+		moveTo: 20@20; 
+		lineTo: 140@20;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithCubicBezier [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		cubicCurveFrom: 20@20  controlPoint1: 20@140 controlPoint2: 140@20 to: 140@140;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithCubicBezier2 [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@20;
+		curveVia: 20@140 via: 140@20 to: 140@140;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithCubicBezier3 [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@20;
+		curveVia: 20@150 via: 10@140 to: 140@140;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithLine [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20 @ 20;
+		lineTo: 140 @ 140;
+		moveTo: 20@140;
+		lineTo: 140@20;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithQuadraticBezier [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@20;
+		quadraticCurveFromCurrentPoint: 20@20  via: 140@20  to: 140@140;
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
+AlexandrieCairoExperiment class >> ContextPathWithRoundedRectangle [
+
+	<sampleInstance>
+	| surface context |
+	surface := AeCairoImageSurface
+		           extent: 160 @ 160
+		           format: AeCairoSurfaceFormat argb32.
+	context := surface newContext.
+
+	context
+		sourceColor: Color yellow;
+		paint.
+
+	context
+		strokeSize: 3;
+		moveTo: 20@20;
+		roundedRectangleLeft: 20 top: 20 right: 140 bottom: 140 tl: 10 tr:10  br:10  bl:10; 
+		sourceColor: Color red;
+		stroke.
+
+	^ surface asForm
+]
+
+{ #category : 'examples' }
 AlexandrieCairoExperiment class >> CoonsPatchMeshPattern [
 
 	<sampleInstance>
@@ -770,7 +1120,7 @@ AlexandrieCairoExperiment class >> linePath [
 		paint.
 
 	context
-		lineWidth: 3;
+		strokeSize: 3;
 		moveTo: 25 @ 25;
 		lineTo: 50 @ 37.75;
 		relativeLineTo: 25 @ -12.5;
