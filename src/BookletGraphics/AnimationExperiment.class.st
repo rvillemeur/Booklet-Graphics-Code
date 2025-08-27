@@ -60,7 +60,7 @@ AnimationExperiment class >> animatedBackground2 [
 
 	<sampleInstance>
 	| element animation |
-	element := BlElement new size: 50 @ 50.
+	element := BlElement new extent: 50 @ 50.
 
 	animation := BlNumberTransition new
 		             from: 0;
@@ -68,11 +68,11 @@ AnimationExperiment class >> animatedBackground2 [
 		             by: 0.5;
 		             loops: 5;
 		             duration: 3 seconds;
-		"onStepDo: is called on every space pulse. Color are updated at each pulse..."
+		             "onStepDo: is called on every space pulse. Color are updated at each pulse..."
 		             onStepDo: [ :aValue :anElement |
-			             aValue < 0.5
-				             ifTrue: [ anElement background: Color random ]
-				             ifFalse: [ anElement background: Color blue ] ].
+				             aValue < 0.5
+					             ifTrue: [ anElement background: Color random ]
+					             ifFalse: [ anElement background: Color blue ] ].
 
 	element addAnimation: animation.
 	element openInNewSpace.
@@ -171,7 +171,7 @@ AnimationExperiment class >> dashOffsetAnimation [
 
 	animation := BlAnimation new
 		             beInfinite;
-		             delay: 0.5 seconds.
+		             duration: 1 seconds.
 
 	element addAnimation: animation.
 
@@ -184,6 +184,38 @@ AnimationExperiment class >> dashOffsetAnimation [
 							  dashOffset: anEvent progress * 30;
 							  dashArray: #( 0 20 45 20 );
 							  capSquare;
+							  build) ]).
+
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
+AnimationExperiment class >> dashOffsetTriangleAnimation [
+
+	<sampleInstance>
+	| element animation |
+	element := BlElement new
+		           extent: 400 @ 400;
+		           geometry: (BlTriangleGeometry new matchExtent: 200 @ 400; beLeft);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new
+		             beInfinite;
+						duration: 1 seconds.
+
+	element addAnimation: animation.
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 16;
+							  dashOffset: anEvent progress * 32;
+							  dashArray: #( 0 17 0 17 );
+							  capRound;
 							  build) ]).
 
 	element openInNewSpace.
@@ -246,7 +278,7 @@ AnimationExperiment class >> rotateAnimationExample [
 	elt := BlElement new
 		       background: (Color red alpha: 0.5);
 		       position: 100 asPoint;
-		       size: 100 asPoint.
+		       extent: 100 asPoint.
 	frame := BlElement new
 		         background: Color yellow;
 		         position: 100 asPoint;

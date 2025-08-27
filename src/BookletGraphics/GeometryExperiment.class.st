@@ -29,28 +29,26 @@ GeometryExperiment class >> annulus [
 GeometryExperiment class >> basicBorder [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
 				   beLeft);
 		  background: BlocPresentationHelper background;
 		  border: (BlBorder paint: Color red width: 5);
-		  size: 100 @ 100
+		  extent: 100 @ 100
 ]
 
 { #category : 'examples' }
 GeometryExperiment class >> bezier [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlBezierCurveGeometry controlPoints: {
 						   (5 @ 0).
 						   (25 @ 80).
 						   (75 @ 30).
 						   (95 @ 100) });
-		  size: 100 @ 100;
+		  extent: 100 @ 100;
 		  background: BlocPresentationHelper background;
 		  outskirts: BlOutskirts centered;
 		  border: BlocPresentationHelper border
@@ -77,7 +75,6 @@ GeometryExperiment class >> builderBorder [
 GeometryExperiment class >> builderCapButtBorder [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 100 @ 200;
@@ -92,7 +89,7 @@ GeometryExperiment class >> builderCapButtBorder [
 				   dashArray: #( 10 5 );
 				   dashOffset: 0;
 				   build);
-		  size: 200 @ 200
+		  extent: 200 @ 200
 ]
 
 { #category : 'examples' }
@@ -273,14 +270,13 @@ GeometryExperiment class >> square [
 GeometryExperiment class >> triangle [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlTriangleGeometry new
 				   matchExtent: 50 @ 100;
 				   beLeft);
 		  background: BlocPresentationHelper background;
 		  border: BlocPresentationHelper border;
-		  size: 100 @ 100
+		  extent: 100 @ 100
 ]
 
 { #category : 'see class side' }
