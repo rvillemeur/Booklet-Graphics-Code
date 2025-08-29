@@ -820,7 +820,7 @@ LayoutExperiment class >> multipleElementAlignments [
 	<sampleInstance>
 	| element1 element2 element3 container box1 box2 box3 |
 	container := BlElement new
-		             size: 450 @ 150;
+		             extent: 450 @ 150;
 		             geometry: BlRectangleGeometry new;
 		             margin: (BlInsets all: 3);
 		             padding: (BlInsets all: 3);
@@ -834,26 +834,26 @@ LayoutExperiment class >> multipleElementAlignments [
 		        padding: (BlInsets all: 3);
 		        layout: BlLinearLayout horizontal alignCenter;
 		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
+				        c horizontal matchParent.
+				        c vertical matchParent ];
 		        background: Color lightRed;
 		        border: (BlBorder paint: Color red width: 5).
 	element1 := BlElement new
 		            size: 100 @ 100;
 		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
-						constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent  ];
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
+		            constraintsDo: [ :c |
+				            c horizontal matchParent.
+				            c vertical matchParent ];
 		            border: (BlBorder paint: Color orange width: 5);
 		            background: Color lightOrange;
 		            outskirts: BlOutskirts centered.
@@ -864,55 +864,55 @@ LayoutExperiment class >> multipleElementAlignments [
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignCenter  ;
+		        layout: BlLinearLayout horizontal alignCenter;
 		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
+				        c horizontal matchParent.
+				        c vertical matchParent ];
 		        background: Color lightYellow;
 		        border: (BlBorder paint: Color yellow width: 5).
 	element2 := BlElement new
 		            size: 100 @ 100;
 		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
 		            border: (BlBorder paint: Color green width: 5);
 		            background: Color lightGreen;
 		            outskirts: BlOutskirts centered.
 
 	box2 addChild: element2.
-	
+
 	box3 := BlElement new
 		        size: 150 @ 150;
 		        geometry: BlRectangleGeometry new;
 		        margin: (BlInsets all: 3);
 		        padding: (BlInsets all: 3);
-		        layout: BlLinearLayout horizontal alignBottomLeft  ;
+		        layout: BlLinearLayout horizontal alignBottomLeft;
 		        constraintsDo: [ :c |
-			        c horizontal matchParent.
-			        c vertical matchParent ];
-		         background: Color lightBlue;
+				        c horizontal matchParent.
+				        c vertical matchParent ];
+		        background: Color lightBlue;
 		        border: (BlBorder paint: Color blue width: 5).
 	element3 := BlElement new
 		            size: 100 @ 100;
 		            geometry: (BlPolygonGeometry vertices: {
-						              (50 @ 0).
-						              (65 @ 40).
-						              (100 @ 40).
-						              (75 @ 60).
-						              (85 @ 100).
-						              (50 @ 80).
-						              (15 @ 100).
-						              (25 @ 60).
-						              (0 @ 40).
-						              (35 @ 40) });
+						             (50 @ 0).
+						             (65 @ 40).
+						             (100 @ 40).
+						             (75 @ 60).
+						             (85 @ 100).
+						             (50 @ 80).
+						             (15 @ 100).
+						             (25 @ 60).
+						             (0 @ 40).
+						             (35 @ 40) });
 		            border: (BlBorder paint: Color cyan width: 5);
 		            background: Color lightCyan;
 		            outskirts: BlOutskirts centered.

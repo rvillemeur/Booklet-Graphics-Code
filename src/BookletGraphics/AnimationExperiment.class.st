@@ -159,6 +159,56 @@ AnimationExperiment class >> crossElement [
 ]
 
 { #category : 'examples' }
+AnimationExperiment class >> dashArrayCircleAnimation [
+
+	<sampleInstance>
+	| element animation circomference extent |
+	extent := 400 @ 400.
+	circomference := Float pi * extent x.
+	element := BlElement new
+		           extent: extent;
+		           geometry: BlCircleGeometry new;
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlNumberTransition new
+		             from: 0.05;
+		             to: 0.25;
+		             duration: 1 seconds;
+		             onStepDo: [ :point |
+				             | length |
+				             length := circomference * point.
+				             element border: (BlBorder builder
+							              paint: (Color r: 0.7 g: 0.2 b: 348);
+							              width: 16;
+							              "dashOffset: anEvent progress * 32;"
+											  dashArray: { 0 . length . 0};
+							              capRound;
+							              build) ].
+	element addAnimation: animation.
+	"animation := BlAnimation new
+		             beInfinite;
+						duration: 1 seconds.
+
+	
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 16;
+							  dashOffset: anEvent progress * 32;
+							  dashArray: #( 0 24 0);
+							  capRound;
+							  build) ])."
+
+
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
 AnimationExperiment class >> dashOffsetAnimation [
 
 	<sampleInstance>
@@ -184,6 +234,45 @@ AnimationExperiment class >> dashOffsetAnimation [
 							  dashOffset: anEvent progress * 30;
 							  dashArray: #( 0 20 45 20 );
 							  capSquare;
+							  build) ]).
+
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
+AnimationExperiment class >> dashOffsetPolyLineAnimation [
+
+	<sampleInstance>
+	| element animation vertices |
+	vertices := {
+		            (50 @ 50).
+		            (150 @ 50).
+		            (150 @ 150).
+		            (200 @ 200).
+		            (200 @ 250).
+		            (300 @ 300).
+		            (400 @ 400) }.
+	element := BlElement new
+		           extent: 400 @ 400;
+		           geometry: (BlPolylineGeometry new vertices: vertices);
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new
+		             beInfinite;
+		             duration: 1 seconds.
+
+	element addAnimation: animation.
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 16;
+							  dashOffset: -1 *  anEvent progress * 32; "-1 to reverse the flow"
+							  dashArray: #( 0 17 0 17 );
+							  capRound;
 							  build) ]).
 
 	element openInNewSpace.
@@ -223,12 +312,192 @@ AnimationExperiment class >> dashOffsetTriangleAnimation [
 ]
 
 { #category : 'examples' }
+AnimationExperiment class >> dashStarOffsetAnimation [
+
+	<sampleInstance>
+	| element animation |
+	element := BlElement new
+		           extent: 100 @ 100;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+		           constraintsDo: [ :c |
+				           c horizontal matchParent.
+				           c vertical matchParent ];
+		           border: (BlBorder paint: Color orange width: 5);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new
+		             beInfinite;
+		             duration: 1 seconds.
+
+	element addAnimation: animation.
+
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 5;
+							  dashOffset: anEvent progress * 10;
+							  dashArray: #( 0 5 0 5 );
+							  capRound;
+							  build) ]).
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
+AnimationExperiment class >> dashStarOffsetAnimation2 [
+
+	<sampleInstance>
+	| element animation circumference|
+	element := BlElement new
+		           extent: 100 @ 100;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+		           constraintsDo: [ :c |
+				           c horizontal matchParent.
+				           c vertical matchParent ];
+		           border: (BlBorder paint: Color orange width: 5);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new duration: 5 seconds.
+
+	element addAnimation: animation.
+
+"The clever trick here is that we have a single dash that is the same length as the entire circumference of our shape (380, in this particular case), and a huge gap between each dash (500). Circumference has been guessed here by trial and error"
+	circumference := 380.
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 5;
+							  dashOffset: anEvent progress * circumference;
+							  dashArray: { circumference . circumference*2 . 0 };
+							  capRound;
+							  build) ]).
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
+AnimationExperiment class >> dashStarOffsetAnimation3 [
+
+	<sampleInstance>
+	| element animation circumference|
+	element := BlElement new
+		           extent: 100 @ 100;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+		           constraintsDo: [ :c |
+				           c horizontal matchParent.
+				           c vertical matchParent ];
+		           border: (BlBorder paint: Color orange width: 5);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new duration: 5 seconds.
+
+	element addAnimation: animation.
+
+"The clever trick here is that we have a single dash that is the same length as the entire circumference of our shape (380, in this particular case), and a huge gap between each dash (500). Circumference has been guessed here by trial and error"
+	circumference := 380.
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 5;
+							  dashOffset: circumference - (anEvent progress * circumference);
+							  dashArray: { circumference . circumference * 2 . 0 };
+							  capRound;
+							  build) ]).
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
+AnimationExperiment class >> dashStarOffsetAnimation4 [
+
+	<sampleInstance>
+	| element animation circumference|
+	element := BlElement new
+		           extent: 100 @ 100;
+		           geometry: (BlPolygonGeometry vertices: {
+						            (50 @ 0).
+						            (65 @ 40).
+						            (100 @ 40).
+						            (75 @ 60).
+						            (85 @ 100).
+						            (50 @ 80).
+						            (15 @ 100).
+						            (25 @ 60).
+						            (0 @ 40).
+						            (35 @ 40) });
+		           constraintsDo: [ :c |
+				           c horizontal matchParent.
+				           c vertical matchParent ];
+		           border: (BlBorder paint: Color orange width: 5);
+		           background: Color lightOrange;
+		           outskirts: BlOutskirts centered.
+
+	animation := BlAnimation new duration: 5 seconds.
+
+	element addAnimation: animation.
+
+"The clever trick here is that we have a single dash that is the same length as the entire circumference of our shape (380, in this particular case), and a huge gap between each dash (500). Circumference has been guessed here by trial and error"
+	circumference := 380.
+	animation addEventHandler: (BlEventHandler
+			 on: BlAnimationStepEvent
+			 do: [ :anEvent |
+					 element border: (BlBorder builder
+							  paint: (Color r: 0.7 g: 0.2 b: 348);
+							  width: 5;
+							  dashOffset: anEvent progress * circumference;
+							  dashArray: { 0 .  circumference  . circumference *2 . 0 };
+							  capRound;
+							  build) ]).
+	element openInNewSpace.
+	^ element
+]
+
+{ #category : 'examples' }
 AnimationExperiment class >> minimalAnimation [
 
 	<sampleInstance>
 	| element animation |
 	element := BlElement new
-		           size: 150 @ 150;
+		           extent: 150 @ 150;
 		           background: Color red.
 
 	animation := BlAnimation new
@@ -256,12 +525,12 @@ AnimationExperiment class >> opacityAnimation [
 	<sampleInstance>
 	| element animation |
 	element := BlElement new
-		           size: 150 @ 150;
+		           extent: 150 @ 150;
 		           background: Color yellow;
 		           border: (BlBorder paint: Color red width: 3).
 
 	animation := BlOpacityAnimation new
-						delay: 1 second;
+		             delay: 1 second;
 		             opacity: 0.1;
 		             duration: 300 milliSeconds.
 

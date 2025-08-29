@@ -114,10 +114,9 @@ GeometryExperiment class >> builderOpacityBorder [
 GeometryExperiment class >> circle [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlCircleGeometry new matchExtent: 100 @ 50);
-		  size: 100 @ 100;
+		  extent: 100 @ 100;
 		  background: BlocPresentationHelper background;
 		  border: BlocPresentationHelper border
 ]
@@ -218,7 +217,6 @@ GeometryExperiment class >> polygon [
 GeometryExperiment class >> polyline [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlPolylineGeometry vertices: {
 						   (10 @ 10).
@@ -226,7 +224,7 @@ GeometryExperiment class >> polyline [
 						   (50 @ 50).
 						   (90 @ 90).
 						   (90 @ 10) });
-		  size: 100 @ 100;
+		  extent: 100 @ 100;
 		  background: BlocPresentationHelper background;
 		  border: BlocPresentationHelper border
 ]
@@ -247,12 +245,11 @@ GeometryExperiment class >> rectangle [
 GeometryExperiment class >> roundedRectangle [
 
 	<sampleInstance>
-
 	^ BlElement new
 		  geometry: (BlRoundedRectangleGeometry cornerRadius: 20);
 		  background: BlocPresentationHelper background;
 		  border: BlocPresentationHelper border;
-		  size: 100 @ 70
+		  extent: 100 @ 70
 ]
 
 { #category : 'examples' }
