@@ -813,7 +813,7 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 		sourceColor: Color yellow;
 		strokeSize: 4;
 		"antialias: AeCairoAntialias none;"operator: AeCairoOperator darken;
-		dash: (AeFFIDoubleArray newFrom: #( 8 4 2 )) count: 3 offset: 0;
+		strokeDashPattern: (AeFFIDoubleArray newFrom: #( 8 4 2 )) size: 3 offset: 0;
 		useStrokeCapRound;
 		stroke.
 
@@ -823,8 +823,8 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 		lineTo: 400 @ 100;
 		lineTo: 400 @ 200;
 		closePath;
-		dash: (AeFFIDoubleArray newFrom: #( 1 )) count: 1 offset: 0;
-		lineWidth: 2;
+		strokeDashPattern: (AeFFIDoubleArray newFrom: #( 1 )) size: 1 offset: 0;
+		strokeSize: 2;
 		sourceColor: Color blue;
 		stroke.
 
@@ -840,7 +840,7 @@ AlexandrieCairoExperiment class >> fillPaint2 [
 
 	"Thick magenta line"
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 300 @ 350;
 		relativeLineTo: 100 @ 0;
 		sourceColor: Color magenta;
@@ -975,21 +975,21 @@ AlexandrieCairoExperiment class >> lineCap [
 		stroke.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 60;
 		lineTo: 100 @ 60;
 		sourceColor: Color red;
-		useLineCapSquare;
+		useStrokeCapSquare ;
 		moveTo: 115 @ 63;
 		showText: 'square';
 		stroke.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 90;
 		relativeLineTo: 100 @ 0;
 		sourceColor: Color red;
-		useLineCapRound;
+		useStrokeCapRound ;
 		moveTo: 115 @ 93;
 		showText: 'round';
 		stroke.
@@ -1025,15 +1025,15 @@ AlexandrieCairoExperiment class >> lineColor [
 				            (1 -> Color black) }.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 30;
 		lineTo: 200 @ 30;
-		source: gradient;
+		sourcePattern: gradient;
 		stroke.
 
 	"solid color"
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 60;
 		lineTo: 200 @ 60;
 		sourceColor: (Color black alpha: 0.7);
@@ -1049,10 +1049,10 @@ AlexandrieCairoExperiment class >> lineColor [
 				            (0 -> Color black).
 				            (1 -> Color white) }.
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 90;
 		lineTo: 200 @ 90;
-		source: gradient;
+		sourcePattern: gradient;
 		stroke.
 
 
@@ -1082,23 +1082,23 @@ AlexandrieCairoExperiment class >> lineDash [
 		moveTo: 0 @ 30;
 		lineTo: 200 @ 30;
 		sourceColor: Color red;
-		dash: (AeFFIDoubleArray newFrom: #( 4 6 )) offset: 4;
+		strokeDashPattern: (AeFFIDoubleArray newFrom: #( 4 6 )) offset: 4;
 		stroke.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 60;
 		lineTo: 200 @ 60;
 		sourceColor: Color red;
-		dash: (AeFFIDoubleArray newFrom: #( 4 6 )) offset: 0;
+		strokeDashPattern: (AeFFIDoubleArray newFrom: #( 4 6 )) offset: 0;
 		stroke.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 0 @ 90;
 		lineTo: 200 @ 90;
 		sourceColor: Color red;
-		dash: (AeFFIDoubleArray newFrom: #( 2 5 2 10 )) offset: 0;
+		strokeDashPattern: (AeFFIDoubleArray newFrom: #( 2 5 2 10 )) offset: 0;
 		stroke.
 
 
@@ -1152,34 +1152,34 @@ AlexandrieCairoExperiment class >> linejoin [
 
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 10 @ 60;
 		lineTo: 60 @ 10;
 		lineTo: 110 @ 60;
 		sourceColor: Color red;
-		useLineJoinRound;
+		useStrokeJoinRound;
 		moveTo: 115 @ 30;
 		showText: 'round';
 		stroke.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 10 @ 110;
 		lineTo: 60 @ 60;
 		lineTo: 110 @ 110;
 		sourceColor: Color red;
-		useLineJoinMiter;
+		useStrokeJoinMiter;
 		moveTo: 115 @ 80;
 		showText: 'mitter';
 		stroke.
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 10 @ 160;
 		lineTo: 60 @ 110;
 		lineTo: 110 @ 160;
 		sourceColor: Color red;
-		useLineJoinBevel;
+		useStrokeJoinBevel;
 		moveTo: 115 @ 130;
 		showText: 'bevel';
 		stroke.
@@ -1204,12 +1204,12 @@ AlexandrieCairoExperiment class >> linejoin2 [
 
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 10 @ 110;
 		lineTo: 30 @ 30;
 		lineTo: 50 @ 110;
 		sourceColor: Color red;
-		useLineJoinMiter;
+		useStrokeJoinMiter;
 		moveTo: 60 @ 80;
 		showText: 'mitter';
 		moveTo: 60 @ 100;
@@ -1219,13 +1219,13 @@ AlexandrieCairoExperiment class >> linejoin2 [
 	" limit on the ratio of the miter length to the width used to draw a miter join it is possible for the miter to extend far beyond the thickness of the line stroking the path. the miterlimit ratio is used to define when the limit is exceeded, if so the join is converted from a miter to a bevel."
 
 	context
-		lineWidth: 15;
+		strokeSize: 15;
 		moveTo: 10 @ 210;
 		lineTo: 30 @ 130;
 		lineTo: 50 @ 210;
 		sourceColor: Color red;
-		useLineJoinMiter;
-		miterLimit: 3;
+		useStrokeJoinMiter;
+		strokeJoinMiterLimit: 3;
 		moveTo: 60 @ 180;
 		showText: 'mitter';
 		moveTo: 60 @ 200;
@@ -1249,7 +1249,7 @@ AlexandrieCairoExperiment class >> mask1 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		maskSurface: form x: 0 y: 0;
 		fill.
 
@@ -1295,7 +1295,7 @@ AlexandrieCairoExperiment class >> mask3 [
 
 "paint the background in purple, et let the mask appear in alpha"
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		mask: pattern;
 		paint.
 
@@ -1315,7 +1315,7 @@ AlexandrieCairoExperiment class >> mask4 [
 	context := surface newContext.
 
 	context
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		maskSurface: form x: 0 y: 0;
 		paint.
 
@@ -1336,7 +1336,7 @@ AlexandrieCairoExperiment class >> mask5 [
 
 	context
 		maskSurface: form x: 0 y: 0;
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		paint.
 
 	^ surface asForm
@@ -1359,7 +1359,7 @@ AlexandrieCairoExperiment class >> mask6 [
 "paint the background in purple, et let the mask appear in alpha"
 	context
 		mask: pattern;
-		sourceColorRGBA: (Color purple alpha: 0.5);
+		sourceColor: (Color purple alpha: 0.5);
 		paint.
 
 	^ surface asForm
@@ -2143,7 +2143,7 @@ AlexandrieCairoExperiment class >> polygonLinearGradient [
 		lineTo: 0 @ 100;
 		closePath;
 		fillPreserve;
-		lineWidth: 3;
+		strokeSize: 3;
 		sourceColor: Color red;
 		stroke.
 	^ surface asForm
@@ -2201,7 +2201,7 @@ AlexandrieCairoExperiment class >> strokeAndFill [
 
 	"stroke first and fill second. The color of fill appear on the top of stroke"
 	context
-		lineWidth: 10;
+		strokeSize: 10;
 		moveTo: 25 @ 25;
 		lineTo: 50 @ 37.75;
 		relativeLineTo: 25 @ -12.5;
@@ -2212,7 +2212,7 @@ AlexandrieCairoExperiment class >> strokeAndFill [
 		curveVia: 50 @ 60 via: 50 @ 90 to: 25 @ 75;
 		closePath;
 		sourceColor: (Color red alpha: 0.7);
-		strokePreserve.
+		strokePreservingPath .
 
 
 	context
@@ -2252,7 +2252,7 @@ AlexandrieCairoExperiment class >> strokeAndFill2 [
 
 
 	context
-		lineWidth: 10;
+		strokeSize: 10;
 		sourceColor: (Color red alpha: 0.5);
 		stroke.
 
@@ -2331,8 +2331,8 @@ AlexandrieCairoExperiment class >> texWithHarfbuzzWithFontManager [
 		translateBy: 0 @ (fontHeight * 1.5);
 		appendGlyphsPath: glyphs;
 		sourceColor: (Color blue alpha: 0.7);
-		strokePreserve;
-		source: (AeCairoLinearGradientPattern
+		strokePreservingPath;
+		sourcePattern: (AeCairoLinearGradientPattern
 				 from: 0 @ 0
 				 to: 100 @ 100
 				 addStopsFrom: {
@@ -2479,8 +2479,8 @@ AlexandrieCairoExperiment class >> textWithoutHarfbuzzWithFontManager [
 		translateBy: 0 @ (fontHeight * 1.5);
 		appendGlyphsPath: (scaledFont glyphArrayForString: text);
 		sourceColor: (Color blue alpha: 0.7);
-		strokePreserve;
-		source: (AeCairoLinearGradientPattern
+		strokePreservingPath;
+		sourcePattern: (AeCairoLinearGradientPattern
 				 from: 0 @ 0
 				 to: 100 @ 100
 				 addStopsFrom: {
