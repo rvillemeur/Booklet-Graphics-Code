@@ -148,7 +148,6 @@ BlClock >> initClockFrame [
 { #category : 'initialization' }
 BlClock >> initConstant [
 
-	center := radius @ radius.
 	hourNeedleSize := radius / 2.
 	minuteNeedleSize := radius * 14.8 / 20.
 	secondNeedleSize := radius * 16.8 / 20
@@ -194,16 +193,13 @@ BlClock >> initialize [
 { #category : 'api - bounds' }
 BlClock >> resize [
 
+
 	radius := self extent min / 2.0.
+	center := self extent x > self extent y
+		          ifTrue: [ self extent max / 2.0 @ radius ]
+		          ifFalse: [ radius @ (self extent max / 2.0) ].
+
 	self initClock
-]
-
-{ #category : 'api - bounds' }
-BlClock >> size: aPoint [
-	super size: aPoint.
-
-	radius := aPoint x / 2.
-	self initClock.
 ]
 
 { #category : 'positioning' }

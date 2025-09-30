@@ -70,22 +70,22 @@ ToClock class >> openInFixedSize [
 	| clock container space |
 	space := BlSpace new.
 	space toTheme: ToRawClockTheme new.
-	
+
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
-		             background: Color white ;
+		             background: Color white;
 		             layout: BlFrameLayout new;
 		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
+				             c horizontal fitContent.
+				             c vertical fitContent ].
 
-	clock := self new size: 300 @ 300.
+	clock := self new extent: 300 @ 300.
 
 	container addChild: clock.
 
 	space root addChild: container.
 	space show.
-	^ container.
+	^ container
 ]
 
 { #category : 'example' }
@@ -95,22 +95,22 @@ ToClock class >> openInFixedSizeWithStyleSheet [
 	| clock container space |
 	space := BlSpace new.
 	space toTheme: ToClockStyleSheetTheme new.
-	
+
 	container := BlElement new
 		             border: (BlBorder paint: Color red width: 1);
-		             background: Color white ;
+		             background: Color white;
 		             layout: BlFrameLayout new;
 		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
+				             c horizontal fitContent.
+				             c vertical fitContent ].
 
-	clock := self new size: 300 @ 300.
+	clock := self new extent: 300 @ 300.
 
 	container addChild: clock.
 
 	space root addChild: container.
 	space show.
-	^ container.
+	^ container
 ]
 
 { #category : 'accessing' }
@@ -157,7 +157,6 @@ ToClock >> initClock [
 { #category : 'initialization' }
 ToClock >> initConstant [
 
-	center := radius @ radius.
 	hourNeedleSize := radius / 2.
 	minuteNeedleSize := radius * 14.8 / 20.
 	secondNeedleSize := radius * 16.8 / 20
@@ -209,24 +208,16 @@ ToClock >> newRawSkin [
 ToClock >> resize [
 
 	radius := self extent min / 2.0.
-	self initClock.
-	
-
-	
+	center := self extent x > self extent y
+		          ifTrue: [ self extent max / 2.0 @ radius ]
+		          ifFalse: [ radius @ (self extent max / 2.0) ].
+	self initClock
 ]
 
 { #category : 'accessing' }
 ToClock >> secondNeedle [
 
 	^ secondNeedle
-]
-
-{ #category : 'api - bounds' }
-ToClock >> size: aPoint [
-
-	super size: aPoint.
-	radius := aPoint x / 2.
-	self initClock
 ]
 
 { #category : 'positioning' }
