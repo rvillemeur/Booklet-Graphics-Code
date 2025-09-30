@@ -60,15 +60,15 @@ LayoutExperiment class >> centerAndSize [
 			                   (50 @ 10).
 			                   (80 @ 15) } }.
 	container := BlElement new
-		             size: 200 @ 100;
+		             extent: 200 @ 100;
 		             yourself.
 	centersAndSizes do: [ :c |
-		container addChild: (BlElement new
-				 background: (Color random alpha: 0.5);
-				 position: c first - (c second / 2);
-				 size: c second;
-				 yourself) ].
-	^container
+			container addChild: (BlElement new
+					 background: (Color random alpha: 0.5);
+					 position: c first - (c second / 2);
+					 size: c second;
+					 yourself) ].
+	^ container
 ]
 
 { #category : 'examples' }
@@ -82,20 +82,20 @@ LayoutExperiment class >> flowLayoutExample [
 		        border: (BlBorder paint: Color red width: 1);
 		        background: (Color red alpha: 0.2);
 		        layout: BlFlowLayout horizontal;
-				constraintsDo: [ :c |
-			           c horizontal matchParent .
-			           c vertical fitContent  ].
+		        constraintsDo: [ :c |
+				        c horizontal matchParent.
+				        c vertical fitContent ].
 	"Child need to specify their size. If they use constraint, the last one will hide previous one.
 	They will fit available space + move to next line if necessary"
 
 	50 timesRepeat: [
-		| elt |
-		elt := BlElement new
-			       size: 40 @ 80;
-			       border: (BlBorder paint: Color blue width: 1);
-			       background: (Color blue alpha: 0.2);
-			       margin: (BlInsets all: 5).
-		root addChild: elt ].
+			| elt |
+			elt := BlElement new
+				       extent: 40 @ 80;
+				       border: (BlBorder paint: Color blue width: 1);
+				       background: (Color blue alpha: 0.2);
+				       margin: (BlInsets all: 5).
+			root addChild: elt ].
 
 	space root addChild: root.
 	space show.
@@ -108,24 +108,24 @@ LayoutExperiment class >> frameLayoutExample [
 	<sampleInstance>
 	| space container child |
 	space := BlSpace new.
-"designed to block out an area on the screen to display a single child."
+	"designed to block out an area on the screen to display a single child."
 
 	container := BlElement new
 		             background: (Color red alpha: 0.2);
 		             border: (BlBorder paint: Color red width: 1);
 		             layout: BlFrameLayout new;
 		             constraintsDo: [ :c |
-			             c horizontal matchParent.
-			             c vertical matchParent ].
+				             c horizontal matchParent.
+				             c vertical matchParent ].
 
 	child := BlElement new
-		         size: 30 @ 30;
+		         extent: 30 @ 30;
 		         clipChildren: false;
 		         background: (Color blue alpha: 0.2);
 		         border: (BlBorder paint: Color blue width: 1);
 		         constraintsDo: [ :c |
-			         c frame horizontal alignCenter.
-			         c frame vertical alignBottom  ].
+				         c frame horizontal alignCenter.
+				         c frame vertical alignBottom ].
 
 	container addChild: child.
 
@@ -463,7 +463,7 @@ LayoutExperiment class >> layout1 [
 	<sampleInstance>
 	^ BlElement new
 		  layout: BlLinearLayout horizontal;
-		  size: 400 @ 300;
+		  extent: 400 @ 300;
 		  background: (Color gray alpha: 0.2);
 		  addChildren: {
 				  (BlElement new
@@ -570,23 +570,27 @@ LayoutExperiment class >> linearLayoutExample [
 	root := BlElement new
 		        border: (BlBorder paint: Color red width: 1);
 		        background: (Color red alpha: 0.2);
-		        layout: BlLinearLayout horizontal ;
-				  constraintsDo: [ :c |
-			           c horizontal fitContent.
-			           c vertical fitContent  ].
+		        layout: BlLinearLayout horizontal;
+				 extent: 600@400.
+		        "constraintsDo: [ :c |
+				        c horizontal fitContent.
+				        c vertical fitContent ]"
 
 	"Child can use dynamic size with constraints. The number of element will then fit its 
 	parents available space. 	If you specify their size, and the total is over its parents, 
 	they will be hidden. need to specify their size. If they use constraint, the last one 
 	will hide previous one. They will fit available space + move to next line if necessary"
-	
-	50 timesRepeat:  [  |elt| elt := BlElement new border: (BlBorder paint: Color blue width: 1);
-					size: 40@80;
-		           background: (Color blue alpha: 0.2);
-		           margin: (BlInsets all: 5);
-		           padding: (BlInsets all: 5).
 
-			root addChild: elt. ].
+	1 timesRepeat: [
+			| elt |
+			elt := BlElement new
+				       border: (BlBorder paint: Color blue width: 1);
+				       extent: 40 @ 80;
+				       background: (Color blue alpha: 0.2);
+				       margin: (BlInsets all: 5);
+				       padding: (BlInsets all: 5).
+
+			root addChild: elt ].
 
 
 	space root addChild: root.

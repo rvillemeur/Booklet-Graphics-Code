@@ -40,7 +40,7 @@ BlRunningMan >> initialize [
 	self initSpritePosition.
 
 	self
-		size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
+		extent: 32 * self magnifyFactor @ (32 * self magnifyFactor);
 		background: (BlPaintBackground paint: (Color green alpha: 0.2));
 		border: (BlBorder paint: Color black width: 3);
 		addChild: self runningMan
@@ -70,6 +70,6 @@ BlRunningMan >> runningMan [
 			             anElement background: (spriteGrid at: aValue) ].
 
 	^ BlElement new
-		  size: 32 * self magnifyFactor @ (32 * self magnifyFactor);
+		  extent: 32 * self magnifyFactor @ (32 * self magnifyFactor);
 		  addAnimation: animation
 ]

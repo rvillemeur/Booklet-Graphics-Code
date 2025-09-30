@@ -79,6 +79,15 @@ BlClock >> border [
 	^ BlBorder paint: Color black width: 4
 ]
 
+{ #category : 'geometry extent' }
+BlClock >> extent: aPoint [
+
+	super extent: aPoint.
+
+	radius := aPoint x / 2.
+	self initClock
+]
+
 { #category : 'api - look' }
 BlClock >> geometry [
 

@@ -119,6 +119,14 @@ ToClock >> center [
 	^ center
 ]
 
+{ #category : 'geometry extent' }
+ToClock >> extent: aPoint [
+
+	super extent: aPoint.
+	radius := aPoint x / 2.
+	self initClock
+]
+
 { #category : 'accessing' }
 ToClock >> hourNeedle [
 
