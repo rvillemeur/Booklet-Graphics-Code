@@ -10,6 +10,45 @@ Class {
 }
 
 { #category : 'examples' }
+LayoutExperiment class >> anchorLayoutExample [
+
+	<sampleInstance>
+	| aContainer childA childB gap |
+	gap := 5.
+
+	childA := BlElement new
+		          id: #childA;
+		          background: Color red;
+		          constraintsDo: [ :c |
+				          c proportional horizontal right: 0.5.
+				          c margin: (BlInsets all: gap) ];
+		          yourself.
+
+	childB := BlElement new
+		          id: #childB;
+		          background: Color green;
+		          constraintsDo: [ :c |
+				          c proportional horizontal left: 0.5.
+				          c margin: (BlInsets all: gap) ];
+		          yourself.
+
+	aContainer := BlElement new
+		              id: #container;
+		              background: Color blue;
+		              layout: BlProportionalLayout new;
+		              extent: 100 @ 100;
+		              addChild: childA;
+		              addChild: childB;
+		              constraintsDo: [ :c |
+				              c horizontal matchParent.
+				              c vertical matchParent ];
+		              padding: (BlInsets all: gap);
+		              yourself.
+
+	^ aContainer openInNewSpace
+]
+
+{ #category : 'examples' }
 LayoutExperiment class >> basicLayoutExample [
 
 	<sampleInstance>

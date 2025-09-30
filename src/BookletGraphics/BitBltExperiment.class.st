@@ -158,15 +158,22 @@ BitBltExperiment >> blocExampleWithRule: aRule [
 
 	<bookExample>
 	| sourceForm destForm initDestForm halfToneForm elt blt |
-	sourceForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r10101010101010101010101010101010 )) magnifyBy: 15.
-	halfToneForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r0000000000000000000000000000000 )) magnifyBy: 15.
-	initDestForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r10011001100110011001100110011001 )) magnifyBy: 15.
-	destForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r10011001100110011001100110011001 )) magnifyBy: 15.
+	sourceForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		               #( 2r10101010101010101010101010101010 )) magnifyBy:
+		              15.
+	halfToneForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		                 #( 2r0000000000000000000000000000000 )) magnifyBy:
+		                15.
+	initDestForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		                 #( 2r10011001100110011001100110011001 ))
+		                magnifyBy: 15.
+	destForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		             #( 2r10011001100110011001100110011001 )) magnifyBy: 15.
 
 
 	blt := BitBlt toForm: destForm.
 
-	blt 
+	blt
 		sourceForm: sourceForm;
 		destOrigin: 0 @ 0;
 		sourceOrigin: 0 @ 0;
@@ -180,30 +187,36 @@ BitBltExperiment >> blocExampleWithRule: aRule [
 	elt := BlElement new
 		       background: Color lightGray;
 		       layout: BlFlowLayout vertical;
-				border: (BlBorder paint: Color black width: 1);
+		       border: (BlBorder paint: Color black width: 1);
 		       constraintsDo: [ :c |
-			       c horizontal fitContent.
-			       c vertical fitContent ];
+				       c horizontal fitContent.
+				       c vertical fitContent ];
 		       addChild:
-			       ((BlTextElement text: 'Source form' asRopedText) margin: (BlInsets all: 5));
+			       ((BlTextElement text: 'Source form' asRopedText) margin:
+					        (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: sourceForm;
 				        border: (BlBorder paint: Color black width: 1));
-		       addChild: ((BlTextElement text: 'halt tone form' asRopedText) margin: (BlInsets all: 5));
+		       addChild:
+			       ((BlTextElement text: 'halt tone form' asRopedText) margin:
+				        (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: halfToneForm;
 				        border: (BlBorder paint: Color black width: 1));
 		       addChild:
-		       ((BlTextElement text: 'destination form' asRopedText) margin: (BlInsets all: 5));
+			       ((BlTextElement text: 'destination form' asRopedText)
+				        margin: (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: initDestForm;
 				        border: (BlBorder paint: Color black width: 1));
-		       addChild: ((BlTextElement text: ('bitblt result with rule: ', aRule asString) asRopedText)margin: (BlInsets all: 5));
+		       addChild: ((BlTextElement text:
+				         ('bitblt result with rule: ' , aRule asString)
+					         asRopedText) margin: (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: destForm;
 				        border: (BlBorder paint: Color black width: 1)).
 
@@ -268,14 +281,19 @@ BitBltExperiment >> blocExampleWithoutHalfToneWithRule: aRule [
 
 	<bookExample>
 	| sourceForm destForm initDestForm elt blt |
-	sourceForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r10101010101010101010101010101010 )) magnifyBy: 15.
-	initDestForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r10011001100110011001100110011001 )) magnifyBy: 15.
-	destForm := ((Form extent: 32 @ 1 depth: 1) initFromArray: #( 2r10011001100110011001100110011001 )) magnifyBy: 15.
+	sourceForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		               #( 2r10101010101010101010101010101010 )) magnifyBy:
+		              15.
+	initDestForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		                 #( 2r10011001100110011001100110011001 ))
+		                magnifyBy: 15.
+	destForm := ((Form extent: 32 @ 1 depth: 1) initFromArray:
+		             #( 2r10011001100110011001100110011001 )) magnifyBy: 15.
 
 
 	blt := BitBlt toForm: destForm.
 
-	blt 
+	blt
 		sourceForm: sourceForm;
 		destOrigin: 0 @ 0;
 		sourceOrigin: 0 @ 0;
@@ -288,25 +306,29 @@ BitBltExperiment >> blocExampleWithoutHalfToneWithRule: aRule [
 	elt := BlElement new
 		       background: Color lightGray;
 		       layout: BlFlowLayout vertical;
-				border: (BlBorder paint: Color black width: 1);
+		       border: (BlBorder paint: Color black width: 1);
 		       constraintsDo: [ :c |
-			       c horizontal fitContent.
-			       c vertical fitContent ];
+				       c horizontal fitContent.
+				       c vertical fitContent ];
 		       addChild:
-			       ((BlTextElement text: 'Source form' asRopedText) margin: (BlInsets all: 5));
+			       ((BlTextElement text: 'Source form' asRopedText) margin:
+					        (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: sourceForm;
 				        border: (BlBorder paint: Color black width: 1));
 		       addChild:
-		       ((BlTextElement text: 'destination form' asRopedText) margin: (BlInsets all: 5));
+			       ((BlTextElement text: 'destination form' asRopedText)
+				        margin: (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: initDestForm;
 				        border: (BlBorder paint: Color black width: 1));
-		       addChild: ((BlTextElement text: ('bitblt result with rule: ', aRule asString) asRopedText)margin: (BlInsets all: 5));
+		       addChild: ((BlTextElement text:
+				         ('bitblt result with rule: ' , aRule asString)
+					         asRopedText) margin: (BlInsets all: 5));
 		       addChild: (BlElement new
-				        size: 480 @ 16;
+				        extent: 480 @ 16;
 				        background: destForm;
 				        border: (BlBorder paint: Color black width: 1)).
 
