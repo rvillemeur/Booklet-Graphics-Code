@@ -85,31 +85,30 @@ Mortgage >> duration: anObject [
 { #category : 'inspector' }
 Mortgage >> formatAmount: anAmount [
 
-	| displayAmount principal decimal index |
+	| displayAmount integer fractionnal formatedInteger remainder |
 	displayAmount := anAmount asString.
 
-	"extract decimal part or use empty string"
-	index := displayAmount indexOf: $..
-	decimal := ''.
+	"extract fractionnal part or use empty string"
+	integer := displayAmount withoutPeriodSuffix.
+	fractionnal := displayAmount withoutLeadingDigits.
 
-	index > 0 ifTrue: [
-		decimal := displayAmount last: displayAmount size - index + 1.
-		displayAmount := displayAmount first: index - 1 ].
-
-	"add space between unit 300000 -> 300 000"
-	principal := (displayAmount last:
-		              displayAmount size - (displayAmount size \\\ 3))
-		             groupsOf: 3.
-	principal addFirst: (displayAmount first: displayAmount size \\\ 3).
+	"Split integer by group of 3 digit."
+	remainder := integer size \\\ 3.
+	formatedInteger := (integer last: integer size - remainder) groupsOf: 3.
+	formatedInteger addFirst: (integer first: remainder).
 
 	displayAmount := (String streamContents: [ :s |
-		                  principal asStringOn: s delimiter: ' ' ]) trimBoth.
-	^ displayAmount , decimal
+			                  formatedInteger
+				                  do: [ :each | s << each ]
+				                  separatedBy: [ s << ' ' ].
+			                  s << fractionnal ]) trimBoth.
+
+	^ displayAmount
 ]
 
 { #category : 'inspector' }
 Mortgage >> inspectAmortization: aBuilder [
-
+"aBuilder being an instance of SpPresenterBuilder"
 	<inspectorPresentationOrder: 2 title: 'amortization table'>
 	| table |
 	table := aBuilder newTable
@@ -193,8 +192,8 @@ Mortgage >> inspectLoan: aBuilder [
 
 	<inspectorPresentationOrder: 1 title: 'detail'>
 	| inspectorBuilder |
-	(inspectorBuilder := StSimpleInspectorBuilder on: aBuilder)
 	
+	(inspectorBuilder := StSimpleInspectorBuilder on: aBuilder)
 		key: #Principal value: (self formatAmount: self amount) , ' $';
 		key: #Duration value: self duration asString , ' months';
 		key: #'Nominal Rate' value: (self rate * 100) asString , ' %';
