@@ -1,3 +1,7 @@
+"
+Syntax highlighter using Regular expression.
+Inspired by https://medium.com/concerning-pharo/hacking-a-simple-syntactic-highlighter-around-specs-textmodel-44ba2e2b1ab9
+"
 Class {
 	#name : 'SSHRegexSyntaxStyler',
 	#superclass : 'BlTextStyler',
@@ -78,7 +82,7 @@ When we add a styler to ToAlbum, it will add stamp e hasStamp: #'sh-styled'
 This refer to the styleTable of the styler, which could be an array, a dictionnary, 
 whatever fit your style representation..."
 
-	^ Dictionary new
+	^ self subclassResponsibility 
 ]
 
 { #category : 'accessing' }
