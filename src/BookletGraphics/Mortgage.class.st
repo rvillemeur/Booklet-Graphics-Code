@@ -85,23 +85,23 @@ Mortgage >> duration: anObject [
 { #category : 'inspector' }
 Mortgage >> formatAmount: anAmount [
 
-	| displayAmount integer fractionnal formatedInteger remainder |
+	| displayAmount integerPart fractionnalPart formatedIntegerPart remainder |
 	displayAmount := anAmount asString.
 
 	"extract fractionnal part or use empty string"
-	integer := displayAmount withoutPeriodSuffix.
-	fractionnal := displayAmount withoutLeadingDigits.
+	integerPart := displayAmount withoutPeriodSuffix.
+	fractionnalPart := displayAmount withoutLeadingDigits.
 
 	"Split integer by group of 3 digit."
-	remainder := integer size \\\ 3.
-	formatedInteger := (integer last: integer size - remainder) groupsOf: 3.
-	formatedInteger addFirst: (integer first: remainder).
+	remainder := integerPart size \\\ 3.
+	formatedIntegerPart := (integerPart last: integerPart size - remainder) groupsOf: 3.
+	formatedIntegerPart addFirst: (integerPart first: remainder).
 
 	displayAmount := (String streamContents: [ :s |
-			                  formatedInteger
+			                  formatedIntegerPart
 				                  do: [ :each | s << each ]
 				                  separatedBy: [ s << ' ' ].
-			                  s << fractionnal ]) trimBoth.
+			                  s << fractionnalPart ]) trimBoth.
 
 	^ displayAmount
 ]
