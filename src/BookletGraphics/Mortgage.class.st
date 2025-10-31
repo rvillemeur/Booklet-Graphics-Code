@@ -136,11 +136,11 @@ Mortgage >> inspectAmortization: aBuilder [
 ]
 
 { #category : 'inspector' }
-Mortgage >> inspectAmortizationChart [
+Mortgage >> inspectAmortizationChart: aBuilder [
 
 	<inspectorPresentationOrder: 3 title: 'amortization'>
-	| chart  interestPlot principalPlot  legend  interestPaid principalPaid size |
-	
+	| chart  interestPlot principalPlot  legend  interestPaid principalPaid size presenter |
+	presenter := aBuilder instantiate: SpRoassalInspectorPresenter.
 	interestPaid := self amortizationTable collect: [ :each | each interestPayment ].
 	principalPaid := self amortizationTable collect: [ :each | each principalPayment ].
 	size := 4.
@@ -171,7 +171,7 @@ Mortgage >> inspectAmortizationChart [
 	legend build.
 
 
-	^ SpRoassalInspectorPresenter new
+	^ presenter
 		  canvas: chart canvas;
 		  yourself
 ]
@@ -192,19 +192,18 @@ Mortgage >> inspectAmortizationContext: aContext [
 Mortgage >> inspectLoan: aBuilder [
 
 	<inspectorPresentationOrder: 1 title: 'detail'>
-	| builder |
-	builder := StSimpleInspectorBuilder on: aBuilder.
-	builder
-		key: 'Principal' value: (self formatAmount: self amount) , ' $';
-		key: 'Duration' value: self duration asString , ' months';
-		key: 'Nominal Rate' value: (self rate * 100) asString , ' %';
-		key: 'Monthly rate' value: (self monthlyRate * 100) asString , ' %';
-		key: 'Monthly payment'
-		value: (self formatAmount: self payment asString) , ' $'.
+	| inspectorBuilder |
+	(inspectorBuilder := StSimpleInspectorBuilder on: aBuilder)
+	
+		key: #Principal value: (self formatAmount: self amount) , ' $';
+		key: #Duration value: self duration asString , ' months';
+		key: #'Nominal Rate' value: (self rate * 100) asString , ' %';
+		key: #'Monthly rate' value: (self monthlyRate * 100) asString , ' %';
+		key: #'Monthly payment' value: (self formatAmount: self payment asString) , ' $'.
 	self rate < 0 ifTrue: [
-		builder key: '' value: ''; key: 'Warning' value: 'rate cannot be negative' ].
+		inspectorBuilder key: #Warning value: 'rate cannot be negative' ].
 
-	^ builder table
+	^ inspectorBuilder table
 ]
 
 { #category : 'api' }
