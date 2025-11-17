@@ -1,0 +1,3 @@
+Caveman source: https://opengameart.org/sites/default/files/spritesheet_caveman.png
+https://opengameart.org/content/running-caveman-spritesheet
+License: https://creativecommons.org/licenses/by/3.0/
