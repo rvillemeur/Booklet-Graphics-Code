@@ -16,8 +16,9 @@ Class {
 BlRunningMan >> initSpritePosition [
 
 	| sprite |
-	sprite := ZnEasy getPng:
-		          'https://opengameart.org/sites/default/files/spritesheet_caveman.png'.
+	
+	"using GitBridge instead of (IcePackage named: 'BookletGraphics' repository: (IceRepository repositoryNamed: 'Booklet-Graphics-Code')) workingCopy fileSystem absolutePath "	
+	sprite := PNGReadWriter formFromFileNamed: (BookletGraphicsGitBridge root / 'assets' / 'spritesheet_caveman.png').
 
 	spriteGrid := OrderedCollection new.
 
