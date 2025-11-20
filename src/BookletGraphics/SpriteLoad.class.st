@@ -101,19 +101,35 @@ SpriteLoad >> inspectSprites: aBuilder [
 	^ aBuilder newTable
 		  addStyle: 'stList';
 		  addColumn: (SpStringTableColumn new
-				   title: 'Key';
+				   title: 'name';
 				   evaluated: [ :each | each key ];
 				   formatted: [ :key | StObjectPrinter asTruncatedTextFrom: key ];
 				   beNotExpandable;
 				   beSortable);
 		  addColumn: (SpImageTableColumn new
-				   title: 'Value';
+				   title: 'sprite';
 				   evaluated: [ :each | each value scaledToSize: 20 @ 20 ];
-				   width: 20);
+				   width: 40);
+		  addColumn: (SpStringTableColumn new
+				   title: 'Dimensions (W x H x D)';
+				   evaluated: [ :each | self spriteDimensions: each value ];
+				   yourself);
 		  items:
 			  ((self sprites associations sorted: #key ascending) collect: [ :e |
 				   StInspectorAssociationNode hostObject: e ]);
 		  yourself
+]
+
+{ #category : 'inspector' }
+SpriteLoad >> spriteDimensions: aForm [
+
+	^ String streamContents: [ : stream |
+		stream 
+			<< aForm width asString;
+			<< $x;
+			<< aForm height asString;
+			<< $x;
+			<< aForm depth asString ]
 ]
 
 { #category : 'parsing' }
