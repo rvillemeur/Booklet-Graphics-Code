@@ -4,6 +4,11 @@ Isometric tile position code taken from https://pikuma.com/blog/isometric-projec
 Class {
 	#name : 'IsometricLand',
 	#superclass : 'Object',
+	#instVars : [
+		'field',
+		'spriteList',
+		'extent'
+	],
 	#category : 'BookletGraphics-Isometric3D',
 	#package : 'BookletGraphics',
 	#tag : 'Isometric3D'
@@ -13,22 +18,85 @@ Class {
 IsometricLand class >> example1 [
 
 	<sampleInstance>
-	^ self new
+	^ self new drawField 
+]
+
+{ #category : 'drawing' }
+IsometricLand >> drawField [
+
+	self grid rowAndColumnValuesDo: [ :row :col :value |
+		self drawTileAt: col at: row with: value ]
+]
+
+{ #category : 'drawing' }
+IsometricLand >> drawTileAt: row at: col with: value [
+
+	| xField yField zOffset tile sprite |
+	xField := self xStart + ((row - col) * (self tileWidth / 2)).
+	yField := self yStart + ((row + col) * (self tileHeight / 2)).
+	
+	sprite := spriteList at: value.
+	zOffset := self maxTileHeight - (sprite extent y).
+
+	tile := BlElement new
+		        extent: sprite extent;
+		        background: (BlImageBackground image: sprite)";
+				  border: (BlBorder paint: Color red width: 1)".
+
+	field addChild: tile.
+	tile position: xField @ (yField + zOffset)
 ]
 
 { #category : 'accessing' }
 IsometricLand >> grid [
 
-	^ #( #( 14 23 23 23 23 23 23 23 23 13 )
-	     #( 21 32 33 33 28 33 28 33 31 20 )
-	     #( 21 34  0  0 25 33 30  1 34 20 ) 
-		  #( 21 34  0  0 34  1  1 10 34 20 )
-	     #( 21 25 33 33 24 33 33 33 27 20 )
-	     #( 21 34  4  7 34 18 17 10 34 20 )
-	     #( 21 34  4  7 34 16 19 10 34 20 )
-	     #( 21 34  6  8 34 10 10 10 34 20 )
-	     #( 21 29 33 33 26 33 33 33 30 20 )
-	     #( 11 22 22 22 22 22 22 22 22 12 ) )
+	^ (CTArray2D width: self xElement height: self yElement)
+		  setContents:
+	   #(14 23 23 23 23 23 23 23 23 13 
+	     21 32 33 33 28 33 28 33 31 20
+	     21 34  0  0 25 33 30  1 34 20
+		  21 34  0  0 34  1  1 10 34 20
+	     21 25 33 33 24 33 33 33 27 20
+	     21 34  4  7 34 18 17 10 34 20
+	     21 34  4  7 34 16 19 10 34 20
+	     21 34  6  8 34 10 10 10 34 20
+	     21 29 33 33 26 33 33 33 30 20
+	     11 22 22 22 22 22 22 22 22 12).
+]
+
+{ #category : 'initialization' }
+IsometricLand >> initSpriteList [
+
+	| sprites |
+	
+	sprites := self loadSprites.
+
+	spriteList := self tileMapping collect: [ :each |
+		        sprites at: each asSymbol ].
+
+]
+
+{ #category : 'initialization' }
+IsometricLand >> initialize [
+
+	super initialize.
+
+	self initSpriteList.
+	extent := self xElement * self tileWidth * 1.1
+			         @ (self yElement * self tileHeight *1.4 ).
+	field := BlElement new
+		         extent: extent;
+		         background: Color black
+]
+
+{ #category : 'inspector' }
+IsometricLand >> inspectField: aBuilder [
+
+	<inspectorPresentationOrder: 2 title: 'field'>
+	^ aBuilder newImage
+		  image: field asForm;
+		  autoScale: true;
+		  yourself
 ]
 
 { #category : 'inspector' }
@@ -49,38 +117,33 @@ IsometricLand >> inspectSprites: aBuilder [
 				   evaluated: [ :each | each value scaledToSize: 20 @ 20 ];
 				   width: 40);
 		  items:
-			  ((self spriteList associations sorted: #key ascending) collect: [ :e |
+			  ((spriteList associations sorted: #key ascending) collect: [ :e |
 				   StInspectorAssociationNode hostObject: e ]);
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 IsometricLand >> loadSprites [
 
 	^ (SpriteLoad new
-		  importSpritesFrom: self spriteFile
+		  importSpritesFrom: self spriteFile 
 		  position: self spritePosition) sprites
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
+IsometricLand >> maxTileHeight [
+
+	^ 80
+]
+
+{ #category : 'accessing' }
 IsometricLand >> spriteFile [
 
 ^ BookletGraphicsGitBridge root / 'assets'
 		           / 'landscapeTiles_sheet.png'
 ]
 
-{ #category : 'as yet unclassified' }
-IsometricLand >> spriteList [
-
-	| sprites |
-	sprites := self loadSprites.
-
-	^ self tileMapping collect: [ :each |
-		        sprites at: each asSymbol ].
-
-]
-
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 IsometricLand >> spritePosition [
 
 ^ BookletGraphicsGitBridge root / 'assets'
@@ -93,7 +156,7 @@ IsometricLand >> tileHeight [
 	^ 50
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 IsometricLand >> tileMapping [
 "mapping of code to tile, apply to landscape Tiles example"
 ^{   0 -> #'landscapeTiles_081.png' .  
@@ -112,11 +175,11 @@ IsometricLand >> tileMapping [
 	13 -> #'landscapeTiles_077.png' . 
 	14 -> #'landscapeTiles_069.png' .
 	15 -> #'landscapeTiles_066.png' .
-   16 -> #'landscapeTiles_048.png' .
-   17 -> #'landscapeTiles_049.png' . 
+   16 -> #'landscapeTiles_062.png' .
+   17 -> #'landscapeTiles_063.png' . 
    18 -> #'landscapeTiles_055.png' .
    19 -> #'landscapeTiles_056.png' .
-   20 -> #'landscapeTiles_058.png' .
+   20 -> #'landscapeTiles_050.png' .
 	21 -> #'landscapeTiles_051.png' . 
 	22 -> #'landscapeTiles_043.png' . 
 	23 -> #'landscapeTiles_058.png' .
@@ -147,7 +210,19 @@ IsometricLand >> xElement [
 ]
 
 { #category : 'accessing' }
+IsometricLand >> xStart [
+
+	^ extent x / 2 - (self tileWidth / 2)
+]
+
+{ #category : 'accessing' }
 IsometricLand >> yElement [
 
 	^ 10
+]
+
+{ #category : 'accessing' }
+IsometricLand >> yStart [
+
+	^ 50
 ]

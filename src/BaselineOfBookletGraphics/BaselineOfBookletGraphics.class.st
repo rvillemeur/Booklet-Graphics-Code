@@ -12,7 +12,7 @@ BaselineOfBookletGraphics >> baseline: spec [
 	spec for: #common do: [
 			spec
 				package: 'BookletGraphics'
-				with: [ spec requires: #( 'Toplo' 'GitBridge' ) ].
+				with: [ spec requires: #( 'Toplo' 'GitBridge' 'ContainersArray2D') ].
 
 			spec
 				baseline: 'Toplo'
@@ -20,5 +20,11 @@ BaselineOfBookletGraphics >> baseline: spec [
 
 			spec
 				baseline: 'GitBridge'
-				with: [ spec repository: 'github://jecisc/GitBridge:v1.x.x/src' ] ]
+				with: [ spec repository: 'github://jecisc/GitBridge:v1.x.x/src' ].
+
+			spec
+				baseline: 'ContainersArray2D'
+				with: [
+				spec repository:
+					'github://pharo-containers/Containers-Array2D/src' ] ]
 ]
