@@ -113,7 +113,7 @@ TransformExperiment class >> transformBlBasicLayout [
 	child position: 100 @ 100.
 
 	parent := BlElement new
-		          size: 200 asPoint;
+		          extent: 200 asPoint;
 		          addChild: child;
 		          background: Color lightRed.
 
@@ -121,7 +121,7 @@ TransformExperiment class >> transformBlBasicLayout [
 		child transformDo: [ :t | t translateBy: child size negated / 2 ] ].
 
 	parent openInSpace.
-	^parent.
+	^ parent
 ]
 
 { #category : 'examples' }
@@ -130,31 +130,31 @@ TransformExperiment class >> transformExample [
 	<sampleInstance>
 	| container node |
 	container := BlElement new
-		              layout: BlFrameLayout new;
-		              constraintsDo: [ :c |
-			              c horizontal fitContent.
-			              c vertical fitContent ];
-		              padding: (BlInsets all: 20);
-		              background: (Color gray alpha: 0.2).
+		             layout: BlFrameLayout new;
+		             constraintsDo: [ :c |
+				             c horizontal fitContent.
+				             c vertical fitContent ];
+		             padding: (BlInsets all: 20);
+		             background: (Color gray alpha: 0.2).
 
 	node := BlElement new
 		        geometry: (BlRoundedRectangleGeometry cornerRadius: 4);
 		        border: (BlBorder paint: Color black width: 2);
 		        background: Color white;
 		        constraintsDo: [ :c |
-			        c frame horizontal alignCenter.
-			        c frame vertical alignCenter ];
-		        size: 20 @ 20.
+				        c frame horizontal alignCenter.
+				        c frame vertical alignCenter ];
+		        extent: 20 @ 20.
 
 	container transformDo: [ :t |
-		t
-			scaleBy: 2.0;
-			rotateBy: 69;
-			translateBy: 50 @ 50 ].
+			t
+				scaleBy: 2.0;
+				rotateBy: 69;
+				translateBy: 50 @ 50 ].
 
-	container whenLayoutedDoOnce:  [ container addChild: node.].
+	container whenLayoutedDoOnce: [ container addChild: node ].
 
-	container openInNewSpace. 
+	container openInNewSpace.
 	^ container
 ]
 

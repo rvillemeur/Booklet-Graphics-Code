@@ -56,10 +56,10 @@ BlClock class >> openInFixedSize [
 		             background: Color yellow;
 		             layout: BlFrameLayout new;
 		             constraintsDo: [ :c |
-			             c horizontal fitContent.
-			             c vertical fitContent ].
+				             c horizontal fitContent.
+				             c vertical fitContent ].
 
-	clock := self new size: 300 @ 300.
+	clock := self new extent: 300 @ 300.
 
 	container addChild: clock.
 
@@ -194,6 +194,7 @@ BlClock >> initialize [
 
 	super initialize.
 	model := BlClockModel new.
+	self resize.
 	self
 		addEventHandlerOn: BlElementExtentChangedEvent
 		do: [ :e | self resize ]

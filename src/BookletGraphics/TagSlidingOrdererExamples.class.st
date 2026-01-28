@@ -34,7 +34,7 @@ TagSlidingOrdererExamples class >> tagOrdererSlidingTagFor: aString [
 	^ (self tagFor: aString)
 		  addEventHandler: (BlDragHandler new
 				   dragArea: [ :aSourceElement | aSourceElement parent ];
-				   liftItem: [ :aSourceElement |
+				   liftItemBlock: [ :aSourceElement |
 					   BlDragItem new
 						   sourceElement: aSourceElement;
 						   domainObject: aString;

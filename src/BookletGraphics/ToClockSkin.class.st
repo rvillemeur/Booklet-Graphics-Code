@@ -65,15 +65,24 @@ ToClockSkin >> installSkinEvent: anEvent [
 			(BlBackground paint: (e valueOfTokenNamed: #'clock-background-color')).
 
 		self drawClockFrame: e.
-		e hourNeedle defaultRawSkin: ToHourNeedleClockSkin new.
-		e minutesNeedle defaultRawSkin: ToMinuteNeedleClockSkin new.
-		e secondNeedle defaultRawSkin: ToSecondNeedleClockSkin new ]
+		e hourNeedle defaultSkin: ToHourNeedleClockSkin new.
+		e minutesNeedle defaultSkin: ToMinuteNeedleClockSkin new.
+		e secondNeedle defaultSkin: ToSecondNeedleClockSkin new ]
 ]
 
 { #category : 'event handling' }
 ToClockSkin >> leavedSkinEvent: anEvent [
 
 	super leavedSkinEvent: anEvent.
+	anEvent elementDo: [ :e |
+		e background:
+			(BlBackground paint: (e valueOfTokenNamed: #'clock-background-color')) ]
+]
+
+{ #category : 'event handling' }
+ToClockSkin >> leftSkinEvent: anEvent [
+
+	super leftSkinEvent: anEvent.
 	anEvent elementDo: [ :e |
 		e background:
 			(BlBackground paint: (e valueOfTokenNamed: #'clock-background-color')) ]

@@ -32,7 +32,7 @@ TagOrdererExamples class >> tagFor: aString [
 TagOrdererExamples class >> tagOrdererDraggableTagFor: aString [
 
 	^ (self tagFor: aString)
-		  addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
+		  addEventHandler: (BlDragHandler new liftItemBlock: [ :aSourceElement |
 					   BlDragItem new
 						   sourceElement: aSourceElement;
 						   domainObject: aString;

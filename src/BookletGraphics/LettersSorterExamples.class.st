@@ -23,7 +23,7 @@ LettersSorterExamples class >> letterFor: aCharacter [
 
 	^ BlElement new
 		  layout: BlLinearLayout horizontal alignCenter;
-		  size: 30 @ 30;
+		  extent: 30 @ 30;
 		  margin: (BlInsets all: 5);
 		  background: Color veryVeryLightGray;
 		  border: (BlBorder paint: Color veryLightGray width: 1);
@@ -101,7 +101,7 @@ LettersSorterExamples class >> lettersSorterDraggableLetterFor: aCharacter [
 	| element  |
 	element := self letterFor: aCharacter.
 	element
-		addEventHandler: (BlDragHandler new liftItem: [ :aSourceElement |
+		addEventHandler: (BlDragHandler new liftItemBlock: [ :aSourceElement |
 					 BlDragItem new
 						 sourceElement: aSourceElement;
 						 domainObject: aCharacter;
