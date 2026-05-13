@@ -47,13 +47,7 @@ Mortgage >> amortizationTable [
 
 	1 to: self duration do: [ :each |
 		remainingPrincipal := self principalRemainingAtPeriod: each.
-		elements add: (MortgageDetail new
-				 beginningPrincipal: beginningPrincipal;
-				 remainingPrincipal: remainingPrincipal;
-				 principalPayment:
-					 (beginningPrincipal - remainingPrincipal round: 2);
-				 interestPayment:
-					 (payment - (beginningPrincipal - remainingPrincipal) round: 2)).
+		elements add: (self mortgageDetail: beginningPrincipal remaining: remainingPrincipal payment: payment).
 		beginningPrincipal := remainingPrincipal ].
 	^ elements
 ]
@@ -212,6 +206,23 @@ Mortgage >> monthlyRate [
 ]
 
 { #category : 'api' }
+Mortgage >> mortgageDetail: beginningPrincipal remaining: remainingPrincipal payment: payment [
+
+	| detail |
+	detail := MortgageDetail new
+		          beginningPrincipal: beginningPrincipal;
+		          remainingPrincipal: remainingPrincipal;
+		          principalPayment:
+			          (beginningPrincipal - remainingPrincipal round: 2);
+		          interestPayment:
+			          (payment - (beginningPrincipal - remainingPrincipal)
+				           round: 2).
+
+	detail emit.
+	^ detail
+]
+
+{ #category : 'api' }
 Mortgage >> payment [
 
 	^ amount * self monthlyRate
@@ -223,6 +234,23 @@ Mortgage >> principalRemainingAtPeriod: anInteger [
 
 	^ 1 - (1 / (1 + self monthlyRate) raisedTo: duration - anInteger)
 	  / self monthlyRate * self payment round: 2
+]
+
+{ #category : 'printing' }
+Mortgage >> printOn: aStream [
+
+	aStream
+		nextPutAll: 'Principal: ';
+		print: (self formatAmount: self amount);
+		nextPutAll: ' $ | Duration ';
+		print:  self duration asString;
+		nextPutAll: ' months | Nominal Rate: ';
+		print: (self rate * 100);
+		nextPutAll: ' % | Monthly rate ';
+		print: (self monthlyRate * 100);
+		nextPutAll:  ' % | Monthly payment';
+		print: (self formatAmount: self payment asString) ;
+		nextPutAll: ' $'.
 ]
 
 { #category : 'accessing' }
